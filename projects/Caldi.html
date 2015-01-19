@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <title>PatternAgents: Caldi - I2C PyroInfraRed Grid Array Sensor</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <meta name="robots"                  content="noodp, noydir, noarchive"         />
+  <meta name="description"        content="Caldi - a 8x8 PyroInfraRed sensor with I2C interface"    />
+  <meta name="abstract"              content="Caldi - a 8x8 PyroInfraRed sensor with I2C interface"       />
+  <meta name="classification"  content="electronics, electronics design, design engineering" />
+  <meta name="keywords"              content="caldi, arduino, pir, pir controller, sensor, I2C, proximity, occupancy sensor"       />
+
+  <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
+  <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
+
+  <!-- Ubuntu for logo -->
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/app-old-ie.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/css/app.css">
+<!--<![endif]-->
+  
+<!-- Begin MailChimp Signup Form -->
+ <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+	#mc_embed_signup{position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,.8); display:block; z-index:10000; }
+	#mc_embed_signup form{position:fixed; top:5%; left:5%; right:5%; bottom:5%; width:60%; font:normal 100% Helvetica,Arial,sans-serif; font-size:14px; border-radius:4px; border:3px; padding:10px; background-color:#eee; color:#000; text-align:left;max-height:800px;overflow-y:auto;overflow-x:hidden;}
+	#mc_embed_signup a.mc_embed_close{background:transparent url(http://downloads.mailchimp.com/img/closebox.png) no-repeat; display:block; height:30px; width:30px; text-indent:-999em; position:absolute; top:10px; right:10px; display:none; }
+ </style>
+
+<!-- Begin Google Analytics -->
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38592761-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="">
+ 
+
+<!-- Add the standard layout -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="head-container">
+	  <div class="col">
+	    <a href="/">
+	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
+	    </a>
+	  </div>
+  </div>
+</header>
+
+
+
+<div class="row"><div class="col">
+<nav class="toggle">
+  <h2><a href="#" title="(click to expand)"><span class="menu-icon">&#9776;</span> Go to:</a></h2>
+  <ul>
+    <li class="nav-store"><a href="/store/index.html">Store</a></li>
+    <li class="nav-projects"><a href="/projects/index.html">Projects</a></li>
+    <li class="nav-support"><a href="/support/index.html">Support</a></li>
+    <li class="nav-about"><a href="/about/index.html">About</a></li>
+    <li class="nav-news"><a href="/news/index.html">News</a></li>
+  </ul>
+</nav>
+</div></div>
+
+
+  
+  
+
+
+<main class="row">
+  
+  <div class="col major">
+    
+  <div class="row">
+    <div class="col maj_major">
+      
+  
+  <h1>Caldi - I2C PyroInfraRed Grid Array Sensor</h1>
+
+  <!-- Add the content from the post/project -->
+  <p>
+  Caldi lets you "see" an 8x8 array of heat sensors via communication on the standard I2C bus.
+  Caldi uses the new Pansonic "Grid-EYE" Pyro-Infra-Red Array Sensor, for low resolution thermal imaging.
+</p>
+<!-- more -->
+
+<p>
+  <img class="illo illo-left" src="/img/projects/Caldi/grideye.jpg" alt="Grid-EYE Sensor" title="Grid-EYE Sensor"/>
+</p>
+
+<h3>Caldi Features:</h3>
+<p>
+<ul>
+  <li>I2C - Two-Wire Interface</li>
+  <li>8x8 PIR Array Sensor</li>
+  <li>3.3 Volt or 5.0 Volt stuffing options</li>
+  <li>Arduino Sketch Available
+</ul>
+</p>
+<h3>PEWA "Grid-EYE" Introduction:</h3>
+<div class="container">
+  <iframe title="Panasonic Grid-EYE Video" src="http://www.youtube.com/embed/AiYG-0rKyOE?HD=1;rel=0;showinfo=0;controls=0" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<h3>Note Bene:</h3> 
+<p>
+  The Panasonic Grid-EYE Sensor is a U.S. Government controlled semiconductor, due to it's accuracy. It can only be purchased is the U.S. at <a href="http://www.digikey.com/product-highlights/us/en/panasonic-grid-eye/2108">Digi-Key</a>. Consequently we do not offer this as a completed product, due to the U.S. Government paperwork involved, however bare boards will be available for purchase. (Or you can download the PCB Gerbers from the Github repo and order your very own PCB's for educational &amp; experimentation purposes...)
+</p>
+
+<h3>Panasonic Grid-EYE Sensor Documentation:</h3>
+<ul>
+  <li><a href="http://pewa.panasonic.com/components/built-in-sensors/infrared-array-sensors/grid-eye/">Panasonic Grid-EYE Sensor Site</a></li>
+</ul>
+
+
+
+
+    </div>
+    <div class="col maj_minor">
+      
+  <h2>Caldi</h2>
+  <img src="/img/projects/Caldi/Caldi.png" alt="Caldi Model" title="Caldi Model"/>
+  <br>
+  
+
+
+  <h2>Tweet about Caldi</h2>
+    <center>
+    <a href="https://twitter.com/intent/tweet?button_hashtag=Caldi" class="twitter-hashtag-button" data-lang="en" data-related="PatternAgents">Tweet #Caldi</a>
+	</center>
+  <h2>Caldi Repository</h2>
+  <center>
+  <table border="0">
+  <tr>
+	<td><a href="https://github.com/PatternAgents/Caldi"><img class="img" src="/img/logos/github_repo.png" width="168" height="38" alt="Caldi Github" title="Caldi Github"/></a></td>
+  </tr>
+  <tr>
+	<td><a href="https://github.com/PatternAgents/Caldi/wiki"><img class="img" src="/img/logos/project_wiki.png"  width="168" height="38" alt="Caldi Wiki" title="Caldi Wiki"/></a></td>
+  </tr>
+  <tr>
+	<td><a href="https://github.com/PatternAgents/Caldi/issues"><img class="img" src="/img/logos/bug_tracker.png"  width="168" height="38" alt="Caldi Issues" title="Caldi Issues"/></a></td>
+  </tr>
+  </table>
+  </center>
+  <h2>Caldi Downloads</h2>
+    <center>
+	<table border="0">
+	<tr>
+		<td><a href="https://github.com/PatternAgents/Caldi/zipball/master"><img class="img" src="/img/logos/zip_archive.png" width="168" height="38" alt="Caldi ZIPball" title="Caldi ZIPball"/></a></td>
+	</tr>
+	<tr>
+		<td><a href="https://github.com/PatternAgents/Caldi/tarball/master"><img class="img" src="/img/logos/tar_archive.png" width="168" height="38" alt="Caldi TARball" title="Caldi TARball"/></a></td>
+	</tr>
+	</table>
+	</center>
+  <h2>Caldi Images</h2>
+    <center>
+	<table border="0">
+	<tr>
+		<td><a href="/img/projects/Caldi/Caldi_top.png"><img class="illo" src="/img/projects/Caldi/Caldi_top.png" alt="Caldi Top View" title="Caldi Top View"/></a></td>
+	</tr>
+	<tr>
+		<td><a href="/img/projects/Caldi/Caldi_bot.png"><img class="illo" src="/img/projects/Caldi/Caldi_bot.png" alt="Caldi Bottom View" title="Caldi Bottom View"/></a></td>
+	</tr>
+	</table>
+	</center>
+   <!-- License terms -->
+  
+
+<!-- place "licensing: true" in the YAML front matter to enable Licensing in that page -->
+
+	<h2>Caldi Licensing</h2>
+
+<!-- place "cc_by_sa: true" in the YAML front matter to enable cc_by_sa licensing for that page -->
+	
+		<table border="0">
+		<tr>
+			<td align="center"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img width="88" height="31" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a></td>
+        </tr>
+		<tr>
+			<td>The Caldi Project by PatternAgents, LLC is available and licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</td>
+		</tr>
+		</table>
+	
+
+<!-- place "cc_by_nc_sa: true" in the YAML front matter to enable cc_by_nc_sa licensing for that page -->
+	
+
+
+
+
+    </div>
+  </div>
+
+  </div>
+  <div class="col minor">
+    
+    
+  <h2>Featured Projects</h2>
+  <ul class="post-list">
+  
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Hula_Poppy.html">Hula Poppy - Pmod Lure for the Intel MinnowBoard</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Videre.html">Videre - Color LCD Controller with Cortex-M0</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/BridgerSoc.html">BridgerSoc - control and monitor your world!</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/TinySoc.html">TinySoc - USB based Programmable System-on-Chip</a>
+        </li>
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/CPM_Shield.html">CPM Shield - Add Arduino to your PSoC Dev Kits</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Caldi.html">Caldi - I2C PyroInfraRed Grid Array Sensor</a>
+        </li>
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/CPM_Pmod.html">CPM Pmod - Add Pmod Peripherals to your PSoC Dev Kits</a>
+        </li>
+      
+    
+      
+    
+      
+    
+  
+</ul>
+  <h2>Latest News</h2>
+  <ul class="post-list">
+  
+    <li>
+      <a href="/news/2015/01/07/Eltopia-MiteNot.html">Eltopia MiteNot</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/26/Hula-Poppy-Lure-minnow-board.html">Hula Poppy Lure for MinnowBoard</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/24/minnow-board-lures.html">MinnowBoard Lures Library</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/02/touchwidget-best-practices.html">Touch Widgets - Best Practices</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/29/touch-widgets-howto.html">Touch Widgets How-To/Instructions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/24/eagle-touch-widgets-library.html">Touch Widgets Library for Eagle</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/20/capacitive-sensing-introduction.html">Capacitance Sensing Introduction</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/14/building-your-new-widget.html">Building Your New Widget</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/11/eaglecad-libraries.html">EagleCAD Libraries</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/09/quattrocycle-update.html">Quattrocycle Lighting Update</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/09/13/portland-maker-faire.html">Portland Mini-Maker Faire</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/09/arduino-yun-the-next-generation.html">Arduino Y'un - The Next Generation</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/08/minnow-board-small-form-factor.html">The Minnow Board - A New Small Form Factor</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/07/microcontroller-small-form-factors.html">Small Form Factors for Embedded Devices</a>
+    </li>
+  
+</ul>
+
+
+
+  </div>
+
+</main>
+   
+
+<form id="signup"
+      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      method="post"
+      id="mc-embedded-subscribe-form"
+      name="mc-embedded-subscribe-form"
+      class="validate"
+      target="_blank"
+      novalidate>
+  <div class="row"><div class="col">
+    
+  <div class="row collapse">
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <button class="postfix" type="submit">Subscribe</button>
+  </div>
+  </div></div>
+</form>
+   <!-- Add the discussion widget -->
+   
+
+<!-- discus panel -->
+<!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
+
+   
+
+<footer>
+  <div class="row">
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <ul class="social-icons">
+            <li><a href="https://www.facebook.com/pages/Patternagents-LLC/363283563788946?hc_location=stream" title="facebook"><i class="social foundicon-facebook"></i></a></li>
+            <li><a href="https://twitter.com/PatternAgents" title="twitter"><i class="social foundicon-twitter"></i></a></li>
+            <li><a href="https://github.com/PatternAgents" title="github"><i class="social foundicon-github"></i></a></li>
+            <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><i class="social foundicon-linkedin"></i></a></li>
+            <li><a href="http://pinterest.com/patternagents" title="pinterest"><i class="social foundicon-pinterest"></i></a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+            <h2><a href="/contact/index.html">Contact</a></h2>
+            <ul>
+              <li><a href="/contact/press.html">Press</a></li>
+              <li><a href="/contact/investors.html">Investors</a></li>
+              <li><a href="/licensing/index.html">Licensing</a></li>
+              <li><a href="/contact/credits.html">Credits</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <h2><a href="/about/index.html">About Us</a></h2>
+          <ul>
+            <li><a href="/about/manufacturers.html">For Manufacturers</a></li>
+            <li><a href="/about/distributors.html">For Distributors</a></li>
+            <li><a href="/about/representatives.html">For Representatives</a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+          <h2><a href="/policies/index.html">Policies</a></h2>
+          <ul>
+            <li><a href="/policies/shipping.html">Shipping</a></li>
+            <li><a href="/policies/returns.html">Returns</a></li>
+            <li><a href="/policies/legal/index.html">Legal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row unimportant">
+    <div class="col quarter"><p>Copyright &copy; 2010-2013 PatternAgents</p></div>
+  </div>
+</footer>
+
+<script src="/js/lib/jquery.js"></script>
+
+
+<!-- disqus widget script -->
+<script type="text/javascript">
+  var disqus_shortname = 'patternagents';
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- pinterest widget script -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.setAttribute('data-pin-color', 'red');
+  p.setAttribute('data-pin-hover', 'true');
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+<!-- toggle menu -->
+<script>
+  $(function() {
+    var $navToggle = $('nav.toggle');
+    $navToggle.addClass('collapsed');
+    $navToggle.find('h2').bind('click focus', function() {
+      // if we want to get fancy, we can animate the max-height here
+      $navToggle.toggleClass('collapsed');
+    });
+  });
+</script>
+
+
+
+
+  
+  
+  
+
+<!-- twitter widget script -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+  
+
+<!-- pinterest widget script -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.setAttribute('data-pin-color', 'red');
+  p.setAttribute('data-pin-hover', 'true');
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+  
+
+<!-- disqus widget script -->
+<script type="text/javascript">
+  var disqus_shortname = 'patternagents';
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+---
+layout: post
+category: news
+title: "Arduino Y'un - The Next Generation"
+quote: Clouds come floating into my life, no longer to carry rain or usher storm, but to add color to my sunset sky...
+quote_author: Rabindranath Tagore
+product_slug: Yun
+licensing: true
+cc_by_sa: true
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "Arduino Y'un - The Next Generation"
+  abstract: "Arduino Y'un - The Next Generation"
+  keywords: "arduino, uno, mega, due, yun, y'un, wi-fi, internet, ethernet, usb, psoc, psoc1, psoc3, psoc4, psoc5, cypress, cpm"
+comments: true
+---
+<p>
+  Y'un means &ldquo;Cloud&rdquo; in Chinese, and the latest small form factor board from Arduino is clearly intended for &ldquo;cloud applications&rdquo;,
+  and enabling the &ldquo;Internet of Things&rdquo;. The Y'un includes an Atheros/Qualcomm AR9331 System-on-Chip device that includes a MIPS processor
+  with a Wi-Fi radio, as well as wired USB and Ethernet connections. In order to maintain backward compatibility with the Arduino IDE tools,
+  it also includes a legacy ATMega324 for running standard Arduino sketches.
+</p>
+<!-- more -->
+<p>
+  <img class="illo" src="{{site.url.images}}/sff/yun.png" alt="Arduino Y'un" title="Arduino Y'un"/>
+</p>
+<h3>What is on a Y'un?</h3>
+<ul>
+  <li>2.4" by 2.1" Arduino/Leonardo Form Factor</li>
+  <li>Atheros/Qualcomm AR9331 SOC</li>
+  <li>400Mhz MIPS 24K CPU</li>
+  <li>Atmel ATMega324 Processor</li>
+  <li>(14) GPIO</li>
+  <li>micro-USB</li>
+  <li>USB-A</li>
+  <li>RJ45 Ethernet</li>
+  <li>micro-SD Memory Card Slot</li>
+  <li>Linino Embedded Linux</li>
+</ul>
+
+<p>
+  The Y'un initially boots up as a Wi-FI Access Point, and creates a Wi-Fi network with the SSID "Arduino". I have to say that I think that is pretty slick, and will make the Y'un very easy to use. As an experienced RF designer, I have to wonder about the wisdom of placing the RF radio in the middle of an Arduino board stack-up however. Any board above it with a integral ground plane is going to attenuate the RF signal, and perhaps limit the range available. But we'll just have to see how that works out once the Y'un starts shipping and getting it in the field for some real-world testing. In any case, it's a great concept, 
+  and I can't wait to try one out.
+</p>
+<p>
+   <a href="http://linuxgizmos.com/arduino-yun-adds-wifi-linux-to-leonardo-features/"><img class="illo" src="http://files.linuxgizmos.com/atheros-ar9331-diag.jpg" alt="Atheros AR9331 Block Diagram" title="Atheros AR9331 Block Diagram"/></a>
+</p>
+<p>
+  Arduino is providing a "bridge" library with the Y'un, that will allow your Arduino sketches (it's what Arduino names an embedded program) to access the Wi-Fi link. The Y'un supports Linux Shell scripts and the Python interpreter, so programming it should be quick and easy. 
+</p>
+<p>
+  And to make it even easier to use, Arduino has partnered with NYC/Portland startup company <a href="https://www.temboo.com/">Temboo</a> for deploying Cloud based apps using the <a href="https://www.temboo.com/">Temboo</a> API's. <a href="https://www.temboo.com/">Temboo</a> provides over 1500 cloud based components that will make it a breeze to connect your Y'un device with Twitter, Facebook, Youtube, etc.
+</p>
+<p>
+ As my friend Bob says, "it will only be a short time before I can OAuth to my toaster and the rest of my kitchen appliances..."
+</p>
+
+<h3>About PatternAgents</h3>
+{% include frag/blurb.html %}

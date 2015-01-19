@@ -1,0 +1,74 @@
+{% comment %}
+Layout for a Project (standard) page - 
+3 col w/projects in minor column.
+Content sections is:
+standard_content
+{% endcomment %}
+
+{% capture col3_content1 %}
+  {{standard_content}}
+{% endcapture %}
+
+{% capture col3_content2 %}
+  <h2>{{page.product_slug}}</h2>
+  <img src="{{site.url.images}}/projects/{{page.product_slug}}/{{page.product_img}}" alt="{{page.product_slug}} Model" title="{{page.product_slug}} Model"/>
+  <br>
+  {% include frag/ecwid/micro_store.html %}
+  <h2>Tweet about {{page.product_slug}}</h2>
+    <center>
+    <a href="https://twitter.com/intent/tweet?button_hashtag={{page.product_slug}}" class="twitter-hashtag-button" data-lang="en" data-related="PatternAgents">Tweet #{{page.product_slug}}</a>
+	</center>
+  <h2>{{page.product_slug}} Repository</h2>
+  <center>
+  <table border="0">
+  <tr>
+	<td><a href="{{site.url.github}}/{{page.product_slug}}"><img class="img" src="{{site.url.images}}/logos/github_repo.png" width="168" height="38" alt="{{page.product_slug}} Github" title="{{page.product_slug}} Github"/></a></td>
+  </tr>
+  <tr>
+	<td><a href="{{site.url.github}}/{{page.product_slug}}/wiki"><img class="img" src="{{site.url.images}}/logos/project_wiki.png"  width="168" height="38" alt="{{page.product_slug}} Wiki" title="{{page.product_slug}} Wiki"/></a></td>
+  </tr>
+  <tr>
+	<td><a href="{{site.url.github}}/{{page.product_slug}}/issues"><img class="img" src="{{site.url.images}}/logos/bug_tracker.png"  width="168" height="38" alt="{{page.product_slug}} Issues" title="{{page.product_slug}} Issues"/></a></td>
+  </tr>
+  </table>
+  </center>
+  <h2>{{page.product_slug}} Downloads</h2>
+    <center>
+	<table border="0">
+	<tr>
+		<td><a href="{{site.url.github}}/{{page.product_slug}}/zipball/master"><img class="img" src="{{site.url.images}}/logos/zip_archive.png" width="168" height="38" alt="{{page.product_slug}} ZIPball" title="{{page.product_slug}} ZIPball"/></a></td>
+	</tr>
+	<tr>
+		<td><a href="{{site.url.github}}/{{page.product_slug}}/tarball/master"><img class="img" src="{{site.url.images}}/logos/tar_archive.png" width="168" height="38" alt="{{page.product_slug}} TARball" title="{{page.product_slug}} TARball"/></a></td>
+	</tr>
+	</table>
+	</center>
+  <h2>{{page.product_slug}} Images</h2>
+    <center>
+	<table border="0">
+	<tr>
+		<td><a href="{{site.url.images}}/projects/{{page.product_slug}}/{{page.product_slug}}_top.png"><img class="illo" src="{{site.url.images}}/projects/{{page.product_slug}}/{{page.product_slug}}_top.png" alt="{{page.product_slug}} Top View" title="{{page.product_slug}} Top View"/></a></td>
+	</tr>
+	<tr>
+		<td><a href="{{site.url.images}}/projects/{{page.product_slug}}/{{page.product_slug}}_bot.png"><img class="illo" src="{{site.url.images}}/projects/{{page.product_slug}}/{{page.product_slug}}_bot.png" alt="{{page.product_slug}} Bottom View" title="{{page.product_slug}} Bottom View"/></a></td>
+	</tr>
+	</table>
+	</center>
+   <!-- License terms -->
+  {% include frag/licenses.html %}
+{% endcapture %}
+
+{% capture col3_content3 %}
+  <h2>Featured Projects</h2>
+  {% include frag/sidebar_projects.html %}
+  <h2>Latest News</h2>
+  {% include frag/sidebar_news.html %}
+{% endcapture %}
+
+{% capture col3_js %}
+  {% include frag/js/twitter.js %}
+  {% include frag/js/pinterest.js %}
+  {% include frag/js/disqus.js %}
+{% endcapture %}
+
+{% include layouts/col3.html %}

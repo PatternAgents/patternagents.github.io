@@ -1,0 +1,135 @@
+---
+layout: post
+category: news
+title: "Small Form Factors for Embedded Devices"
+quote: Success is the sum of small efforts, repeated day in and day out...
+quote_author: Robert J. Collier
+product_slug: Small_Form_Factors
+licensing: true
+cc_by_sa: true
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "Small Form Factors for Embedded Devices"
+  abstract: "Small Form Factors for Embedded Devices"
+  keywords: "arduino, uno, mega, due, psoc, psoc1, psoc3, psoc4, psoc5, cypress, cpm, cpld, fpga, cortex, freedom, raspberry pi"
+comments: true
+---
+<p>
+  There are dozens of different <b>Small Form Factors</b> in use today.
+  The largest volume of those being used in Embedded Personal Computers (PC's), such as the 
+  <a href="http://en.wikipedia.org/wiki/Small_form_factor">Mini-ITX, Nano-ITX and Pico-ITX</a>
+  form factors. However, what we're going to talk about today are even smaller form factors,
+  typically those used for embedded microcontrollers in application specific uses, such as
+  smart devices and process controllers. Today we're talking about form factors for processors,
+  and in upcoming segments we'll also be covering those used for adding small peripherals and
+  interfaces to other (larger) form factors.
+</p>
+<!-- more -->
+<h3>What is a Small Form Factor? </h3>
+<p>
+  Small Form Factor lacks a normative definition and is consequently open to (mis)interpretation and/or misuse.
+  It historically referred to any (PC) computer format that was smaller than a traditional tower computer,
+  and was applied to any smaller computer, such as shoebox size (Shuttle), small cubes, net-tops and book sized computers.
+</p>
+<p>
+ For the purposes of discussion today, we will define a Small Form Factor as,
+ any computing device, or circuit board, that is smaller than the Standard ATX motherboard,
+ meaning smaller than 12.00 by 9.65 inches (305mm by 244mm).
+</p>
+<h3>Trends in Small Form Factors for Embedded Devices</h3>
+<p>
+  There are two primary trends in Small Form Factor adoption today, and those break down
+  along the lines of quasi-Proprietary standards versus Open Source Hardware standards.
+  Companies like Texas Instruments have adopted quasi-Proprietary standards, such as the 
+  <a href="http://www.ti.com/launchpad/">TI LaunchPad</a> and the 
+  <a href="http://beagleboard.org/">BeagleBoard</a>, 
+  which are used primarily to market and support their proprietary microprocessor/microcontroller products. 
+  While other companies like Atmel, Freescale, and Cypress Semiconductor have embraced
+  Open Source Hardware platforms such as the
+  <a href="http://arduino.cc/">Arduino</a> family of small form factor boards. 
+  The <a href="http://www.raspberrypi.org/">Raspberry Pi</a> was developed in the UK by the Raspberry Pi Foundation
+  with the intention of providing a low cost platform for teaching basic computer science in schools.
+  Other vendors like NXP, have embraced a more breadboard friendly Dual-Inline-Package (DIP) format,
+  and have been having great success with their "mbed" format for small embedded processors.
+</p>
+<ul class="illo-list">
+  <li>
+    <span>
+       <a href="http://www.ti.com/launchpad/"><img class="illo" src="{{site.url.images}}/news/sff/launchpad.png" alt="TI LaunchPad" title="TI LaunchPad"/></a>
+    </span>
+  </li>
+  <li>
+    <span>
+       <a href="http://beagleboard.org/"><img class="illo" src="{{site.url.images}}/news/sff/beaglebone.png" alt="TI BeagleBoard" title="TI BeagleBoard"/></a>
+    </span>
+  </li>
+</ul>
+
+<ul class="illo-list">
+  <li>
+    <span>
+      <a href="http://www.raspberrypi.org/"><img class="illo" src="{{site.url.images}}/news/sff/rasppi.png" alt="RaspberryPI" title="RaspberryPI"/></a>
+    </span>
+  </li>
+  <li>
+    <span>
+      <a href="http://www.arduino.cc/"><img class="illo" src="{{site.url.images}}/news/sff/uno.png" alt="Arduino Uno" title="Arduino Uno"/></a>
+    </span>
+  </li>
+</ul>
+
+<ul class="illo-list">
+  <li>
+    <span>
+      <a href="http://www.freescale.com/frdm-kl25z/"><img class="illo" src="{{site.url.images}}/news/sff/freedom.png" alt="Freescale Freedom" title="Freescale Freedom"/></a>
+    </span>
+  </li>
+  <li>
+    <span>
+      <a href="http://www.cypress.com/?rID=77780"><img class="illo" src="{{site.url.images}}/news/sff/p4pioneer.png" alt="Cypress Pioneer" title="Cypress Pioneer"/></a>
+    </span>
+  </li>
+</ul>
+
+<ul class="illo-list">
+  <li>
+    <span>
+       <a href="http://mbed.org/handbook/mbed-Hardware"><img class="illo" src="{{site.url.images}}/news/sff/mbed.png" alt="NXP mBed" title="NXP mBed"/></a>
+    </span>
+  </li>
+  <li>
+    <span>
+       <a href="http://www.st.com/stm32-discovery/"><img class="illo" src="{{site.url.images}}/news/sff/stm32discovery.png" alt="ST Discovery" title="ST Discovery"/></a>
+    </span>
+  </li>
+</ul>
+
+<h3>Popular Small Form Factors for Embedded Computing</h3> 
+<ul>
+  <li>BeagleBoard</li>
+  <li>LaunchPad</li>
+  <li>Arduino</li>
+  <li>Raspberry Pi</li>
+  <li>Freescale Freedon</li>
+  <li>Cypress Pioneer</li>
+  <li>NXP mbed</li>
+  <li>STM32 Discovery</li>
+</ul>
+
+<p>
+Each of these <b>Small Form Factors</b> are popular for use with their companion microcontroller/microprocessor family brands,
+and each have different stenghths and weaknesses.
+</p>
+<p>
+<img class="illo" src="{{site.url.images}}/news/sff/sff_compare.png" alt="Small Form Factor Comparisons" title="Embedded Small Form Factor Comparisons"/>
+</p>
+<p>
+As you can see from the comparison table, there is a large difference in performance between those boards capable of running Linux
+(the BeagleBone and the Raspberry Pi), and their smaller cousins that typically run only a single captive embedded application. However,
+if real-time performance for a small application is what you need, then then smaller form factors will suit your needs just fine.
+In some of the following segments, we'll be delving into each of these platforms in much more detail, as well as discussing the 
+programming enviroment(s) (Integrated Development Enviroments) for each of them.
+</p>
+
+<h3>About PatternAgents</h3>
+{% include frag/blurb.html %}

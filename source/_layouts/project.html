@@ -1,0 +1,17 @@
+---
+layout: basic
+# we need to do this with a layout in _layouts instead of
+# one in _include/layouts (like every other page), because
+# post.content gets used in news/index.html, and it needs
+# to be just the post content, not the page headers & etc.
+---
+{% capture standard_content %}
+  <h1>{{page.title}}</h1>
+
+  <!-- Add the content from the post/project -->
+  {{content}}
+
+{% endcapture %}
+
+<!-- Add the standard layout -->
+{% include layouts/project_std.html %}

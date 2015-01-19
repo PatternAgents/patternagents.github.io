@@ -1,0 +1,43 @@
+---
+layout: basic
+class: news
+title: News
+permalink: /news/index.html
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "PatternAgents - News"
+  abstract: "PatternAgents - News"
+  keywords: "PatternAgents, faq, press, press release, news, investors, investment, license, licensing, franchise"
+comments: false
+---
+<!-- 
+# Note: I cannot get the plugin system to work, and so
+# we are using the built-in excerpt mechanism, under which
+# every post must have an excerpt. Sorry!
+ -->
+{% capture news_content %}
+  {% for post in site.categories.news %}
+    {% capture blockquote %}
+      {% capture quote_quote %}{{post.quote}}{% endcapture %}
+      {% capture quote_author %}{{post.quote_author}}{% endcapture %}
+      {% include layouts/quote.html %}
+    {% endcapture %}
+    <article>
+      <header>
+        <h1 class="entry-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+        {% unless page.meta == false %}
+          <p class="meta">
+            {{ post.date | date: "%B %d, %Y" }}
+          </p>
+        {% endunless %}
+      </header>
+      <div class="entry-content">{{blockquote}}{{ post.excerpt }}</div>
+      <footer>
+        <a rel="full-article" href="{{ post.url }}">{{ site.excerpt_link }}</a>
+      </footer>
+    </article>
+  {% endfor %}
+{% endcapture %}
+
+{% include layouts/news.html %}
+

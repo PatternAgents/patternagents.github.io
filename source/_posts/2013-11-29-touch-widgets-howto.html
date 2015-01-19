@@ -1,0 +1,160 @@
+---
+layout: post
+category: news
+title: "Touch Widgets How-To/Instructions"
+date: 2013-11-29 12:02
+quote: I think that things happen individually first, and then collectively. It's not the other way around.
+quote_author: Neale Donald Walsch
+product_slug: TouchWidget_HowTo
+product_img: TouchWidget_HowTo_model.png
+licensing: true
+cc_by_sa: true
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "Touch Widgets How-To/Instructions"
+  abstract: "Touch Widgets How-To : methods and tools for adding capacitive sensing to your projects"
+  keywords: "capacitance, capacitive sensing, capsense, touch, captouch, mtouch, qtouch, eagle, cad, eaglecad, eagle cad, libraries, open source, make, maker, maker space, arduino, uno, mega, due, yun, schematic, layout, pcb, pcb design"
+comments: true
+---
+<p>Pattern&#8203;Agents has been developing open source parts libraries for the Eagle CAD package, 
+and we have now developed a library of Capacitive Touch Widgets to
+provide a number of different control surfaces for your projects.
+This How-To will cover instructions for using them in your own projects.
+</p>
+<!-- more -->
+<p>A number of our customers have complained to us how difficult it is
+to obtain or create good quality Capacitive Touch Widgets in Eagle, 
+so we have spent the past week creating a new library to solve that problem.
+The PatternAgents Touch Widgets Library makes Capacitive Touch technology 
+available to even the most novice Eagle users.
+</p>
+<p>
+If you have never used Eagle before, there are several starting tutorials available
+on the web, such as <a href="http://www.youtube.com/watch?v=1AXwjZoyNno">this one from Jeremy Blum</a>.
+This How-To assumes that you already have a basic operating knowledge of Eagle, and that
+can you select a component from a library of parts, and place it in your schematic and layout.
+</p>
+<h3>Get the Libraries</h3>
+<p>
+The first step is to get the <a href="{{site.url.github}}/PCB_Libraries">PatternAgents Eagle CAD Libraries from our Github Repo</a>
+and install them into your Eagle package. You can either copy them into the default library location, which is usually located
+at "C:\Program Files\EAGLE-6.5.0\lbr", or you can place them anywhere you prefer and add that path to the Eagle Control Panel
+using "Options -> Directories -> Libraries". Personally I prefer to add the local copy of my Github Repo using the control
+panel, so that whenever I do a "Github Pull", I get the most recent copies of everything directly from Github.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_options_directories.png" alt="eagle->options-> directories" title="eagle->options-> directories"/>
+<p>
+Once you have downloaded, installed, and configured the <a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>, go ahead and open the library tab to see all the components in the library (Version 1.0 shown) :
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touchwidgets_lib.png" alt="PatternAgents Touch Widgets Library" title="PatternAgents Touch Widgets Library"/>
+<p>
+You will see that there are a number of different widgets contained in the library, buttons, buttons with backside LED's,
+linear sliders, radial sliders, and matrix (X/Y) touch pads of various sizes. The sizes are chosen according to recommended
+best practices and various manufacturers design rules. We are also working on several new widgets to include in Version 2.0 of this
+library; so if you have any suggestions or requests, please make sure to leave a comment or tweet to us to let us know.
+Make sure to right click in the Eagle Control Panel window and select "use" for the PatternAgents-TouchWidgets and PatternAgents-Boards libraries.
+</p>
+<p>
+In this how-to example, we are going to make a small Arduino Form Factor board that includes several different touch widgets,
+and will be compatible with a number of different Arduino boards, such as the <a href="http://www.cypress.com/?rID=77780">Pioneer</a> board.
+We will use the Arduino pins A0 as a select button, and A1-A5 pins for a five (5) button linear slider. 
+This is a simple (arbitrary) example, but will serve to explain all the steps necessary for you to make your own designs.
+</p>
+<h3>Create the Schematic File</h3>
+<p>
+First, we are going to open a new schematic and place the PA_LEO_PATTERN from the PatternAgents-Boards library.
+This pattern will give you a board outline, connectors, holes, and silkscreen that is compatible with the 
+<a href="http://arduino.cc/en/Main/arduinoBoardLeonardo">Arduino Leonardo</a> form factor. This an example of
+what how our design patterns work, we create reusable design patterns that you can adapt to your own purposes.
+Next place, BUTTON_PASSIVE_10MM and SLIDER_PASSIVE_5SEGREV from the PatternAgents-TouchWidgets library,
+and wire them up as show below :
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_sch.png" alt="Eagle Touch How-To Schematic" title="Eagle Touch How-To Schematic"/>
+
+<h3>Create the Board File</h3>
+<p>
+Next we generate the .brd file from the schematic (click on the icon above the red dot in the picture),
+and you should have something that looks like this:
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd1.png" alt="Eagle Touch How-To Board #1" title="Eagle Touch How-To Board #1"/>
+<p>
+Since the PatternAgents-Boards library includes the board outline we can use the "delete" command to remove the enclosing box,
+and then move the PA_LEO_PATTERN to the origin in the low left hand corner.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd2.png" alt="Eagle Touch How-To Board #2" title="Eagle Touch How-To Board #2"/>
+<h3>Place the Widgets</h3>
+<p>
+Now move the BUTTON_PASSIVE_10MM and SLIDER_PASSIVE_5SEGREV packages onto the PA_LEO_PATTERN and position them near the middle of the board.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd3.png" alt="Eagle Touch How-To Board #3" title="Eagle Touch How-To Board #3"/>
+<h3>Create the Ground Hatch Polygons</h3>
+<p>
+Great, now all we have to do is create the Polygons for the Top and Bottom Copper Ground pours and we are just about finished.
+Select the Polygon Command and change to the Top layer with a "Hatched" polygon of 10Mil Width, 45Mil spacing, and 12Mil Isolation.
+(Note that we have our Grid Set to 10Mil spacing for this example)
+Now click around the edges of the board to create a Polygon on the "Top" layer.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd4.png" alt="Eagle Touch How-To Board #4" title="Eagle Touch How-To Board #4"/>
+<p>
+Now we need to name the Polygon to "GND" to make sure the router knows it is to be connected to the "GND" signal in the schematic.
+Use the "NAME" command and select the Polygon, type in the name "GND" and click OK.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd5.png" alt="Eagle Touch How-To Board #5" title="Eagle Touch How-To Board #5"/>
+<p>
+Next we are going to repeat that whole process to make a "Hatched" polygon ground pour on the Bottom layer of of 10Mil Width, 70Mil spacing, and 12Mil Isolation. In this next screen show, I'm going to turn "off" the visibility of the "Top" and "tPlace" layers so you can see 
+the "Bottom" layer more clearly. As before we need to name the Polygon to "GND" to make sure the router knows it is to be 
+connected to the "GND" signal in the schematic. Use the "NAME" command and select the Polygon, type in the name "GND" and click OK.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd6.png" alt="Eagle Touch How-To Board #6" title="Eagle Touch How-To Board #6"/>
+<h3>Run a Design Rule Check (DRC)</h3>
+<p>
+Okay, before we go any further, we should run a Design Rule Check (DRC) to make sure that everthing is good. Make sure to "Load" the
+PatternAgents.dru file or you will likely get a lot of DRC errors. You should get zero DRC errors when using the PatternAgents.dru file.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd7.png" alt="Eagle Touch How-To Board #7" title="Eagle Touch How-To Board #7"/>
+<h3>Autoroute the Board</h3>
+<p>
+Next we are going to run the autorouter to connect everything up, so set the paramters as shown below, and click "OK".
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd8.png" alt="Eagle Touch How-To Board #8" title="Eagle Touch How-To Board #8"/>
+<p>
+If you have followed along to this point, then your completed board should look something like this : 
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd9.png" alt="Eagle Touch How-To Board #9" title="Eagle Touch How-To Board #9"/>
+<p>
+I will turn off the "Top" and "tPlace" (Top Silkscreen) layers so that you can see what the "Bottom" of the board looks like.
+Note that the Top and Bottom ground hatches are using different spacing.
+</p>
+      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd10.png" alt="Eagle Touch How-To Board #10" title="Eagle Touch How-To Board #10"/>
+
+<p>
+Don't worry if you forgot to set your polygons to "Hatch" or your polygon spacings to 45Mils for the Top and 70Mils for the Bottom,
+that is easy to fix with the "Change" command (the Wrench icon). Just select "Change->Pour->Hatch" and click on the Polygon edge,
+and similarly with the "Change->Spacing" command.
+</p>
+<h3>Go get your Printed Circuit Boards (PCB's) made...</h3>
+<p>Viola! You have your very own simple touch control surface example board, using the Arduino form factor.
+If you load up the PatternAgents.cam file and generate Gerber files, these can be uploaded to
+<a href="http://www.oshpark.com">OSHPark</a>, and in a week or so you can have your PCB's back.
+</p>
+<p>
+Now that you have an idea of how to use the 
+<a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>,
+in the next posting we'll cover some of the "Best Practices" for using it more effectively.
+</p>
+
+<h3>TouchWidget_HowTo Example Project - Files and Documentation</h3>
+<ul>
+  <li><a href="{{site.url.github}}/TouchWidget_HowTo">TouchWidget_HowTo Example Project - Github Repo</a></li>
+</ul>
+
+<p>
+EagleCad Libraries by PatternAgents, LLC are available and licensed under the Creative Commons License.<br>
+License : <a href="http://creativecommons.org/licenses/by-sa/4.0/">(Creative Commons 4.0) Creative Commons License</a> 
+</p>
+<p>
+The Touch Widgets How-To Project by PatternAgents, LLC is available and licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<br>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</p>

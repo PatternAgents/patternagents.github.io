@@ -1,0 +1,313 @@
+---
+layout: post
+category: news
+title: "Touch Widgets - Best Practices"
+date: 2013-12-02 12:08
+quote: In theory there is no difference between theory and practice. In practice there is.
+quote_author: Yogi Berra
+product_slug: TouchWidget_HowTo
+product_img: TouchWidget_HowTo_model.png
+licensing: true
+cc_by_sa: true
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "TouchWidget Best Practices"
+  abstract: "TouchWidget Best Practices : methods and tools for adding capacitive sensing to your projects"
+  keywords: "patternagents, capacitance, capacitive sensing, capsense, touch, captouch, mtouch, qtouch, eagle, cad, eaglecad, eagle cad, libraries, open source, make, maker, maker space, arduino, uno, mega, due, yun, schematic, layout, pcb, pcb design"
+comments: true
+---
+<p>In this post we'll discuss some of the "best practices" for implementing capacitance sensing widgets 
+and control surfaces on your printed circuit boards. We've done a mash-up of several tasty tracks from different
+vendors and technologies to give you a mastered mix-down...</p>
+<!-- more -->
+<p>You've got questions:
+<ul>
+	<li>How big do my Touch Widgets need to be?
+	<li>How thick of a covering Overlay can I use?
+    <li>How do I account for Manufacturing Variations?
+	<li>How close together can I place my sensor Widgets?
+	<li>How do I characterize the Signal to Noise Ratio (SNR)?
+	<li>Will it blend?
+</ul>
+In the past few years we have answered many questions about Capacitance Sensing from our customers,
+and have developed patterns of best practices to insure that their implementations are successful.
+Fortunately for you, much of that work is already baked into the 
+<a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>
+that we just released, but there are several other application specific implementation issues to consider.
+</p>
+<h3>Touch Widget Design</h3>
+<p>
+In the <a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>
+post we covered the Anatomy of a Capacitive Sensing Touch Widget, and much of what went into the construction of the Widgets themselves;
+but here are a few notes on issues that you may not have noticed :
+<ul>
+	<li>Connection Pads are placed on the edge of the Widget (not the center) to reduce trace routing lengths,
+	to minimize the parasitic capacitance (Cp) of the Widget and increase the Signal to Noise Ratio (SNR).
+	<li>The Top Restrict (tRestrict) and Via Restrict (vRestrict) layers are spaced to keep other signals
+	a suitable (+1.0mm) distace away from the Widget. In particular, make sure to keep any high-frequency
+	clocks or other signals away from the Widget as much as possible to increase your SNR and
+	reduce any false triggering.
+	<li>The parasitic capacitance (Cp) of the Widget (as measured from the Widget to the surrounding ground hatch pour)
+	tends to level out after about 1.0mm of spacing, however the SNR of surrounding ganged sensors (for sliders and radials)
+	will start to drop off if the ganged sensors are too far apart. For that reason we have made 1.0mm (~40.0Mils) 
+	as our standard spacing between ganged sensors. If you use our individual elements (i.e. single slider element) 
+	to build up your own ganged sensor, you will need to factor that into your placement.
+	<li>You'll notice that we used rounded corners on our Widget designs, both to reduce radiated emmissions and
+	to avoid SNR spikes on the (sharp) corners of the Widgets. Squares are not your friends (neither are triangles);
+	be cool, what goes 'round comes 'round, and that best for your designs.
+	<li>We've provided 8mm, 10mm, and 12mm Widgets, which are generally good for plastic overlays that are &lt;4.0mm thick.
+	However the dialectric constant of the material used does make a difference, so we'll show a table of those later on.
+	<li>In general, you should leave &gt;1.0mm of empty space between all sides of Widget, with an Isolate of 12Mils.
+	<li>Some controllers require a resistor in series with the Widget, place the resistor close to the Controller, 
+	not the Widget. If using a Widget with an LED underneath, place the LED current limiting resistor close the Controller,
+	not the Widget.
+	<li>Best practice is to keep the Widget trace on the Bottom (back) side of the PCB, with a minimum of vias 
+	before connecting to the Controller. If possible, place the Controller on the Bottom (back) side of the PCB.
+	If you must place the Controller on the Top side, equalize all the trace lengths and number of vias for all
+	sensors, especially for ganged sensors like sliders.
+	<li>Minimize all layout traces, make them as short (and equalized) as possible, &lt;100mm is a good metric.
+	If you must have long traces consider using the larger Touch Widgets (12mm), and use a thinner (&lt;2.0mm) Overlay.
+	<li>Long Traces with Small Widgets and Thick Overlay = #CapSense #Fail
+</ul>
+</p>
+<h3>Compilation of Touch Widget Best Practices</h3>
+<p>
+This is a compilation/distillation of best practices for our 
+<a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>
+</p>
+<table border=2>
+<tr>
+	<th>Item</th>
+	<th>Min</th>
+	<th>Typ</th>
+	<th>Max</th>
+	<th>Notes</th>
+</tr>
+<tr>
+	<td>Round Widget Size</td>
+	<td>8 Mils</td>
+	<td>10 Mils</td>
+	<td>20 Mils</td>
+	<td>Larger diameter increases your SNR</td>
+</tr>
+<tr>
+	<td>Widget-to-Widget Spacing</td>
+	<td>1 mm</td>
+	<td>1 mm</td>
+	<td>8 mm</td>
+	<td>Larger if Ground Pour Isolate &gt;12 Mills</td>
+</tr>
+<tr>
+	<td>Sawtooth Widget Size</td>
+	<td>1.6 mm</td>
+	<td>2 mm</td>
+	<td>5 mm</td>
+	<td>Make sure to round the edges on the sawteeth</td>
+</tr>
+<tr>
+	<td>Sawtooth Widget Spacing</td>
+	<td>0.6 mm</td>
+	<td>2 mm</td>
+	<td>5 mm</td>
+	<td>Note 1 - Overlay thickness effects this</td>
+</tr>
+<tr>
+	<td>PCB Thickness</td>
+	<td>0.5 mm</td>
+	<td>1.6 mm</td>
+	<td>2.5 mm</td>
+	<td>for FR4 material</td>
+</tr>
+<tr>
+	<td>PCB Via Hole Size</td>
+	<td>10 Mils</td>
+	<td>14 Mils</td>
+	<td>26 Mils</td>
+	<td>Our library default is 14 Mils</td>
+</tr>
+<tr>
+	<td>Trace Via Count</td>
+	<td>1</td>
+	<td>1</td>
+	<td>2</td>
+	<td>minimize Vias where possible</td>
+</tr>
+<tr>
+	<td>PCB Trace Width</td>
+	<td>7 Mils</td>
+	<td>7 Mils</td>
+	<td>20 Mils</td>
+	<td>7 Mil trace/space is pretty typical, we often relax to 10 Mils for higher yields</td>
+</tr>
+<tr>
+	<td>PCB Layer Stackup</td>
+	<td>1</td>
+	<td>2</td>
+	<td>4</td>
+	<td>Widget, Traces, Ground, Traces</td>
+</tr>
+<tr>
+	<td>Top Ground Pour Spacing</td>
+	<td>30 Mils</td>
+	<td>45 Mils</td>
+	<td>60 Mils</td>
+	<td>7/10 Mil trace, 45 Mil Space, 12 Mil Isolate, Hatched</td>
+</tr>
+<tr>
+	<td>Bottom Ground Pour Spacing</td>
+	<td>55 Mils</td>
+	<td>70 Mils</td>
+	<td>90 Mils</td>
+	<td>7/10 Mil trace, 70 Mil Space, 12 Mil Isolate, Hatched</td>
+</tr>
+<tr>
+	<td>Widget to Top Pour Spacing</td>
+	<td>0.5 mm</td>
+	<td>1 mm</td>
+	<td>4 mm</td>
+	<td>Note 1 - Overlay thickness effects this</td>
+</tr>
+<tr>
+	<td>Overlay Thickness</td>
+	<td>0 mm</td>
+	<td>1 mm</td>
+	<td>4 mm</td>
+	<td>typically 1-2 mm, plastic, glass, kapton</td>
+</tr>
+<tr>
+	<td>Overlay Adhesive Thickness</td>
+	<td>0 mm< /td>
+	<td>0.1 mm </td>
+	<td>0.4 mm</td>
+	<td>additive with overlay thickness, use 3M/467/468MP</td>
+</tr>
+</table>
+
+<h3>Manufacturing Variations</h3>
+<p>
+All materials vary in their composition and thickness during manufacturing to some degree .
+There are really two ways to address this, classical engineering analysis and/or adaptive algorithms.
+In classical engineering analysis you need to account for all combinations of variations (min &amp; max),
+and design in a guard band to account for them, typically this boils down to achieveing
+a minimum signal-to-noise (SNR) ratio given all extremes(combinations) of manufacturing variations.
+</p>
+<p>
+The second method is to use an adaptive algorithm that continuously adjusts for several factors,
+including temperature and background interference, and we highly recommend this.
+However, it is not the panacea for all ills, and you should really do both the
+classical engineering analysis AND use a controller with adaptive algorithms.
+Trust me, you don't want to get THAT call at 4am from Asia when the consumer product
+you designed is failing on the manufacturing floor!
+</p>
+
+<h3>Characterizing Signal to Noise</h3>
+<p>
+This is where many novice designers #Fail when using capacitive sensing for the first time,
+they forget to leave a back-channel communication mechanism with the Touch Controller device to
+measure and catalog the performance of the sensor Widgets during development and deployment.
+Or it's "hey, we only need this during development, we can omit it in production, right?"
+So, when your contract manufacturer in Asia changed the material for your Overlay,
+AND the glue that attaches it without telling you; when everything is failing in production, 
+what are you going to do to characterize the problem? Get on a plane?
+Trust us here, leave in an I2C or other backchannel communication mechanism 
+for debugging problems. You need to be able to read back the raw counts from the 
+sensors so that you can characterize the SNR of the sensor Widgets. 
+Otherwise, "Abandon all hope ye who enter here".
+As a general rule of thumb you want to have an SNR of at least 5:1 minimum, 
+and 9:1 for robust operation (across temperature and manufacturing variations).
+</p>
+
+<h3>Overlay Characteristics</h3>
+<p>
+Customers have many different requirements when it comes to overlay and mechanical package design.
+Some need to be concerned about electrical isolation and safety issues, so they want an overlay
+with 5kV to 12kV (yes, that's 12,000 Volts) or more of isolation to any bare metal Touch Widget. 
+As a general rule, the thicker the overlay covering the larger the sensor Widget area needs to be. 
+If you need something special, contact us, and we can make it up for you. 
+The most common overlay materials are Polycarbonate and ABS plastic,with Acrylic coming in a close third. 
+Lamps and smart LED's with touch control will often use glass.
+</p>
+<table border=2>
+<tr>
+	<th>Material</th>
+	<th>Breakdown [V/mm]</th>
+	<th>Min. Thickness @ 12kV [mm]</th>
+	<th>Notes</th>
+</tr>
+<tr>
+	<td>Air</td>
+	<td>~2000</td>
+	<td>10</td>
+	<td>hard to control...</td>
+</tr>
+<tr>
+	<td>Glass</td>
+	<td>7900</td>
+	<td>1.5</td>
+	<td>common</td>
+</tr>
+<tr>
+	<td>Glass</td>
+	<td>13,000</td>
+	<td>0.9</td>
+	<td>Corning Pyrex</td>
+</tr>
+<tr>
+	<td>Plastic</td>
+	<td>16,000</td>
+	<td>0.8</td>
+	<td>ABS</td>
+</tr>
+<tr>
+	<td>Acrylic</td>
+	<td>13,000</td>
+	<td>0.9</td>
+	<td>Plexi</td>
+</tr>
+<tr>
+	<td>Polycarbonate</td>
+	<td>16,000</td>
+	<td>0.8</td>
+	<td>Lexan</td>
+</tr>
+<tr>
+	<td>PET</td>
+	<td>280,000</td>
+	<td>0.04</td>
+	<td>Mylar</td>
+</tr>
+<tr>
+	<td>Polyimide</td>
+	<td>290,000</td>
+	<td>0.04</td>
+	<td>Kapton</td>
+</tr>
+<tr>
+	<td>Fiberglass</td>
+	<td>28,000</td>
+	<td>0.4</td>
+	<td>FR-4</td>
+</tr>
+</table>
+
+<h3>Questions?</h3>
+<p>
+This best practices post is dedicated to our customers, who always keep us on
+our toes by asking us the tough questions. If you see something we've missed, or have
+questions of your own, comment below, or send us a tweet!
+</p>
+
+<h3>PatternAgents Eagle CAD Libraries - Files and Documentation</h3>
+<ul>
+  <li><a href="{{site.url.github}}/PCB_Libraries">PatternAgents Eagle CAD Libraries Github Repo</a></li>
+</ul>
+
+<h3>TouchWidget_HowTo Example Project - Files and Documentation</h3>
+<ul>
+  <li><a href="{{site.url.github}}/TouchWidget_HowTo">TouchWidget_HowTo Example Project - Github Repo</a></li>
+</ul>
+
+<p>
+EagleCad Libraries by PatternAgents, LLC are available and licensed under the Creative Commons License.<br>
+License : <a href="http://creativecommons.org/licenses/by-sa/4.0/">(Creative Commons 4.0) Creative Commons License</a> 
+</p>

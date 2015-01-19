@@ -1,0 +1,47 @@
+{% comment %}
+Layout for home page. Content sections are:
+home_content
+home_js
+{% endcomment %}
+
+{% capture col3_content1 %}
+  {{home_content}}
+{% endcapture %}
+
+{% capture col3_content2 %}
+  <h2>Recent Tweets</h2>
+  {% include frag/twitter.html %}
+{% endcapture %}
+
+{% capture col3_content3 %}
+  <h2>Featured Projects</h2>
+  {% include frag/sidebar_projects.html %}
+  <h2>Latest News</h2>
+  {% include frag/sidebar_news.html %}
+{% endcapture %}
+
+{%for feature in site.categories.project %}
+  {% if feature.product_slug == site.featured_project %}
+    {% capture col3_feature %}
+      {% capture feature_blurb %}
+	      <h1 class="entry-title"><a href="{{feature.url}}">{{ feature.title }}</a></h1>
+        <div class="feature-body">
+          {{feature.excerpt}}
+          <a class="button" href="{{feature.url}}">More Info &raquo;</a>
+        </div>    
+      {% endcapture %}
+      {% capture feature_img %}
+        <a href="{{feature.url}}"><img src="{{site.url.images}}/projects/{{feature.product_slug}}/{{feature.product_img}}" alt="{{feature.product_slug}}" title="{{feature.product_slug}}"/></a>
+      {% endcapture %}
+      
+      {% include layouts/feature.html %}
+    {% endcapture %}
+  {% endif %}
+{%endfor%}
+
+{% capture col3_js %}
+  {{home_js}}
+  {% include frag/js/twitter.js %}
+{% endcapture %}
+
+{% include layouts/col3.html %}

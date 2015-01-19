@@ -1,0 +1,451 @@
+---
+layout: post
+category: news
+title: "The Minnow Board - A New Small Form Factor"
+quote: Many men go fishing all of their lives without knowing that it is not fish they are after...
+quote_author: Henry David Thoreau
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "The Minnow Board - A New Small Form Factor"
+  abstract: "The Minnow Board - A New Small Form Factor"
+  keywords: "intel, atom, open source, arduino, uno, mega, due, psoc, psoc1, psoc3, psoc4, psoc5, cypress, cpm, cpld, fpga, cortex, freedom, raspberry pi"
+comments: true
+---
+<p>
+  We attended an "Internet of Things" meeting here this week, and Scott Garman introduced us to a new small form factor, the <a href="http://www.minnowboard.org/">MinnowBoard</a>. The MinnowBoard is very high performance single board computer (SBC) using a 1Ghz Intel Atom processor, but unlike most SBC's it has the General Purpose I/O (GPIO) expansion connections needed to expand the system using low cost peripherals. More akin to SBC's like the Raspberry Pi, it runs the <a href="http://www.angstrom-distribution.org/">Angstrom Linux Distribution</a> and is compatible with the <a href="https://www.yoctoproject.org/">Yocto project</a>. This looks to be a very nice high-end SBC for embedded work that requires the power of an Intel CPU.
+</p>
+<!-- more -->
+<p>
+<img class="illo" src="{{site.url.images}}/news/minnow/minnowboard_iso.png" alt="MinnowBoard (isometric view)" title="MinnowBoard (isometric view)"/>
+</p>
+<h3>What is on a MinnowBoard?</h3>
+<ul>
+  <li>4.2" by 4.2" Form Factor</li>
+  <li>Intel Atom E640 (1GHz, 32bit)</li>
+  <li>EG20T Intel Platform Controller Hub</li>
+  <li>Integrated Intel Graphics Media Accelerator GMA600</li>
+  <li>1 GB DDR2 RAM</li>
+  <li>4 MB SPI Flash</li>
+  <li>(2) USB Host I/F</li>
+  <li>(1) USB Device I/F</li>
+  <li>Gigabit Ethernet</li>
+  <li>SATA2 3Gb/sec</li>
+  <li>PCI Express</li>
+  <li>(1) SDIO</li>
+  <li>(4) Switches</li>
+  <li>(2) LEDs</li>
+  <li>(8) GPIO</li>
+  <li>(2) UART</li>
+  <li>(1) I2C</li>
+  <li>(1) SMB</li>
+  <li>(1) SPI</li>
+  <li>(1) CAN-Bus</li>
+  <li>"Lure" Expansion Connector</li>
+  <li>UEFI Boot Loader</li>
+</ul>
+
+<p>
+   <a href="http://www.minnowboard.org/block-diagram/"><img class="illo" src="http://www.minnowboard.org/wp-content/uploads/2013/04/Minnow-Block-Diagram-03202013.jpg"  alt="MinnowBoard Block Diagram" title="MinnowBoard Block Diagram"/></a>
+</p>
+
+<p>
+  The MinnowBoard uses a high-speed interface connector (as it handles PCI Express signals)
+  for it's expansion boards, which are known as <a href="http://www.minnowboard.org/expansion/"><i>Lures</i></a>.
+</p>
+<p>
+  <img class="illo" src="http://www.elinux.org/images/a/ae/MinnowBoard_ExpansionPort.png" alt="MinnowBoard Expansion Connector" title="MinnowBoard Expansion Connector"/>
+</p>
+<p>
+  This is a very high performance interface, and I could see doing a lot with this kind of bandwidth. The MinnowBoard just calls out for a nice FPGA "Lure" expansion board, to offload those "hard-real-time" tasks.
+</p>
+
+
+<table>
+<tr>
+<th scope="col"> Function
+</th>
+<th scope="col"> Pin Number
+</th>
+<th scope="col"> Pin Number
+</th>
+<th scope="col"> Function
+</th></tr>
+<tr style="background:#b783a7">
+<td> <a href="#pcie"> PCIe1_CLK_REQ</a>
+</td>
+<td> 1 </td>
+<td style="background:#b783a7"> 2 </td>
+<td style="background:#b783a7"> <a href="#pcie">PCIe2_CLK_REQ</a>
+</td></tr>
+<tr style="background:yellow">
+<td> PWROK
+</td>
+<td> 3 </td>
+<td style="background:#8f99b1"> 4 </td>
+<td style="background:#8f99b1"> <a href="#hda"> HDA_CLK</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 5 </td>
+<td style="background:#8f99b1"> 6 </td>
+<td style="background:#8f99b1"> <a href="#hda"> HDA_RST_N</a>
+</td></tr>
+<tr style="background:#b783a7">
+<td> <a href="#pcie"> PCIe_REFCLK_N</a>
+</td>
+<td> 7 </td>
+<td style="background:#8f99b1"> 8 </td>
+<td style="background:#8f99b1"> <a href="#hda"> HDA_SYNC</a>
+</td></tr>
+<tr style="background:#b783a7">
+<td> <a href="#pcie"> PCIe_REFCLK_P</a>
+</td>
+<td> 9 </td>
+<td style="background:#8f99b1"> 10 </td>
+<td style="background:#8f99b1"> <a href="#hda"> HDA_SDO</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 11 </td>
+<td style="background:#8f99b1"> 12 </td>
+<td style="background:#8f99b1"> <a href="#hda"> HDA_SDI1</a>
+</td></tr>
+<tr style="background:#b783a7">
+<td> <a href="#pcie"> PCIe1_RX_N</a>
+</td>
+<td> 13 </td>
+<td style="background:green"> 14 </td>
+<td style="background:green"> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#b783a7">
+<td> <a href="#pcie"> PCIe1_RX_P</a>
+</td>
+<td> 15 </td>
+<td style="background:#b783a7"> 16 </td>
+<td style="background:#b783a7"> <a href="#pcie"> PCIe2_RX_N</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 17 </td>
+<td style="background:#b783a7"> 18 </td>
+<td style="background:#b783a7"> <a href="#pcie"> PCIe2_RX_P</a>
+</td></tr>
+<tr style="background:#b783a7">
+<td> <a href="#pcie"> PCIe1_TX_N</a>
+</td>
+<td> 19
+</td>
+<td> 20
+</td>
+<td> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#b783a7">
+<td> <a href="#pcie"> PCIe1_TX_P</a>
+</td>
+<td> 21 </td>
+<td style="background:#b783a7"> 22 </td>
+<td style="background:#b783a7"> <a href="#pcie"> PCIe2_TX_N</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 23 </td>
+<td style="background:#b783a7"> 24 </td>
+<td style="background:#b783a7"> <a href="#pcie"> PCIe2_TX_P</a>
+</td></tr>
+<tr style="background:#00ff3c">
+<td> <a href="#smb"> SMB_CLK</a>
+</td>
+<td> 25 </td>
+<td style="background:green"> 26 </td>
+<td style="background:green"> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#00ff3c">
+<td> <a href="#smb"> SMB_DAT</a>
+</td>
+<td> 27 </td>
+<td style="background:#7816E7">28
+</td>
+<td style="background:#7816E7"> <a href="#canbus"> <b>CAN_TX</b></a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 29 </td>
+<td style="background:#7816E7"> 30
+</td>
+<td style="background:#7816E7"> <a href="#canbus"> <b>CAN_RX</b></a>
+</td></tr>
+<tr style="background:#2099FF">
+<td> <a href="#sata"> SATA1_RX_N</a>
+</td>
+<td> 31 </td>
+<td style="background:green"> 32 </td>
+<td style="background:green"> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#2099FF">
+<td> <a href="#sata"> SATA1_RX_P</a>
+</td>
+<td> 33 </td>
+<td style="background:#DCC842"> 34 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_N_0</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 35 </td>
+<td style="background:#DCC842"> 36 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_P_0</a>
+</td></tr>
+<tr style="background:#2099FF">
+<td> <a href="#sata"> SATA1_TX_N</a>
+</td>
+<td> 37 </td>
+<td style="background:green"> 38 </td>
+<td style="background:green"> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#2099FF">
+<td> <a href="#sata"> SATA1_TX_P</a>
+</td>
+<td> 39 </td>
+<td style="background:#DCC842"> 40 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_N_1</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 41 </td>
+<td style="background:#DCC842"> 42 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_P_1</a>
+</td></tr>
+<tr style="background:#70b1a1">
+<td> <a href="#usb"> USB_HOST_DM4</a>
+</td>
+<td> 43 </td>
+<td style="background:green"> 44 </td>
+<td style="background:green"> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#70b1a1">
+<td> <a href="#usb"> USB_HOST_DP4</a>
+</td>
+<td> 45 </td>
+<td style="background:#DCC842"> 46 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_N_2</a>
+</td></tr>
+<tr style="background:#70b1a1">
+<td> VBUS4
+</td>
+<td> 47 </td>
+<td style="background:#DCC842"> 48 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_P_2</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 49
+</td>
+<td> 50
+</td>
+<td> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#f1e914">
+<td> WAKE_EXP_N
+</td>
+<td> 51 </td>
+<td style="background:#DCC842"> 52 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_CLK_N</a>
+</td></tr>
+<tr style="background:#fb008e">
+<td> <a href="#uart"> UART1_TX</a>
+</td>
+<td> 53 </td>
+<td style="background:#DCC842"> 54 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_CLK_P</a>
+</td></tr>
+<tr style="background:#fb008e">
+<td> <a href="#uart"> UART1_RX</a>
+</td>
+<td> 55 </td>
+<td style="background:green"> 56 </td>
+<td style="background:green"> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#fb008e">
+<td> <a href="#uart">UART2_TX</a>
+</td>
+<td> 57 </td>
+<td style="background:#DCC842"> 58 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_N_3</a>
+</td></tr>
+<tr style="background:#fb008e">
+<td> <a href="#uart"> UART2_RX</a>
+</td>
+<td> 59 </td>
+<td style="background:#DCC842"> 60 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DATA_P_3</a>
+</td></tr>
+<tr style="background:#00ff3c">
+<td> <a href="#i2c"> I2C0_SCL</a>
+</td>
+<td> 61 </td>
+<td style="background:green"> 62 </td>
+<td style="background:green"> <a href="#gnd"> GND</a>
+</td></tr>
+<tr style="background:#00ff3c">
+<td> <a href="#i2c"> I2C0_SDA</a>
+</td>
+<td> 63 </td>
+<td style="background:#30FFFF"> 64 </td>
+<td style="background:#30FFFF"> <a href="#gpio"> E6XX_GPIO_SUS0</a>
+</td></tr>
+<tr style="background:green">
+<td> <a href="#gnd"> GND</a>
+</td>
+<td> 65 </td>
+<td style="background:#30FFFF"> 66 </td>
+<td style="background:#30FFFF"> <a href="#gpio"> E6XX_GPIO_SUS1</a>
+</td></tr>
+<tr style="background:#FFAA00">
+<td> <a href="#spi"> EG20T_SPI_CLK</a>
+</td>
+<td> 67 </td>
+<td style="background:#30FFFF"> 68 </td>
+<td style="background:#30FFFF"> <a href="#gpio"> E6XX_GPIO_SUS3</a>
+</td></tr>
+<tr style="background:#FFAA00">
+<td> <a href="#spi"> EG20T_SPI_nCS</a>
+</td>
+<td> 69 </td>
+<td style="background:#30FFFF"> 70 </td>
+<td style="background:#30FFFF"> <a href="#gpio"> E6XX_GPIO_SUS4</a>
+</td></tr>
+<tr style="background:#FFAA00">
+<td> <a href="#spi"> EG20T_SPI_MOSI</a>
+</td>
+<td> 71 </td>
+<td style="background:#30FFFF"> 72 </td>
+<td style="background:#30FFFF"> <a href="#gpio"> E6XX_GPIO_SUS2</a>
+</td></tr>
+<tr style="background:#FFAA00">
+<td> <a href="#spi"> EG20T_SPI_MISO </a>
+</td>
+<td> 73 </td>
+<td style="background:#DCC842"> 74 </td>
+<td style="background:#DCC842"> <a href="#lvds"> LVDS_DETECT</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO0</a>
+</td>
+<td> 75 </td>
+<td style="background:#AAA0FF"> 76 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_CD_N</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO1</a>
+</td>
+<td> 77 </td>
+<td style="background:#AAA0FF"> 78 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_WP</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO2</a>
+</td>
+<td> 79 </td>
+<td style="background:#AAA0FF"> 80 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_CLK_R</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO3</a>
+</td>
+<td> 81 </td>
+<td style="background:#AAA0FF"> 82 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_CMD_R</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO4</a>
+</td>
+<td> 83 </td>
+<td style="background:#AAA0FF"> 84 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_DATA0_R</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO5</a>
+</td>
+<td> 85 </td>
+<td style="background:#AAA0FF"> 86 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_DATA1_R</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO6</a>
+</td>
+<td> 87 </td>
+<td style="background:#AAA0FF"> 88 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_DATA2_R</a>
+</td></tr>
+<tr style="background:#30FFFF">
+<td> <a href="#gpio"> GPIO7</a>
+</td>
+<td> 89 </td>
+<td style="background:#AAA0FF"> 90 </td>
+<td style="background:#AAA0FF"> <a href="#sdio"> SDIO1_DATA3_R</a>
+</td></tr>
+<tr style="background:yellow">
+<td> GPIO_PROG_VOLTAGE
+</td>
+<td> 91 </td>
+<td style="background:red"> 92 </td>
+<td style="background:red"> <a href="#5vpower"> DC_IN_5V</a>
+</td></tr>
+<tr style="background:red">
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td>
+<td> 93
+</td>
+<td> 94
+</td>
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td></tr>
+<tr style="background:red">
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td>
+<td> 95
+</td>
+<td> 96
+</td>
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td></tr>
+<tr style="background:red">
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td>
+<td> 97
+</td>
+<td> 98
+</td>
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td></tr>
+<tr style="background:red">
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td>
+<td> 99
+</td>
+<td> 100
+</td>
+<td> <a href="#5vpower"> DC_IN_5V</a>
+</td></tr>
+</table>
+
+
+<p>
+  Here's an Intro from Scott Garman:
+</p>
+<div class="container">
+  <iframe width="640" height="360" src="//www.youtube.com/embed/wSy0Xrtsfcs" frameborder="0" allowfullscreen></iframe>
+</div>
+<p>
+  The MinnowBoard on <a href="https://plus.google.com/107232752308803303026/posts">Google+</a>
+</p>
+
+<h3>About PatternAgents</h3>
+{% include frag/blurb.html %}

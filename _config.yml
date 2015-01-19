@@ -1,0 +1,105 @@
+# Jekyll configuration options
+#
+source: source
+destination: site
+permalink: /news/:year/:month/:day/:title.html
+#paginate: 3           # the number of post per page
+recent_posts: 14       # Posts in the sidebar Recent Posts section
+excerpt_link: "More &raquo;"  # "Continue reading" link text at the bottom of excerpted articles
+relative_permalinks: false
+excerpt_separator: "<!-- more -->"
+
+# the product_slug of the project you want to feature on home page
+featured_project: Videre
+# the projects listed in list of projects in sidebar_projects
+listed_projects: [Hula_Poppy, Videre, BridgerSoc, TinySoc, CPM_Shield, Caldi, CPM_Pmod]
+
+# site specific strings -
+#
+name: "PatternAgents"
+tagline: "PatternAgents provides community and commerce for electronics designers."
+
+# site specific meta tags -
+#
+meta:
+  robots: "index, follow, noodp, noydir"
+  description: "PatternAgents: The Agency of Design Patterns"
+  abstract: "PatternAgents provides collaboration, community and commerce for electronics designers."
+  classification: "electronics, electronics design, design engineering"
+  keywords: "electronics, electronics design, design engineering, open source software, open source hardware, OSHW"
+  revisit-after: "7 days"
+  rating: "General"
+
+# site specific urls -
+# (then we can easily rewrite them later if needed)
+# e.g. use {{site.url.support.home}} instead of /support/index.html
+#
+url:
+  home: /
+  images: /img
+  videos: http://www.patternagents.com/vid
+  github: https://github.com/PatternAgents
+  store: /store/index.html
+  contact:
+    home: /contact/index.html
+    faq: /contact/faq.html
+    press: /contact/press.html
+    investors: /contact/investors.html
+    credits: /contact/credits.html
+    subscribe: /contact/subscribe.html
+    contact: /contact/contact.html
+  support:
+    home: /support/index.html
+    faq: /support/faq.html
+  news:
+    home: /news/index.html
+    page: /news/page
+  about:
+    home: /about/index.html
+    manufacturers: /about/manufacturers.html
+    distributors: /about/distributors.html
+    representatives: /about/representatives.html
+  projects:
+    home: /projects/index.html
+  policies:
+    home: /policies/index.html # minimal
+    returns: /policies/returns.html
+    shipping: /policies/shipping.html
+    legal:
+      home: /policies/legal/index.html
+      privacy: /policies/legal/privacy.html
+      law: /policies/legal/law.html
+      termsofservice: /policies/legal/terms-of-service.html
+      dataretention: /policies/legal/data-retention.html
+  license:
+    home: /licensing/index.html
+
+#site specific external service providers
+#
+analytics :
+  provider : google
+  google : 
+    tracking_id : 'UA-38592761-1'
+
+# site comments settings
+# Set 'provider' to the comment provider you want to use.
+# Set 'provider' to 'false' to turn commenting off globally.
+#
+comments:
+  provider: disqus
+  disqus:
+    short_name : patternagents
+
+social:
+  twitter:
+    data-widget-id: 408008079146373120
+    data-tweet-limit: 6
+    url: https://twitter.com/PatternAgents
+    tagline: Tweets by @PatternAgents
+
+store:
+  provider: ecwid
+  ecwid:
+    id: 2101234
+ # ------------------
+ # end of _config.yml 

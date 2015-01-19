@@ -1,0 +1,10 @@
+<article>
+  <header>
+    <h1 class="entry-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  </header>
+  <a href="{{ post.url }}"><img class="illo" src="{{site.url.images}}/projects/{{post.product_slug}}/{{post.product_img}}" alt="{{post.product_slug}} Model" title="{{post.product_slug}} Model Image"/></a>
+  <div class="entry-content">{{ post.excerpt }}</div>
+  <footer>
+    <a rel="full-article" href="{{ post.url }}">{{ site.excerpt_link }}</a>
+  </footer>
+</article>

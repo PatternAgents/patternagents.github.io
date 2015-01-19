@@ -1,0 +1,20 @@
+---
+layout: basic
+class: store
+title: "PatternAgents Store"
+permalink: /store/index.html
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "PatternAgents Store"
+  abstract: "PatternAgents Store"
+  keywords: "patternagents, bridger, videre, arduino, led, sensors"
+comments: false
+---
+
+{% capture store_content %}
+  <script type="text/javascript" src="http://app.ecwid.com/script.js?2101234" charset="utf-8"></script>
+  <script type="text/javascript">xProductBrowser("categoriesPerRow=3", "views=grid(3,3) list(10) table(20)", "categoryView=grid", "searchView=list", "style=", "defaultCategoryId=5179233"); </script>
+  <noscript>Your browser does not support JavaScript. Please use <a href="http://mpastore.ecwid.com">HTML version of the PatternAgents Store</a></noscript>
+{% endcapture %}
+
+{% include layouts/store.html %}

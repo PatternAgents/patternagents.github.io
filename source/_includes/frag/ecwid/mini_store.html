@@ -1,0 +1,18 @@
+{% if page.product_display %}
+  <div class='ecwid-Product'>
+    <form>
+      <div style='text-align: center; padding-bottom: 10px;'>
+        <script type="text/javascript" src="http://app.ecwid.com/script.js?{{site.store.ecwid.id}}" charset="utf-8"></script>
+        <script type="text/javascript">xProductThumbnail('productid={{page.product_id}}');</script>
+      </div>
+      <div class='ecwid-productBrowser-head' style='text-align: center; padding-bottom: 15px; font: normal 20px tahoma, geneva,verdana,sans-serif'>{{page.product_name}}</div>
+      <div class="ecwid-productBrowser-price" style='text-align:center; padding-bottom: 15px'>{{page.product_price}}</div>
+      <table align='center' border='0'><tr><td align='left' class='ecwid'></td></tr></table>
+      <div style='text-align: center'>
+        <script type="text/javascript" src="http://app.ecwid.com/script.js?{{site.store.ecwid.id}}" charset="utf-8"></script>
+        <script type="text/javascript">xAddToBag('productid={{page.product_id}}');</script>
+      </div>
+    </form>
+  </div>
+{%endif%}
+

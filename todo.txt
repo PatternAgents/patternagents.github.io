@@ -1,0 +1,135 @@
+7/20/13
+fix subscribe button by just having 2 of them, only one visible.
+done - news block quotes - require them, float them right, dress them up
+done - news list - sidebar with projects
+done - fix all the side by side images in tables
+done - fix the images are WAY TOO BIG and have transparent margins
+image for po box address?? and twitter handle?? WHY???
+favicon for live site...
+7/12/13
+24) Q: Schedule and "going live" - we are almost there I think.
+       A few minor tweaks listed below, and we can call it good...
+
+23) Q: Ecwid "Add-to-Bag" image not in color scheme.
+    A: Custom /img/ecwid/buy_now.png button created with site color scheme.
+       (should the text be "white" to better match "subscribe" button above?
+
+22) Q: Update Github projects to match new image URL (/img/project)
+    A: Done and tested.
+
+21) Q: "names" are confused many places and need to be "normalized" 
+       (i.e. tinysoc, tiny-soc, etc. -> Need to normalize to "TinySoc" everywhere...)
+
+20) Q: Comments sometimes "ride up" on the page if there is not Ecwid buy widget.
+       How to fix this on pages with no store link?
+       (i.e. http://www.patternagent.com/projects/tiny-soc.html )
+    A: Fixed by putting the bottom image(s) into a table, comments are below the table now.
+    A: Marion added a "break" to fix this in the CSS...
+
+19) Q: Turn Images on "Projects" page into links, people click in the image, not the link...
+    A: Done and tested.
+
+18) Q: Add a local signup page form, rather than use MailChimps - 
+       basic form type will work and will match the site better stylistically...
+    A: Done. It's Fugly, but it functions.
+
+17) Q: Add a secure contact form. Needs to be secure and include a Captcha at minimum.
+       I've used www.emailmeform.com before with good success, will also look at google "forms".
+    A: Google forms was too wierd for a contact form, might be good for a survey though...
+       Settled on EmailMeForm for now, I know it works (4 years of use) and is secure with a Captcha...
+    A: Done. It's Fugly, but it functions.
+
+16) Q: Home page "feature" size still seems little large - vertical size
+       For each product/project there are the following images generated :
+       project_thumb.png  (128 x <128) <-- I think the feature should use this image to reduce size...
+       project.png        (320 x <320)
+       project_model.png  (320 x <320)  Isometric view
+       project_top.png    (>512 x >512) (also _bot, and _iso  - highest resolution)
+
+       Q: Was able to reduce the "whitespace" on the Feature slightly, removing the button.
+          (google analytics show people click on the "image" anyway...)
+
+15) Q: Add Disqus to project pages.
+       I think it would useful to display the disqus widget on these pages.
+    A: Done and tested.
+
+14) Q: Font loading time - sometimes google font load is slow, should we host the fonts locally?
+       Fonts loaded locally, I need to figure out how to link to them...
+    A: After reading about this it seems google will likely be faster for most people - issue closed.
+
+13) Q: Transparent Images - they look better, how do we drop the white background?
+    A: Done and tested, looks better IMHO...
+
+12) Q: Image priority. Currently not sure where an image will render vertically.
+       Is there a way to specify valign "top/middle/bottom" for images?
+       Or a priority (high, med, low?) (i.e. high priority first, etc.)
+    A: Fixed by putting the image(s) into a table now.
+
+
+11) Q: Are we still using any plugins? Without contact.php are we now "github safe"?
+       It would be very useful to be able to redirect the site to github if the server ever goes down hard...
+
+10) Q: pushing the footer to the page bottom.
+       I have some ideas, but not sure about implementation.
+
+9)  Q: changing "Products" page to 3 column layout.
+       I think it would useful to display the twitter/disqus widget on these pages.
+       I think I know how to do this properly myself, but we should talk about it.
+    A: Done. Created a layout/projects.html
+       Removed the (redundent) projects list in the first column, kept the news. Added Twitter/Disqus.
+
+8)  Q: Future-proofing nav menu - how hard to add dropdowns for future expansion?
+       (i.e.  News  -> Top News
+              News  -> Press Releases
+	      About -> Staff
+	      About -> Openings
+	      Support -> Customer Service
+	      Support -> Technical Support
+	etc.)
+	This is very low priority right now, but I'm interested in Future-proofing for later. 
+
+7)  Q: Need to add two more mailchimp lists (i.e. patternagents_press & patternagents_prerelease)
+       These will be for a separate press release mailing list, and a product prerelease mailing list.
+       I expect I will need to add new widgets for each list (unless they can be templated in_config.yml)
+    A: Done. This was done using the new "groups" feature of Mailchimp rather than separate lists.
+
+6)  Q: How to insert varibles (i.e. page_slug) into JavaScript Variables?
+       Need to insert the page_slug for per page discussions into the disqus.js widget
+       I think this is can be done with the yaml front matter added to disqus.js and each page.
+       hints :
+       http://blog.timmschoof.com/2011/10/07/Ten-Disqus-Jekyll-Disqus-CSS/
+
+
+7/11/13
+-------
+5)  Q: CSS overlaps table and images at wide resolutions.
+    A: Fixed in the CSS by Marion, site rebuilt, tested good by Tom.
+
+7/1/13
+------
+4)  Q: nav like so? http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/a-simple-responsive-mobile-first-navigation/
+    A: The current navigation looks great, works well at all tested resolutions.
+
+3)  Q: make sure the e-mail signup works, maybe rewrite the mail configure page
+    A: Tested and working.
+
+2)  Q: possible color scheme:  http://colorschemedesigner.com/#3M21Tn1knw0w0
+    A: Looks wonderful, it is adopted.
+
+1)  Q: e-mail comments for blog: https://github.com/mpalmer/jekyll-static-comments
+    A: Going with Disqus instead, a less-time consuming UI to manage (allows for moderator roles) ...
+
+<a class="twitter-timeline" href="https://twitter.com/PatternAgents" data-widget-id="408008079146373120">Tweets by @PatternAgents</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+old :
+social:
+  twitter:
+    data-widget-id: 326818860147810307
+    data-tweet-limit: 6
+    url: https://twitter.com/PatternAgents
+    tagline: Tweets by @PatternAgents
+
+<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/PatternAgents" data-widget-id="408008079146373120">Tweets by @PatternAgents</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+

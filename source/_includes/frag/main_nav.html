@@ -1,0 +1,17 @@
+{% comment %}
+main nav, appears on every page
+requires frag/js/main_nav
+{% endcomment %}
+
+<div class="row"><div class="col">
+<nav class="toggle">
+  <h2><a href="#" title="(click to expand)"><span class="menu-icon">&#9776;</span> Go to:</a></h2>
+  <ul>
+    <li class="nav-store"><a href="{{site.url.store}}">Store</a></li>
+    <li class="nav-projects"><a href="{{site.url.projects.home}}">Projects</a></li>
+    <li class="nav-support"><a href="{{site.url.support.home}}">Support</a></li>
+    <li class="nav-about"><a href="{{site.url.about.home}}">About</a></li>
+    <li class="nav-news"><a href="{{site.url.news.home}}">News</a></li>
+  </ul>
+</nav>
+</div></div>

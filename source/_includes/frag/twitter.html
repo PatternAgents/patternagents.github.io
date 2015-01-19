@@ -1,0 +1,14 @@
+{% comment %}
+Twitter Widget 
+Requires frag/js/twitter.html
+{% endcomment %}
+
+<!-- twitter -->
+<div class="panel">
+  <a  class="twitter-timeline"
+      href="{{ site.social.twitter.url }}" 
+      data-widget-id="{{ site.social.twitter.data-widget-id }}"
+      data-tweet-limit="{{ site.social.twitter.data-tweet-limit }}">
+    {{ site.social.twitter.tagline }}
+  </a>
+</div>

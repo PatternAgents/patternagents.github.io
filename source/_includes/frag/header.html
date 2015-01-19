@@ -1,0 +1,13 @@
+{% comment %}
+header section (different on home page) (index doesn't link back to self). See also frag/header_no_link.html
+{% endcomment %}
+
+<header>
+  <div class="head-container">
+	  <div class="col">
+	    {% if page.url != '/index.html' %}<a href="{{site.url.home}}">{%endif%}
+	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
+	    {% if page.url != '/index.html' %}</a>{%endif%}
+	  </div>
+  </div>
+</header>

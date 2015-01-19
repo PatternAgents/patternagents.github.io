@@ -1,0 +1,44 @@
+---
+layout: basic
+# we need to do this with a layout in _layouts instead of
+# one in _include/layouts (like every other page), because
+# post.content gets used in news/index.html, and it needs
+# to be just the post content, not the page headers & etc.
+---
+{% capture blockquote %}
+  {% capture quote_quote %}{{page.quote}}{% endcapture %}
+  {% capture quote_author %}{{page.quote_author}}{% endcapture %}
+  {% include layouts/quote.html %}
+{% endcapture %}
+
+{% capture standard_content %}
+  <article role="article">
+    <header>
+      {% if post_title %}
+        <h1 class="entry-title">{{ post_title }}</h1>
+      {% else %}
+        <h1 class="entry-title">{{ page.title }}</h1>
+      {% endif %}
+      {% unless page.meta == false %}
+        <p class="meta">
+          {{ post.date | date: "%B %d, %Y" }}
+        </p>
+      {% endunless %}
+    </header>
+    <div class="entry-content">{{blockquote}}{{ content }}</div>
+    <footer>
+      <p class="meta">
+        {{ page.date | date: "%B %d, %Y" }}
+      </p>
+      <p class="meta">
+        {% if page.previous.url %}
+          <a class="previous" href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&laquo; {{page.previous.title}}</a>
+        {% endif %}
+        {% if page.next.url %}
+          <a class="next" href="{{page.next.url}}" title="Next Post: {{page.next.title}}">{{page.next.title}} &raquo;</a>
+        {% endif %}
+      </p>
+    </footer>
+  </article>
+{% endcapture %}
+{% include layouts/standard.html %}

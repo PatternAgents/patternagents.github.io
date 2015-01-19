@@ -1,0 +1,24 @@
+{% comment %}
+Layout for news index page. Content section is:
+news_content
+{% endcomment %}
+
+{% capture col3_content1 %}
+  {{news_content}}
+{% endcapture %}
+
+{% capture col3_content2 %}
+  <h2>Recent Tweets</h2>
+  {% include frag/twitter.html %}
+{% endcapture %}
+
+{% capture col3_content3 %}
+  <h2>Featured Projects</h2>
+  {% include frag/sidebar_projects.html %}
+{% endcapture %}
+
+{% capture col3_js %}
+  {% include frag/js/twitter.js %}
+{% endcapture %}
+
+{% include layouts/col3.html %}

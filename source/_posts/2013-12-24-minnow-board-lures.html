@@ -1,0 +1,127 @@
+---
+layout: post
+category: news
+title: "MinnowBoard Lures Library"
+date: 2013-12-24 18:00
+quote: Give a man a fish and he has food for a day; teach him how to fish and you can get rid of him for the entire weekend.
+quote_author: Zenna Schaffer
+product_slug: Lures
+product_img: Lures.png
+licensing: true
+cc_by_sa: true
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "MinnowBoard Lures Library"
+  abstract: "MinnowBoard Lures Library"
+  keywords: "intel, atom, open source, arduino, uno, mega, due, psoc, psoc1, psoc3, psoc4, psoc5, cypress, cpm, cpld, fpga, cortex, freedom, raspberry pi"
+comments: true
+---
+<p>
+PatternAgents has just released a new library of MinnowBoard Lures (expansion board patterns) for the
+<a href="http://www.minnowboard.org/">MinnowBoard</a> project. The library includes Type A, B, and C Lures,
+with both single board patterns and "stackthru" patterns, which allow multiple Lures to be stacked up on top
+of each other. If you are thinking about designing your own set of Lures, then this is the place to start.
+</p>
+<!-- more -->
+<p>
+  We've been interested in high performance small form factor platforms for a while now, especially those that can run Linux.
+  The <a href="http://www.minnowboard.org/">MinnowBoard</a> is very high performance single board computer (SBC) using a 1Ghz Intel Atom processor, but unlike most SBC's it has the General Purpose I/O (GPIO) expansion connections needed to expand the system using low cost peripherals. 
+  The <a href="http://www.minnowboard.org/">MinnowBoard</a> runs the <a href="http://www.angstrom-distribution.org/">Angstrom Linux Distribution</a>
+  (as well as Debian) and is compatible with the <a href="https://www.yoctoproject.org/">Yocto project</a>. 
+</p>
+<img src="{{site.url.images}}/news/minnow/minnowboard_iso.png" alt="MinnowBoard (isometric view)" title="MinnowBoard (isometric view)"/>
+
+<p>
+As you can see from the Expansion connector (on the left) in the picture of the MinnowBoard, 
+the Expansion Boards, which are called "Lures", mount on the top of the board and stack upward.
+</p>
+<img src="{{site.url.images}}/news/minnow/type_a_mount.png" alt="MinnowBoard Lure Mounting" title="MinnowBoard Lure Mounting"/>
+<p>
+The MinnowBoard specifies three different sizes of Lures, known as Type A, Type B, and Type C.
+The Type A Lure is the same size as the MinnowBoard itself, 4.2 by 4.2 inches.
+Of the three (3) types of Lures, the largest Type A, is larger than the "Free" version of Eagle supports,
+and requires a Standard or Professional license to work with. However Type B, and Types C both fall within the size restrictions
+of the  "Free" versions of Eagle, and will be more popular within the general maker community.
+</p>
+<img class="illo" src="{{site.url.images}}/news/minnow/lures.png" alt="MinnowBoard Lures" title="MinnowBoard Lures"/>
+<p>
+We started looking at the resources available for designing our own Lures using Eagle, and found that only Type B and Type C
+were available for Eagle. We also found that there were only examples for single boards, and that none of the Libraries that
+we found supported "StackThru"; that is to say, none of the examples we found included a connector pattern on the top of the Lure
+in order to allow more than one Lure to be stacked at a time. 
+</p>
+<p>
+Since we had some ideas for more comprehensive Lures, we wanted both a Type A Lure pattern, as well as a Type A ST (StackThru) Lure pattern.
+So, we are proud to announce the availability of a more comprehensive MinnowBoard Lure library for Eagle,
+which has been released on our <a href="{{site.url.github}}/PCB_Libraries">PatternAgents Eagle CAD Libraries Github Repo</a>.
+We have included Type A, Type A ST, Type B, Type B ST, Type C, and Type C ST patterns for the MinnowBoard community to use.
+</p>
+
+<p>
+Here is an quick example layout using the PatternAgents Type C ST (StackThru) board pattern,
+rendered using Eagle, EagleUp, and SketchUp.
+<img src="{{site.url.images}}/news/minnow/type_c_iso_final.png" alt="MinnowBoard Example Lure - Type C (isometric view)" title="MinnowBoard Example Lure - Type C (isometric view)"/> 
+</p>
+
+<p>
+In the next article, we will cover an example Lure design using the PatternAgents Board Library for Eagle,
+and give a more detailed How-To on adding these boards to your projects.
+</p>
+
+<ul class="illo-list">
+  <li>
+    <span>
+      <img src="{{site.url.images}}/news/minnow/type_c_top_final.png" alt="MinnowBoard Type C Lure (top view)" title="MinnowBoard Type C Lure (top view)"/>
+    </span>
+  </li>
+  <li>
+    <span>
+      <img src="{{site.url.images}}/news/minnow/type_c_bot_final.png" alt="MinnowBoard Type C Lure (bottom view)" title="MinnowBoard Type C Lure (bottom view)"/>
+    </span>
+  </li>
+</ul>
+<p>
+<b>Note Bene:</b> When using the PatternAgents Boards Library for Eagle make sure that you use the PatternAgents.dru
+DRC control file for Eagle, as we have our minimum hole sizes set to 14mils. This makes the vias more like production vias,
+and also allows us to utilize 13.5mil magnet wire for fabricating manual vias when using two layer copper blanks 
+(i.e. cut or milled PCB's) for testing. Or, if you have you own custom DRC file, than just set the minimum hole size to 14mils,
+to avoid getting any "Drill Size" DRC errors.
+</p>
+<p>
+These libraries are updated frequently, and you should check for the latest version before generating your PCB's. 
+Also note that some footprints are labeled "experimental" in these libraries, so be careful with those.
+You should always verify your design against the actual component footprints before fabrication by printing out a 1:1 plot.
+</p>
+<p>
+  For more information on Eagle, see <a href="http://www.cadsoftusa.com/">CadSoft</a>.
+</p>
+<h3>PatternAgents Eagle CAD Libraries - Files and Documentation</h3>
+<ul>
+  <li><a href="{{site.url.github}}/PCB_Libraries">PatternAgents Eagle CAD Libraries Github Repo</a></li>
+</ul>
+
+<h4>PatternAgents Eagle CAD Libraries - Contents</h4>
+<ul>
+  <li>PatternAgents-Boards.lbr - PatternAgents PCB board outlines, MinnowBoard Lures and other small form factors</li>
+  <li>PatternAgents-Interfaces.lbr - PatternAgents Interface patterns for common interfaces</li>
+  <li>PatternAgents-TouchWidgets.lbr - Capacitive Sensing Touch Widgets for Buttons, Sliders, Dials, etc.</li>
+  <li>PatternAgents-Beautify.lbr - Page Outlines, Power/Gnd Symbols</li>
+  <li>PatternAgents-Logos.lbr - Logos for RoHs, ESD, etc.</li>
+  <li>PatternAgents-Cypress.lbr - Components from Cypress Semiconductor</li>
+  <li>PatternAgents-NXP.lbr - Components from NXP (nee Philips)</li>
+  <li>PatternAgents-TI-Tiva.lbr - Components from Texas Instruments</li>
+</ul>
+</p>
+<p>
+EagleCad Libraries by PatternAgents, LLC are available and licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<br>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</p>
+
+<p>
+  The MinnowBoard on <a href="https://plus.google.com/107232752308803303026/posts">Google+</a>
+</p>
+
+<h3>About PatternAgents</h3>
+{% include frag/blurb.html %}

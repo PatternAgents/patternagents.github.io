@@ -1,0 +1,11 @@
+{% comment %}
+Layout for store page. Content sections is:
+store_content
+Store page has no store sidebar.
+{% endcomment %}
+
+{% capture col1_content %}
+  {{store_content}}
+{% endcapture %}
+
+{% include layouts/col1.html %}

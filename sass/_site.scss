@@ -1,0 +1,583 @@
+/*
+ * narrow (mobile) is ok from 280px. When we get
+ * to 2x that, we can switch to 2 equal cols. When we get
+ * to 3x that, we can switch to 1/3-2/3 cols. When we get
+ * to 4x that, we can switch to 1/4 (2/4-1/4). At 8x we can
+ * stop growing.
+ * Anyway, it's something to try.
+ * ... never mind, doing it by trial & error
+ * $narrow defined in _foundation_settings_overrides, as
+ * is $row_width
+ */
+$break-1: emCalc(670px);
+$break-2: emCalc(840px);
+$break-3: emCalc(1120px);
+$break-tagline: emCalc(420px);
+$break-signupfloat: emCalc(700px);
+$break-full_nav: emCalc(980px);
+$break-toggle_nav: $break-1;
+
+$header-blue: #273b6d;
+
+$basic-border: 1px solid #ddd;
+$max-width: 50em;
+
+button, .button {
+  @include button($padding: $button-lrg, $radius: true, $full-width: true);
+  &:active, &:focus, &:hover { text-decoration: none; }
+  @include respond-min($break-1) {
+    // reset button width back to not full width
+    width: auto;
+    padding: 1em 1.5em;
+  }
+}
+
+body {
+  background: url(../img/bgnd/site_bgnd.png);
+  line-height: 1.3em;
+  font-family: Ubuntu;
+}
+
+body>header { // only the outer header, not various article headers
+  background: $header-blue;
+  border-bottom: 5px solid $primary-color;
+  padding: 1.75em 0 3em 0;
+  margin-bottom: 1em;
+  color: white;
+  .head-container {
+    @include grid-row;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  h1 {
+    font-faimily: Ubuntu;
+    font-weight: normal;
+    margin: 0;
+    padding-left: 55px;
+    line-height: 0.85em;
+    background: url(../img/logos/site_logo.png) no-repeat;
+    min-height: 60px;
+    .tag-line {
+      display: block;
+      font-size: 0.5em;
+      line-height: 0.5em;
+      &:first-line {
+        line-height: 1.8em;
+      }
+    }
+  }
+  @include respond-min($break-tagline) {
+    padding-bottom: 2.5em;
+  }
+  @include respond-min($break-full_nav) {
+    padding-bottom: 0.5em;
+  }
+}
+
+main {
+  @include grid-row;
+  padding-bottom: 1em;
+  a {
+    color: lighten($header-blue, 10%);
+    text-decoration: none;
+  }
+  a:hover, &:focus {
+    color: $header-blue;
+  }
+  h1 {
+    font-size: 1.7em;
+    line-height: 1.3em;
+    margin-bottom: 0;
+  } 
+  h2 {
+    font-size: 1.4em;
+    line-height: 1.1em;
+  }
+}
+
+.col.major ul, .col.major ol {
+  margin-bottom: 0.8em;
+  li {
+    margin-bottom: 0.4em;
+  }
+}
+
+// Left & Right columns
+main .col.minor, main .col.maj_minor {
+  padding: 1em 2em;
+  ul {
+    margin: 0 0 2em 0;
+    padding: 0;
+    list-style-type: none;
+    border: $basic-border;
+    border-bottom: none;
+  }
+  a {
+    display: block;
+    padding: 0.4em 0.8em 0.4em 0.8em;
+    border-bottom: $basic-border;
+    background-color: rgb(242, 242, 242);
+    &:hover, &:focus {
+      background-color: white;
+      transition: background-color 300ms ease-out 0s;
+    }
+  }
+  h2 {
+    color: white;
+    padding: 0.4em 0.8em;
+    background-color: $header-blue;
+    border-bottom: 2px solid $primary-color;
+    font-size: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: $global-radius $global-radius 0 0;
+  }
+}
+
+// Max line length, targets text in central columns 
+main>.col>article, main .col.major p, main .col.major ul, main .col.major ol {
+  max-width: $max-width;
+}
+
+body>footer {
+  background: $header-blue;
+  padding-top: 1em;
+  color: white;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  h2 {
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #ddd;
+    font-size: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  ul {
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .unimportant p { // don't change font size on row
+    font-size: 0.8em;
+    color: #aaa;
+    margin-bottom: 0;
+  }
+}
+
+.wideright {
+  @include respond-min($break-1) {
+    text-align: right;
+  }
+}
+
+.social-icons { // centered inline list
+  font-size: 2em;
+  text-align: center;
+  margin-top: 0.7em;
+  li {
+    display: inline-block;
+    padding: 0 0.2em 0.3em 0.2em;
+    &:active, &:focus, &:hover { color: lighten($primary-color, 10%); }
+  }
+}
+
+// .row { @include grid-row; }
+.col {
+  @include grid-column(12);
+  @include respond-min($break-1) {
+    &.quarter {
+      @include grid-column(6);
+    }
+    &.minor {
+      @include grid-column(6, $pull: 6);
+    }
+    &.major {
+      @include grid-column(6, $push: 6);
+    }
+  }
+  @include respond-min($break-2) {
+    &.minor {
+      @include grid-column(4, $pull: 8);
+    }
+    &.major {
+      @include grid-column(8, $push: 4);
+    }
+  }
+  @include respond-min($break-3) {
+    &.half {
+      @include grid-column(6);
+    }
+    &.minor {
+      @include grid-column(3, $pull: 9);
+    }
+    &.major {
+      @include grid-column(9, $push: 3);
+    }
+    &.maj_minor {
+      @include grid-column(4);
+    }
+    &.maj_major {
+      @include grid-column(8);
+    }
+  }
+}
+
+@include respond-min($break-signupfloat) {
+  #signup {
+    position: absolute;
+    top: 1.2em; right: 1em;
+    color: #fff;
+  }
+}
+
+#signup {
+  input[type="email"] {
+    @include grid-column(12);
+    margin-bottom: 0;
+    border-radius: $global-radius $global-radius 0 0;
+    @include respond-min($break-1) {
+      @include grid-column(8);
+      border-radius: $global-radius 0 0 $global-radius;
+    }
+  }
+  button[type="submit"] {
+    @include prefix-postfix-base;
+    @include postfix($bg: $primary-color, $is-button: true);
+    @include grid-column(12);
+    border-radius: 0 0 $global-radius $global-radius;
+    @include respond-min($break-1) {
+      @include grid-column(4);
+      border-radius: 0 $global-radius $global-radius 0;
+    }
+  }
+}
+
+.feature {
+  margin-top: -1em;
+  padding-top: 1em;
+  background-color: white;
+  border: $basic-border;
+  border-box: 1px 0;
+  .col {
+    padding: 0 1em;
+  }
+  .feature-body { // To contain p and button
+    position: relative;
+    vertical-align: bottom;
+  }
+  h1 {
+    font-size: 1.7em;
+    line-height: 1em;
+    font-weight: 600;
+    color: darken($primary-color, 10%);
+    text-shadow: 1px 1px #ddd;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+  p {
+    max-width: 50em;
+    &:first-child {
+      &:first-line {
+        text-transform: uppercase;
+        color: #666;
+      }
+    }
+  }
+  .button {
+    font-size: 1.1em;
+    position: relative;
+  }
+  img {
+    margin: 0.5em auto;
+    width: 100%;
+  }
+  @include respond-min($break-1) {
+    p, .button {
+      display: inline;
+    }
+    .button {
+      display: inline;
+      position: relative;
+      bottom: 0;
+      right: 0;
+      clear: right;
+      margin: 0.7em 0;
+    }
+    img {
+      float: right;
+      margin-top: 2em;
+      margin-right: -1em;
+    }
+  }
+  @include respond-min($break-2) {
+    img {
+      margin-top: 1em;
+    }
+  }
+}
+
+.section-container > section .title a,
+.section-container > .section .title a,
+.section-container.auto > section .title a,
+.section-container.auto > .section .title a {
+  white-space: normal; // override nowrap
+}
+
+// Mobile nav version
+nav.toggle {
+  margin: -3.3em -1em 1em -2.5em;
+  a, h2 {
+    color: white;
+    text-decoration: none;
+    margin: 0;
+  }
+  h2 {
+    padding: 0.5em 3em;
+    font-size: inherit;
+    background: $primary-color;
+  }
+  ul {
+    list-style: none;
+    margin: 0 0 0 1.5em;
+    background: $primary-color;
+    padding: 0;
+    border-bottom: 1px solid darken($primary-color, 10%);
+    a {
+      display: block;
+      border-top: 1px solid darken($primary-color, 10%);
+      padding: 0.5em 1.5em 0.5em 1.5em;
+      transition: background-color 300ms ease-out 0s;
+      &:focus, &:hover, &:active { 
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+  &.collapsed {
+    border: none;
+    ul { 
+      display: none; 
+      border: none;
+    }
+    a { border: none; }
+  }
+
+  // Midsize nav version  
+  @include respond-min($break-toggle_nav) {
+    clear: both;
+    margin-top: -3.6em;
+    background-color: transparent;
+    h2 {
+      display: none;
+    }
+    &.collapsed {
+      ul { display: block; }
+    }
+    ul {
+      margin-left: 2em;
+      border: none;
+      li {
+        font-size: 1em;
+        float: left;
+        color: white;
+      }
+      a:hover, a:focus, a:active { // turn off some of the button stuff
+        color: lighten($primary-color, 10%); 
+        background-color: inherit;
+      }
+    }
+  } 
+
+  // Wide nav version
+  @include respond-min($break-full_nav) {
+    margin-right: 1em;
+    clear: none;
+    float: right;
+  }
+}
+
+// Highlight current page in main nav; messed with mobile nav when included above
+@include respond-min($break-toggle_nav) {
+  .store .nav-store, .projects .nav-projects, .support .nav-support,.about .nav-about, .news .nav-news {
+    color: white; 
+    background: $primary-color;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5) inset;
+    border: 1px solid darken($primary-color, 10%); 
+    border-bottom: 3px solid $primary-color; 
+    border-radius: $global-radius $global-radius 0 0;
+    a:hover, a:focus, a:active {
+      color: white;
+      background: inherit;
+      box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5) inset;
+    }
+  }
+} 
+
+.menu-icon {
+  position: relative; top: -0.05em; // nudge it up a bit. If you make it bigger, throws other things off.
+}
+
+.before_list {
+  // margin-bottom: 0;
+}
+
+ul, ol, dl {
+  margin: 0;
+}
+
+ul.faq {
+  list-style-type: none;
+  padding-left: 1em;
+  &>li:nth-child(odd) {
+    font-weight: bold;
+    margin-bottom: 0.6em;
+  }
+  &>li:nth-child(even) {
+    margin-bottom: 1.5em;
+    padding-left: 2em;
+  }
+  ul {
+    padding-top: 0.4em;
+    list-style-type: none;
+    li {
+      font-weight: normal;
+      padding-left: 0;
+      margin-left: -2.5em;
+    }
+  }
+}
+
+// Wrapper for video to force correct sizing
+.container {
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 0.5em;
+  height: 0;
+  margin: 0.5em 0;
+}
+.container.four-three {
+  padding-bottom: 75%; /* 4:3 */
+}
+
+.container iframe { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  width: 100% !important;
+  height: auto !important;
+}
+
+article {
+  clear: both;
+  padding: 0em 0.5em 1.5em 0.5em;
+}
+
+// Article images
+.illo {
+  padding: 0.75em;
+  width: 100%;
+  @include respond-min($break-1) {
+    margin: 0 0.5em 1em 0.5em;
+    float: right;
+    clear: right;
+    width: auto;
+  }
+}
+.illo-list {
+  @include inline-list;
+  >li {
+    max-width: 100%;
+    >span {
+      max-width: 375px; // make this responsive - larger for larger screens
+      >img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+.illo-left {
+  float: left;
+  clear: left;
+}
+
+table .illo {
+  width: 100%;
+}
+ 
+blockquote {
+  font-style: oblique;
+  color: darken($primary-color, 12%);
+  text-align: center;
+  p {
+    font-size: 1em;
+    line-height: 0.8em;
+    margin: 0;
+    padding: 0 0 1.1em 0; //0.8em
+  }
+  p:first-child {
+    width: 100%;
+    padding: 0 0.4em 0.5em 0.4em;
+    font-size: 1.3em;
+    line-height: 1.2em;
+    &:before, &:after {
+      content: '"';
+      position: absolute;
+      margin: 0.25em 0 0 -0.3em;
+      font-size: 5em;
+      color: lighten($primary-color, 25%);
+      z-index: -1;
+    }
+    &:after {
+      float: none;
+    }
+  }
+  @include respond-min($break-2) {
+    margin: 0 0.75em 0.9em 0.75em;
+    float: right;
+    clear: right;
+    width: 40%;
+  }
+}
+
+.important {
+  font-weight: bold;
+  color: #B80000;
+}
+
+.meta {
+  color: #666;
+  font-size: 0.8em;
+  margin-top: -0.2em;
+}
+
+table { 
+  clear: both; 
+  text-align: left;
+  color: black;
+  input {
+    border-radius: $global-radius;
+    &[type=submit] {
+      @include button;
+      margin-top: 0.5em;
+    }
+  }
+} // tables were overlapping illos in firefox
+
+.next { float: right; } // news links
+
+#disqus_thread {clear: both;}
+
+.feature a.button {
+  float: right;
+}

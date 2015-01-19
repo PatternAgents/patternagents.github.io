@@ -1,0 +1,27 @@
+{% comment %}
+structural layout. captures are:
+col2_content1
+col2_content2
+col2_feature (optional)
+col2_js (optional)
+{% endcomment %}
+
+{% capture col1_content %}
+  <div class="col major">
+    {{col2_content1}}
+  </div>
+  <div class="col minor">
+    {{col2_content2}}
+  </div>
+{% endcapture %}
+
+{% capture col1_feature %}
+  {{col2_feature}}
+{% endcapture %}
+
+{% capture col1_js %}
+  {{col2_js}}
+{% endcapture %}
+
+{% include layouts/col1.html %}
+

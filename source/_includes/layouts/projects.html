@@ -1,0 +1,24 @@
+{% comment %}
+Layout for projects page. Content sections are:
+projects_content
+{% endcomment %}
+
+{% capture col3_content1 %}
+  {{projects_content}}
+{% endcapture %}
+
+{% capture col3_content2 %}
+  <h2>Recent Tweets</h2>
+  {% include frag/twitter.html %}
+{% endcapture %}
+
+{% capture col3_content3 %}
+  <h2>Latest News</h2>
+  {% include frag/sidebar_news.html %}
+{% endcapture %}
+
+{% capture col3_js %}
+  {% include frag/js/twitter.js %}
+{% endcapture %}
+
+{% include layouts/col3.html %}

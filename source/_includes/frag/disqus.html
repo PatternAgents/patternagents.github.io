@@ -1,0 +1,10 @@
+{% comment %}
+Disqus Widget 
+Requires frag/js/disqus.js
+{% endcomment %}
+
+<!-- discus panel -->
+<!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+{% if page.comments %}
+<div class="panel" id="disqus_thread"></div>
+{% endif %}

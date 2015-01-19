@@ -1,0 +1,23 @@
+{% comment %}
+structural layout. captures are:
+col1_content
+col1_feature (optional)
+col1_js (optional)
+{% endcomment %}
+
+{% include frag/header.html %}
+{% include frag/main_nav.html %}
+{{col1_feature}}
+<main class="row">
+  {{col1_content}}
+</main>
+   {% include frag/newsletter_signup.html %}
+   <!-- Add the discussion widget -->
+   {% include frag/disqus.html %}
+   {% include frag/footer.html %}
+<script src="/js/lib/jquery.js"></script>
+{% include frag/js/disqus.js %}
+{% include frag/js/pinterest.js %}
+{% include frag/js/main_nav.js %}
+{% include frag/js/newsletter_signup.js %}
+{{col1_js}}

@@ -126,7 +126,7 @@
 	<p>&mdash;Lao Tzu</p>
 </blockquote>
 
-<p>I spoke at the 
+<p>We spoke at the 
 <a href="http://www.meetup.com/Thing-Tuesday-The-Portland-Internet-of-Things-Meetup/">Portland thingTuesday</a>
 meeting this week about some of the limitations of currently popular small form factors like Arduino, LaunchPad,
 Beaglebone, Raspberry PI, and others. My personal opinion is that one of the 
@@ -150,7 +150,7 @@ Some of the descriptor formats that we looked at were :
  <li><a href="http://www.usb.org/">USB</a> : Universal Serial Bus</li>
  <li><a href="https://www.pcisig.com/specifications">PCI</a> : Peripheral Component Interconnect</li>
  <li><a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> : Transducer Electronic Data Sheet</li>
- <li><a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : Intelligent Peripheral Managment Interface - Field Replacable Unit</li>
+ <li><a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : Intelligent Peripheral Management Interface - Field Replaceable Unit</li>
 </ul>
 USB, PCI, and TEDS are all controlled by various associations, 
 which cost money to join and to obtain a Vendor/Manufacturer ID number.
@@ -180,7 +180,7 @@ IEEE standard, which is insanely complex enough to require it's own compiler to 
 <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> was also designed about a decade ago,
 and so many of the tradeoffs that were made in that standard, such as reduced memory footprint and reduced
 packet/data sizes, are not as big a cost and performance issue as they were ten years ago.
-Additionaly, the default <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> interface
+Additionally, the default <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> interface
 (which they refer to as an MMI) is based on the proprietary
 <a href="http://www.maximintegrated.com/en/products/comms/one-wire.html">Dallas/Maxim 1-Wire</a> bus,
 which is heavily patented (though expired perhaps?) and not really the kind of "open standard"
@@ -194,7 +194,7 @@ it does have some pretty impressive capabilities.
 </p>
 <p>
 So we started thinking about how we could implement automatic discovery
-and configuration of sensors and other peripherals) using a simple metadata repository
+and configuration of sensors and other peripherals, using a simple metadata repository
 that could be included on small form factor boards like shields and breakout boards.
 This is already done using the <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a>
 standard on most high-end FPGA mezzanine boards. By just including a low cost (~$.10) 
@@ -205,7 +205,7 @@ It would be a very small additional cost, that would greatly increase the ease o
 </p>
 <p>
 Unfortunately, none of the standards that we have looked at have all of the capabilities that we need,
-and I don't think that we've overlooked any other options. (give us a shout if you know of one...)
+and I don't think that we've overlooked any other options. Please give us a shout if you know of one that we may have missed...
 So it looks like we're going to have to do our own mash-up here.
 </p>
 <p>

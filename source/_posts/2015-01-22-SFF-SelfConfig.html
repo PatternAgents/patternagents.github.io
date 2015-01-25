@@ -13,7 +13,7 @@ comments: true
 <p>I spoke at the 
 <a href="http://www.meetup.com/Thing-Tuesday-The-Portland-Internet-of-Things-Meetup/">Portland thingTuesday</a>
 meeting this week about some of the limitations of currently popular small form factors like Arduino, LaunchPad,
-Beaglebone, Raspberry PI, and others. My personal opinion is that one of the 
+Beaglebone, Raspberry Pi, and others. My personal opinion is that one of the 
 biggest limitations of these form factors is the lack of an automatic 
 configuration standard. 
 </p>
@@ -35,6 +35,7 @@ Some of the descriptor formats that I looked at were :
  <li><a href="https://www.pcisig.com/specifications">PCI</a> : Peripheral Component Interconnect</li>
  <li><a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> : Transducer Electronic Data Sheet</li>
  <li><a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : Intelligent Peripheral Management Interface - Field Replaceable Unit</li>
+ <li><a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> : Embedded Power Architecture Platform Requirements</li>
 </ul>
 USB, PCI, and TEDS are all controlled by various associations, 
 which cost money to join and to obtain a Vendor/Manufacturer ID number.
@@ -77,7 +78,20 @@ just too complex and convoluted for the maker community to adopt "en masse", alt
 it does have some pretty impressive capabilities.
 </p>
 <p>
-So I started thinking about how I could implement automatic discovery
+One of the most used standards is the <a href="http://www.openfirmware.info/IEEE_1275-1994">(now-deprecated) IEEE-1275</a> Device Tree Format.
+This does by no means implicate that this standard is abandoned or dead. There are several commercial implementations of Open Firmware and a quite reasonable number of hardware vendors support it. IEEE sold the rights to distribute the standards document to Global Engineering who still offer it.
+An archived copy of the standard can be found <a href="http://jguillaumes.dyndns.org/doc_ppc/ppc-2_1.pdf">here</a>, and is now part of the 
+<a href="http://www.firmware.org/1275/home.html">OpenFirmware</a> standard, used by the majority of Linux ports. This is a very comprehensive
+standard for describing the basic topology of bus connections on embedded platforms, and includes support for buses like ISA, PCI, SCSI, and others.
+The Device Tree Standard (DTS) also requires the use of a "Device Tree Compiler" to turn a Device Tree Specification file into a compact
+binary "blob" of data, that bootloaders such as the <a href="http://en.wikipedia.org/wiki/GNU_GRUB">Grand Universal BootLoader</a>, or GRUB,
+can parse to find the bootable devices within a embedded system. Since the embedded systems that utilize this standard typically have Megabytes
+(Or Gigabytes) of memory available for decoding the binary "blob" of data that descibes the device tree,
+it may not be suitable for much smaller embedded systems like the Arduino, that typically have only Kilobytes of memory available.
+It is primarily intended for describing bootable interfaces, and so does not have provisions for the support of sensor interfaces. 
+</p>
+<p>
+I started thinking about other, more compact ways, that I could implement automatic discovery
 and configuration of sensors and other peripherals, using a simple metadata repository
 that could be included on small form factor boards like shields and breakout boards.
 This is already done using the <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a>
@@ -85,7 +99,7 @@ standard on most high-end FPGA mezzanine boards. By just including a low cost (~
 <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROM</a> on each shield or breakout board
 to contain a device descriptor, these small form factor boards could now be automatically discovered and configured.
 It would be a very small additional cost, that would greatly increase the ease of use.
-<br>(not to mention reducing those customer support calls...) 
+(not to mention reducing those customer support calls...) 
 </p>
 <p>
 Unfortunately, none of the standards that I have looked at have all of the capabilities that I need,

@@ -12,7 +12,7 @@ comments: true
 ---
 <p>There are a number of different metadata formats for containing low-level configuration information,
 some of them are in plain ASCII text, and others are in various encoded binary formats. The encoded binary formats, or 
-Binary Level OBjects, are commonly referred to as  "BLOBs". In this article I'll cover how some of those formats
+Binary Level OBjects, are commonly referred to as  "BLOBs". In this article I will discuss how some of those formats
 are implemented and applied.
 </p>
 <!-- more -->
@@ -22,19 +22,19 @@ Let's start with the <a href="http://www.devicetree.org/Device_Tree_Usage">Devic
 which is often utilized in describing the hardware of higher end platforms to the Linux Kernal. 
 The <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> definition starts with a
 <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
-also know as a .dts file. The <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
+also known as a .dts file. The <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
 is a human readable definiton of everything about the embedded platform, including CPU type, amount of memory, internal buses (AHB/APB/etc.),
 and all the relevent interfaces, like USB, UART, PCI, SPI/MMC, Ethernet MAC, GPIO pins, Pin Multiplexing, and more. 
 It is a very complete specification of the underlying hardware platform. 
 The <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
 is then run through the <a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Compiler</a> which produces the 
-<a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Binary Object</a> (i.e. The Blob) also known as the .dtb file.
+<a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Binary Object</a> (i.e. The Blob) which is also known as the ".dtb" file.
 The definition of the <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> specification file and
 subsequent bootloading of a Linux distribution on "Bare-Metal" hardware is usually only attempted by those of "Linux Guru" stature,
 or the manufacturer of the System-on-Chip device architecture.
 </p>
 <p>
-So how does this process relate to the <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) definiton for add-on boards,
+So how does this process relate to the <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) definition for add-on boards,
 and the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> (Transducer Electronic Data Sheet)
 for attached Sensor devices? The following diagram depicts their relationship :
 </p>
@@ -45,7 +45,7 @@ for attached Sensor devices? The following diagram depicts their relationship :
 So, to try and put this all together in a more simple explaination :
 <ul>
 <li>During the Main Board boot-up sequence, the <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> BLOB is
-    parsed to determine all the hardware interfaces contained on the Main Board.</li>
+    parsed to determine all of the hardware interfaces contained on the Main Board.</li>
 <li>After the initial Main Board boot-up sequence, the 
     <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> is
     parsed to determine the make and model of the attached Expansion Board, which identifies the attached Sensors.
@@ -68,13 +68,13 @@ required to extract the necessary information.
 As one of my engineering buddies used to say, 
 <i>"Standards are great, and there are so many incompatible ones to choose from!"</i>
 Clearly this kind of approach is not going to work for resource constrained small systems,
-such as the Arduino, and is barely acheivable on medium sized platforms like the Raspberry Pi.
+such as the Arduino, and it is barely acheivable on medium sized platforms like the Raspberry Pi.
 So, what can we do to improve the current state of the art here?
 </p>
 <p>
 In our next segment, we'll discuss several of the evolving standards for Sensor Parameters
 that are being used in Sensor Hub and Sensor Fusion implementations, and what that means
-for developing an all encompassing method for automatic discovery and configuration
+for developing an all encompassing method of automatic discovery and configuration
 on small form factor embedded platforms.
 </p>
 <p>
@@ -83,7 +83,8 @@ on small form factor embedded platforms.
 <td>
 And finally, for your viewing pleasure, the original trailer for the 1958 feature "The Blob",
 starring a very young Steve McQueen. I still remember the first time I saw this movie, in
-a Drive-In Theater with my family, in an old Studbaker Station Wagon.
+a Drive-In Theater with my parents and family, in a
+<a href="https://www.youtube.com/watch?v=eOm5P1AkUi4">Studebaker Wagonaire</a>.
 </td>
 <td>
   <div class="container.four-three">

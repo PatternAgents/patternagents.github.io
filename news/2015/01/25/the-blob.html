@@ -3,16 +3,16 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: CPM Pmod - Add Pmod Peripherals to your PSoC Dev Kits</title>
+  <title>PatternAgents: The BLOB - Binary Level OBjects</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
 
-  <meta name="robots"                  content="noodp, noydir, noarchive"         />
-  <meta name="description"        content="CPM_Pmod - Add Pmod Peripherals to your PSOC1/3/5 Development Kit"    />
-  <meta name="abstract"              content="CPM_Pmod - Add Pmod Peripherals to your PSOC1/3/5 Development Kit"       />
+  <meta name="robots"          content="index, follow, noodp, noydir" />
+  <meta name="description"     content="PatternAgents: The Agency of Design Patterns" />
+  <meta name="abstract"        content="PatternAgents provides collaboration, community and commerce for electronics designers." />
   <meta name="classification"  content="electronics, electronics design, design engineering" />
-  <meta name="keywords"              content="CPM_Pmod, arduino, click, psoc, psoc1, psoc3, psoc4, psoc5, cypress, cpm"       />
+  <meta name="keywords"        content="electronics, electronics design, design engineering, open source software, open source hardware, OSHW" />
 
   <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
   <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
@@ -52,20 +52,6 @@
 
 <body class="">
  
-
-<!-- Add the standard layout -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -113,22 +99,16 @@
 
 
   
-  
-
 
 <main class="row">
   
   <div class="col major">
     
-  <div class="row">
-    <div class="col maj_major">
-      
   
-
   <article role="article">
     <header>
       
-        <h1 class="entry-title">CPM Pmod - Add Pmod Peripherals to your PSoC Dev Kits</h1>
+        <h1 class="entry-title">The BLOB - Binary Level OBjects</h1>
       
       
         <p class="meta">
@@ -136,141 +116,122 @@
         </p>
       
     </header>
-    <div class="entry-content"><p>
-  The CPM Pmod Adaptor board is designed to enable Cypress PSoC development boards to utilize the dozens of Pmod Peripherals boards that are available today.
+    <div class="entry-content">
+  
+  
+  
+
+<blockquote>
+	<p>Obstacles are those frightful things you see when you take your eyes off your goal.</p>
+	<p>&mdash;Henry Ford</p>
+</blockquote>
+
+<p>There are a number of different metadata formats for containing low-level configuration information,
+some of them are in plain ASCII text, and others are in various encoded binary formats. The encoded binary formats, or 
+Binary Level OBjects, are commonly referred to as  "BLOBs". In this article I'll cover how some of those formats
+are implemented and applied.
 </p>
 <!-- more -->
-
-<h3>CPM_Pmod Adaptor Board Features :</h3>
-<ul>
-  <li>Cypress CY8CKIT-001 - Supports up to three (3) CPM_Pmod </li>
-  <li>Cypress CY8CKIT-030 - Supports up to two (2) CPM_Pmod </li>
-  <li>Cypress CY8CKIT-050 - Supports up to two (2) CPM_Pmod </li>
-  <li>Cypress CY3280-28xxx - Supports one (1) CPM_Pmod </li>
-  <li>Cypress CY3280-22x45 - Supports one (1) CPM_Pmod </li>
-  <li>Selectable 3.3Volt or 5.0Volt Operation</li>
-</ul>
-
 <p>
- (Not an Exhaustive list as more Cypress development boards are routinely released by Cypress Semiconductor.)
+<img class="illo" src="/img/news/theblob/Blob-Town.png" width="320" height="300" alt="Blob Town" title="Blob Town"/>
+Let's start with the <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> format, 
+which is often utilized in describing the hardware of higher end platforms to the Linux Kernal. 
+The <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> definition starts with a
+<a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
+also know as a .dts file. The <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
+is a human readable definiton of everything about the embedded platform, including CPU type, amount of memory, internal buses (AHB/APB/etc.),
+and all the relevent interfaces, like USB, UART, PCI, SPI/MMC, Ethernet MAC, GPIO pins, Pin Multiplexing, and more. 
+It is a very complete specification of the underlying hardware platform. 
+The <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
+is then run through the <a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Compiler</a> which produces the 
+<a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Binary Object</a> (i.e. The Blob) also known as the .dtb file.
+The definition of the <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> specification file and
+subsequent bootloading of a Linux distribution on "Bare-Metal" hardware is usually only attempted by those of "Linux Guru" stature,
+or the manufacturer of the System-on-Chip device architecture.
 </p>
 <p>
-  For more specifications on Digilent Pmod, see <a href="http://www.digilentinc.com/Pmods/Digilent-Pmod_%20Interface_Specification.pdf">Digilent Pmod Specification</a>
+So how does this process relate to the <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) definiton for add-on boards,
+and the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> (Transducer Electronic Data Sheet)
+for attached Sensor devices? The following diagram depicts their relationship :
+</p>
+<p>
+<img src="/img/news/theblob/blobs-diagram.png" alt="Embedded Blobs" title="Embedded Blobs"/>
+</p>
+<p>
+So, to try and put this all together in a more simple explaination :
+<ul>
+<li>During the Main Board boot-up sequence, the <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> BLOB is
+    parsed to determine all the hardware interfaces contained on the Main Board.</li>
+<li>After the initial Main Board boot-up sequence, the 
+    <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> is
+    parsed to determine the make and model of the attached Expansion Board, which identifies the attached Sensors.
+</li>
+<li>Then the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> BLOBs are each  
+    parsed to determine the parameters of the attached Sensors.
+</li>
+<li>Finally, the Operating System (Linux/Android) has all the information necessary to read and interpret the attached Sensors.</li>
+</ul>
+</p>
+<p>
+That is a very quick overview of what is a highly complex process for automatic discovery and configuration, 
+based on currently used standards. The upshot of all of this is that at least three (3) separate and
+distinct parsers (namely DeviceTree, IPMI FRU, and TEDS, respectively) are required to put all of this together. 
+For an embedded Linux system, such as a Xilinx Zynq based system, or an ARM A8/A9 class system, 
+we are taking about a fairly large amount of code to implement each of the different parsers 
+required to extract the necessary information.
+</p>
+<p>
+As one of engineering buddies used to say, 
+<i>"Standards are great, and there are so many incompatible ones to choose from!"</i>
+Clearly this kind of approach is not going to work for resource constrained small systems,
+such as the Arduino, and is barely acheivable on medium sized platforms like the Raspberry Pi.
+So, what can we do to improve the current state of the art here?
+</p>
+<p>
+In our next segment, we'll discuss several of the evolving standards for Sensor Parameters
+that are being used in Sensor Hub and Sensor Fusion implementations, and what that means
+for developing an all encompassing method for automatic discovery and configuration
+on small form factor embedded platforms.
+</p>
+<p>
+<table border="0">
+<tr>
+<td>
+And finally, for your viewing pleasure, the original trailer for the 1958 feature "The Blob",
+starring a very young Steve McQueen. I still remember the first time I saw this movie, in
+a Drive-In Theater with my family, in an old Studbaker Station Wagon.
+</td>
+<td>
+  <div class="container.four-three">
+	  <iframe width="427" height="255" src="//www.youtube.com/embed/TdUsyXQ8Wrs?HD=1;rel=0;showinfo=0;controls=0" frameborder="0" allowfullscreen></iframe>
+  </div>
+</td>
+</tr>
+</table>
+</p>
+
+
+<p>
+
 </p>
 
 </div>
     <footer>
       <p class="meta">
-        July 12, 2013
+        January 25, 2015
       </p>
       <p class="meta">
         
-          <a class="previous" href="/news/2013/07/09/arduino-yun-the-next-generation.html" title="Previous Post: Arduino Y'un - The Next Generation">&laquo; Arduino Y'un - The Next Generation</a>
+          <a class="previous" href="/news/2015/01/23/the-great-chain.html" title="Previous Post: Automatic Configuration Chains">&laquo; Automatic Configuration Chains</a>
         
-        
-          <a class="next" href="/projects/CPM_Uext.html" title="Next Post: CPM Uext - Add Uext Peripherals to your PSoC Dev Kits">CPM Uext - Add Uext Peripherals to your PSoC Dev Kits &raquo;</a>
         
       </p>
     </footer>
   </article>
 
 
-
-    </div>
-    <div class="col maj_minor">
-      
-  <h2>CPM_Pmod</h2>
-  <img src="/img/projects/CPM_Pmod/CPM_Pmod_model.png" alt="CPM_Pmod Model" title="CPM_Pmod Model"/>
-  <br>
-  
-  <div class='ecwid-Product'>
-    <form>
-      <div style='text-align: center; padding-bottom: 10px;'>
-        <script type="text/javascript" src="http://app.ecwid.com/script.js?2101234" charset="utf-8"></script>
-      </div>
-      <div class='ecwid-productBrowser-head' style='text-align: center; padding-bottom: 15px; font: normal 20px tahoma, geneva,verdana,sans-serif'>CPM_Pmod Adaptor</div>
-      <div class="ecwid-productBrowser-price" style='text-align:center; padding-bottom: 15px'>$12.95</div>
-      <table align='center' border='0'><tr><td align='left' class='ecwid'></td></tr></table>
-      <div style='text-align: center'>
-        <script type="text/javascript" src="http://app.ecwid.com/script.js?2101234" charset="utf-8"></script>
-        <script type="text/javascript">xAddToBag('productid=21489465');</script>
-      </div>
-    </form>
-  </div>
-
-
-
-  <h2>Tweet about CPM_Pmod</h2>
-    <center>
-    <a href="https://twitter.com/intent/tweet?button_hashtag=CPM_Pmod" class="twitter-hashtag-button" data-lang="en" data-related="PatternAgents">Tweet #CPM_Pmod</a>
-	</center>
-  <h2>CPM_Pmod Repository</h2>
-  <center>
-  <table border="0">
-  <tr>
-	<td><a href="https://github.com/PatternAgents/CPM_Pmod"><img class="img" src="/img/logos/github_repo.png" width="168" height="38" alt="CPM_Pmod Github" title="CPM_Pmod Github"/></a></td>
-  </tr>
-  <tr>
-	<td><a href="https://github.com/PatternAgents/CPM_Pmod/wiki"><img class="img" src="/img/logos/project_wiki.png"  width="168" height="38" alt="CPM_Pmod Wiki" title="CPM_Pmod Wiki"/></a></td>
-  </tr>
-  <tr>
-	<td><a href="https://github.com/PatternAgents/CPM_Pmod/issues"><img class="img" src="/img/logos/bug_tracker.png"  width="168" height="38" alt="CPM_Pmod Issues" title="CPM_Pmod Issues"/></a></td>
-  </tr>
-  </table>
-  </center>
-  <h2>CPM_Pmod Downloads</h2>
-    <center>
-	<table border="0">
-	<tr>
-		<td><a href="https://github.com/PatternAgents/CPM_Pmod/zipball/master"><img class="img" src="/img/logos/zip_archive.png" width="168" height="38" alt="CPM_Pmod ZIPball" title="CPM_Pmod ZIPball"/></a></td>
-	</tr>
-	<tr>
-		<td><a href="https://github.com/PatternAgents/CPM_Pmod/tarball/master"><img class="img" src="/img/logos/tar_archive.png" width="168" height="38" alt="CPM_Pmod TARball" title="CPM_Pmod TARball"/></a></td>
-	</tr>
-	</table>
-	</center>
-  <h2>CPM_Pmod Images</h2>
-    <center>
-	<table border="0">
-	<tr>
-		<td><a href="/img/projects/CPM_Pmod/CPM_Pmod_top.png"><img class="illo" src="/img/projects/CPM_Pmod/CPM_Pmod_top.png" alt="CPM_Pmod Top View" title="CPM_Pmod Top View"/></a></td>
-	</tr>
-	<tr>
-		<td><a href="/img/projects/CPM_Pmod/CPM_Pmod_bot.png"><img class="illo" src="/img/projects/CPM_Pmod/CPM_Pmod_bot.png" alt="CPM_Pmod Bottom View" title="CPM_Pmod Bottom View"/></a></td>
-	</tr>
-	</table>
-	</center>
-   <!-- License terms -->
-  
-
-<!-- place "licensing: true" in the YAML front matter to enable Licensing in that page -->
-
-	<h2>CPM_Pmod Licensing</h2>
-
-<!-- place "cc_by_sa: true" in the YAML front matter to enable cc_by_sa licensing for that page -->
-	
-
-<!-- place "cc_by_nc_sa: true" in the YAML front matter to enable cc_by_nc_sa licensing for that page -->
-	
-		<table border="0">
-		<tr>
-			<td align="center"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img width="88" height="31" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></td>
-        </tr>
-		<tr>
-		<td>The CPM_Pmod Project by PatternAgents, LLC is available and licensed under a Creative Commons CC BY-NC-SA 4.0 International License. Commercial Licenses are also available for CPM_Pmod.</td>
-		</tr>
-		</table>
-	
-
-
-
-
-    </div>
-  </div>
-
   </div>
   <div class="col minor">
-    
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
@@ -570,7 +531,6 @@
 </ul>
 
 
-
   </div>
 
 </main>
@@ -694,40 +654,6 @@
 
 
   
-  
-  
-
-<!-- twitter widget script -->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-  
-
-<!-- pinterest widget script -->
-<script type="text/javascript">
-(function(d){
-  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
-  p.type = 'text/javascript';
-  p.async = true;
-  p.setAttribute('data-pin-color', 'red');
-  p.setAttribute('data-pin-hover', 'true');
-  p.src = '//assets.pinterest.com/js/pinit.js';
-  f.parentNode.insertBefore(p, f);
-}(document));
-</script>
-  
-
-<!-- disqus widget script -->
-<script type="text/javascript">
-  var disqus_shortname = 'patternagents';
-  (function() {
-   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-
 
 
 

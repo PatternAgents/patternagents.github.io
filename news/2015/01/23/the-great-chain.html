@@ -209,7 +209,7 @@ adequate for most purposes. The standard addressing for each level is shown in t
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x51 &nbsp;</td>
-<td>&nbsp; Arduino (Beaglebone, etc.)&nbsp;</td>
+<td>&nbsp; Arduino &nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
@@ -230,33 +230,33 @@ adequate for most purposes. The standard addressing for each level is shown in t
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x54 &nbsp;</td>
-<td>&nbsp; Shield #3 &nbsp;</td>
+<td>&nbsp; Shield #3 (Beaglebone Cape #1)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x55 &nbsp;</td>
-<td>&nbsp; Shield #4 &nbsp;</td>
+<td>&nbsp; Shield #4 (Beaglebone Cape #2)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x56 &nbsp;</td>
-<td>&nbsp; Shield #5 &nbsp;</td>
+<td>&nbsp; Shield #5 (Beaglebone Cape #3)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x57 &nbsp;</td>
-<td>&nbsp; Shield #6 &nbsp;</td>
+<td>&nbsp; Shield #6 (Beaglebone Cape #4)&nbsp;</td>
 </tr>
 </table>
 </p>
 <p>
-You'll notice that the Arduino (or Launchpad, Beaglebone, etc.) is not at the 
+You'll notice that the Arduino (or Launchpad, etc.) is not at the 
 very bottom of the stack, as there may be a chassis or other lower level that
 the stack is mounted within, in order to provide battery or solar power to the system.
 We may need to be able to interogate that level to inquire how much power is available,
@@ -275,6 +275,10 @@ hubs, or multiplexors employed to keep each segment of the
 However, the addressing scheme above would apply to each separate segment of a larger
 system, although you may need to address a multiplexor or hub first to select a
 particular segment to read or write.
+</p>
+<p>
+You might also notice that the Beaglebone "Capes" (the name for their expansion boards)
+are limited to four(4) "Capes", this is a specific limitation of the Beaglebone.
 </p>
 <p>
 The next step is to define the data structure within each of the 

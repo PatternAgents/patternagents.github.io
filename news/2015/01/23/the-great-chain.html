@@ -127,7 +127,7 @@
 </blockquote>
 
 <p>In order to design an automatic discovery and configuration mechanism for popular 
-small form factors like Arduino, LaunchPad, Raspberry Pi, and others,
+small form factors like Arduino, rfDuino, LaunchPad, and others,
 we first need to decide on simple connection chain that can connect all the 
 subsystems, one which is already included in each of these form factors.
 We need to be able to describe the heirarchy of devices, and the connections between them, 
@@ -151,7 +151,7 @@ Later still, this would influence poets such as Robert Blake to compose lines li
 We also need to define a chain of physical entities, and the links that make up their interconnections.
 In reality, we will need to define several, as some may be connected only by wireless linkages,
 but for this introduction, we will discuss only the physically connected entities, such as an Ardunio Shield,
-Beaglebone Cape, Raspberry Pi Plate, and the like.
+rfDuino, Launchpad, and the like.
 </p>
 <p>
 The simplest and most ubiquitous interface found on all of these platforms is 
@@ -284,7 +284,7 @@ are limited to four(4) "Capes", this is a specific limitation of the Beaglebone.
 The next step is to define the data structure within each of the 
 <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> shown,
 and how that data structure defines the components and topology of the overall system.
-The next article will cover currently available data structures like the DeviceTree
+The next article will cover currently available data structures like the Device Tree
 and IPMI formats. 
 </p>
 

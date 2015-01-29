@@ -1,0 +1,95 @@
+---
+layout: post
+category: news
+title: "Sense and Sensor Abilities"
+date: 2015-01-27 09:30
+quote: It isn't what we say or think that defines us, but what we do.
+quote_author: Jane Austen
+product_slug: sensor-abilities
+licensing: false
+cc_by_sa: false
+comments: true
+---
+<p>There are several efforts underway to define and unify sensor abilities and parameters,
+both for normal (user) applications as well as for standardized (manufacturer) testing. 
+Today it can be quite difficult to change sensor elements, 
+either due to new products becoming available, 
+or because of the obsolescence of existing models,
+due to the amount of software changes involved.
+In this article, I'll discuss some of the evolving standards efforts underway, 
+and what that means for those of us trying to keep up with the latest sensor technologies,
+and those of us trying to determine whether or not a particular sensor meets our requirements.
+</p>
+<!-- more -->
+<p>
+There has been a lot of activity around Micro-Electro-Mechanical Systems(MEMS) sensors in the last
+few years, enabling everything from self-leveling drone 'copters to exercise wristbands.
+While that is great news for product designers and consumers, one of the areas that has not
+kept pace with this explosion of new products and capabilites, has been a standardized method 
+for comparing and contrasting the specifications of these new devices.  
+The <a href"http://www.ieee.org/index.html">IEEE</a>, in conjunction with the 
+<a href"http://www.memsindustrygroup.org/">MEMS Industry Group (MIG)</a> 
+have been working on a specification to define Sensor Parameters in a more consistant
+and formal way, known as <a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>,
+the IEEE Standard for Sensor Performance Parameters. 
+</p>
+<p>
+<img class="illo" src="{{site.url.images}}/news/sensor-abilities/nist-std-weights.png" width="395" height="362" alt="NIST Standard Weights" title="NIST Standard Weights"/>
+<a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> describes a set of definitions
+for the parameters of different sensor types, as well as terms, acronyms, symbols, measurement conventions and conversions.
+The recently ratified standard includes all the usual suspects, such as :
+<ul>
+<li>Accelerometers</li>
+<li>Gyroscopes</li>
+<li>Magnetometers (i.e. MEMS Compass)</li>
+<li>Temperature</li>
+<li>Pressure</li>
+<li>Humidity</li>
+<li>Proximity</li>
+<li>Light</li>
+</ul>
+</p>
+<p>
+This is good news for developers, as standard "terms", like parameter names, units, and measurement techniques
+are very important for comparing "apples to apples" where sensor performance is concerned. So, what kind of parameters
+are defined in <a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>?
+The parameters can vary for each type of sensor element; a Magnetometer (i.e. MEMS Compass) for example can
+have parameters such as : 
+<ul>
+<li>Full Scale Range</li>
+<li>Offset at Zero Magnetic Field</li>
+<li>Offset Temperature Coefficient</li>
+<li>Sensitivity</li>
+<li>Sensitivity Temperature Coefficient</li>
+<li>Noise</li>
+<li>Current Consumption</li>
+<li>Filter-3DB Cutoff</li>
+<li>Cross-Axis Sensitivity</li>
+<li>Integral Non-Linearity</li>
+<li>Acquisition Time</li>
+</ul>
+</p>
+<p>
+This is a good first effort at defining all the important parameters, their units of measurement,
+and the conditions under which those parameters are specified. As more manufacturers adopt the
+<a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> standard,
+it will make things much easier for designers and programmers to understand their data sheets
+and specifications. 
+</p>
+<p>
+<img class="illo" src="https://learn.adafruit.com/system/assets/assets/000/004/549/medium800/microcontrollers_sensorapi.jpg?1396814289" alt="Adafruit Unified Sensor Driver" title="Adafruit Unified Sensor Driver"/>
+Kevin Townsend at <a href="http://www.adafruit.com">Adafruit</a> has developed a
+<a href="https://learn.adafruit.com/using-the-adafruit-unified-sensor-driver/introduction">Unified Sensor Driver</a>
+that is similar to how the  
+<a href="https://github.com/android/platform_hardware_libhardware/blob/master/include/hardware/sensors.h">Android Operating System</a>
+abstracts all sensor parameters into a single unified type with standard, pre-defined SI units of measure. This is a very nice way to go,
+as users are now free to select any sensor model of a particular type, and their higher level software doesn't need to be rewritten
+when their hardware changes. And once <a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> becomes
+more prevalent, it will become even easier to implement the underlying 
+<a href="https://learn.adafruit.com/using-the-adafruit-unified-sensor-driver/introduction">Unified Sensor Drivers</a>.
+</p>
+<p>
+In coming articles, I'll discuss using the <a href="http://www.devicetree.org/">DeviceTree</a> to automatically
+discover and configure attached sensors, and to define their parameters in a method that is compatible with 
+<a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>.
+</p>

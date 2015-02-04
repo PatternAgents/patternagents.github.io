@@ -48,7 +48,8 @@ and come up with a more dynamic method of describing the hardware of the computi
 <p>
 The <a href="http://www.devicetree.org/">Device Tree</a> format was adopted to serve as the container format
 for hardware configuration information required during the boot process, however a way was still needed to
-modify the system after boot up. Pantelis Antoniu, Grant Likely, and others have outlined a solution that
+modify the system after the boot up process, and to support expansion boards and subsystems.
+Pantelis Antoniu, Grant Likely, and others have outlined a solution that
 allows for <a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlays</a>, and an 
 <a href="https://lkml.org/lkml/2013/1/7/366">expansion board (Cape) manager</a>
 to modify the <a href="http://www.devicetree.org/">Device Tree</a> from user-space, during run-time.
@@ -100,16 +101,181 @@ The corresponding <a href="http://www.devicetree.org/">Device Tree Source (.dts)
 {% endhighlight %}
 </p>
 <p>
+As we can see from the above <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> example, we define the following :
+<ul>
+<li>model &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : defines the model name of this board</li>
+<li>compatible : defines the manufacturer & model compatibility list</li>
+<li>cpus &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: defines a single cpu with a node name of "cpu", and what power supply it uses</li>
+<li>memory &nbsp; &nbsp; &nbsp; : defines 256 MegaBytes of main memory on this model, and it's address range</li>
+</ul>
 Of course, the actual Device Tree Source (.dts) file, in this case, the 
-<a href="http://git.ti.com/wilink8-wlan/wilink8-wlan-ti-linux-kernel/blobs/9bf81aa9157a358fa53ab015e01c08bc68788709/arch/arm/boot/dts/am335x-bone-common.dtsi">am335x-bone-common.dtsi</a> include file has much more detail, but I think you can get the general idea more easily from a simplified snippet.
-We will delve into some of the specifc details of the <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> file format a bit later on.
+<a href="http://git.ti.com/wilink8-wlan/wilink8-wlan-ti-linux-kernel/blobs/9bf81aa9157a358fa53ab015e01c08bc68788709/arch/arm/boot/dts/am335x-bone-common.dtsi">am335x-bone-common.dtsi</a> include file has much more detail, but I'll build it up the concepts gradually using simplified snippets.
 </p>
 <p>
-
+Next we'll add some input/output to the Device Tree Source (.dts) file, and we'll start with a simple I2C controller
+in order to create a tiny little platform description : 
+{% highlight c linenos %}
+{
+        model      = "TI AM335x BeagleBone Black";
+        compatible = "ti,beaglebone-black",
+                     "ti,am335x-boneblack",
+                     "ti,am335x-bone",
+                     "ti,am33xx";
+        cpus {
+                cpu@0 {
+                       cpu0-supply = <&dcdc2_reg>;	
+                };	
+        };	
+        memory {	
+                device_type = "memory";
+                reg = <0x80000000 0x10000000>; /* 256 MB */	
+        };
+        am33xx_pinmux: pinmux@44e10800 {
+		pinctrl-names = "default";
+		pinctrl-0 = <&clkout2_pin>;
+		i2c0_pins: pinmux_i2c0_pins {
+			pinctrl-single,pins = <
+                                /* i2c0_sda.i2c0_sda pin */
+				0x188 (PIN_INPUT_PULLUP | MUX_MODE0)
+				/* i2c0_scl.i2c0_scl */
+				0x18c (PIN_INPUT_PULLUP | MUX_MODE0)
+			>;
+		};
+        };
+        ocp {
+		i2c0: i2c@44e0b000 {
+			pinctrl-names = "default";
+			pinctrl-0 = <&i2c0_pins>;
+			status = "okay";
+			clock-frequency = <400000>;
+			tps: tps@24 {
+				reg = <0x24>;
+			};
+        };
+};
+{% endhighlight %}
 </p>
 <p>
-
+The first thing we added above is the I/O Pin Multiplexing defintions, as most modern System-on-Chip (SoC) devices have several
+functions available per pin for application flexibility. We need to define what pins are going to be used to connect the i2C0
+controller to the outside world.
+<ul>
+<li>am33xx_pinmux: the label for the pin multiplexing control registers (pinmux) at address 0x44e10800 </li>
+<li>i2c0_pins : the label for the pins assigned to the I2C Controller at offsets 0x188 and 0x18C</li>
+</ul>
 </p>
 <p>
-
+The next section defines the I2C controller itself, which is located on the 
+<a href="http://en.wikipedia.org/wiki/Open_Core_Protocol">OCP bus (Open Core Protocol)</a>, as well as:
+<ul>
+<li>i2c0: the label for the I2C0 controller block at address 0x44e0b000 </li>
+<li>status: we expect the I2C status is operational</li>
+<li>clock-frequency: the I2C bus is running at 400Khz</li>
+</ul>
+<p>
+And finally, we describe a sub-node of the I2C controller (i.e. an attached I2C device), called "tps":
+<li>tps: the label for the power supply controller I2C interface</li>
+<li>reg: the I2c buss address for the "tps" device is 0x24</li>
+</ul>
 </p>
+<p>
+Alright, now we need to define the "tps" node to make this a legal <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> file,
+which allows me to introduce power supply descriptions to the Device Tree. It really useful to know how much power that the power supplies on
+a board are capable of providing, and what additional power that expansion devices or add-on boards will require. 
+That will allow us to indicate an error if an expansion device requires more power than we are capable of providing.
+
+{% highlight c linenos %}
+/include/ "tps65217.dtsi"
+&tps {
+	regulators {
+		dcdc1_reg: regulator@0 {
+			regulator-always-on;
+		};
+		dcdc2_reg: regulator@1 {
+			regulator-name = "vdd_mpu";
+			regulator-min-microvolt = <925000>;
+			regulator-max-microvolt = <1325000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+		dcdc3_reg: regulator@2 {
+			regulator-name = "vdd_core";
+			regulator-min-microvolt = <925000>;
+			regulator-max-microvolt = <1150000>;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+		ldo1_reg: regulator@3 {
+			regulator-always-on;
+		};
+
+	};
+};
+{% endhighlight %}
+</p>
+<p>
+In the above example, you'll start to see the use of Device Tree Source Include files (.dtsi),
+which allow us to include subnode definitions by model name, for building heirarchically.
+You'll also notice the defintion of the "dcdc2_reg" label here, whcih was used early on
+to define the power supply for the cpu. A few of the parameters worth mentioning:
+<ul>
+<li>regulator-min-microvolt: how we define the min/max range of the power supplies</li>
+<li>regulator-boot-on: this regulator is on during booting</li>
+<li>regulator-always-on: this regulator is expected to be always powered up</li>
+</ul>
+<p>
+<h2>Installing the Device Tree Compiler</h2>
+On a typical Linux system distribution, you can install the Device Tree compiler using :
+
+{% highlight c %}
+sudo apt-get install -y device-tree-compiler
+{% endhighlight %}
+
+Then check your installation, by asking for the DTC version :
+{% highlight c %}
+moxon@fs:~$ dtc -v
+Version: DTC 1.3.0
+moxon@fs:~$
+{% endhighlight %}
+
+If you are looking for a specific how-to guide for BeagleBone, Raspberry Pi, Xixlinx, Altera, etc,
+please see the References section at the end of this article for a complete listing. A number of people
+in the community have already written some excellent guides for specific platforms. 
+</p>
+<p>
+<h2>Using the Device Tree Compiler</h2>
+The Device Tree Compiler is a simple command line tool that is used to read 
+<a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> files, and 
+generate a Flattened Device Tree Binary Object file (.dtb), also known as the
+"Device Tree BLOB".
+
+{% highlight c %}
+moxon@fs:~$ dtc -O dtb -o outputBLOB.dtb -b 0 inputSOURCE.dtb
+{% endhighlight %}
+Pretty simple really, the Device Tree Compiler reads the input file named "inputSOURCE.dtb",
+and generates the output file named "outputBLOB.dtb". The output file can then be loaded into
+flash or EEPROM for use during the boot up sequence.
+</p>
+<p>
+In the next article, I'll cover Device Tree Overlays, the new meachnism for describing the hardware
+of add-on boards like BeagleBone "Capes" or Raspberry Pi "Plates".
+</p>
+<p>   
+<h2>Device Tree References and more information...</h2>
+<ol>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Online Generator - Kilobaser</a></li>
+</ol>
+</p>
+

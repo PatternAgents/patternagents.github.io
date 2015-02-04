@@ -12,7 +12,7 @@ excerpt_separator: "<!-- more -->"
 # the product_slug of the project you want to feature on home page
 featured_project: Videre
 # the projects listed in list of projects in sidebar_projects
-listed_projects: [Hula_Poppy, Videre, BridgerSoc, TinySoc, CPM_Shield, Caldi, CPM_Pmod]
+listed_projects: [Hula_Poppy, TouchWidget_HowTo, Caldi]
 
 # site specific strings -
 #

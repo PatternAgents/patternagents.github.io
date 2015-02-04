@@ -93,49 +93,49 @@ adequate for most purposes. The standard addressing for each level is shown in t
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x51 &nbsp;</td>
-<td>&nbsp; Arduino &nbsp;</td>
+<td>&nbsp; Boot Processor #0 (Arduino, BeagleBone) &nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x52 &nbsp;</td>
-<td>&nbsp; Shield #1 &nbsp;</td>
+<td>&nbsp; CoProcessor #1 (Logger)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x53 &nbsp;</td>
-<td>&nbsp; Shield #2 &nbsp;</td>
+<td>&nbsp; CoProcessor #2 (Logic Analyzer)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x54 &nbsp;</td>
-<td>&nbsp; Shield #3 (Beaglebone Cape #1)&nbsp;</td>
+<td>&nbsp; Shield #1 (Beaglebone Cape #1)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x55 &nbsp;</td>
-<td>&nbsp; Shield #4 (Beaglebone Cape #2)&nbsp;</td>
+<td>&nbsp; Shield #2 (Beaglebone Cape #2)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x56 &nbsp;</td>
-<td>&nbsp; Shield #5 (Beaglebone Cape #3)&nbsp;</td>
+<td>&nbsp; Shield #3 (Beaglebone Cape #3)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x57 &nbsp;</td>
-<td>&nbsp; Shield #6 (Beaglebone Cape #4)&nbsp;</td>
+<td>&nbsp; Shield #4 (Beaglebone Cape #4)&nbsp;</td>
 </tr>
 </table>
 </p>
@@ -165,6 +165,8 @@ You might also notice that the Beaglebone "Capes" (the name for their expansion 
 are limited to four(4) "Capes", this is a specific limitation of the Beaglebone.
 </p>
 <p>
+We now have a basic outline for a hardware design pattern for automatic discovery
+and automatic configuration using simple I2C interfaced EEPROM memory chips.
 The next step is to define the data structure within each of the 
 <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> shown,
 and how that data structure defines the components and topology of the overall system.

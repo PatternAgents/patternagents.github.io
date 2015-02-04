@@ -250,18 +250,22 @@ generate a Flattened Device Tree Binary Object file (.dtb), also known as the
 "Device Tree BLOB".
 
 {% highlight c %}
-moxon@fs:~$ dtc -O dtb -o outputBLOB.dtb -b 0 inputSOURCE.dtb
+moxon@fs:~$ dtc -O dtb -o outputBLOB.dtb -b 0 inputSOURCE.dts
 {% endhighlight %}
-Pretty simple really, the Device Tree Compiler reads the input file named "inputSOURCE.dtb",
+Pretty simple really, the Device Tree Compiler reads the input file named "inputSOURCE.dts",
 and generates the output file named "outputBLOB.dtb". The output file can then be loaded into
 flash or EEPROM for use during the boot up sequence.
 </p>
 <p>
-In the next article, I'll cover Device Tree Overlays, the new meachnism for describing the hardware
+<p>
+<h2>Flattened Device Tree Binary Objects (.dtb)</h2>
+</p>
+<p>
+In the next article, I'll cover Device Tree Overlays, the new mechanism for describing the hardware
 of add-on boards like BeagleBone "Capes" or Raspberry Pi "Plates".
 </p>
 <p>   
-<h2>Device Tree References and more information...</h2>
+<h2>References, Footnotes, and more information...</h2>
 <ol>
 <li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
 <li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
@@ -269,13 +273,17 @@ of add-on boards like BeagleBone "Capes" or Raspberry Pi "Plates".
 <li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
 <li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
 <li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
-<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings</a></li>
-<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
 <li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
 <li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
 <li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
 <li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
-<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Online Generator - Kilobaser</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -elinux.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
 </ol>
 </p>
 

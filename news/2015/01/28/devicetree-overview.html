@@ -3,16 +3,16 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: About PatternAgents - For Representatives</title>
+  <title>PatternAgents: Device Tree Overview</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
 
-  <meta name="robots"                  content="noodp, noydir, noarchive"         />
-  <meta name="description"        content="About PatternAgents - For Representatives"    />
-  <meta name="abstract"              content="About PatternAgents - For Representatives"       />
+  <meta name="robots"          content="index, follow, noodp, noydir" />
+  <meta name="description"     content="PatternAgents: The Agency of Design Patterns" />
+  <meta name="abstract"        content="PatternAgents provides collaboration, community and commerce for electronics designers." />
   <meta name="classification"  content="electronics, electronics design, design engineering" />
-  <meta name="keywords"              content="PatternAgents"       />
+  <meta name="keywords"        content="electronics, electronics design, design engineering, open source software, open source hardware, OSHW" />
 
   <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
   <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
@@ -50,8 +50,9 @@
 
 </head>
 
-<body class="about">
+<body class="">
  
+
 
 
 
@@ -104,41 +105,141 @@
   <div class="col major">
     
   
-  <h1>
-      Helping Manufacturers Representatives <BR>to expand their markets...
-  </h1>
+  <article role="article">
+    <header>
+      
+        <h1 class="entry-title">Device Tree Overview</h1>
+      
+      
+        <p class="meta">
+          
+        </p>
+      
+    </header>
+    <div class="entry-content">
   
-  <h3>
-  PatternAgents helps Manufacturers Representatives: 
-  </h3>
-  <ul>
-    <li>By working with local Contract Manufacturers to keep production builds within their territory</li>
-    <li>By providing engineering services that understand how Manufacturers Representatives operate</li>
-    <li>Creating custom solutions using their Manufacturers components and solutions</li>
-    <li>Providing avenues to alternative marketing channels</li>
-    <li>With new product introductions and technology training</li>
-    <li>With local and internet based trainings, tutorials, and workshops</li>
-  </ul>
-  <p>
-    How many times have you been handed a reference or demo design from one of your manufacturers, 
-    that uses <i>Key</i> components that directly compete with your other/main lines? 
-    It's really hard to take that out to your clients, isn't it? 
-    We understand the needs of Manufacturers Representatives and how best to help you.
-  </p>
   
-  <p>
-    Contact us to see how we are helping Manufacturers Representatives to expand their Service Available Markets. 
-  </p>
+  
 
-  <p>
-    PatternAgents provides <strong>community</strong> and <strong>commerce</strong> for electronics designers,
-    helping them to <strong>collaborate</strong> using shared patterns, practices, and resources; 
-    <strong>connect</strong> with others in the industry, <strong>conceptualize</strong> and 
-    <strong>create</strong> new ideas, <strong>commercialize</strong> their designs, and keep up on the latest technologies and 
-    <strong>concepts</strong>.
+<blockquote>
+	<p>In nature, nothing is perfect and everything is perfect. Trees can be contorted, bent in weird ways, and they're still beautiful.</p>
+	<p>&mdash;Alice Walker</p>
+</blockquote>
+
+<p>In the last few articles, I've been talking about the <a href="http://www.devicetree.org/">DeviceTree</a> format,
+which is becoming widely used for automatically configuring the hardware of embedded computing platforms like the Beaglebone Black,
+Xilinx Zynq, Altera Arria, and many other System-on-Chip (SOC) devices. The <a href="http://www.devicetree.org/">DeviceTree</a> 
+is read during the computing platform boot up sequence, and it describes all the hardware of the embedded computing platform. 
+It contains descriptions of all the platform parameters, like how much memory, what kind of interfaces, 
+how many peripherals, etc. are expected to be present in that make and model of platform.
+In this article, I'll introduce more of the details of the <a href="http://www.devicetree.org/">DeviceTree</a> format, 
+and how it is being used on current embedded computing platforms.  
 </p>
+<!-- more -->
+<p>
+<h2>What is the Device Tree?</h2>
+The <a href="http://www.devicetree.org/">DeviceTree</a> is a data structure 
+for describing the heirarchy of hardware subsystems within a computing platform,  or an add-on peripheral to that platform. 
+It can be used to automatically select and configure the device drivers for that computing platform. 
+</p>
+<p>
+<h2>Why Device Tree?</h2>
+<img class="illo" src="/img/news/devicetree/device-tree-nodes.png" alt="Example Device Tree Nodes" title="Example Device Tree Nodes"/>
+As many new and different System-on-Chip (SOC) based embedded computing platforms started appearing a few years ago, 
+it became increasingly difficult to support all the various operating system configurations required
+for Linux, IOS, Windows, and others.
+</p>
+<p>
+Prior to the adoption of the <a href="http://www.devicetree.org/">Device Tree</a> format,
+this platform information was contained in what is known as the 
+<a href="http://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a>,
+a group of files provided by the manufacturer of that particular board.
+Each new operating system version would need to include the hardware configuration information
+from the <a href="http://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a>
+in order to be able to run on that particular board. This quickly because a bottleneck in the process
+of supporting new computing platforms that had only minor variations, so Linus Torvalds and others needed to 
+<a href="http://article.gmane.org/gmane.linux.ports.arm.omap/55060">push back</a>, 
+and come up with a more dynamic method of describing the hardware of the computing platform. 
+</p>
+<p>
+The <a href="http://www.devicetree.org/">Device Tree</a> format was adopted to serve as the container format
+for hardware configuration information required during the boot process, however a way was still needed to
+modify the system after boot up. Pantelis Antoniu, Grant Likely, and others have outlined a solution that
+allows for <a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlays</a>, and an 
+<a href="https://lkml.org/lkml/2013/1/7/366">expansion board (Cape) manager</a>
+to modify the <a href="http://www.devicetree.org/">Device Tree</a> from user-space, during run-time.
+This allows users to load and unload hardware peripherals and drivers as needed.
+The transition away from solely using <a href="http://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a> 
+files to the <a href="http://www.devicetree.org/">Device Tree</a> format is ongoing,
+and <a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">not without it's share of problems</a>.
+</p>
+<p>
+<h2>Embedded Device Trees</h2>
+So, what is an embedded device tree, and how do we describe it?
+Let's look at a common example, say the  <a href="http://beagleboard.org/BLACK">BeagleBone Black</a>, which uses an OMAP3 System-on-Chip from Texas Instruments.
+A very (very) simplified example, including just the CPU and it's main memory, would look something like this :
+</p>
+<p>
+<table>
+<tr>
+<td>&nbsp;</td>
+<td>
+<img src="/img/news/sff/beagleboneblack.png" alt="BeagleBone Black" title="BeagleBone Black"/>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<img src="/img/news/devicetree/device-tree-bbb.png" alt="BeagleBone Black Device Tree" title="BeagleBone Black Device Tree"/>
+</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+</p>
+<p>
+The corresponding <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> file for the above would look something like :
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno"> 1</span> <span class="p">{</span>
+<span class="lineno"> 2</span>         <span class="n">model</span>      <span class="o">=</span> <span class="s">&quot;TI AM335x BeagleBone Black&quot;</span><span class="p">;</span>
+<span class="lineno"> 3</span>         <span class="n">compatible</span> <span class="o">=</span> <span class="s">&quot;ti,beaglebone-black&quot;</span><span class="p">,</span>
+<span class="lineno"> 4</span>                      <span class="s">&quot;ti,am335x-boneblack&quot;</span><span class="p">,</span>
+<span class="lineno"> 5</span>                      <span class="s">&quot;ti,am335x-bone&quot;</span><span class="p">,</span>
+<span class="lineno"> 6</span>                      <span class="s">&quot;ti,am33xx&quot;</span><span class="p">;</span>
+<span class="lineno"> 7</span>         <span class="n">cpus</span> <span class="p">{</span>
+<span class="lineno"> 8</span>                 <span class="n">cpu</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
+<span class="lineno"> 9</span>                        <span class="n">cpu0</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">dcdc2_reg</span><span class="o">&gt;</span><span class="p">;</span>	
+<span class="lineno">10</span>                 <span class="p">};</span>	
+<span class="lineno">11</span>         <span class="p">};</span>	
+<span class="lineno">12</span>         <span class="n">memory</span> <span class="p">{</span>	
+<span class="lineno">13</span>                 <span class="n">device_type</span> <span class="o">=</span> <span class="s">&quot;memory&quot;</span><span class="p">;</span>
+<span class="lineno">14</span>                 <span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x80000000</span> <span class="mh">0x10000000</span><span class="o">&gt;</span><span class="p">;</span> <span class="cm">/* 256 MB */</span>	
+<span class="lineno">15</span>         <span class="p">};</span>
+<span class="lineno">16</span> <span class="p">};</span></code></pre></div>
+</p>
+<p>
+Of course, the actual Device Tree Source (.dts) file, in this case, the 
+<a href="http://git.ti.com/wilink8-wlan/wilink8-wlan-ti-linux-kernel/blobs/9bf81aa9157a358fa53ab015e01c08bc68788709/arch/arm/boot/dts/am335x-bone-common.dtsi">am335x-bone-common.dtsi</a> include file has much more detail, but I think you can get the general idea more easily from a simplified snippet.
+We will delve into some of the specifc details of the <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> file format a bit later on.
+</p>
+<p>
 
+</p>
+<p>
 
+</p>
+<p>
+
+</p>
+</div>
+    <footer>
+      <p class="meta">
+        January 28, 2015
+      </p>
+      <p class="meta">
+        
+          <a class="previous" href="/news/2015/01/27/sensor-abilities.html" title="Previous Post: Sense and Sensor Abilities">&laquo; Sense and Sensor Abilities</a>
+        
+        
+      </p>
+    </footer>
+  </article>
 
 
   </div>
@@ -348,6 +449,8 @@
 
 <!-- discus panel -->
 <!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
 
    
 

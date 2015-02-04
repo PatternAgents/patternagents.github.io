@@ -209,49 +209,49 @@ adequate for most purposes. The standard addressing for each level is shown in t
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x51 &nbsp;</td>
-<td>&nbsp; Arduino &nbsp;</td>
+<td>&nbsp; Boot Processor #0 (Arduino, BeagleBone) &nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x52 &nbsp;</td>
-<td>&nbsp; Shield #1 &nbsp;</td>
+<td>&nbsp; CoProcessor #1 (Logger)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x53 &nbsp;</td>
-<td>&nbsp; Shield #2 &nbsp;</td>
+<td>&nbsp; CoProcessor #2 (Logic Analyzer)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x54 &nbsp;</td>
-<td>&nbsp; Shield #3 (Beaglebone Cape #1)&nbsp;</td>
+<td>&nbsp; Shield #1 (Beaglebone Cape #1)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x55 &nbsp;</td>
-<td>&nbsp; Shield #4 (Beaglebone Cape #2)&nbsp;</td>
+<td>&nbsp; Shield #2 (Beaglebone Cape #2)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 0 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x56 &nbsp;</td>
-<td>&nbsp; Shield #5 (Beaglebone Cape #3)&nbsp;</td>
+<td>&nbsp; Shield #3 (Beaglebone Cape #3)&nbsp;</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp;&nbsp; 1 &nbsp;</td>
 <td>&nbsp; &nbsp; &nbsp; 0x57 &nbsp;</td>
-<td>&nbsp; Shield #6 (Beaglebone Cape #4)&nbsp;</td>
+<td>&nbsp; Shield #4 (Beaglebone Cape #4)&nbsp;</td>
 </tr>
 </table>
 </p>
@@ -281,6 +281,8 @@ You might also notice that the Beaglebone "Capes" (the name for their expansion 
 are limited to four(4) "Capes", this is a specific limitation of the Beaglebone.
 </p>
 <p>
+We now have a basic outline for a hardware design pattern for automatic discovery
+and automatic configuration using simple I2C interfaced EEPROM memory chips.
 The next step is to define the data structure within each of the 
 <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> shown,
 and how that data structure defines the components and topology of the overall system.
@@ -295,7 +297,7 @@ and IPMI formats.
       </p>
       <p class="meta">
         
-          <a class="previous" href="/news/2015/01/22/SFF-SelfConfig.html" title="Previous Post: Small Form Factor Configuration">&laquo; Small Form Factor Configuration</a>
+          <a class="previous" href="/news/2015/01/22/SFF-SelfConfig.html" title="Previous Post: Small Form Factor Auto-Configuration">&laquo; Small Form Factor Auto-Configuration</a>
         
         
           <a class="next" href="/news/2015/01/25/the-blob.html" title="Next Post: The BLOB - Binary Level OBjects">The BLOB - Binary Level OBjects &raquo;</a>
@@ -353,12 +355,8 @@ and IPMI formats.
       
     
       
-    
-      
-    
-      
         <li>
-          <a href="/projects/Videre.html">Videre - Color LCD Controller with Cortex-M0</a>
+          <a href="/projects/TouchWidget_HowTo.html">TouchWidgets How-To Example Project</a>
         </li>
       
     
@@ -366,98 +364,6 @@ and IPMI formats.
     
       
     
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/BridgerSoc.html">BridgerSoc - control and monitor your world!</a>
-        </li>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/TinySoc.html">TinySoc - USB based Programmable System-on-Chip</a>
-        </li>
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/CPM_Shield.html">CPM Shield - Add Arduino to your PSoC Dev Kits</a>
-        </li>
       
     
       
@@ -503,41 +409,13 @@ and IPMI formats.
       
     
   
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/CPM_Pmod.html">CPM Pmod - Add Pmod Peripherals to your PSoC Dev Kits</a>
-        </li>
-      
-    
-      
-    
-      
-    
-  
 </ul>
   <h2>Latest News</h2>
   <ul class="post-list">
+  
+    <li>
+      <a href="/news/2015/01/28/devicetree-overview.html">Device Tree Overview</a>
+    </li>
   
     <li>
       <a href="/news/2015/01/27/sensor-abilities.html">Sense and Sensor Abilities</a>
@@ -552,7 +430,7 @@ and IPMI formats.
     </li>
   
     <li>
-      <a href="/news/2015/01/22/SFF-SelfConfig.html">Small Form Factor Configuration</a>
+      <a href="/news/2015/01/22/SFF-SelfConfig.html">Small Form Factor Auto-Configuration</a>
     </li>
   
     <li>

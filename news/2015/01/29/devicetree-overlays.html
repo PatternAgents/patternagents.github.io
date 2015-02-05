@@ -145,7 +145,7 @@ no automatic configuration support, or used other description structures like th
 <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> blob, 
 or the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> blob (for sensors). 
 However, as hardware becomes more maleable, using Field Programmable Gate Arrays, and Programmable System-on-Chip devices,
-the hardware begins to "soften", and to resemble software. "Hardware" said Pantelis Antoniou at LinuxCon2014, "<i>is software now!</i>".
+the hardware begins to "soften", and to resemble software. "Hardware" said Pantelis Antoniou at LinuxCon2014, "is software now".
 So the concept of a static and unchanging <a href="http://www.devicetree.org/">Device Tree</a> wasn't keeping pace with the
 new programmable hardware paradigms, and Pantelis originated the idea of a 
 <a href="http://www.linux.com/news/embedded-mobile/mobile-linux/785882-device-tree-overlay-support-lands-upstream">Device Tree Overlay</a>
@@ -154,17 +154,17 @@ to make all the Linux kernal and Device Tree Compiler changes required,
 but now, most their work has been merged into the 3.17 Linux Kernal.   
 </p>
 <p>
-<img class="illo" src="/img/news/devicetree/arduino-stack.png" alt="Arduino and Shields" title="Arduino and Shields"/>
-Consider a typical development situation, using something like an Arduino,
-where you have a main CPU/SoC board, and several expansion boards (i.e. Shields) attached,
-similar to this picture. For the sake of discussion, let's say that Shield #1 communicates with the
-main CPU/SoC via a serial UART interface, Shield #2 and #3 communicate via a SPI interface with separate
-Chip Selects for each Shield, and that Shield #3 communicates using General Purpose I/O (GPIO),
+<a href="http://www.liquidware.com/shop/show/BB-ULT/Ultimate+Beagle+Gadget+Pack"><img class="illo" src="/img/news/sff/beaglebone-stack.png" alt="Liquidware Beaglebone Stack" title="Liquidware Beaglebone Stack"/></a>
+Consider a typical development situation, using something like a Beaglebone Black,
+where you have a main CPU/SoC board, and several expansion boards (i.e. "Capes") attached,
+similar to the picture to the right. For the sake of discussion, let's say that Cape #1 communicates with the
+main CPU/SoC via a serial UART interface, Cape #2 and #3 communicate via a SPI interface with separate
+Chip Selects for each Cape, and that Cape #3 communicates using General Purpose I/O (GPIO),
 and the main CPU/SoC Analog-to-Digital converter (ADC). In order to support the <a href="http://www.devicetree.org/">Device Tree</a> 
 configuration, each board/Shield will contain a small I2C EEPROM that will hold the <a href="http://www.devicetree.org/">Device Tree</a>
 Flattened Device Tree data structures (i.e. the Overlays). This is a fairly common configuration, 
-and it doesn't really matter WHAT the Shields are for this discussion, they could be peripherals 
-like Wi-Fi radios, Motor Controllers, Sensor Hubs, etc. We're mostly interested here in
+and it doesn't really matter WHAT the Capes are for this discussion, they could be peripherals 
+like LCD displays, Wi-Fi Radios, Motor Controllers, Sensor Hubs, etc. We're interested here in
 describing their interconnections, which can be represented by the block diagram below :
 </p>
 <p>
@@ -173,69 +173,157 @@ describing their interconnections, which can be represented by the block diagram
 <p>
 As you can see in the above block diagram, the "orange" colored blocks represent the connections on the 
 <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus that will be used to read the 
-Flattened Device Tree data structures (i.e. the Overlays) for each expansion board (i.e. Shield),
+Flattened Device Tree data structures (i.e. the Overlays) for each expansion board (i.e. Cape/Shield/Plate),
 in order to determine their make and model, and how they are interfaced and connected.
 </p>
 <p>
 <h2>Device Tree Source Overlay</h2>
 </p>
 <p>
-Alright, so let's look at what a Device Tree Source Overlay might look like for Shield #1,
-which is connected via a serial port, namely UART0.
+Alright, so let's look at what a Device Tree Source Overlay might look like for Cape #1,
+which is connected via a serial port, namely UART0. For this example, we'll use the 
+<a href="http://www.mouser.com/ProductDetail/CircuitCo/BB-BONE-SERL-03/?qs=%2fha2pyFadugh6wNMONnDuOjD7VMVGO9jXYY7ybHwRb1PtvVW33RwxXpt9lg9jBxJ">Circuit Co.
+RS-232 Cape</a> as an example of a currently used Device Tree Overlay.
 </p>
 <p>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno"> 1</span> <span class="o">/</span><span class="n">dts</span><span class="o">-</span><span class="n">v1</span><span class="o">/</span><span class="p">;</span>
-<span class="lineno"> 2</span> <span class="o">/</span><span class="n">plugin</span><span class="o">/</span><span class="p">;</span>
-<span class="lineno"> 3</span>  
-<span class="lineno"> 4</span> <span class="o">/</span> <span class="p">{</span>
-<span class="lineno"> 5</span> 	<span class="n">compatible</span> <span class="o">=</span> <span class="s">&quot;arduino,uno&quot;</span><span class="p">,</span> <span class="s">&quot;arduino,due&quot;</span><span class="p">;</span>
-<span class="lineno"> 6</span> 	<span class="n">part</span><span class="o">-</span><span class="n">number</span> <span class="o">=</span> <span class="s">&quot;UNO-UART-SHIELD&quot;</span><span class="p">;</span>
-<span class="lineno"> 7</span> 	<span class="n">version</span> <span class="o">=</span> <span class="s">&quot;00A0&quot;</span><span class="p">;</span>
-<span class="lineno"> 8</span> 
-<span class="lineno"> 9</span> 	<span class="n">exclusive</span><span class="o">-</span><span class="n">use</span> <span class="o">=</span>
-<span class="lineno">10</span>                 <span class="s">&quot;D1&quot;</span><span class="p">,</span>        <span class="cm">/* uart0_txd */</span>
-<span class="lineno">11</span>                 <span class="s">&quot;D0&quot;</span><span class="p">,</span>        <span class="cm">/* uart0_rxd */</span>
-<span class="lineno">12</span>                 <span class="s">&quot;uart0&quot;</span><span class="p">;</span>
-<span class="lineno">13</span>  
-<span class="lineno">14</span> 	<span class="n">fragment</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
-<span class="lineno">15</span>                 <span class="n">target</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">uno_pinmux</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">16</span>                 <span class="n">__overlay__</span> <span class="p">{</span>
-<span class="lineno">17</span>                         <span class="nl">uno_uart0_pins</span><span class="p">:</span> <span class="n">pinmux_uno_uart0_pins</span> <span class="p">{</span>
-<span class="lineno">18</span>                                 <span class="n">pinctrl</span><span class="o">-</span><span class="n">single</span><span class="p">,</span><span class="n">pins</span> <span class="o">=</span> <span class="o">&lt;</span>
-<span class="lineno">19</span>                                         <span class="mh">0x184</span> <span class="mh">0x20</span>
-<span class="lineno">20</span>                                         <span class="mh">0x180</span> <span class="mh">0x20</span>
-<span class="lineno">21</span>                                 <span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">22</span>                         <span class="p">};</span>
-<span class="lineno">23</span>                 <span class="p">};</span>
-<span class="lineno">24</span>         <span class="p">};</span>
-<span class="lineno">25</span> 
-<span class="lineno">26</span> 	<span class="n">fragment</span><span class="err">@</span><span class="mi">1</span> <span class="p">{</span>
-<span class="lineno">27</span>                 <span class="n">target</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">uart0</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">28</span>                 <span class="n">__overlay__</span> <span class="p">{</span>
-<span class="lineno">29</span>                         <span class="n">status</span> <span class="o">=</span> <span class="s">&quot;okay&quot;</span><span class="p">;</span>
-<span class="lineno">30</span>                         <span class="n">pinctrl</span><span class="o">-</span><span class="n">names</span> <span class="o">=</span> <span class="s">&quot;default&quot;</span><span class="p">;</span>
-<span class="lineno">31</span>                         <span class="n">pinctrl</span><span class="o">-</span><span class="mi">0</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">uno_uart0_pins</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">32</span>                 <span class="p">};</span>
-<span class="lineno">33</span>         <span class="p">};</span>
-<span class="lineno">34</span> <span class="p">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno"> 1</span> <span class="o">*</span>
+<span class="lineno"> 2</span>  <span class="o">*</span> <span class="n">Copyright</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="mi">2013</span> <span class="n">CircuitCo</span>
+<span class="lineno"> 3</span>  <span class="o">*</span>
+<span class="lineno"> 4</span>  <span class="o">*</span> <span class="n">Virtual</span> <span class="n">cape</span> <span class="k">for</span> <span class="n">UART1</span> <span class="n">on</span> <span class="n">connector</span> <span class="n">pins</span> <span class="n">P9</span><span class="mf">.24</span> <span class="n">P9</span><span class="mf">.26</span>
+<span class="lineno"> 5</span>  <span class="o">*</span>
+<span class="lineno"> 6</span>  <span class="o">*</span> <span class="n">This</span> <span class="n">program</span> <span class="n">is</span> <span class="n">free</span> <span class="n">software</span><span class="p">;</span> <span class="n">you</span> <span class="n">can</span> <span class="n">redistribute</span> <span class="n">it</span> <span class="n">and</span><span class="o">/</span><span class="n">or</span> <span class="n">modify</span>
+<span class="lineno"> 7</span>  <span class="o">*</span> <span class="n">it</span> <span class="n">under</span> <span class="n">the</span> <span class="n">terms</span> <span class="n">of</span> <span class="n">the</span> <span class="n">GNU</span> <span class="n">General</span> <span class="n">Public</span> <span class="n">License</span> <span class="n">version</span> <span class="mi">2</span> <span class="n">as</span>
+<span class="lineno"> 8</span>  <span class="o">*</span> <span class="n">published</span> <span class="n">by</span> <span class="n">the</span> <span class="n">Free</span> <span class="n">Software</span> <span class="n">Foundation</span><span class="p">.</span>
+<span class="lineno"> 9</span>  <span class="err">*/</span>
+<span class="lineno">10</span> <span class="o">/</span><span class="n">dts</span><span class="o">-</span><span class="n">v1</span><span class="o">/</span><span class="p">;</span>
+<span class="lineno">11</span> <span class="o">/</span><span class="n">plugin</span><span class="o">/</span><span class="p">;</span>
+<span class="lineno">12</span>  
+<span class="lineno">13</span> <span class="o">/</span> <span class="p">{</span>
+<span class="lineno">14</span>    	<span class="n">compatible</span> <span class="o">=</span> <span class="s">&quot;ti,beaglebone&quot;</span><span class="p">,</span> <span class="s">&quot;ti,beaglebone-black&quot;</span><span class="p">;</span>
+<span class="lineno">15</span>  
+<span class="lineno">16</span>         <span class="cm">/* identification */</span>
+<span class="lineno">17</span>         <span class="n">part</span><span class="o">-</span><span class="n">number</span> <span class="o">=</span> <span class="s">&quot;BB-UART1&quot;</span><span class="p">;</span>
+<span class="lineno">18</span>         <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;00A0&quot;</span><span class="p">;</span>
+<span class="lineno">19</span>  
+<span class="lineno">20</span>         <span class="cm">/* state the resources this cape uses */</span>
+<span class="lineno">21</span>         <span class="n">exclusive</span><span class="o">-</span><span class="n">use</span> <span class="o">=</span>
+<span class="lineno">22</span>                 <span class="cm">/* the pin header uses */</span>
+<span class="lineno">23</span>                 <span class="s">&quot;P9.24&quot;</span><span class="p">,</span>        <span class="cm">/* uart1_txd */</span>
+<span class="lineno">24</span>                 <span class="s">&quot;P9.26&quot;</span><span class="p">,</span>        <span class="cm">/* uart1_rxd */</span>
+<span class="lineno">25</span>                 <span class="cm">/* the hardware ip uses */</span>
+<span class="lineno">26</span>                 <span class="s">&quot;uart1&quot;</span><span class="p">;</span>
+<span class="lineno">27</span>  
+<span class="lineno">28</span>         <span class="n">fragment</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
+<span class="lineno">29</span>                 <span class="n">target</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">am33xx_pinmux</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="lineno">30</span>                 <span class="n">__overlay__</span> <span class="p">{</span>
+<span class="lineno">31</span>                         <span class="nl">bb_uart1_pins</span><span class="p">:</span> <span class="n">pinmux_bb_uart1_pins</span> <span class="p">{</span>
+<span class="lineno">32</span>                                 <span class="n">pinctrl</span><span class="o">-</span><span class="n">single</span><span class="p">,</span><span class="n">pins</span> <span class="o">=</span> <span class="o">&lt;</span>
+<span class="lineno">33</span>                                         <span class="cm">/* P9.24 MODE0 OUTPUT (TXD) */</span>
+<span class="lineno">34</span> 					<span class="mh">0x184</span> <span class="mh">0x20</span>
+<span class="lineno">35</span> 					<span class="cm">/* P9.26 MODE0 INPUT  (RXD) */</span> 
+<span class="lineno">36</span>                                         <span class="mh">0x180</span> <span class="mh">0x20</span> 
+<span class="lineno">37</span>                                 <span class="o">&gt;</span><span class="p">;</span>
+<span class="lineno">38</span>                         <span class="p">};</span>
+<span class="lineno">39</span>                 <span class="p">};</span>
+<span class="lineno">40</span>         <span class="p">};</span>
+<span class="lineno">41</span>  
+<span class="lineno">42</span> 	<span class="n">fragment</span><span class="err">@</span><span class="mi">1</span> <span class="p">{</span>
+<span class="lineno">43</span>                 <span class="n">target</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">uart2</span><span class="o">&gt;</span><span class="p">;</span>	<span class="cm">/* really uart1 */</span>
+<span class="lineno">44</span>                 <span class="n">__overlay__</span> <span class="p">{</span>
+<span class="lineno">45</span>                         <span class="n">status</span> <span class="o">=</span> <span class="s">&quot;okay&quot;</span><span class="p">;</span>
+<span class="lineno">46</span>                         <span class="n">pinctrl</span><span class="o">-</span><span class="n">names</span> <span class="o">=</span> <span class="s">&quot;default&quot;</span><span class="p">;</span>
+<span class="lineno">47</span>                         <span class="n">pinctrl</span><span class="o">-</span><span class="mi">0</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">bb_uart1_pins</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="lineno">48</span>                 <span class="p">};</span>
+<span class="lineno">49</span>         <span class="p">};</span>
+<span class="lineno">50</span> <span class="p">};</span></code></pre></div>
 </p>
 <p>
 The first properties define our "compatible" properties, and the part number and version.
 This is followed the "exclusive-use", which defines what resources we want to utilize exclusively.
 Then comes the pin multiplexing definitions, and finally our "uart0" definition.
 Once compiled, using the Device Tree Compiler, the resulting Flattened Device Tree binary overlay
-can be written into the I2C EEPROM located on Shield #1. After a reboot, the connections and interface to Shield #1
-can be automatically discovered and configured.
+can be written into the I2C EEPROM located on Cape #1 (or Shield #1, PiPlate #1, etc.). 
+Don't worry too much if you don't follow all the exact syntax details yet, 
+we'll cover more on these concepts in the detailed how-to articles for each specific platform. 
 </p>
 <p>
-This is a brief introduction to Device Tree Overlay concepts, and support for the Device Tree is still evolving.
+<h2>Automatic Device Discovery</h2>
+After a reboot, the connections and interface to Cape #1 can be automatically discovered and configured.
+How, you ask? Well, during the boot up sequence, the processor reads the Flattened Device Tree binary
+from it's local EEPROM (or it's internal flash memory), and using the main Device Tree, configures it's
+I2C controller (shown in "orange" in the above block diagram), and then starts to read the contents of
+each of the remote EEPROMs, located on the expansion cards, one at a time, 
+by expecting them to reside at the following addresses on the I2C bus.
+</p>
+<p>
+<table border="2" spacing="2">
+<tr>
+<td>&nbsp; A2 &nbsp;</td>
+<td>&nbsp; A1 &nbsp;</td>
+<td>&nbsp; A0 &nbsp;</td>
+<td>&nbsp; I2C Address &nbsp;</td>
+<td>&nbsp; Device &nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x54 &nbsp;</td>
+<td>&nbsp; Shield #1 (Beaglebone Cape #1)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x55 &nbsp;</td>
+<td>&nbsp; Shield #2 (Beaglebone Cape #2)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x56 &nbsp;</td>
+<td>&nbsp; Shield #3 (Beaglebone Cape #3)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x57 &nbsp;</td>
+<td>&nbsp; Shield #4 (Beaglebone Cape #4)&nbsp;</td>
+</tr>
+</table>
+</p>
+<p>
+As the microprocesser reads each I2C EEPROM from each expansion board in turn, 
+it looks for the "magic number" of "0xd00dfeed (big-endian)" in the first word of each EEPROM. 
+If the microprocessor finds the that "magic number", it assumes the EEPROM
+contains a Flatten Device Tree data structure, and begins to read it and check it for validity.
+Once the microprocessor determines that it contains a valid structure, it begins to install the devices/device drivers.
+</p>
+<p>
+<h2>Device Tree Overlay Pin Multiplexing</h2>
+One of the things you might have noticed about the Device Tree Overlay is the specificity of the Pin Multiplexing directives.
+Most modern System-on-Chip (SoC) devices have several functions available per pin for application flexibility,
+and we need to define what pins are going to be used to connect to the peripherals. 
+Unfortunately, the scheme adopted in the Device Tree Overlay is highly specific, 
+and tied to the particular processor model used (in this case the AM335X series).
+In order to support a wide variety of peripherals attached to a wide variety of 
+different processors, it might be better to adopt a more "virtual approach" to I/O pin assignments.
+I'll go into this in more detail in the follwing article. 
+</p>
+<br>
+<p>
+This has been a very brief introduction to Device Tree Overlay concepts, and we'll cover more details
+in some of our platform specific how-to articles. Support for the Device Tree is still evolving,
+and much work remains to be done to foster widespread acceptance on other platforms.
 If you are looking for a specific how-to guide for BeagleBone, Raspberry Pi, Xilinx, Altera, etc,
 please see the References section at the end of this article for a complete listing. A number of people
 in the community have already written some excellent guides and instructions for specific platforms. 
 </p>
 <p>
 In the next article, I'll make some suggestions for the Device Tree and Device Tree Overlays, 
-in order to add features like manufacturing traceability, calibration, and testing.
+in order to add features like manufacturing traceability, calibration, virtual I/O, and testing.
 </p>
 <p>   
 <h2>References, Footnotes, and more Device Tree information...</h2>

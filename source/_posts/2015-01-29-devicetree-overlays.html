@@ -1,0 +1,151 @@
+---
+layout: post
+category: news
+title: "Device Tree Overlays"
+date: 2015-01-29 16:30
+quote: If a tree dies, plant another in its place.
+quote_author: Carl Linnaeus
+product_slug: devicetree
+licensing: false
+cc_by_sa: false
+comments: true
+---
+<p>In my <a href="http://www.patternagents.com/news/2015/01/28/devicetree-overview.html">last article</a>, 
+I gave a general overview of the <a href="http://www.devicetree.org/">Device Tree</a> format,
+and some basics on how it is being used for automatically configuring the hardware of embedded computing platforms like the Beaglebone Black,
+Xilinx Zynq, and many other System-on-Chip (SOC) devices.  
+<a href="http://www.linux.com/news/embedded-mobile/mobile-linux/785882-device-tree-overlay-support-lands-upstream">Device Tree Overlays</a>,
+originated by Pantelis Antoniou are now being used to support add-on devices and expansion boards,
+allowing automatic discovery and automatic configuration on several computing platforms.
+In this next article, I'll discuss the 
+<a href="http://www.linux.com/news/embedded-mobile/mobile-linux/785882-device-tree-overlay-support-lands-upstream">Device Tree Overlay</a> 
+and why it is getting adopted for even more computing platforms.  
+</p>
+<!-- more -->
+<p>
+The <a href="http://www.devicetree.org/">DeviceTree</a> format has been employed on several Linux based computing platforms,
+such as the PowerPC, or Power Architecture for several years now. However, add-on and expansion boards typically had either
+no automatic configuration support, or used other description structures like the 
+<a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> blob, 
+or the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> blob (for sensors). 
+However, as hardware becomes more maleable, using Field Programmable Gate Arrays, and Programmable System-on-Chip devices,
+the hardware begins to "soften", and to resemble software. "Hardware" said Pantelis Antoniou at LinuxCon2014, "<i>is software now!</i>".
+So the concept of a static and unchanging <a href="http://www.devicetree.org/">Device Tree</a> wasn't keeping pace with the
+new programmable hardware paradigms, and Pantelis originated the idea of a 
+<a href="http://www.linux.com/news/embedded-mobile/mobile-linux/785882-device-tree-overlay-support-lands-upstream">Device Tree Overlay</a>
+that could be dynamically loaded and unloaded to change hardware configurations. It has taken some time (and a lot of work by Pantelis and others)
+to make all the Linux kernal and Device Tree Compiler changes required, 
+but now, most their work has been merged into the 3.17 Linux Kernal.   
+</p>
+<p>
+<img class="illo" src="{{site.url.images}}/news/devicetree/arduino-stack.png" alt="Arduino and Shields" title="Arduino and Shields"/>
+Consider a typical development situation, using something like an Arduino,
+where you have a main CPU/SoC board, and several expansion boards (i.e. Shields) attached,
+similar to this picture. For the sake of discussion, let's say that Shield #1 communicates with the
+main CPU/SoC via a serial UART interface, Shield #2 and #3 communicate via a SPI interface with separate
+Chip Selects for each Shield, and that Shield #3 communicates using General Purpose I/O (GPIO),
+and the main CPU/SoC Analog-to-Digital converter (ADC). In order to support the <a href="http://www.devicetree.org/">Device Tree</a> 
+configuration, each board/Shield will contain a small I2C EEPROM that will hold the <a href="http://www.devicetree.org/">Device Tree</a>
+Flattened Device Tree data structures (i.e. the Overlays). This is a fairly common configuration, 
+and it doesn't really matter WHAT the Shields are for this discussion, they could be peripherals 
+like Wi-Fi radios, Motor Controllers, Sensor Hubs, etc. We're mostly interested here in
+describing their interconnections, which can be represented by the block diagram below :
+</p>
+<p>
+<img src="{{site.url.images}}/news/devicetree/soc-block-diagram.png" alt="SoC Simplified Block Diagram" title="SoC Simplified Block Diagram"/>
+</p>
+<p>
+As you can see in the above block diagram, the "orange" colored blocks represent the connections on the 
+<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus that will be used to read the 
+Flattened Device Tree data structures (i.e. the Overlays) for each expansion board (i.e. Shield),
+in order to determine their make and model, and how they are interfaced and connected.
+</p>
+<p>
+<h2>Device Tree Source Overlay</h2>
+</p>
+<p>
+Alright, so let's look at what a Device Tree Source Overlay might look like for Shield #1,
+which is connected via a serial port, namely UART0.
+</p>
+<p>
+{% highlight c linenos %}
+/dts-v1/;
+/plugin/;
+ 
+/ {
+	compatible = "arduino,uno", "arduino,due";
+	part-number = "UNO-UART-SHIELD";
+	version = "00A0";
+
+	exclusive-use =
+                "D1",        /* uart0_txd */
+                "D0",        /* uart0_rxd */
+                "uart0";
+ 
+	fragment@0 {
+                target = <&uno_pinmux>;
+                __overlay__ {
+                        uno_uart0_pins: pinmux_uno_uart0_pins {
+                                pinctrl-single,pins = <
+                                        0x184 0x20
+                                        0x180 0x20
+                                >;
+                        };
+                };
+        };
+
+	fragment@1 {
+                target = <&uart0>;
+                __overlay__ {
+                        status = "okay";
+                        pinctrl-names = "default";
+                        pinctrl-0 = <&uno_uart0_pins>;
+                };
+        };
+};
+{% endhighlight %}
+</p>
+<p>
+The first properties define our "compatible" properties, and the part number and version.
+This is followed the "exclusive-use", which defines what resources we want to utilize exclusively.
+Then comes the pin multiplexing definitions, and finally our "uart0" definition.
+Once compiled, using the Device Tree Compiler, the resulting Flattened Device Tree binary overlay
+can be written into the I2C EEPROM located on Shield #1. After a reboot, the connections and interface to Shield #1
+can be automatically discovered and configured.
+</p>
+<p>
+This is a brief introduction to Device Tree Overlay concepts, and support for the Device Tree is still evolving.
+If you are looking for a specific how-to guide for BeagleBone, Raspberry Pi, Xilinx, Altera, etc,
+please see the References section at the end of this article for a complete listing. A number of people
+in the community have already written some excellent guides and instructions for specific platforms. 
+</p>
+<p>
+In the next article, I'll make some suggestions for the Device Tree and Device Tree Overlays, 
+in order to add features like manufacturing traceability, calibration, and testing.
+</p>
+<p>   
+<h2>References, Footnotes, and more Device Tree information...</h2>
+<ol>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+</ol>
+</p>
+

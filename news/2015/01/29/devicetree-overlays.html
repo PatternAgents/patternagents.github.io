@@ -213,19 +213,19 @@ RS-232 Cape</a> as an example of a currently used Device Tree Overlay.
 <span class="lineno">25</span>                 <span class="cm">/* the hardware ip uses */</span>
 <span class="lineno">26</span>                 <span class="s">&quot;uart1&quot;</span><span class="p">;</span>
 <span class="lineno">27</span>  
-<span class="lineno">28</span>         <span class="n">fragment</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
+<span class="lineno">28</span> 	<span class="n">fragment</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
 <span class="lineno">29</span>                 <span class="n">target</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">am33xx_pinmux</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="lineno">30</span>                 <span class="n">__overlay__</span> <span class="p">{</span>
 <span class="lineno">31</span>                         <span class="nl">bb_uart1_pins</span><span class="p">:</span> <span class="n">pinmux_bb_uart1_pins</span> <span class="p">{</span>
 <span class="lineno">32</span>                                 <span class="n">pinctrl</span><span class="o">-</span><span class="n">single</span><span class="p">,</span><span class="n">pins</span> <span class="o">=</span> <span class="o">&lt;</span>
-<span class="lineno">33</span>                                         <span class="cm">/* P9.24 MODE0 OUTPUT (TXD) */</span>
+<span class="lineno">33</span> 					<span class="cm">/* P9.24 MODE0 OUTPUT (TXD) */</span>
 <span class="lineno">34</span> 					<span class="mh">0x184</span> <span class="mh">0x20</span>
 <span class="lineno">35</span> 					<span class="cm">/* P9.26 MODE0 INPUT  (RXD) */</span> 
-<span class="lineno">36</span>                                         <span class="mh">0x180</span> <span class="mh">0x20</span> 
+<span class="lineno">36</span> 					<span class="mh">0x180</span> <span class="mh">0x20</span> 
 <span class="lineno">37</span>                                 <span class="o">&gt;</span><span class="p">;</span>
 <span class="lineno">38</span>                         <span class="p">};</span>
 <span class="lineno">39</span>                 <span class="p">};</span>
-<span class="lineno">40</span>         <span class="p">};</span>
+<span class="lineno">40</span> 	<span class="p">};</span>
 <span class="lineno">41</span>  
 <span class="lineno">42</span> 	<span class="n">fragment</span><span class="err">@</span><span class="mi">1</span> <span class="p">{</span>
 <span class="lineno">43</span>                 <span class="n">target</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">uart2</span><span class="o">&gt;</span><span class="p">;</span>	<span class="cm">/* really uart1 */</span>

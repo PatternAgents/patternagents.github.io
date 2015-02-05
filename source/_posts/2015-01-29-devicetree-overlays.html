@@ -29,7 +29,7 @@ no automatic configuration support, or used other description structures like th
 <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> blob, 
 or the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> blob (for sensors). 
 However, as hardware becomes more maleable, using Field Programmable Gate Arrays, and Programmable System-on-Chip devices,
-the hardware begins to "soften", and to resemble software. "Hardware" said Pantelis Antoniou at LinuxCon2014, "<i>is software now!</i>".
+the hardware begins to "soften", and to resemble software. "Hardware" said Pantelis Antoniou at LinuxCon2014, "is software now".
 So the concept of a static and unchanging <a href="http://www.devicetree.org/">Device Tree</a> wasn't keeping pace with the
 new programmable hardware paradigms, and Pantelis originated the idea of a 
 <a href="http://www.linux.com/news/embedded-mobile/mobile-linux/785882-device-tree-overlay-support-lands-upstream">Device Tree Overlay</a>
@@ -38,17 +38,17 @@ to make all the Linux kernal and Device Tree Compiler changes required,
 but now, most their work has been merged into the 3.17 Linux Kernal.   
 </p>
 <p>
-<img class="illo" src="{{site.url.images}}/news/devicetree/arduino-stack.png" alt="Arduino and Shields" title="Arduino and Shields"/>
-Consider a typical development situation, using something like an Arduino,
-where you have a main CPU/SoC board, and several expansion boards (i.e. Shields) attached,
-similar to this picture. For the sake of discussion, let's say that Shield #1 communicates with the
-main CPU/SoC via a serial UART interface, Shield #2 and #3 communicate via a SPI interface with separate
-Chip Selects for each Shield, and that Shield #3 communicates using General Purpose I/O (GPIO),
+<a href="http://www.liquidware.com/shop/show/BB-ULT/Ultimate+Beagle+Gadget+Pack"><img class="illo" src="{{site.url.images}}/news/sff/beaglebone-stack.png" alt="Liquidware Beaglebone Stack" title="Liquidware Beaglebone Stack"/></a>
+Consider a typical development situation, using something like a Beaglebone Black,
+where you have a main CPU/SoC board, and several expansion boards (i.e. "Capes") attached,
+similar to the picture to the right. For the sake of discussion, let's say that Cape #1 communicates with the
+main CPU/SoC via a serial UART interface, Cape #2 and #3 communicate via a SPI interface with separate
+Chip Selects for each Cape, and that Cape #3 communicates using General Purpose I/O (GPIO),
 and the main CPU/SoC Analog-to-Digital converter (ADC). In order to support the <a href="http://www.devicetree.org/">Device Tree</a> 
 configuration, each board/Shield will contain a small I2C EEPROM that will hold the <a href="http://www.devicetree.org/">Device Tree</a>
 Flattened Device Tree data structures (i.e. the Overlays). This is a fairly common configuration, 
-and it doesn't really matter WHAT the Shields are for this discussion, they could be peripherals 
-like Wi-Fi radios, Motor Controllers, Sensor Hubs, etc. We're mostly interested here in
+and it doesn't really matter WHAT the Capes are for this discussion, they could be peripherals 
+like LCD displays, Wi-Fi Radios, Motor Controllers, Sensor Hubs, etc. We're interested here in
 describing their interconnections, which can be represented by the block diagram below :
 </p>
 <p>
@@ -57,49 +57,67 @@ describing their interconnections, which can be represented by the block diagram
 <p>
 As you can see in the above block diagram, the "orange" colored blocks represent the connections on the 
 <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus that will be used to read the 
-Flattened Device Tree data structures (i.e. the Overlays) for each expansion board (i.e. Shield),
+Flattened Device Tree data structures (i.e. the Overlays) for each expansion board (i.e. Cape/Shield/Plate),
 in order to determine their make and model, and how they are interfaced and connected.
 </p>
 <p>
 <h2>Device Tree Source Overlay</h2>
 </p>
 <p>
-Alright, so let's look at what a Device Tree Source Overlay might look like for Shield #1,
-which is connected via a serial port, namely UART0.
+Alright, so let's look at what a Device Tree Source Overlay might look like for Cape #1,
+which is connected via a serial port, namely UART0. For this example, we'll use the 
+<a href="http://www.mouser.com/ProductDetail/CircuitCo/BB-BONE-SERL-03/?qs=%2fha2pyFadugh6wNMONnDuOjD7VMVGO9jXYY7ybHwRb1PtvVW33RwxXpt9lg9jBxJ">Circuit Co.
+RS-232 Cape</a> as an example of a currently used Device Tree Overlay.
 </p>
 <p>
 {% highlight c linenos %}
+*
+ * Copyright (C) 2013 CircuitCo
+ *
+ * Virtual cape for UART1 on connector pins P9.24 P9.26
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
 /dts-v1/;
 /plugin/;
  
 / {
-	compatible = "arduino,uno", "arduino,due";
-	part-number = "UNO-UART-SHIELD";
-	version = "00A0";
-
-	exclusive-use =
-                "D1",        /* uart0_txd */
-                "D0",        /* uart0_rxd */
-                "uart0";
+   	compatible = "ti,beaglebone", "ti,beaglebone-black";
  
-	fragment@0 {
-                target = <&uno_pinmux>;
+        /* identification */
+        part-number = "BB-UART1";
+        version = "00A0";
+ 
+        /* state the resources this cape uses */
+        exclusive-use =
+                /* the pin header uses */
+                "P9.24",        /* uart1_txd */
+                "P9.26",        /* uart1_rxd */
+                /* the hardware ip uses */
+                "uart1";
+ 
+        fragment@0 {
+                target = <&am33xx_pinmux>;
                 __overlay__ {
-                        uno_uart0_pins: pinmux_uno_uart0_pins {
+                        bb_uart1_pins: pinmux_bb_uart1_pins {
                                 pinctrl-single,pins = <
-                                        0x184 0x20
-                                        0x180 0x20
+                                        /* P9.24 MODE0 OUTPUT (TXD) */
+					0x184 0x20
+					/* P9.26 MODE0 INPUT  (RXD) */ 
+                                        0x180 0x20 
                                 >;
                         };
                 };
         };
-
+ 
 	fragment@1 {
-                target = <&uart0>;
+                target = <&uart2>;	/* really uart1 */
                 __overlay__ {
                         status = "okay";
                         pinctrl-names = "default";
-                        pinctrl-0 = <&uno_uart0_pins>;
+                        pinctrl-0 = <&bb_uart1_pins>;
                 };
         };
 };
@@ -110,18 +128,88 @@ The first properties define our "compatible" properties, and the part number and
 This is followed the "exclusive-use", which defines what resources we want to utilize exclusively.
 Then comes the pin multiplexing definitions, and finally our "uart0" definition.
 Once compiled, using the Device Tree Compiler, the resulting Flattened Device Tree binary overlay
-can be written into the I2C EEPROM located on Shield #1. After a reboot, the connections and interface to Shield #1
-can be automatically discovered and configured.
+can be written into the I2C EEPROM located on Cape #1 (or Shield #1, PiPlate #1, etc.). 
+Don't worry too much if you don't follow all the exact syntax details yet, 
+we'll cover more on these concepts in the detailed how-to articles for each specific platform. 
 </p>
 <p>
-This is a brief introduction to Device Tree Overlay concepts, and support for the Device Tree is still evolving.
+<h2>Automatic Device Discovery</h2>
+After a reboot, the connections and interface to Cape #1 can be automatically discovered and configured.
+How, you ask? Well, during the boot up sequence, the processor reads the Flattened Device Tree binary
+from it's local EEPROM (or it's internal flash memory), and using the main Device Tree, configures it's
+I2C controller (shown in "orange" in the above block diagram), and then starts to read the contents of
+each of the remote EEPROMs, located on the expansion cards, one at a time, 
+by expecting them to reside at the following addresses on the I2C bus.
+</p>
+<p>
+<table border="2" spacing="2">
+<tr>
+<td>&nbsp; A2 &nbsp;</td>
+<td>&nbsp; A1 &nbsp;</td>
+<td>&nbsp; A0 &nbsp;</td>
+<td>&nbsp; I2C Address &nbsp;</td>
+<td>&nbsp; Device &nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x54 &nbsp;</td>
+<td>&nbsp; Shield #1 (Beaglebone Cape #1)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x55 &nbsp;</td>
+<td>&nbsp; Shield #2 (Beaglebone Cape #2)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x56 &nbsp;</td>
+<td>&nbsp; Shield #3 (Beaglebone Cape #3)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x57 &nbsp;</td>
+<td>&nbsp; Shield #4 (Beaglebone Cape #4)&nbsp;</td>
+</tr>
+</table>
+</p>
+<p>
+As the microprocesser reads each I2C EEPROM from each expansion board in turn, 
+it looks for the "magic number" of "0xd00dfeed (big-endian)" in the first word of each EEPROM. 
+If the microprocessor finds the that "magic number", it assumes the EEPROM
+contains a Flatten Device Tree data structure, and begins to read it and check it for validity.
+Once the microprocessor determines that it contains a valid structure, it begins to install the devices/device drivers.
+</p>
+<p>
+<h2>Device Tree Overlay Pin Multiplexing</h2>
+One of the things you might have noticed about the Device Tree Overlay is the specificity of the Pin Multiplexing directives.
+Most modern System-on-Chip (SoC) devices have several functions available per pin for application flexibility,
+and we need to define what pins are going to be used to connect to the peripherals. 
+Unfortunately, the scheme adopted in the Device Tree Overlay is highly specific, 
+and tied to the particular processor model used (in this case the AM335X series).
+In order to support a wide variety of peripherals attached to a wide variety of 
+different processors, it might be better to adopt a more "virtual approach" to I/O pin assignments.
+I'll go into this in more detail in the follwing article. 
+</p>
+<br>
+<p>
+This has been a very brief introduction to Device Tree Overlay concepts, and we'll cover more details
+in some of our platform specific how-to articles. Support for the Device Tree is still evolving,
+and much work remains to be done to foster widespread acceptance on other platforms.
 If you are looking for a specific how-to guide for BeagleBone, Raspberry Pi, Xilinx, Altera, etc,
 please see the References section at the end of this article for a complete listing. A number of people
 in the community have already written some excellent guides and instructions for specific platforms. 
 </p>
 <p>
 In the next article, I'll make some suggestions for the Device Tree and Device Tree Overlays, 
-in order to add features like manufacturing traceability, calibration, and testing.
+in order to add features like manufacturing traceability, calibration, virtual I/O, and testing.
 </p>
 <p>   
 <h2>References, Footnotes, and more Device Tree information...</h2>

@@ -3,16 +3,16 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: JTAG Mini-Breakout for STM32 Discovery</title>
+  <title>PatternAgents: Device Tree and Product Life Cycles</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
 
-  <meta name="robots"                  content="noodp, noydir, noarchive"         />
-  <meta name="description"        content="JTAG Mini-Breakout for STM32 Discovery"    />
-  <meta name="abstract"              content="JTAG Mini-Breakout for STM32 Discovery"       />
+  <meta name="robots"          content="index, follow, noodp, noydir" />
+  <meta name="description"     content="PatternAgents: The Agency of Design Patterns" />
+  <meta name="abstract"        content="PatternAgents provides collaboration, community and commerce for electronics designers." />
   <meta name="classification"  content="electronics, electronics design, design engineering" />
-  <meta name="keywords"              content="JTAG10M-STLV2F, stm, stm32, discovery, stm32f0discovery, jtag"       />
+  <meta name="keywords"        content="electronics, electronics design, design engineering, open source software, open source hardware, OSHW" />
 
   <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
   <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
@@ -52,20 +52,6 @@
 
 <body class="">
  
-
-<!-- Add the standard layout -->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -113,22 +99,16 @@
 
 
   
-  
-
 
 <main class="row">
   
   <div class="col major">
     
-  <div class="row">
-    <div class="col maj_major">
-      
   
-
   <article role="article">
     <header>
       
-        <h1 class="entry-title">JTAG Mini-Breakout for STM32 Discovery</h1>
+        <h1 class="entry-title">Device Tree and Product Life Cycles</h1>
       
       
         <p class="meta">
@@ -136,133 +116,120 @@
         </p>
       
     </header>
-    <div class="entry-content"><p>
-  The JTAG Mini-Breakout for STM32 Discovery (JTAG10M-STLV2F) is designed to 
-  enable the STM32 Discovery boards to be used as a general purpose JTAG programming tool.
+    <div class="entry-content">
+  
+  
+  
+
+<blockquote>
+	<p>Why do they always want to do it the hard way?</p>
+	<p>&mdash;Wile E. Coyote, Genius</p>
+</blockquote>
+
+<p>Imagine that <a hrel="http://en.wikipedia.org/wiki/Wile_E._Coyote_and_The_Road_Runner">Wile E. Coyote</a> has just finished watching<BR> 
+<a href="http://www.pbs.org/wgbh/nova/military/rise-of-the-drones.html">"Rise of the Drones"</a> on PBS, and he has had a 
+<a href="http://en.wikipedia.org/wiki/Eureka">"Eureka!"</a> moment. 
+He immediately dials <a href="http://en.wikipedia.org/wiki/Acme_Corporation">Acme Corporation</a> and
+orders several dozen <a href="http://terminator.wikia.com/wiki/HK-Drone">T-4 Aerial Drones</a>. As the new manager of 
+<a href="http://en.wikipedia.org/wiki/Acme_Corporation">Acme Corporation</a>, you realize that 
+<a hrel="http://en.wikipedia.org/wiki/Wile_E._Coyote_and_The_Road_Runner">Wile E. Coyote</a> will in all likelyhood <b><i>crash</i></b>
+the majority of them, and you will need a good way to track warranty claims and product repairs; <br>
+as he seems to have an unlimited line-of-credit, and he has also <br>
+purchased the <b><i>platinum service plan</i></b> with every one of those Drones.
 </p>
 <!-- more -->
-
-<h3>JTAG10M-STLV2F Features:</h3>
-<ul>
-  <li>JTAG10M-STLV2F - Adapts ST/Link V2 pinout to standard 10 pin JTAG pinout. </li>
-</ul>
-
 <p>
-  For more information on STM32 Discovery boards, see <a href="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1848">STM32 Discovery</a>.
+<h2>Manufacturing Traceability</h2>
+<img class="illo" src="/img/news/devicetree/quad-px4.png" alt="PX4 Drone" title="PX4 Drone"/>
+A Drone can be a pretty complex piece of gear, with a lot of parts and subsystems.
+<a href="http://en.wikipedia.org/wiki/Traceability">Traceability</a> is the ability to verify the history, location, or application
+of an item by means of documented recorded identification <a href="http://go.usa.gov/BP6">[1]</a>.
+This can be very important with components, or sensors that have a limited life time,
+typically measured in hours of use. As we repair and replace crashed Drones, we'll want a way
+to keep track of the major parts and subsystems, like the 
+<a href="http://www.tomshardware.com/reviews/multi-rotor-quadcopter-fpv,3828-4.html">Airframe</a>, 
+<a href="http://beagleboard.org/project/BeagleDrone/">main computer</a>, 
+<a href="http://pixhawk.org/modules/pixhawk">flight controller</a>, 
+<a href="http://www.tomshardware.com/reviews/multi-rotor-quadcopter-fpv,3828-6.html">motor controllers</a>, and the 
+<a href="http://www.tomshardware.com/reviews/multi-rotor-quadcopter-fpv,3828-5.html">rotors</a>.
 </p>
-
-<h3>JTAG10M-STLV2F Usage Examples:</h3>
-<ul class="illo-list">
-  <li>Used with the STM32F0DISCOVERY Development Board: <BR>
-    <span>
-       <a href="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF253215"><img src="/img/projects/JTAG10M-STLV2F/JTAG10M-STLV2F_DiscM0.png" alt="JTAG10M-STLV2F" title="JTAG10M-STLV2F"/></a>
-    </span>
-  </li>
-  <li>Used with the STM32F0DISCOVERY Development Board: with 10 Pin JTAG Cable<BR>
-    <span>
-       <a href="http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF253215"><img src="/img/projects/JTAG10M-STLV2F/JTAG10M-STLV2F_DiscM0_Cable10.png" alt="JTAG10M-STLV2F" title="JTAG10M-STLV2F"/></a>
-    </span>
-  </li>
+<p>
+One of the attributes that I like about the 
+<a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> 
+format for storing product information, <br>
+is it's support of manufacturing traceability properties, such as :
+<ul>
+<li>product-model-name : "T-4 Aerial Drone"</li>
+<li>product-mfg-name : ACME Corporation</li>
+<li>product-mfg-date : (Univeral Time Code)</li>
+<li>product-mfg-loc : (GPS coordinates)</li>
+<li>product-asset-num : (ASSET TAG)</li>
+<li>product-serial-num : (SERIAL NUMBER)/(UUID)</li>
 </ul>
+So, can we add these kinds of manufacturing traceability properties to the Device Tree?
+It would seem to be exactly what we need to track the metadata for each subsystem, and follow it through it's whole lifecycle.
+</p>
+<p>
+<h2>Drone Product Tree</h2>
+Let's take a typical quadcopter type drone design, using a central mounting plate for the batteries and main electronics,
+with four (4) or more motor arms to hold each of the motors and rotors. as we see above.
+If we were to outline a simplified version of the part and subsystem heirarchy, it might look something like this : 
+</p>
+<p>
+<img src="/img/news/devicetree/quad-tree.png" alt="Example Drone Tree Nodes" title="Example Drone Tree Nodes"/>
+</p>
+<p>
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">
+<img class="illo" src="/img/news/devicetree/rfid-tag-small.png" alt="RFID Asset Tag" title="RFID Asset Tag"/></a>Now, because you are the best manager that <a href="http://en.wikipedia.org/wiki/Acme_Corporation">Acme Corporation</a> has had
+in quite a while, you have decided to use a 
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>
+at the root of your product tree, namely on the Chassis (Air Frame) itself. 
+This allows your service technicians to use an RFID reader/writer wand,
+or their smartphone to interogate each Drone as it is tested or returned, and get the complete list of subassemblies,
+their serial numbers, and dates of manufacture. 
+</p>
+<p>
+The <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a> 
+can be read/written either using the RF interface,
+or from within the product itself - using the I2C interface to the tag.
+This dual interface is important, as it allows the main processor on
+the Flight controller to update the <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a> as well.
+</p>
+<p>
+<a hrel="http://en.wikipedia.org/wiki/Wile_E._Coyote_and_The_Road_Runner">
+<img class="illo" src="/img/news/devicetree/wile-e-coyote.png" alt="Wile E. Coyote" title="Wile E. Coyote"/></a>
+For example, once the Flight controller has read all the Device Tree information from each of the different
+subsystems, it can update the inventory list contained within the 
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>.
+If any subsystems are changed out, the the Flight controller can automatically update
+the inventory list the next time it boots up. By designing each main subsystem to contain it's
+own Device Tree Overlay, the complete view of the system inventory is rebuilt each time the Drone reboots.
+Okay, so what that might look as you put all the subsystems together?
+</p>
+<p>
+&nbsp;
+</p>
+<p>
+to be continued...
+</p>
 
 </div>
     <footer>
       <p class="meta">
-        March 29, 2014
+        February 01, 2015
       </p>
       <p class="meta">
         
-          <a class="previous" href="/news/2013/12/26/Hula-Poppy-Lure-minnow-board.html" title="Previous Post: Hula Poppy Lure for MinnowBoard">&laquo; Hula Poppy Lure for MinnowBoard</a>
+          <a class="previous" href="/news/2015/01/29/devicetree-overlays.html" title="Previous Post: Device Tree Overlays">&laquo; Device Tree Overlays</a>
         
-        
-          <a class="next" href="/projects/JTAG20M-STLV2F.html" title="Next Post: JTAG 20 Pin Adapter for STM32 Discovery">JTAG 20 Pin Adapter for STM32 Discovery &raquo;</a>
         
       </p>
     </footer>
   </article>
 
 
-
-    </div>
-    <div class="col maj_minor">
-      
-  <h2>JTAG10M-STLV2F</h2>
-  <img src="/img/projects/JTAG10M-STLV2F/JTAG10M-STLV2F_model.png" alt="JTAG10M-STLV2F Model" title="JTAG10M-STLV2F Model"/>
-  <br>
-  
-
-
-  <h2>Tweet about JTAG10M-STLV2F</h2>
-    <center>
-    <a href="https://twitter.com/intent/tweet?button_hashtag=JTAG10M-STLV2F" class="twitter-hashtag-button" data-lang="en" data-related="PatternAgents">Tweet #JTAG10M-STLV2F</a>
-	</center>
-  <h2>JTAG10M-STLV2F Repository</h2>
-  <center>
-  <table border="0">
-  <tr>
-	<td><a href="https://github.com/PatternAgents/JTAG10M-STLV2F"><img class="img" src="/img/logos/github_repo.png" width="168" height="38" alt="JTAG10M-STLV2F Github" title="JTAG10M-STLV2F Github"/></a></td>
-  </tr>
-  <tr>
-	<td><a href="https://github.com/PatternAgents/JTAG10M-STLV2F/wiki"><img class="img" src="/img/logos/project_wiki.png"  width="168" height="38" alt="JTAG10M-STLV2F Wiki" title="JTAG10M-STLV2F Wiki"/></a></td>
-  </tr>
-  <tr>
-	<td><a href="https://github.com/PatternAgents/JTAG10M-STLV2F/issues"><img class="img" src="/img/logos/bug_tracker.png"  width="168" height="38" alt="JTAG10M-STLV2F Issues" title="JTAG10M-STLV2F Issues"/></a></td>
-  </tr>
-  </table>
-  </center>
-  <h2>JTAG10M-STLV2F Downloads</h2>
-    <center>
-	<table border="0">
-	<tr>
-		<td><a href="https://github.com/PatternAgents/JTAG10M-STLV2F/zipball/master"><img class="img" src="/img/logos/zip_archive.png" width="168" height="38" alt="JTAG10M-STLV2F ZIPball" title="JTAG10M-STLV2F ZIPball"/></a></td>
-	</tr>
-	<tr>
-		<td><a href="https://github.com/PatternAgents/JTAG10M-STLV2F/tarball/master"><img class="img" src="/img/logos/tar_archive.png" width="168" height="38" alt="JTAG10M-STLV2F TARball" title="JTAG10M-STLV2F TARball"/></a></td>
-	</tr>
-	</table>
-	</center>
-  <h2>JTAG10M-STLV2F Images</h2>
-    <center>
-	<table border="0">
-	<tr>
-		<td><a href="/img/projects/JTAG10M-STLV2F/JTAG10M-STLV2F_top.png"><img class="illo" src="/img/projects/JTAG10M-STLV2F/JTAG10M-STLV2F_top.png" alt="JTAG10M-STLV2F Top View" title="JTAG10M-STLV2F Top View"/></a></td>
-	</tr>
-	<tr>
-		<td><a href="/img/projects/JTAG10M-STLV2F/JTAG10M-STLV2F_bot.png"><img class="illo" src="/img/projects/JTAG10M-STLV2F/JTAG10M-STLV2F_bot.png" alt="JTAG10M-STLV2F Bottom View" title="JTAG10M-STLV2F Bottom View"/></a></td>
-	</tr>
-	</table>
-	</center>
-   <!-- License terms -->
-  
-
-<!-- place "licensing: true" in the YAML front matter to enable Licensing in that page -->
-
-	<h2>JTAG10M-STLV2F Licensing</h2>
-
-<!-- place "cc_by_sa: true" in the YAML front matter to enable cc_by_sa licensing for that page -->
-	
-
-<!-- place "cc_by_nc_sa: true" in the YAML front matter to enable cc_by_nc_sa licensing for that page -->
-	
-		<table border="0">
-		<tr>
-			<td align="center"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img width="88" height="31" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a></td>
-        </tr>
-		<tr>
-		<td>The JTAG10M-STLV2F Project by PatternAgents, LLC is available and licensed under a Creative Commons CC BY-NC-SA 4.0 International License. Commercial Licenses are also available for JTAG10M-STLV2F.</td>
-		</tr>
-		</table>
-	
-
-
-
-
-    </div>
-  </div>
-
   </div>
   <div class="col minor">
-    
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
@@ -446,7 +413,6 @@
 </ul>
 
 
-
   </div>
 
 </main>
@@ -570,40 +536,6 @@
 
 
   
-  
-  
-
-<!-- twitter widget script -->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-  
-
-<!-- pinterest widget script -->
-<script type="text/javascript">
-(function(d){
-  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
-  p.type = 'text/javascript';
-  p.async = true;
-  p.setAttribute('data-pin-color', 'red');
-  p.setAttribute('data-pin-hover', 'true');
-  p.src = '//assets.pinterest.com/js/pinit.js';
-  f.parentNode.insertBefore(p, f);
-}(document));
-</script>
-  
-
-<!-- disqus widget script -->
-<script type="text/javascript">
-  var disqus_shortname = 'patternagents';
-  (function() {
-   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-
 
 
 

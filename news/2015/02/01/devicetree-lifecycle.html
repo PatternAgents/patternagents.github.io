@@ -204,6 +204,16 @@ subsystems, it can update the inventory list contained within the
 If any subsystems are changed out, the the main computer can automatically update
 the inventory list the next time it boots up. By designing each main subsystem to contain it's
 own Device Tree Overlay, the complete view of the system inventory is rebuilt each time the Drone reboots.
+</p>
+<p>
+Why put the <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>
+on the Airframe Chasis you ask? Well, RFID tags require a 
+<a href="http://www.st.com/web/en/resource/technical/document/application_note/CD00232630.pdf">specialized antenna design</a>
+to get enough range to read the tag at a distance, and the product chassis (or enclosure) will
+usually have suitable space to locate and mount the antenna. Besides, it is typically the "root" of
+the product tree, that everything else is mounted on (or in). 
+</p>
+<p>
 Okay, so what might that might look as you put all the subsystems together? I've diagrammed an example
 below, solely using <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> Buses for simplicity,
 (a real system would have more of a mixture of <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, 
@@ -234,9 +244,44 @@ Each replaceable subsystem has it's own Device Tree, for example :
 </ul>
 The Device Tree(s) for the four(4) Speed Controllers would likely be identical,
 with the exception of properties like Serial Number, In-Service Date, Hours of Operation, etc.
-Pushing the Device Trees all the way down to the BLDC Motors would give them
+Pushing the Device Trees down to the BLDC Motors would give them
 manufacturing tracability, as well as being able to hold the motor property tables,
 for optimizing the Speed Controller performance to the attached BLDC motor.
+Pushing the Device Trees all the way down to the Rotors/Propellers 
+(using either a static RF ID tag or an embedded memory chip) 
+would be enable tracking the "Hours of Operation", 
+as well as enabling real-time checking for miss-matched
+components; such as erroneously installing a low lift rotor blade, 
+when a high lift rotor blade might be required on that particlar Drone.
+</p>
+<p>
+<h2>Product Life Cycles</h2>
+Manufacturing Traceability for complex subassemblies has already 
+been implemented using a number of technologies, including 
+<a href="http://en.wikipedia.org/wiki/Barcode">Barcode</a>, 
+<a hrel="http://en.wikipedia.org/wiki/Radio-frequency_identification">RFid</a>,
+and other methods, for many years now. 
+Those tracking systems usually require a centralized database to store all the
+information required. As a board or subassembly moves from production to testing, to
+quality assurance, to shipping, etc. workers can register the 
+<a href="http://en.wikipedia.org/wiki/Barcode">Barcode</a> or other identification
+to register the current status of the subassemby. Of course, it can become difficult
+to employ a centralized database structure when changes are made "in the field",
+or across a number of different Contract Manufacturers, perhaps with incompatible internal systems.
+Instead, if we put the status information into the subassembly itself,
+it is always present, and can updated anywhere, at any repair depot.
+</p>
+<p>
+The Device Tree "Status" property is typically used to indicate only "on/off",
+that is to say, if the subassembly is enabled of disabled. It could just as easily
+be used to indicate phases in the life cycle, such as "untested", "QA-passed", etc.
+That way, incoming product returns could simply be marked, "untested" and put
+back into the normal factory flow for re-testing and any required rework.
+</p>
+<p>
+By embedding the status information into the product itself, it lives and changes with
+the product itself, and can track the entire the product life cycle, from factory to the field,
+and back again, when servicing is required.
 </p>
 <p>
 <h2>Summary</h2>

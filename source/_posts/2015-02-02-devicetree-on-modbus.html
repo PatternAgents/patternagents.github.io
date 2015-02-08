@@ -1,0 +1,115 @@
+---
+layout: post
+category: news
+title: "Device Tree on Modbus"
+date: 2015-02-02 09:30
+quote: Education is the most powerful weapon you can use to change the world. 
+quote_author: Nelson Mandela
+product_slug: devicetree
+licensing: false
+cc_by_sa: false
+comments: true
+---
+<p>
+Unless you've been living under a rock since the late '70's, you've probably heard about 
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a>, the communications protocol used
+for a wide variety of industrial systems, from 
+<a href="http://www.modbus.org/companies.php">sensors</a> to 
+<a href="http://en.wikipedia.org/wiki/Programmable_logic_controller">programmable logic controllers(PLCs)</a>.
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> can be found in most factories and automated assembly lines. 
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices can be quite complicated; but what if we used
+an embedded Device Tree to describe them? <br>
+That would enable the automatic discovery <br>
+and configuration of <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a>
+devices and peripherals, <br>
+wouldn't it?   
+</p>
+<!-- more -->
+<p>
+<h2>Modbus</h2>
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a>
+ is a communications protocol developed by Schneider Electric (nee Modicon) in the 1970's.
+Simple to implement, and robust in operation, it is used by a wide variety of manufacturers.
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> is often associated the 
+<a href="http://en.wikipedia.org/wiki/SCADA">supervisory and data acquisition (SCADA)</a> systems for process control.
+Manufacturing, power generation, refining, waste treatment plants, you name it, and you are likely to find 
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices installed there.
+</p>
+<p>
+<h2>Modbus Addressing</h2>
+<img  class="illo" src="{{site.url.images}}/news/modbus/modbus-address-map.png" alt="Modbus Address Map" title="Modbus Address Map"/></a>
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> has four (4) independent address spaces,
+and utilizes different
+<a href="http://en.wikipedia.org/wiki/Modbus#Supported_function_codes">Function Codes</a>, or commands,
+to access each one of those address spaces. 
+The age of Modbus starts to show when you look at the name of the first address space, namely "Coils".
+Yup, "Coils", that's what they used to call bits back in the electromechanical dark ages,
+when a bit was literally a single coil turning on or off! The second address space is known as the "Discrete Inputs" space,
+and it is typically used to read to read the state of individual switches on a device.
+The largest address space is called the "Holding Register" address space, and it is typically used for device control registers.
+Lastly, is the "Input Register" address space, typically used for reading multibit values, like an Analog-to-Digital
+converter output. 
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> has decently large address spaces, which is one of the 
+reasons it has survived as a standard for over forty(40) years, it was designed to grow as needed.
+</p>
+<p>
+&nbsp;
+</p>
+<p>
+<h2>Modbus Addressing with Device Tree</h2>
+<img class="illo" src="{{site.url.images}}/news/modbus/modbus-device-tree.png" alt="Modbus Device Tree" title="Modbus Device Tree"/></a>
+One technique that I have successfully used in the past,
+is locating a <a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Block Level OBject (i.e. BLOB)</a>
+within one of the address spaces of the Modbus Device, typically in the 
+<a href="http://www.csimn.com/CSI_pages/Modbus101.html#mb101_regtypes">Holding Register Address Space</a>
+starting at address offset zero (0x0000). I have done this many times in the past using an
+<a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) data structure definition, but it is just a simple to implement using the 
+<a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> data structure definition.
+At a minimum, the <a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> data structure
+can identify the make and model number of the Modbus device. However, using 
+<a href="http://www.linux.com/news/embedded-mobile/mobile-linux/785882-device-tree-overlay-support-lands-upstream">Device Tree Overlays</a>
+with more detailed device and register descriptions, it is feasible to embed the entire description of the Modbus device
+within the <a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Block Level OBject (i.e. BLOB)</a>.
+</p>
+<p>
+In the past <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices have usually required a very
+specific driver for each different make and model number of device, with little or no automatic discovery
+and configuration of <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices being possible.
+Technicians would usually need to add each <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> device to
+their <a href="http://en.wikipedia.org/wiki/SCADA">supervisory and data acquisition (SCADA)</a> systems manually.
+</p>
+<p>
+<h2>Summary</h2>
+Adding the Device Tree data structure to <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices is 
+pretty straightforward and simple, and enables the automatic discovery and configuration of 
+<a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices and peripherals. 
+</p>
+<p>   
+<h2>References, Footnotes, and more...</h2>
+<ol>
+<li><a href="http://www.modbus.org/specs.php">Modbus Specifications</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+</ol>
+</p>
+
+
+

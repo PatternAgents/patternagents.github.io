@@ -179,6 +179,7 @@ If we were to outline a simplified version of the part and subsystem heirarchy, 
 <img src="/img/news/devicetree/quad-tree.png" alt="Example Drone Tree Nodes" title="Example Drone Tree Nodes"/>
 </p>
 <p>
+<h2>Dynamic NFC/RFID Tags</h2>
 <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">
 <img class="illo" src="/img/news/devicetree/rfid-tag-small.png" alt="RFID Asset Tag" title="RFID Asset Tag"/></a>Now, because you are the best manager that <a href="http://en.wikipedia.org/wiki/Acme_Corporation">Acme Corporation</a> has had
 in quite a while, you have decided to use a 
@@ -192,26 +193,85 @@ their serial numbers, and dates of manufacture.
 The <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a> 
 can be read/written either using the RF interface,
 or from within the product itself - using the I2C interface to the tag.
-This dual interface is important, as it allows the main processor on
-the Flight controller to update the <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a> as well.
+This dual interface is important, as it allows the main computer to update the 
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a> as well.
 </p>
 <p>
-<a hrel="http://en.wikipedia.org/wiki/Wile_E._Coyote_and_The_Road_Runner">
-<img class="illo" src="/img/news/devicetree/wile-e-coyote.png" alt="Wile E. Coyote" title="Wile E. Coyote"/></a>
-For example, once the Flight controller has read all the Device Tree information from each of the different
+
+For example, once the main computer has read all the Device Tree information from each of the different
 subsystems, it can update the inventory list contained within the 
 <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>.
-If any subsystems are changed out, the the Flight controller can automatically update
+If any subsystems are changed out, the the main computer can automatically update
 the inventory list the next time it boots up. By designing each main subsystem to contain it's
 own Device Tree Overlay, the complete view of the system inventory is rebuilt each time the Drone reboots.
-Okay, so what might that might look as you put all the subsystems together?
+Okay, so what might that might look as you put all the subsystems together? I've diagrammed an example
+below, solely using <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> Buses for simplicity,
+(a real system would have more of a mixture of <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, 
+<a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">SPI</a>, and 
+<a href="http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter">UARTs</a>),
+but you get the idea...
 </p>
 <p>
-&nbsp;
+<h2>Example Drone - Device Tree Heirarchy</h2>
+<img src="/img/news/devicetree/quad-dev-tree.png" alt="Example Drone Device Tree Nodes" title="Example Drone Device Tree Nodes"/>
 </p>
 <p>
-to be continued...
+Each replaceable subsystem has it's own Device Tree, for example :
+<ul>
+<li>DT-MC : Main Computer (i.e. Beaglebone/RaspPi/Etc.) Device Tree</li>
+  <ul>
+    <li>DT-AC : Air Frame Chassis Device Tree Overlay (also accessible via RFID)</li>
+    <li>DT-RH : Radio/RF Hub Device Tree Overlay</li>
+    <li>DT-FC : Flight Controller Device Tree</li>
+    <ul>
+       <li>DT-SH : Sensor Hub Device Overlay</li>
+       <li>DT-SC : Speed Controller#1 Device Overlay</li>
+       <li>DT-SC : Speed Controller#2 Device Overlay</li>
+       <li>DT-SC : Speed Controller#3 Device Overlay</li>
+       <li>DT-SC : Speed Controller#4 Device Overlay</li>
+    </ul>
+  </ul>
+</ul>
+The Device Tree(s) for the four(4) Speed Controllers would likely be identical,
+with the exception of properties like Serial Number, In-Service Date, Hours of Operation, etc.
+Pushing the Device Trees all the way down to the BLDC Motors would give them
+manufacturing tracability, as well as being able to hold the motor property tables,
+for optimizing the Speed Controller performance to the attached BLDC motor.
 </p>
+<p>
+<h2>Summary</h2>
+This has been a very brief introduction to the concepts behind using the the Device Tree
+for product life cycle tracking and management.
+In upcoming articles, I'll be discussing ideas for the Device Tree and Device Tree Overlays, 
+in order to add features like calibration, Virtual I/O, and automatic interface testing.
+</p>
+<p>   
+<h2>References, Footnotes, and more Device Tree information...</h2>
+<ol>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+</ol>
+</p>
+
+
 
 </div>
     <footer>

@@ -134,11 +134,9 @@ for a wide variety of industrial systems, from
 <a href="http://en.wikipedia.org/wiki/Programmable_logic_controller">programmable logic controllers(PLCs)</a>.
 <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> can be found in most factories and automated assembly lines. 
 <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices can be quite complicated; but what if we used
-an embedded Device Tree to describe them? <br>
-That would enable the automatic discovery <br>
-and configuration of <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a>
-devices and peripherals, <br>
-wouldn't it?   
+an embedded <a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> to describe them? <br>
+That would enable the automatic discovery and configuration <br>
+of <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices and peripherals, wouldn't it?   
 </p>
 <!-- more -->
 <p>
@@ -175,17 +173,17 @@ reasons it has survived as a standard for over forty(40) years, it was designed 
 <h2>Modbus Addressing with Device Tree</h2>
 <img class="illo" src="/img/news/modbus/modbus-device-tree.png" alt="Modbus Device Tree" title="Modbus Device Tree"/></a>
 One technique that I have successfully used in the past,
-is locating a <a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Block Level OBject (i.e. BLOB)</a>
+is locating a <a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Binary Level OBject (i.e. BLOB)</a>
 within one of the address spaces of the Modbus Device, typically in the 
 <a href="http://www.csimn.com/CSI_pages/Modbus101.html#mb101_regtypes">Holding Register Address Space</a>
 starting at address offset zero (0x0000). I have done this many times in the past using an
-<a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) data structure definition, but it is just a simple to implement using the 
+<a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) data structure definition, but it is just as simple to implement using the 
 <a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> data structure definition.
 At a minimum, the <a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> data structure
 can identify the make and model number of the Modbus device. However, using 
 <a href="http://www.linux.com/news/embedded-mobile/mobile-linux/785882-device-tree-overlay-support-lands-upstream">Device Tree Overlays</a>
 with more detailed device and register descriptions, it is feasible to embed the entire description of the Modbus device
-within the <a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Block Level OBject (i.e. BLOB)</a>.
+within the <a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Binary Level OBject (i.e. BLOB)</a>.
 </p>
 <p>
 In the past <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices have usually required a very
@@ -238,6 +236,8 @@ pretty straightforward and simple, and enables the automatic discovery and confi
         
           <a class="previous" href="/news/2015/02/01/devicetree-lifecycle.html" title="Previous Post: Device Tree and Product Life Cycles">&laquo; Device Tree and Product Life Cycles</a>
         
+        
+          <a class="next" href="/news/2015/02/02/smart-devicetrees.html" title="Next Post: Smart Device Trees">Smart Device Trees &raquo;</a>
         
       </p>
     </footer>
@@ -351,6 +351,10 @@ pretty straightforward and simple, and enables the automatic discovery and confi
   <ul class="post-list">
   
     <li>
+      <a href="/news/2015/02/02/smart-devicetrees.html">Smart Device Trees</a>
+    </li>
+  
+    <li>
       <a href="/news/2015/02/02/devicetree-on-modbus.html">Device Tree on Modbus</a>
     </li>
   
@@ -420,10 +424,6 @@ pretty straightforward and simple, and enables the automatic discovery and confi
   
     <li>
       <a href="/news/2013/09/13/portland-maker-faire.html">Portland Mini-Maker Faire</a>
-    </li>
-  
-    <li>
-      <a href="/news/2013/07/09/arduino-yun-the-next-generation.html">Arduino Y'un - The Next Generation</a>
     </li>
   
 </ul>

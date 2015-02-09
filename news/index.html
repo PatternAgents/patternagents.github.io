@@ -132,6 +132,47 @@
     
     <article>
       <header>
+        <h1 class="entry-title"><a href="/news/2015/02/02/smart-devicetrees.html">Smart Device Trees</a></h1>
+        
+          <p class="meta">
+            February 02, 2015
+          </p>
+        
+      </header>
+      <div class="entry-content">
+      
+      
+      
+
+<blockquote>
+	<p>A smart man makes a mistake, learns from it, and never makes that mistake again. But a wise man finds a smart man and learns from him how to avoid the mistake altogether.</p>
+	<p>&mdash;Roy H. Williams</p>
+</blockquote>
+
+    <p>
+Lately, I've been working on automatic discovery and configuration of devices and peripherals, using 
+<a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Binary Level Objects</a>, like the
+<a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a>, the
+<a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> and
+<a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree Overlay</a> formats.
+Typically these have been implemented using just a "dumb" storage device,
+like an <a href="http://en.wikipedia.org/wiki/EEPROM">EEPROM</a>, or an 
+<a href="http://en.wikipedia.org/wiki/Secure_Digital">SDcard</a>, or perhaps a 
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>.
+So, what then, do I mean by a "Smart" Device Tree?
+<br><br>
+</p>
+
+
+</div>
+      <footer>
+        <a rel="full-article" href="/news/2015/02/02/smart-devicetrees.html">More &raquo;</a>
+      </footer>
+    </article>
+  
+    
+    <article>
+      <header>
         <h1 class="entry-title"><a href="/news/2015/02/02/devicetree-on-modbus.html">Device Tree on Modbus</a></h1>
         
           <p class="meta">
@@ -157,11 +198,9 @@ for a wide variety of industrial systems, from
 <a href="http://en.wikipedia.org/wiki/Programmable_logic_controller">programmable logic controllers(PLCs)</a>.
 <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> can be found in most factories and automated assembly lines. 
 <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices can be quite complicated; but what if we used
-an embedded Device Tree to describe them? <br>
-That would enable the automatic discovery <br>
-and configuration of <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a>
-devices and peripherals, <br>
-wouldn't it?   
+an embedded <a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> to describe them? <br>
+That would enable the automatic discovery and configuration <br>
+of <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> devices and peripherals, wouldn't it?   
 </p>
 
 
@@ -269,14 +308,14 @@ and why it is getting adopted for even more computing platforms.
 	<p>&mdash;Alice Walker</p>
 </blockquote>
 
-    <p>Recently, I've been talking about the <a href="http://www.devicetree.org/">Device Tree</a> format,
+    <p>Recently, I've been working with the <a href="http://www.devicetree.org/">Device Tree</a> format,
 which is becoming widely used for automatically configuring the hardware of embedded computing platforms like the Beaglebone Black,
 Xilinx Zynq, Altera Arria, and many other System-on-Chip (SOC) devices. The <a href="http://www.devicetree.org/">Device Tree</a> 
 is read during the computing platform boot up sequence, and it describes all the hardware of the embedded computing platform. 
 It contains descriptions of all the platform parameters, like how much memory, what kind of interfaces, 
 how many peripherals, etc. are expected to be present in that make and model of platform.
-In this article, I'll introduce more of the details of the <a href="http://www.devicetree.org/">Device Tree</a> format, 
-and how it is being used on current embedded computing platforms.  
+In this article, I'll introduce the <a href="http://www.devicetree.org/">Device Tree</a> format, 
+and discuss how it is being used on current embedded computing platforms.  
 </p>
 
 
@@ -346,8 +385,9 @@ and those of us trying to determine whether or not a particular sensor meets our
 
     <p>There are a number of different metadata formats for containing low-level configuration information,
 some of them are in plain ASCII text, and others are in various encoded binary formats. The encoded binary formats, or 
-Binary Level OBjects, are commonly referred to as  "BLOBs". In this article, I will discuss how some of those formats
-are being used in existing products.
+Binary Level OBjects, are commonly referred to as 
+<a href="#BLOB">"BLOBs"</a>. 
+In this article, I will discuss how some of those formats are being used in existing products.
 </p>
 
 

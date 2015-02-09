@@ -172,7 +172,7 @@ It would seem to be exactly what we need to track the metadata for each subsyste
 <p>
 <h2>Drone Product Tree</h2>
 Let's take a typical quadcopter type drone design, using a central mounting plate for the batteries and main electronics,
-with four (4) or more motor arms to hold each of the motors and rotors. as we see above.
+with four (4) or more motor arms to hold each of the motors and rotors.
 If we were to outline a simplified version of the part and subsystem heirarchy, it might look something like this : 
 </p>
 <p>
@@ -250,7 +250,7 @@ manufacturing tracability, as well as being able to hold the motor property tabl
 for optimizing the Speed Controller performance to the attached BLDC motor.
 Pushing the Device Trees all the way down to the Rotors/Propellers 
 (using either a static RF ID tag or an embedded memory chip) 
-would be enable tracking the "Hours of Operation", 
+would enable tracking the "Hours of Operation", 
 as well as enabling real-time checking for miss-matched
 components; such as erroneously installing a low lift rotor blade, 
 when a high lift rotor blade might be required on that particlar Drone.
@@ -271,11 +271,11 @@ Of course, it can become difficult to employ a centralized database structure
 when changes are made "in the field", or across a number of different Contract Manufacturers, 
 perhaps with incompatible internal database systems.
 Instead, if we put the status information into the subassembly itself,
-it is always present, and can updated anywhere, at any repair depot.
+it is always present, and can be updated anywhere, at any repair depot.
 </p>
 <p>
 The Device Tree "Status" property is typically used to indicate only "on/off",
-that is to say, if the subassembly is enabled of disabled. It could just as easily
+that is to say, if the subassembly is enabled or disabled. It could just as easily
 be used to indicate phases in the life cycle, such as "untested", "QA-passed", etc.
 That way, incoming product returns could simply be marked, "untested" and put
 back into the normal factory flow for re-testing and any required rework.

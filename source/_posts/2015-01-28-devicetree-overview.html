@@ -10,21 +10,23 @@ licensing: false
 cc_by_sa: false
 comments: true
 ---
-<p>Recently, I've been talking about the <a href="http://www.devicetree.org/">Device Tree</a> format,
+<p>Recently, I've been working with the <a href="http://www.devicetree.org/">Device Tree</a> format,
 which is becoming widely used for automatically configuring the hardware of embedded computing platforms like the Beaglebone Black,
 Xilinx Zynq, Altera Arria, and many other System-on-Chip (SOC) devices. The <a href="http://www.devicetree.org/">Device Tree</a> 
 is read during the computing platform boot up sequence, and it describes all the hardware of the embedded computing platform. 
 It contains descriptions of all the platform parameters, like how much memory, what kind of interfaces, 
 how many peripherals, etc. are expected to be present in that make and model of platform.
-In this article, I'll introduce more of the details of the <a href="http://www.devicetree.org/">Device Tree</a> format, 
-and how it is being used on current embedded computing platforms.  
+In this article, I'll introduce the <a href="http://www.devicetree.org/">Device Tree</a> format, 
+and discuss how it is being used on current embedded computing platforms.  
 </p>
 <!-- more -->
 <p>
-<h2>What is the Device Tree?</h2>
-The <a href="http://www.devicetree.org/">Device Tree</a> is a data structure 
+<h2>What are Device Trees?</h2>
+A <a href="http://www.devicetree.org/">Device Tree</a> is a data structure 
 for describing the heirarchy of hardware subsystems within a computing platform,  or an add-on peripheral to that platform. 
 It can be used to automatically select and configure the device drivers for that computing platform. 
+A <a href="http://www.devicetree.org/">Device Tree</a> can be represented in several formats,
+such as the human readable "Device Tree Source" format, or the compact, binary, "Flattened Device Tree" format. 
 </p>
 <p>
 <h2>Why Device Tree?</h2>
@@ -40,7 +42,7 @@ this platform information was contained in what is known as the
 a group of files provided by the manufacturer of that particular board.
 Each new operating system version would need to include the hardware configuration information
 from the <a href="http://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a>
-in order to be able to run on that particular board. This quickly because a bottleneck in the process
+in order to be able to run on that particular board. This quickly became a bottleneck in the process
 of supporting new computing platforms that had only minor variations, so Linus Torvalds and others needed to 
 <a href="http://article.gmane.org/gmane.linux.ports.arm.omap/55060">push back</a>, 
 and come up with a more dynamic method of describing the hardware of the computing platform. 

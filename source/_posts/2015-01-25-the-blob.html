@@ -12,8 +12,9 @@ comments: true
 ---
 <p>There are a number of different metadata formats for containing low-level configuration information,
 some of them are in plain ASCII text, and others are in various encoded binary formats. The encoded binary formats, or 
-Binary Level OBjects, are commonly referred to as  "BLOBs". In this article, I will discuss how some of those formats
-are being used in existing products.
+Binary Level OBjects, are commonly referred to as 
+<a href="#BLOB">"BLOBs"</a>. 
+In this article, I will discuss how some of those formats are being used in existing products.
 </p>
 <!-- more -->
 <p>
@@ -44,7 +45,7 @@ data structure definition for attached Sensor devices? The following diagram dep
 <p>
 So, to put this all together in a more simple explaination :
 <ul>
-<li>During the Main Board boot-up sequence, the <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> BLOB is
+<li>During the Main Board boot-up sequence, the <a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> BLOB is
     parsed to determine all of the hardware interfaces contained on the Main Board.</li>
 <li>After the initial Main Board boot-up sequence, the 
     <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> is
@@ -94,9 +95,17 @@ a Drive-In Theater with my parents and family, in a
 </tr>
 </table>
 </p>
-
-
 <p>
-
+&nbsp;
 </p>
+<p>
+<a name="#BLOB"></a>
+<a href="http://en.wikipedia.org/wiki/Binary_large_object">Wikipedia</a> attributes the programming reference of "BLOBs"as a
+<a href="http://en.wikipedia.org/wiki/Backronym"><i>backronym</i></a> to Terry McKiever, a marketing person for Apollo;
+who felt that it needed to be an acronym and invented the "Basic Large Object", which became widely used as "Binary Large Object".
+Since what I'm trying to implement are very small objects, I prefer the acronym, "Binary Level OBject".
+</p>
+<p>
+</p>
+
 

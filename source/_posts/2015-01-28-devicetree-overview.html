@@ -111,7 +111,7 @@ As we can see from the above <a href="http://www.devicetree.org/">Device Tree So
 <li>memory &nbsp; &nbsp; &nbsp; : defines 256 MegaBytes of main memory on this model, and it's address range</li>
 </ul>
 Of course, the actual Device Tree Source (.dts) file, in this case, the 
-<a href="http://git.ti.com/wilink8-wlan/wilink8-wlan-ti-linux-kernel/blobs/9bf81aa9157a358fa53ab015e01c08bc68788709/arch/arm/boot/dts/am335x-bone-common.dtsi">am335x-bone-common.dtsi</a> include file has much more detail, but I'll build it up the concepts gradually using simplified snippets.
+<a href="http://git.ti.com/wilink8-wlan/wilink8-wlan-ti-linux-kernel/blobs/9bf81aa9157a358fa53ab015e01c08bc68788709/arch/arm/boot/dts/am335x-bone-common.dtsi">am335x-bone-common.dtsi</a> include file has much more detail, but I'll build up the concepts gradually using simplified snippets.
 </p>
 <p>
 Next we'll add some input/output to the Device Tree Source (.dts) file, and we'll start with a simple I2C controller
@@ -221,7 +221,7 @@ That will allow us to indicate an error if an expansion device requires more pow
 <p>
 In the above example, you'll start to see the use of Device Tree Source Include files (.dtsi),
 which allow us to include subnode definitions by model name, for building heirarchically.
-You'll also notice the defintion of the "dcdc2_reg" label here, which was used in out first
+You'll also notice the defintion of the "dcdc2_reg" label here, which was used in our first
 example to define the power supply for the cpu. A few of the parameters worth mentioning:
 <ul>
 <li>regulator-min-microvolt: how we define the min/max range of the power supplies</li>

@@ -3,16 +3,16 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: 404 : Page Not Found</title>
+  <title>PatternAgents: Device Tree Discussions</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
 
-  <meta name="robots"                  content="noodp, noydir, noarchive"         />
-  <meta name="description"        content="PatternAgents: the Agency of Design Patterns"    />
-  <meta name="abstract"              content="PatternAgents: an abstract"       />
-  <meta name="classification"  content="open source software, open source hardware, foss, oshw" />
-  <meta name="keywords"              content="patternagents, microprocessor, fpga, asic, arduino, oshw"       />
+  <meta name="robots"          content="index, follow, noodp, noydir" />
+  <meta name="description"     content="PatternAgents: The Agency of Design Patterns" />
+  <meta name="abstract"        content="PatternAgents provides collaboration, community and commerce for electronics designers." />
+  <meta name="classification"  content="electronics, electronics design, design engineering" />
+  <meta name="keywords"        content="electronics, electronics design, design engineering, open source software, open source hardware, OSHW" />
 
   <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
   <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
@@ -50,51 +50,8 @@
 
 </head>
 
-<body class="home">
+<body class="">
  
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
 
 
 
@@ -142,79 +99,103 @@
 
 
   
-  
-      
-      
-      
-      
-
-<article class="feature row">
-  <div class="col major">
-    <div class="col">
-	      <h1 class="entry-title"><a href="/projects/Videre.html">Videre - Color LCD Controller with Cortex-M0</a></h1>
-        <div class="feature-body">
-          <p>
-  The Videre LCD Controller shield provides a color backlit display for the Arduino form factor, or for standalone use.
-  The Videre includes a PSoC4 microcontroller, which is based on the ARM Cortex-M0 processor and includes programmable analog
-  and digital blocks. Like most PatternAgents shield patterns you can use a set of configuration jumpers to control Videre 
-  from either the UART (CLI), I2C/Two-Wire Bus, or the SPI interface - giving you the maximum flexibility to configure your 
-  other shields without I/O conflicts.
-</p>
-
-
-
-          <a class="button" href="/projects/Videre.html">More Info &raquo;</a>
-        </div>    
-      </div>
-  </div>
-  <div class="col minor">
-        <a href="/projects/Videre.html"><img src="/img/projects/Videre/Videre_model.png" alt="Videre" title="Videre"/></a>
-      </div>
-</article>
-
-    
-
 
 <main class="row">
   
   <div class="col major">
     
-  <div class="row">
-    <div class="col maj_major">
+  
+  <article role="article">
+    <header>
       
+        <h1 class="entry-title">Device Tree Discussions</h1>
+      
+      
+        <p class="meta">
+          
+        </p>
+      
+    </header>
+    <div class="entry-content">
+  
+  
   
 
-	  <table width="100%" align="center" valign="center" BGCOLOR="#000000" BORDER="0">
-	  <tr>
-		<td><center><a href="http://patternagents.github.io/"><img src="/img/logos/error404.png" width="640" height="320" border="0" alt="Error 404" title="Error 404"></a></center></td>
-	  </tr>
-	  </table>	   
+<blockquote>
+	<p>A new word is like a fresh seed sown on the ground of the discussion.</p>
+	<p>&mdash;Ludwig Wittgenstein</p>
+</blockquote>
+
+<p>
+There has been considerable progress in the just the past few years with implementing the
+<a href="http://www.devicetree.org/">Device Tree</a> format on embedded platforms, 
+particlarly in the ARM portion of the Linux Kernal. It has been an interesting an interesting
+time with all the growth and changes, but a little hard to locate all the different efforts underway.
+I've been working to collect what I can find, and index some of the topics under discussion. 
+</p>
+<!-- more -->
+<p>
+</p>
+<p>
+<h2><a href="http://dir.gmane.org/gmane.comp.devicetree.spec">Device Tree Specification Mailing List</a></h2>
+<iframe src="http://blog.gmane.org/recent.php?group=gmane.comp.devicetree.spec&type=topics&content=subject,date&td.author.background=green&
+td.author.color=white&table.border=1px+solid+black&td.background=grey" width=680px height=80px ></iframe>
+</p>
+<p>
+<h2><a href="http://dir.gmane.org/gmane.comp.devicetree.compiler">Device Tree Compiler Mailing List</a></h2>
+<iframe src="http://blog.gmane.org/recent.php?group=gmane.comp.devicetree.compiler&type=topics&content=subject,date&td.author.background=green&
+td.author.color=white&table.border=1px+solid+black&td.background=grey" width=680px height=200px ></iframe>
+</p>
+<p>
+<h2><a href="http://dir.gmane.org/gmane.linux.drivers.devicetree">Linux Drivers Device Tree Mailing List</a></h2>
+<iframe src="http://blog.gmane.org/recent.php?group=gmane.linux.drivers.devicetree&type=topics&content=subject,date&td.author.background=green&
+td.author.color=white&table.border=1px+solid+black&td.background=grey" width=680px height=200px ></iframe>
+</p>
+<p>   
+<h2>References, Footnotes, and more...</h2>
+<ol>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+</ol>
+</p>
 
 
 
-    </div>
-    <div class="col maj_minor">
-      
-  <h2>Recent Tweets</h2>
-  
-
-<!-- twitter -->
-<div class="panel">
-  <a  class="twitter-timeline"
-      href="https://twitter.com/PatternAgents" 
-      data-widget-id="408008079146373120"
-      data-tweet-limit="6">
-    Tweets by @PatternAgents
-  </a>
 </div>
+    <footer>
+      <p class="meta">
+        February 09, 2015
+      </p>
+      <p class="meta">
+        
+          <a class="previous" href="/news/2015/02/06/smart-devicetrees.html" title="Previous Post: Smart Device Trees">&laquo; Smart Device Trees</a>
+        
+        
+      </p>
+    </footer>
+  </article>
 
-
-    </div>
-  </div>
 
   </div>
   <div class="col minor">
-    
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
@@ -398,7 +379,6 @@
 </ul>
 
 
-
   </div>
 
 </main>
@@ -425,6 +405,8 @@
 
 <!-- discus panel -->
 <!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
 
    
 
@@ -520,16 +502,6 @@
 
 
   
-  
-  
-  
-
-<!-- twitter widget script -->
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-
-
-
 
 
 

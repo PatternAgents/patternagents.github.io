@@ -10,9 +10,9 @@ relative_permalinks: false
 excerpt_separator: "<!-- more -->"
 
 # the product_slug of the project you want to feature on home page
-featured_project: Workshops
+featured_project: StickSoC
 # the projects listed in list of projects in sidebar_projects
-listed_projects: [Workshops, TouchWidget_HowTo, Caldi]
+listed_projects: [Workshops, StickSoC, TouchWidget_HowTo]
 
 # site specific strings -
 #

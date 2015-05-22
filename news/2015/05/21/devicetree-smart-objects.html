@@ -127,14 +127,14 @@
 </blockquote>
 
 <p>
-<a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> 
+<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> 
 have the potential to provide much better interoperability for Internet connected devices,
 by standardizing the data (and the meta-data) exchanged between those devices.  While the market has seen an explosion of new IoT devices, 
 the vast majority can not "talk" to each other in any meaningful way, since they don't know each others data formats and device capabilities.
 Internet Protocol Smart Objects (ISPO) outlines several "Smart Object" classes for sensors and actuators with well known data formats.
 For the past several articles, I've been discussing Device Trees and their application in describing the hardware capabilities of
 various embedded platforms, which seems to be exactly what we need to automatically generate the directory of 
-<a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
+<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
 for IoT devices. I think it's time for Smart Objects to meet Smart Device Trees...
 </p>
 <!-- more -->
@@ -146,14 +146,14 @@ As the Internet matured to "Internet 2.0" and beyond, much of those early propri
 were replaced as the HTML 5.0 standard was adopted, and we began to have much
 better web browser interoperability and usability. Unfortunately, the "Internet of Things" as it stands today,
 is about where we were back in "Internet 1.0", but that is beginning to change as new standards like
-<a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
+<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
 are becoming adopted.
 </p>
 <h3>Beyond Simple Protocol Compatibility</h3>
 <p>
 Much of the effort around creating the "Internet of Things" to date, has been focused on developing standards to
 carry data to and from "the Cloud" to "edge Devices", using various connectivity protocols. 
-Both <a href="http://coap.technology/">CoAP</a> (RFC-7252) and <a href""http://mqtt.org/">MQTT</a>
+Both <a href="http://coap.technology/">CoAP</a> (RFC-7252) and <a href=""http://mqtt.org/">MQTT</a>
 have emerged as useful IoT connectivity protocols. Unfortunately, these are only connectivity standards
 and they do not specify the format of the data or meta-data tranferred using them.
 It's like asking for the temperature in the English language in Fahrenheit, 
@@ -162,9 +162,9 @@ Unless you speak French, you received the information, but can't comprehend it.
 This illustrates the heart of the problem for IoT designers today.
 </p>
 <p>
-<a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
+<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
 were designed to facilitate data exchange and interoperability by providing a common object model, 
-consisting of a URI template and known data types.  <a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> can be likened to web pages for devices, employing consistant data types for RESTful web objects.
+consisting of a URI template and known data types.  <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> can be likened to web pages for devices, employing consistant data types for RESTful web objects.
 Some of these IPSO objects are quite specific, like :
 <ul>
 <li>Temperature sensor</li>
@@ -187,11 +187,11 @@ While others are more generic :
 <li>Actuation</li>
 <li>Set point</li>
 </ul>
-The <a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
+The <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
 "Starter Pack 1.0" includes both the object definition and data format, allowing for a meaningful exchange of information.
 </p>
 <p>
-The <a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
+The <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
 is fairly new, with the release of "Starter Pack 1.0" in September 2014, so it is just beginning to be adopted.
 While reviewing the code for several of the first implementations, I was struck at how much of the same functionality was
 already present in the work I have been doing on <a href="/news/2015/02/06/smart-devicetrees.html">Device Tree and Smart Device Trees</a>.
@@ -200,7 +200,7 @@ because I have a feeling they are going to get along really well with each other
 </p>
 <p>
 <h3>Why employ the Device Tree?</h3>
-Because the information that an embedded system needs to create a <a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> directory of "Smart Objects" is already contained within the 
+Because the information that an embedded system needs to create a <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> directory of "Smart Objects" is already contained within the 
 <a href="/news/2015/02/06/smart-devicetrees.html">Device Tree</a>, and can be retrieved using the existing Device Tree parsers.
 Unfortunately, most of the (early) IPSO examples that I have seen to date, duplicate this meta-data, and so the developer would need to
 maintain it within two (2) separate areas of code for an IoT device.
@@ -208,7 +208,7 @@ maintain it within two (2) separate areas of code for an IoT device.
 <p>
 In some of the next articles, I'll describe some methods to leverage the meta-data contained within the 
 <a href="/news/2015/02/06/smart-devicetrees.html">Device Tree</a>, and to use that data to automatically generate
-the <a href"http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> directory of "Smart Objects". Stay tuned...
+the <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> directory of "Smart Objects". Stay tuned...
 </p>
 <p>   
 <h2>References, Footnotes, and more...</h2>

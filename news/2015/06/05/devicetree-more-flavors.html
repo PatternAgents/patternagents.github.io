@@ -3,7 +3,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: Smart Device Trees meet Smart Objects</title>
+  <title>PatternAgents: More DeviceTree Flavors!</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
@@ -108,7 +108,7 @@
   <article role="article">
     <header>
       
-        <h1 class="entry-title">Smart Device Trees meet Smart Objects</h1>
+        <h1 class="entry-title">More DeviceTree Flavors!</h1>
       
       
         <p class="meta">
@@ -122,93 +122,144 @@
   
 
 <blockquote>
-	<p>It’s not in the dreaming, it’s in the doing.</p>
-	<p>&mdash;Mark Cuban</p>
+	<p>Variety's the very spice of life, that gives it all its flavor.</p>
+	<p>&mdash;William Cowper</p>
 </blockquote>
 
 <p>
-<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> 
-have the potential to provide much better interoperability for Internet connected devices,
-by standardizing the data (and the meta-data) exchanged between those devices.  While the market has seen an explosion of new IoT devices, 
-the vast majority can not "talk" to each other in any meaningful way, since they don't know each others data formats and device capabilities.
-Internet Protocol Smart Objects (ISPO) outlines several "Smart Object" classes for sensors and actuators with well known data formats.
-For the past several articles, I've been discussing Device Trees and their application in describing the hardware capabilities of
-various embedded platforms, which seems to be exactly what we need to automatically generate the directory of 
-<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
-for IoT devices. I think it's time for Smart Objects to meet Smart Device Trees...
+Those of you who have been following what's been happening with hardware platforms like the Android, Beaglebone Black, Raspberry Pi,
+and several other small Linux systems, have probably noticed a bit of divergence with respect to the Device Tree EEPROM
+formats used on these platforms. So far, it's not seemed like the
+simplification or standardization that everyone had hoped for; 
+and what about cross-platform peripherals?
 </p>
 <!-- more -->
 <p>
-The development (and deployment) of new technologies usually occurs in phases, often as applicable 
-standards begin to become mainstream. The HTML standard spawned the first phase of the Internet, 
-followed by the <a href="http://en.wikipedia.org/wiki/Browser_wars">"Browser Wars"</a> of the late 1990's. 
-As the Internet matured to "Internet 2.0" and beyond, much of those early proprietary HTML enhancements 
-were replaced as the HTML 5.0 standard was adopted, and we began to have much
-better web browser interoperability and usability. Unfortunately, the "Internet of Things" as it stands today,
-is about where we were back in "Internet 1.0", but that is beginning to change as new standards like
-<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
-are becoming adopted.
-</p>
-<h3>Beyond Simple Protocol Compatibility</h3>
+We now have the original 
+Flattened Device Tree (fdt) format,
+the Beaglebone Black "CAPE" EEPROM format, 
+the Raspberry Pi "HAT" EEPROM format,  
+and yes, even a few others.
+Let's do a quick recap of these different EEPROM formats.
+<p> 
+<h3>Device Trees - Pick a Flavor</h3>
 <p>
-Much of the effort around creating the "Internet of Things" to date, has been focused on developing standards to
-carry data to and from "the Cloud" to "edge Devices", using various connectivity protocols. 
-Both <a href="http://coap.technology/">CoAP</a> (RFC-7252) and <a href=""http://mqtt.org/">MQTT</a>
-have emerged as useful IoT connectivity protocols. Unfortunately, these are only connectivity standards
-and they do not specify the format of the data or meta-data tranferred using them.
-It's like asking for the temperature in the English language in Fahrenheit, 
-but getting a response in the French language in Celsius.
-Unless you speak French, you received the information, but can't comprehend it.
-This illustrates the heart of the problem for IoT designers today.
+We have the "Original Recipe", flattened device tree (FDT) EEPROM format;
+used on the PowerPC architecture, the Xilinx Virtex series with embedded PowerPC processor,
+and other Freescale processors.
 </p>
 <p>
-<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
-were designed to facilitate data exchange and interoperability by providing a common object model, 
-consisting of a URI template and known data types.  <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> can be likened to web pages for devices, employing consistant data types for RESTful web objects.
-Some of these IPSO objects are quite specific, like :
-<ul>
-<li>Temperature sensor</li>
-<li>Humidity sensor</li>
-<li>Illuminance sensor</li>
-<li>Accelerometer</li>
-<li>Magnetometer</li>
-<li>Barometer</li>
-<li>Presence sensor</li>
-</ul>
-While others are more generic :
+<a href="http://elinux.org/Device_Tree"><img src="/img/news/devicetree/FDT_EEPROM.png" alt="flattened device tree (FDT) EEPROM" title="flattened device tree (FDT) EEPROM"/></a>
 </p>
 <p>
-<ul>
-<li>Digital input</li>
-<li>Digital output</li>
-<li>Analog input</li>
-<li>Analog output</li>
-<li>Power measurement</li>
-<li>Actuation</li>
-<li>Set point</li>
-</ul>
-The <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
-"Starter Pack 1.0" includes both the object definition and data format, allowing for a meaningful exchange of information.
+Then we have the "extra crispy", BeagleBone Black(ened) EEPROM format for the TI OMAP processor :
 </p>
 <p>
-The <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a>
-is fairly new, with the release of "Starter Pack 1.0" in September 2014, so it is just beginning to be adopted.
-While reviewing the code for several of the first implementations, I was struck at how much of the same functionality was
-already present in the work I have been doing on <a href="/news/2015/02/06/smart-devicetrees.html">Device Tree and Smart Device Trees</a>.
-So, I think it's time that we introduced the Internet Protocol Smart Objects (ISPO) to Device Trees,
-because I have a feeling they are going to get along really well with each other. 
+<a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf"><img src="/img/news/devicetree/BBB_EEPROM.png" alt="beaglebone black cape EEPROM" title="beaglebone black cape  EEPROM"/></a>
 </p>
 <p>
-<h3>Why employ the Device Tree?</h3>
-Because the information that an embedded system needs to create a <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> directory of "Smart Objects" is already contained within the 
-<a href="/news/2015/02/06/smart-devicetrees.html">Device Tree</a>, and can be retrieved using the existing Device Tree parsers.
-Unfortunately, most of the (early) IPSO examples that I have seen to date, duplicate this meta-data, and so the developer would need to
-maintain it within two (2) separate areas of code for an IoT device.
+and then there's "Raspberry flavor", the Raspberry Pi EEPROM format for the Broadcom processor : 
 </p>
 <p>
-In some of the next articles, I'll describe some methods to leverage the meta-data contained within the 
-<a href="/news/2015/02/06/smart-devicetrees.html">Device Tree</a>, and to use that data to automatically generate
-the <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> directory of "Smart Objects". Stay tuned...
+<a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md"><img src="/img/news/devicetree/RPI_EEPROM.png" alt="raspberry pi hat  EEPROM" title="raspberry pi hat EEPROM"/></a>
+</p>
+<p>
+and "Vanilla Ice" for those of us working on FMC (FPGA Mezzanine Cards), the IPMI FRU EEPROM format : 
+</p>
+<p>
+<a href="http://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/platform-management-fru-document-rev-1-2-feb-2013.pdf"><img src="/img/news/devicetree/FRU_EEPROM.png" alt="IPMI FRU EEPROM" title="IPMI FRU EEPROM"/></a>
+</p>
+<p>
+All of these EEPROM formats contain (more or less) the same meta-data about a system platform and/or it's add-on boards
+and peripherals, and are used to discover the configuration information needed for those peripherals.
+Things like product name, serial number, manufacturing date, and other important meta-data.
+</p>
+<p>
+So, if they all contain (more or less) the same meta-data, why have so many formats? 
+Historical reasons mainly, with different groups all working on the same problem;
+and I think the folks designing add-on boards like "Capes", "Hats", and "Shields" were also
+looking for a more compact and easily addressable format than the flattened device tree (FDT).
+</p>
+<H3>Enter the Raspberry Pi HAT EEPROM format</H3>
+<p>
+When I first saw the <a href="https://github.com/raspberrypi/hats/blob/master/designguide.md">Raspberry Pi HAT specification</a> 
+I wasn't sure that I liked the proposed <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a>,
+because the structure wasn't as simple to parse as the <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a>. The <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a> defines
+several "ATOMs" of data, and includes the typical header information as well as the PinMap and separate copy of the flattened device tree (FDT)
+for each add-on card (i.e. HAT) as mandatory requirements. While I laud them for that effort at completeness,
+making all of those ATOM fields mandatory is going to require a large EEPROM for each HAT; 
+and it still doesn't really address the problem of cross-platform peripherals and different PinMap requirements. 
+However, after looking at the HAT specification for a while, I really do like the simple and extendable ATOM concept for
+arranging the storage of meta-data in the HAT EEPROM. 
+</p>
+<H3>The PinMap Problem</H3>
+The most "system platform specific" meta-data of all these EEPROM formats is the PinMap information; 
+which determines what pins are used for inputs (switches, sensors), outputs (LED's, actuators), and other functions.
+The PinMap information is specific to one make/model of microprocessor, 
+and so the PinMap information for the TI AM3358 (Beaglebone)
+doesn't work for the Broadcom BCM2835 (RaspPi), etc. This is going to make it hard to make one product that
+supports several different models of microprocessor.
+In other words, if I have an add-on board that can plug into either a Beaglebone OR a Raspberry Pi,
+(presumably with an adaptor) then how can I get it to work on both platforms with one EEPROM?
+<br>The short answer right now, you can't. 
+</p>
+<p>
+The idea behind having a PinMux section, is to be able to read configuration information that may
+be required very early in the boot-up process, such as configuring the display screen in order to see the 
+system bootup messages, as the system is booting. But the vast majority of add-on peripherals
+won't need to redefine the basic pin multiplexing of the system platform to function,
+they will simply add a peripheral to an existing I2C, SPI, or UART interface that has already
+been defined by the FDT at boot time. So, why all the extra complexity?  
+</p>
+<H3>What's the Cross-Platform Use Model, Kenneth?</H3>
+<p>
+If you think about other (bus) interfaces, like USB, PCI, and PCI-express, 
+they are more microprocessor make/model agnostic, because you design to the bus interface.
+That's why for example, a PCI card works on a variety of micro-processors 
+(Intel, AMD, ARM, etc.) because the bus definition is independent of the processor.
+The same kind of approach could be taken with the Device Tree -
+binding the microprocessor pins to (virtual) buses like UART1, I2C1, SPI2, etc.
+and then binding the specific peripherals to those (virtual) buses using the device tree overlay.
+That is possible today, but most designers bind peripherals directly to specific device pins.
+</p>
+<p>
+So what is the Cross-Platform Use Model today? <br>
+I suppose with the current device tree and overlay implementations 
+you could erase and rewrite the product EEPROM for 
+each different model of microprocessor, but that's a manufacturing/logistics nightmare.
+Or you could use the FDT EEPROM format, and include a whole separate FDT tree for each
+different model of microprocesor - but that's going to use a lot of EEPROM memory. 
+So there are solutions today, they are just NOT very simple or elegant.
+</p>
+<h3>Suggestions for Cross-Platform Device Trees</h3>
+<p>
+<ol>
+  <li>Headers for Peripherals should be Architecture Neutral : <br>
+      Consider that someone is using an adaptor to put a Raspberry PI HAT on a BeagleBone Black, or visa versa.
+      The "Header" information of Product Name/Model/UUID etc. is NOT Architecture specific - why make it so?
+      The different device tree files for the same peripheral could be organized by the "compatible" tag. 
+      For example, if I have a Cross-Platform peripheral named "myWidget", it could be something like :<br>
+      /firmware/AM3358/myWidget.dts <br>
+      /firmware/BCM2835/myWidget.dts<br>
+  </li>
+  <li>Put Architecture Specific Data in it's own ATOM : <br>
+      If I need to include a different PinMap overlay for TI AM3358 and Broadcom BCM2835,
+      how about making a PinMap ATOM type that includes the processor "compatible" field?
+      That way, you can search the different PinMap ATOMs
+      for your "compatible" processor type and just use that one.
+      As a device overlay, it would be smaller in size, as it would just need to define the pins that are remapped.
+  </li>
+  <li>Define Pin Mapping in terms of Common Interface Types<br>
+      While different microprocessors may have different pin names and types,
+      they usually implement standard interfaces like UART1, I2C1, SPI2, GPIO, etc.
+      If the primary, architecture specific FDT bound pins to standard interface types,
+      then the device tree overlays could be much more generic. 
+  </li>
+</ol>
+</p>
+<p>
+In the next article, I'll present some concepts for mapping the standard interfaces like UART1, I2C1, SPI2, GPIO, etc.
+as "Smart Objects", and how that can address some of the cross-platform interface problems facing designers today. 
 </p>
 <p>   
 <h2>References, Footnotes, and more...</h2>
@@ -241,14 +292,14 @@ the <a href="http://www.ipso-alliance.org/technical-information/getting-started-
 </div>
     <footer>
       <p class="meta">
-        May 21, 2015
+        June 05, 2015
       </p>
       <p class="meta">
         
-          <a class="previous" href="/projects/StickSoC.html" title="Previous Post: StickSoC - Arduino Shield Adaptor for PSoC4">&laquo; StickSoC - Arduino Shield Adaptor for PSoC4</a>
+          <a class="previous" href="/news/2015/05/21/devicetree-smart-objects.html" title="Previous Post: Smart Device Trees meet Smart Objects">&laquo; Smart Device Trees meet Smart Objects</a>
         
         
-          <a class="next" href="/news/2015/06/05/devicetree-more-flavors.html" title="Next Post: More DeviceTree Flavors!">More DeviceTree Flavors! &raquo;</a>
+          <a class="next" href="/news/2015/06/06/smart-object-keystore.html" title="Next Post: Smart Object Keystore">Smart Object Keystore &raquo;</a>
         
       </p>
     </footer>

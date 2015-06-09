@@ -65,31 +65,38 @@ Things like product name, serial number, manufacturing date, and other important
 <p>
 So, if they all contain (more or less) the same meta-data, why have so many formats? 
 Historical reasons mainly, with different groups all working on the same problem;
-and I think the folks designing add-on boards like "Capes", "Hats", and "Shields" were also
+and I think the folks designing add-on boards like "Capes", and "Hats" were also
 looking for a more compact and easily addressable format than the flattened device tree (FDT).
 </p>
 <H3>Enter the Raspberry Pi HAT EEPROM format</H3>
 <p>
 When I first saw the <a href="https://github.com/raspberrypi/hats/blob/master/designguide.md">Raspberry Pi HAT specification</a> 
 I wasn't sure that I liked the proposed <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a>,
-because the structure wasn't as simple to parse as the <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a>. The <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a> defines
-several "ATOMs" of data, and includes the typical header information as well as the PinMap and separate copy of the flattened device tree (FDT)
+because the structure wasn't as simple to parse as the <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a>. The <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a> specifies fixed sized fields
+at fixed offsets (which become constants at compile time), where as the other formats require a run time parser to interpret the "live" data structure. The <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a> 
+introduces the concept of ATOMs of data, basically a container format with checksum for each. 
+The ATOM types include the typical header information as well as the PinMap and separate copy of the flattened device tree (FDT)
 for each add-on card (i.e. HAT) as mandatory requirements. While I laud them for that effort at completeness,
 making all of those ATOM fields mandatory is going to require a large EEPROM for each HAT; 
 and it still doesn't really address the problem of cross-platform peripherals and different PinMap requirements. 
 However, after looking at the HAT specification for a while, I really do like the simple and extendable ATOM concept for
-arranging the storage of meta-data in the HAT EEPROM. 
+arranging the storage of meta-data in the HAT EEPROM. I think that there is a lot that could be done (easily) using
+different ATOM types for open (unencrypted), and secure (encrypted) areas within the EEPROM,
+allowing important areas (like pinmap or microcode/firmware perhaps) 
+to be secure/signed objects that need to be decrypted/verified before use.
 </p>
 <H3>The PinMap Problem</H3>
-The most "system platform specific" meta-data of all these EEPROM formats is the PinMap information; 
+The most "system platform specific" meta-data contained in these EEPROM formats are things like the
+"compatible" architecture binding, memory size/reservations, and the PinMap information; 
 which determines what pins are used for inputs (switches, sensors), outputs (LED's, actuators), and other functions.
-The PinMap information is specific to one make/model of microprocessor, 
+The PinMap information is specific to one "compatible" architecture binding, 
 and so the PinMap information for the TI AM3358 (Beaglebone)
-doesn't work for the Broadcom BCM2835 (RaspPi), etc. This is going to make it hard to make one product that
-supports several different models of microprocessor.
-In other words, if I have an add-on board that can plug into either a Beaglebone OR a Raspberry Pi,
+doesn't work for the Broadcom BCM2835 (RaspPi), etc. 
+That could make it harder to design one product that
+supports several different "compatible" architecture bindings.
+In other words, if I have an add-on board that can plug into either a Beaglebone Black <i>OR</i> a Raspberry Pi,
 (presumably with an adaptor) then how can I get it to work on both platforms with one EEPROM?
-<br>The short answer right now, you can't. 
+<br>The short answer right now, is that I don't think you can (easily). 
 </p>
 <p>
 The idea behind having a PinMux section, is to be able to read configuration information that may

@@ -110,6 +110,99 @@ One of the problems with using the <a href="http://www.ipso-alliance.org/technic
 well no problem with the <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52832">nRF52832</a> IoT SoC,
 it's got floating point operation covered. (Don't try that on your 8bit i8051 IoT SoC, youll be waiting a while...)
 </p>
+<h3>The Rundown</h3>
+So, how does the new Nordic <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52832">nRF52832</a> IoT SoC
+stack up against the other leading Bluetooth SoCs? <br>Here's a quick comparison :
+</p>
+<table border=2>
+<tr align="center">
+<td>Bluetooth SoC</td>
+<td>Mode(s)</td>
+<td>CPU</td>
+<td>Flash</td>
+<td>RAM</td>
+<td>RX/TX Current</td>
+<td>Price (1K)</td>
+</tr>
+<tr align="center">
+<td>TI CC254x</td>
+<td>Single Mode v4.0</td>
+<td>8051</td>
+<td>128kB/256kB</td>
+<td>8kB</td>
+<td>17.9mA / 18.2mA to 14.7mA / 14.3mA</td>
+<td>~$5</td>
+</tr>
+<tr align="center">
+<td>TI CC256x</td>
+<td>Dual Mode Classic + BLE/ANT</td>
+<td>External</td>
+<td>External</td>
+<td>External</td>
+<td>15mA</td>
+<td>~$2</td>
+</tr>
+<tr align="center">
+<td>TI CC26xx</td>
+<td>Single Mode BLE v4.1</td>
+<td>Cortex-M3/M0</td>
+<td>128kB</td>
+<td>20kB</td>
+<td>5.9mA</td>
+<td>~$6</td>
+</tr>
+<tr align="center">
+<td>Dialog DA14580</td>
+<td>Single Mode BLE v4.1</td>
+<td>Cortex-M0</td>
+<td>32kB OTP</td>
+<td>50kB</td>
+<td>4.9mA</td>
+<td>~$2</td>
+</tr>
+
+<tr align="center">
+<td>CSR CSR101x</td>
+<td>Single Mode BLE v4.1</td>
+<td>16-bit RISC</td>
+<td>64kB</td>
+<td>64kB</td>
+<td>16mA</td>
+<td>~$2</td>
+</tr>
+<tr align="center">
+<td>PSoC 4 BLE<br>PRoC BLE</td>
+<td>Single Mode BLE v4.1</td>
+<td>Cortex-M0</td>
+<td>256/128kB</td>
+<td>16/32kB</td>
+<td>15.6mA / 16.4mA</td>
+<td>~$3-$5</td>
+</tr>
+<tr align="center">
+<td>Nordic nRF51822</td>
+<td>Single Mode v4.1 / ANT</td>
+<td>Cortex-M0</td>
+<td>256/128kB</td>
+<td>16/32kB</td>
+<td>9.7mA / 8mA</td>
+<td>~$2</td>
+</tr>
+<tr align="center">
+<td>Nordic nRF52832</td>
+<td>Multimode v4.1 / ANT</td>
+<td>Coretex-M4F</td>
+<td>512kB</td>
+<td>64kB</td>
+<td>T.B.D.</td>
+<td>T.B.D.</td>
+</tr>
+</table>
+<p>
+<b>Note</b> : Prices averaged from 1K quantities using manufacturers data and <a href="http://www.findchips.com/">FindChips.com</a> 
+<br>at the date of publication. Other data obtained from manufacturers data sheets.<br>
+</p>
+
 <h3>Critique/Improvements</h3>
 <p>
 I think the only change I might have made to this architecture would have been to go "Big-Little" with it. 

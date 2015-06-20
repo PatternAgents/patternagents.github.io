@@ -3,7 +3,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: Smart Object Keystore</title>
+  <title>PatternAgents: New IoT SoCs</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
@@ -108,7 +108,7 @@
   <article role="article">
     <header>
       
-        <h1 class="entry-title">Smart Object Keystore</h1>
+        <h1 class="entry-title">New IoT SoCs</h1>
       
       
         <p class="meta">
@@ -122,63 +122,134 @@
   
 
 <blockquote>
-	<p>I wish we hadn't used all the keys on the keyboard.</p>
-	<p>&mdash;Bill Joy</p>
+	<p>We're still in the first minutes of the first day of the internet revolution.</p>
+	<p>&mdash;Scott Cook</p>
 </blockquote>
 
 <p>
-
+There have been a number of purpose built System-on-Chip (SoC) devices
+intended for connecting to the Internet of Things (IoT). 
+Examples include the 
+<a href="http://www.esp8266.com/">ESP8266 (WiFi)</a>, the 
+<a href="http://www.ti.com/product/cc2530">CC2530 (Zigbee)</a>, or the
+<a href="http://www.st.com/web/catalog/sense_power/FM2185/SC1845/PF253167">Spirit1 (sub-1GHz)</a>,
+for different wireless connection standards. 
+In the Bluetooth & ANT IoT connectivity space, 
+Nordic Semiconductor has been playing a winning hand with their ARM Cortex-M0 based nRF51822 IoT SoC,
+and they have just seriously upped the ante with their new ARM Cortex-M4F based 
+<a href="https://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52832">nRF52832</a> IoT SoC.
+It's a multiprotocol RF SoC that supports Bluetooth Smart, ANT, 
+Near Field Communication (NFC), Out-of-Band Pairing (OoB), Ultra-Low Power (ULP), and more.
 </p>
 <!-- more -->
 <p>
-quote: Cease to inquire what the future has in store, and take as a gift what the day brings forth. 
-quote_author: Horace
-<p>
-<h3>What do Smart Objects have to do with Device Trees?</h3>
-<p>
-It seems like the low level hardware platform folks aren't talking to the high level "object" definition folks,
-and there are more than a few parallel efforts underway there. It makes it all rather challenging for us simple
-makers, that just want to utilize these platforms to get something done. I'd like to see a more coordinated approach to
-a common Device Tree Object directory/definition, and I think that the 
-<a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> 
-"starter pack" is a great template for how to do that.  
+<h3>nRF52832 - 2.4GHz Multiprotocol RF SoC</h3>
+The new <a href="https://www.nordicsemi.com/">Nordic Semiconductor</a> Multiprotocol RF SoC IC has
+just been announced, and the <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52832">nRF52832</a> IoT SoC
+is a pretty amazing piece of design work. You can get an idea of the high level of integration just looking at the block diagram :
 </p>
+<a href="https://www.nordicsemi.com/eng/nordic/download_resource/48726/2/92931685"><img src="/img/news/iot/nRF52832_block_diagram.png" alt="flattened device tree (FDT) EEPROM" title="nRF52832 Block Diagram"/></a>
+<p>
+<h3>nRF52832 - Hardware Features</h3>
+A quick rundown of the IoT SoC hardware features - 
+<br>and why we're really excited about working with this new RF platform : 
 </p>
 <p>
-In some of the next articles, I'll describe 
+<ul>
+<li>Multiprotocol 2.4Ghz Radio (Bluetooth Smart, ANT, Proprietary)</li>
+<li>NFC-A Near Field Communication (use NFC for seamless Bluetooth pairing...)</li>
+<li>64Mhz ARM Cortex-M4F (with Floating Point and DSP instructions)</li>
+<li>512kB FLASH memory (enough for the stack AND your application)</li>
+<li>64kB SRAM (enough to make use of those DSP instructions)</li>
+<li>Twelve (12) Bit Analog-to-Digital Converter (200 kps ADC/Sensor Update Rate)</li>
+<li>Memory mapped FIFOs memories with Direct Memory Access (EasyDMA)</li>
+<li>Twenty (20) Channel Programmable Peripheral Interconnect <br>(PPI for non-CPU/autonomous I/O operations)</li>
+<li>I2S Audio supported by DMA (Digital Audio Capabilities with ARM DSP)</li>
+<li>128-Bit Security/Encryption Co-processor (AES ECB, CCM, AAR)</li>
+<li>32KHz RTC clock/control oscillator (Real-Time Clock)</li>
+<li>32MHz RTC clock/control oscillator (Bluetooth/RF Clock)</li>
+<li>Internal DC-DC Buck Converter Power Supply (Low External Parts Count)</li>
+<li>Power Management Interface Controller (PMIC for individual peripheral power control)</li>
+<li>Prototype Friendly 48 Pin QFN Package (Hand Solder)</li>
+<li>Mobile/Miniature/Production WL-CSP Package (Handset)</li>
+</ul>
 </p>
-<p>   
-<h2>References, Footnotes, and more...</h2>
-<ol>
-<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
-<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
-<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
-<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
-<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
-<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
-<li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
-<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
-<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
-<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
-<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
-<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
-<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
-<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
-<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
-<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
-<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
-<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
-</ol>
+<p>
+I have to say, this is an ideal RF architecture from my point of view,
+and I think that the Nordic engineers came up with a really excellent SoC design.
+If someone gave me a team of ASIC designers and a budget, it's pretty much what I'd want to design
+for a Bluetooth Smart/ANT IoT System-on-Chip.
 </p>
-
+<h3>Improving the User Experience - Seamless Device Pairing</h3>
+<a href="https://www.nordicsemi.com/eng/nordic/download_resource/48726/2/92931685"><img class="illo" src="/img/news/iot/nfc_bluetooth_pair.png" alt="NFC Bluetooth Pairing" title="NFC Bluetooth Pairing"/></a>
+<p>
+By including a Near Field Communications (NFC-A) module with proximity detection and Wake-on-NFC capability,
+the <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52832">nRF52832</a> IoT SoC
+is really going to improve the user experience with seamless device pairing (no codes to enter),
+and proximity operation.  The Near Field Communications (NFC-A) module can provide the pairing keys,
+so that an authorized device can connect automatically - no fuss - no muss...
+</p>
+<p>
+The proximity detection capability will enable a whole variety of "walk up - turn on" usage scenarios
+and is a good addition to the NFC capability.
+</p>
+<h3>New 2.4GHz Multiprotocol Radio</h3>
+<p>
+The new 2.4GHz multiprotocol radio module supports 
+Bluetooth Smart, and ANT as well as other proprietary protocols.
+It is also backward compatible (on air compatible) with 
+the earlier Nordic radios, like the nRF24AP, nRF24L and nRF51 Series.
+The RF output power is now scalable from a maximum of +4dBm down to -20dBm in 4dB
+steps; with increased sensitivity range(s) from -96dBm to -89dBm, depending on the data rate.
+</p>
+<h3>Autonomous Peripheral Communications</h3>
+<p>
+I wish that more ASSP/ASIC designers understood how offloading the peripheral communications from the CPU
+to dedicated hardware can both lower the power budget and increase the I/O throughput. The Nordic team
+clearly got that right with their new  Programmable Peripheral Interconnect (PPI) system, which provides a
+twenty (20) channel bus for direct and autonomous peripheral communications, and offloads that work from the CPU.
+That means the CPU can be sleeping more often, saving those precious microamps of battery power.  
+</p>
+<h3>ARM Cortex-M4F Central Processor</h3>
+<p>
+This was a really smart move by the Nordic team, as the ARM Cortex-M4F CPU is both powerful,
+and still relatively power efficient. I've been using the ARM Cortex-M4F for a while now,
+on the excellent <a href="https://www.pjrc.com/teensy/teensy31.html">Teensy 3.1</a> platform
+designed by Paul Stoffregen, and it is a really nice processor architecture - with hardware support
+for DSP instructions and floating point operations. 
+</p>
+<p>
+Using the ARM Cortex-M4F Central Processor means that the 
+<a href="https://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52832">nRF52832</a> IoT SoC
+has enough CPU horsepower to handle a variety of tasks, especially with their PPI I/O offloading system.
+One of the problems with using the <a href="http://www.ipso-alliance.org/technical-information/getting-started-with-smart-objects">Internet Protocol Smart Objects (ISPO)</a> standard is that the common sensor value returns are all in floating point format -
+well no problem with the <a href="https://www.nordicsemi.com/eng/Products/Bluetooth-Smart-Bluetooth-low-energy/nRF52832">nRF52832</a> IoT SoC,
+it's got floating point operation covered. (Don't try that on your 8bit i8051 IoT SoC, youll be waiting a while...)
+</p>
+<h3>Critique/Improvements</h3>
+<p>
+I think the only change I might have made to this architecture would have been to go "Big-Little" with it. 
+That is to say, keep the nRF51822 style Cortex-M0 as the "Little" CPU for the RF Stack and the PMIC functions,
+and add the Cortex-M4F as the "Big" CPU for the application processor. Of course, that is going to add silicon area,
+cost, and complexity; so the Nordic designers likely discarded that architecture in order to hit their cost targets.
+</p>
+<p>
+The advantage of that architecture is the ability to overlap the operation of the RF stack(M0)
+with the application code(M4F); as well as a measure of separation so that the application code can't 
+interfere with the RF stack (as easily). I'm not sure how much more power the M4F takes than the M0
+(certainly more with FPU running), so that might afford a small degree of power savings as well,
+being able to switch back and forth (highest performance/lowest power).
+</p>
+<p>
+But all in all, that is a pretty minor critique to what is clearly going to be one of the most popular
+Bluetooth Smart/ANT RF platforms for the next generation of IoT devices.
+</p>
 
 
 </div>
     <footer>
       <p class="meta">
-        June 06, 2015
+        June 19, 2015
       </p>
       <p class="meta">
         
@@ -309,7 +380,7 @@ In some of the next articles, I'll describe
   <ul class="post-list">
   
     <li>
-      <a href="/news/2015/06/06/smart-object-keystore.html">Smart Object Keystore</a>
+      <a href="/news/2015/06/19/IoT-SoCs.html">New IoT SoCs</a>
     </li>
   
     <li>

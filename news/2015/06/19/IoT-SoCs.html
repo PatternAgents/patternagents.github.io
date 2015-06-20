@@ -205,7 +205,7 @@ steps; with increased sensitivity range(s) from -96dBm to -89dBm, depending on t
 <h3>Autonomous Peripheral Communications</h3>
 <p>
 I wish that more ASSP/ASIC designers understood how offloading the peripheral communications from the CPU
-to dedicated hardware can both lower the power budget and increase the I/O throughput. The Nordic team
+to dedicated hardware can both lower the power budget <b>and</b> increase the I/O throughput. The Nordic team
 clearly got that right with their new  Programmable Peripheral Interconnect (PPI) system, which provides a
 twenty (20) channel bus for direct and autonomous peripheral communications, and offloads that work from the CPU.
 That means the CPU can be sleeping more often, saving those precious microamps of battery power.  
@@ -234,7 +234,7 @@ and add the Cortex-M4F as the "Big" CPU for the application processor. Of course
 cost, and complexity; so the Nordic designers likely discarded that architecture in order to hit their cost targets.
 </p>
 <p>
-The advantage of that architecture is the ability to overlap the operation of the RF stack(M0)
+The advantage of that architecture however, is the ability to overlap the operation of the RF stack(M0)
 with the application code(M4F); as well as a measure of separation so that the application code can't 
 interfere with the RF stack (as easily). I'm not sure how much more power the M4F takes than the M0
 (certainly more with FPU running), so that might afford a small degree of power savings as well,

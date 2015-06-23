@@ -1,10 +1,10 @@
 ---
 layout: project
 category: project
-title: "Smart Devicetrees using I2C EEPROM Emulation"
+title: "Using I2C EEPROM Emulation for Smarter Devicetree Implementations"
 permalink: /projects/I2C_Devicetree.html
 product_slug: I2C_Devicetree
-product_img: I2C_Devicetree_model.png
+product_img: I2C_Devicetree_thumb.png
 product_id: 00000001
 product_display: false
 product_price: "$0"
@@ -13,18 +13,42 @@ licensing: true
 cc_by_nc_sa: true
 meta:
   robots: "noodp, noydir, noarchive"
-  description: "I2C_Devicetree - Smart Devicetrees using I2C EEPROM Emulation"
-  abstract: "I2C_Devicetree - Smart Devicetrees using I2C EEPROM Emulation"
+  description: "I2C_Devicetree - Using I2C EEPROM Emulation for Smarter Devicetree Implementations"
+  abstract: "I2C_Devicetree - Using I2C EEPROM Emulation for Smarter Devicetree Implementations"
   keywords: "arduino, iot, internet of things, lcd, lcd controller, uno, mega, due, psoc, psoc1, psoc3, psoc4, psoc5, cypress, cpm, cpld, fpga"
 comments: true
 ---
+
 <p>
-  The I2C_Devicetree reference design project uses a programmable System-on-Chip (SoC) with a Cortex-M0 CPU,  in a small 28 Pin TSSOP package,
+The I2C_Devicetree reference design project uses a programmable System-on-Chip (SoC) with a Cortex-M0 CPU,  in a small 28 Pin TSSOP package,
 to emulate an I2C EEPROM using the FLASH memory of the SoC, which creates an "intelligent memory" device. The I2C_Devicetree reference design project is intended to make it easier for people to create their own custom expansion boards for Beaglebone, Raspberry Pi and other platforms
 that require the use of a Devicetree EEPROM for automatic product identification, pin mapping, and configuration on the Linux Operating System.
 The I2C_Devicetree reference design project also includes an I2C I/O Expander to provide extra GPIO pins that are I2C controlled.    
 </p>
 <!-- more -->
+Consider a typical development situation, using something like a Beaglebone Black,
+where you have a main CPU/SoC board, and several expansion boards (i.e. "Capes") attached.
+In order to support the <a href="http://www.devicetree.org/">Device Tree</a> 
+configuration, each expansion board ("Cape") will contain a small I2C EEPROM 
+that holds the <a href="http://www.devicetree.org/">Devicetree</a> 
+data structure (i.e. the overlay). This is a fairly common configuration, 
+and it doesn't really matter what the Cape function is for this discussion, it could be a peripheral 
+like an LCD display, Wi-Fi Radio, Motor Controller, Sensor Hub, etc. We are interested here in
+describing their interconnections, as shown by the block diagram below :
+</p>
+<p>
+<img src="{{site.url.images}}/news/devicetree/soc-block-diagram.png" alt="SoC Simplified Block Diagram" title="SoC Simplified Block Diagram"/>
+</p>
+<p>
+As you can see in the above block diagram, the "orange" colored blocks represent the connections on the 
+<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus that will be used to read the 
+Devicetree data structures (i.e. the Overlays) for each expansion board (i.e. Cape/Shield/Plate),
+in order to determine their make and model, and how they are interfaced and connected.
+</p>
+<p>
+The I2C_Devicetree reference design project uses a programmable System-on-Chip (SoC), to replace the I2C EEPROM's in the above diagram,
+and adds some basic interface capability in the process.
+</p>
 <h3>{{page.product_slug}} Features:</h3>
 <ul>
   <li>Programmable System-on-Chip</li>

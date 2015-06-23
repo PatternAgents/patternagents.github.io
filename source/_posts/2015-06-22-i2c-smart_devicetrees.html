@@ -29,7 +29,7 @@ The I2C_Devicetree reference design project also includes an I2C I/O Expander to
 <ul>
   <li>Programmable System-on-Chip</li>
   <li>28 Pin TSSOP Package</li>
-  <li>I2C EEPROM Emulation (4096 bytes)</li>
+  <li>I2C EEPROM Emulation (32kb - 512kb)</li>
   <li>Programmable I2C Address</li>
   <li>I2C I/O Expander Function</li>
   <li>Dual (2) UARTS (Host & Slave devices at different baud rates)</li>
@@ -52,7 +52,7 @@ such as the product make, model, and serial number, and more.
   The I2C_Devicetree reference design project creates an "intelligent memory" device 
 by using a microprocessor to emulate a "dumb" I2C EEPROM memory chip. New peripherals
 for small computers based on the Linux Operating System, such as Beagebone Black "Capes",
-Raspberry Pi "Hats", and others require a small I2C memory device to be included that
+Raspberry Pi "Hats", and others require a small I2C memory device to be included that contains
 configuration data about that peripheral. This configuration "meta-data" includes things
 such as the product make, model, and serial number, and more. 
   </p>

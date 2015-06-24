@@ -3,7 +3,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: Smart Device Trees</title>
+  <title>PatternAgents: Smart Devicetrees</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
@@ -108,7 +108,7 @@
   <article role="article">
     <header>
       
-        <h1 class="entry-title">Smart Device Trees</h1>
+        <h1 class="entry-title">Smart Devicetrees</h1>
       
       
         <p class="meta">
@@ -130,13 +130,13 @@
 Lately, I've been working on automatic discovery and configuration of devices and peripherals, using 
 <a href="http://www.patternagents.com/news/2015/01/25/the-blob.html">Binary Level Objects</a>, like the
 <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a>, the
-<a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> and
-<a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree Overlay</a> formats.
+<a href="http://www.devicetree.org/Device_Tree_Usage">Devicetree</a> and
+<a href="http://www.devicetree.org/Device_Tree_Usage">Devicetree Overlay</a> formats.
 Typically these have been implemented using just a "dumb" storage device,
 like an <a href="http://en.wikipedia.org/wiki/EEPROM">EEPROM</a>, or an 
 <a href="http://en.wikipedia.org/wiki/Secure_Digital">SDcard</a>, or perhaps a 
 <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>.
-So, what then, do I mean by a "Smart" Device Tree?
+So, what then, do I mean by a "Smart" Devicetree?
 <br><br>
 </p>
 <!-- more -->
@@ -182,21 +182,21 @@ to a SPI EEPROM emulator function, then to the outside world, your microcontroll
 look just like a "dumb" SPI EEPROM.  
 </p>
 <p>
-<h2>Device Tree Flash Mapping</h2>
+<h2>Devicetree Flash Mapping</h2>
 Of course, "under the hood", this solution is not "dumb" at all. 
 When you utilize an I2C or SPI EEPROM emulation function, 
 you generally pass a pointer to the flash memory area that you want reserved 
 for the EEPROM memory emulation. If we are not going to do much else with 
 microcontroller we might even reserve the majority of the microcontrollers flash memory.
 Now, imagine for a moment that reserved flash memory area is used to hold the 
-Flattened Device Tree "BLOB" of binary data, perhaps for an expansion board.
-What we have now, is a "Smart Device Tree". We can even access that
-Device Tree from two different interfaces, namely 
+Flattened Devicetree "BLOB" of binary data, perhaps for an expansion board.
+What we have now, is a "Smart Devicetree". We can even access that
+Devicetree from two different interfaces, namely 
 <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, and 
 <a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">SPI</a>
 at the same time. In my 
 <a href="http://www.patternagents.com/news/2015/02/02/devicetree-on-modbus.html">last article</a>
-I demonstrated how to map the Device Tree onto a <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> 
+I demonstrated how to map the Devicetree onto a <a href="http://en.wikipedia.org/wiki/Modbus">Modbus</a> 
 RTU using a UART interface. I've successfully employed these techniques in several customer designs.
 </p>
 <p>
@@ -204,41 +204,41 @@ RTU using a UART interface. I've successfully employed these techniques in sever
 You'll notice that I put an "Internal Temperature" block in the above microcontroller block
 diagram, as most microcontrollers have a junction temperature measurement that can be used
 to read the internal temperature of the device. Now, imagine for a moment, that the microcontroller
-takes a temperature measurement every second of so, and maintains a running average temperature.
-So, what happens if we store that as a property into the Flattened <a href="http://www.devicetree.org/">Device Tree</a> (BLOB)?
-Well, now we have a <i>Smart Device Tree</i>.
+takes a initial temperature measurement when it boots, and maintains a running average temperature at boot.
+So, what happens if we store that as a property into the Flattened <a href="http://www.devicetree.org/">Devicetree</a> (BLOB)?
+Well, now we have a <i>Smart Devicetree</i>.
 </p>
 <p>
 <h2>Summary</h2>
-Adding the Device Tree data structure to an embedded micrcontroller design is 
+Adding the Devicetree data structure to an embedded micrcontroller design is 
 pretty straightforward and simple, and enables the automatic discovery and configuration of 
 a variety of devices and peripherals; and that is just the beginning of what we can do with a
-<i>Smart Device Tree</i>. 
+<i>Smart Devicetree</i>. 
 </p>
 <p>   
 <h2>References, Footnotes, and more...</h2>
 <ol>
 <li><a href="http://www.modbus.org/specs.php">Modbus Specifications</a></li>
-<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
-<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
-<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
-<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
-<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
-<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Devicetree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Devicetree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Devicetree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Devicetree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Devicetree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Devicetree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Devicetree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Devicetree Graphing - kernal.org</a></li>
 <li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
 <li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
-<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
-<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
-<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Devicetree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Devicetree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Devicetree Overlay Proposal - Grant Likely</a></li>
 <li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
-<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
-<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Devicetree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Devicetree Overlays- derek molloy</a></li>
 <li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
 <li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
-<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
-<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Devicetree Migration - Pantelis Antoniou</a></li>
+<li><a href="http://lwn.net/Articles/616859/">Devicetree Overlays - Jonathon Corbet</a></li>
 </ol>
 </p>
 
@@ -408,7 +408,7 @@ a variety of devices and peripherals; and that is just the beginning of what we 
     </li>
   
     <li>
-      <a href="/news/2015/02/06/smart-devicetrees.html">Smart Device Trees</a>
+      <a href="/news/2015/02/06/smart-devicetrees.html">Smart Devicetrees</a>
     </li>
   
     <li>

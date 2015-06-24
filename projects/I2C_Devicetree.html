@@ -184,9 +184,11 @@ and adds some basic interface capability in the process. The I2C_Devicetree refe
    The I2C_Devicetree reference design project creates an "intelligent memory" device 
 by using a microprocessor to emulate a "dumb" I2C EEPROM memory chip. New peripherals
 for small computers based on the Linux Operating System, such as Beagebone Black "Capes",
-Raspberry Pi "Hats", and others require a small I2C memory device to be included that
+Raspberry Pi "Hats", and others require a small I2C memory device to be included that holds
 configuration data about that peripheral. This configuration "meta-data" includes things
-such as the product make, model, and serial number, and more. 
+such as the product make, model, and serial number, and more. The I2C_Devicetree reference design project
+gives a template design for an "intelligent memory" device, which also includes a GPIO expander and 
+bridge communications functions, including UART(s) and other interfaces for a high level of integration.
   </p>
 <p>
 <img src="/img/projects/I2C_Devicetree/I2C_Devicetree_model.png" alt="I2C_Devicetree Simplified Block Diagram" title="I2C_Devicetree Simplified Block Diagram"/>

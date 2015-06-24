@@ -144,7 +144,7 @@ and other platforms that require the use of a I2C EEPROM for automatic product i
 <!-- more -->
 Consider a typical development situation, using something like a Beaglebone Black,
 where you have a main CPU/SoC board, and several expansion boards (i.e. "Capes") attached.
-In order to support the <a href="http://www.devicetree.org/">Device Tree</a> 
+In order to support the <a href="http://www.devicetree.org/">Devicetree</a> 
 configuration, each expansion board ("Cape") will contain a small I2C EEPROM 
 that holds the <a href="http://www.devicetree.org/">Devicetree</a> 
 data structure (i.e. the overlay). This is a fairly common configuration, 
@@ -175,7 +175,9 @@ and adds some basic interface capability in the process. The I2C_Devicetree refe
   <li>Dual (2) UARTS (Host & Slave devices at different baud rates)</li>
   <li>Support for LED status indictors</li>
 </ul>
-
+<p>
+<img src="/img/projects/I2C_Devicetree/I2C_Devicetree_model.png" alt="I2C_Devicetree Simplified Block Diagram" title="I2C_Devicetree Simplified Block Diagram"/>
+</p>
 <p>
 </p>
 

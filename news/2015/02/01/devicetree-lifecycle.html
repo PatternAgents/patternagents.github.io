@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <title>PatternAgents: Device Tree and Product Life Cycles</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <meta name="robots"          content="index, follow, noodp, noydir" />
+  <meta name="description"     content="PatternAgents: The Agency of Design Patterns" />
+  <meta name="abstract"        content="PatternAgents provides collaboration, community and commerce for electronics designers." />
+  <meta name="classification"  content="electronics, electronics design, design engineering" />
+  <meta name="keywords"        content="electronics, electronics design, design engineering, open source software, open source hardware, OSHW" />
+
+  <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
+  <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
+
+  <!-- Ubuntu for logo -->
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/app-old-ie.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/css/app.css">
+<!--<![endif]-->
+  
+<!-- Begin MailChimp Signup Form -->
+ <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+	#mc_embed_signup{position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,.8); display:block; z-index:10000; }
+	#mc_embed_signup form{position:fixed; top:5%; left:5%; right:5%; bottom:5%; width:60%; font:normal 100% Helvetica,Arial,sans-serif; font-size:14px; border-radius:4px; border:3px; padding:10px; background-color:#eee; color:#000; text-align:left;max-height:800px;overflow-y:auto;overflow-x:hidden;}
+	#mc_embed_signup a.mc_embed_close{background:transparent url(http://downloads.mailchimp.com/img/closebox.png) no-repeat; display:block; height:30px; width:30px; text-indent:-999em; position:absolute; top:10px; right:10px; display:none; }
+ </style>
+
+<!-- Begin Google Analytics -->
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38592761-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="">
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="head-container">
+	  <div class="col">
+	    <a href="/">
+	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
+	    </a>
+	  </div>
+  </div>
+</header>
+
+
+
+<div class="row"><div class="col">
+<nav class="toggle">
+  <h2><a href="#" title="(click to expand)"><span class="menu-icon">&#9776;</span> Go to:</a></h2>
+  <ul>
+    <li class="nav-store"><a href="/store/index.html">Store</a></li>
+    <li class="nav-projects"><a href="/projects/index.html">Projects</a></li>
+    <li class="nav-support"><a href="/support/index.html">Support</a></li>
+    <li class="nav-about"><a href="/about/index.html">About</a></li>
+    <li class="nav-news"><a href="/news/index.html">News</a></li>
+  </ul>
+</nav>
+</div></div>
+
+
+  
+
+<main class="row">
+  
+  <div class="col major">
+    
+  
+  <article role="article">
+    <header>
+      
+        <h1 class="entry-title">Device Tree and Product Life Cycles</h1>
+      
+      
+        <p class="meta">
+          
+        </p>
+      
+    </header>
+    <div class="entry-content">
+  
+  
+  
+
+<blockquote>
+	<p>Why do they always want to do it the hard way?</p>
+	<p>&mdash;Wile E. Coyote, Genius</p>
+</blockquote>
+
+<p>Imagine that <a hrel="http://en.wikipedia.org/wiki/Wile_E._Coyote_and_The_Road_Runner">Wile E. Coyote</a> has just finished watching<BR> 
+<a href="http://www.pbs.org/wgbh/nova/military/rise-of-the-drones.html">"Rise of the Drones"</a> on PBS, and he has had a 
+<a href="http://en.wikipedia.org/wiki/Eureka">"Eureka!"</a> moment. 
+He immediately dials <a href="http://en.wikipedia.org/wiki/Acme_Corporation">Acme Corporation</a> and
+orders several dozen <a href="http://terminator.wikia.com/wiki/HK-Drone">T-4 Aerial Drones</a>. As the new manager of 
+<a href="http://en.wikipedia.org/wiki/Acme_Corporation">Acme Corporation</a>, you realize that 
+<a hrel="http://en.wikipedia.org/wiki/Wile_E._Coyote_and_The_Road_Runner">Wile E. Coyote</a> will in all likelyhood <b><i>crash</i></b>
+the majority of them, and you will need a good way to track warranty claims and product repairs; <br>
+as he seems to have an unlimited line-of-credit, and he has also <br>
+purchased the <b><i>platinum service plan</i></b> with every one of those Drones.
+</p>
+<!-- more -->
+<p>
+<h2>Manufacturing Traceability</h2>
+<img class="illo" src="/img/news/devicetree/quad-px4.png" alt="PX4 Drone" title="PX4 Drone"/>
+A Drone can be a pretty complex piece of gear, with a lot of parts and subsystems.
+<a href="http://en.wikipedia.org/wiki/Traceability">Traceability</a> is the ability to verify the history, location, or application
+of an item by means of documented recorded identification <a href="http://go.usa.gov/BP6">[1]</a>.
+This can be very important with components, or sensors that have a limited life time,
+typically measured in hours of use. As we repair and replace crashed Drones, we'll want a way
+to keep track of the major parts and subsystems, like the 
+<a href="http://www.tomshardware.com/reviews/multi-rotor-quadcopter-fpv,3828-4.html">Airframe</a>, 
+<a href="http://beagleboard.org/project/BeagleDrone/">main computer</a>, 
+<a href="http://pixhawk.org/modules/pixhawk">flight controller</a>, 
+<a href="http://www.tomshardware.com/reviews/multi-rotor-quadcopter-fpv,3828-6.html">motor controllers</a>, and the 
+<a href="http://www.tomshardware.com/reviews/multi-rotor-quadcopter-fpv,3828-5.html">rotors</a>.
+</p>
+<p>
+One of the attributes that I like about the 
+<a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> 
+format for storing product information, <br>
+is it's support of manufacturing traceability properties, such as :
+<ul>
+<li>product-model-name : "T-4 Aerial Drone"</li>
+<li>product-mfg-name : ACME Corporation</li>
+<li>product-mfg-date : (Univeral Time Code)</li>
+<li>product-mfg-loc : (GPS coordinates)</li>
+<li>product-asset-num : (ASSET TAG)</li>
+<li>product-serial-num : (SERIAL NUMBER)/(UUID)</li>
+</ul>
+So, can we add these kinds of manufacturing traceability properties to the Device Tree?
+It would seem to be exactly what we need to track the metadata for each subsystem, and follow it through it's whole lifecycle.
+</p>
+<p>
+<h2>Drone Product Tree</h2>
+Let's take a typical quadcopter type drone design, using a central mounting plate for the batteries and main electronics,
+with four (4) or more motor arms to hold each of the motors and rotors.
+If we were to outline a simplified version of the part and subsystem heirarchy, it might look something like this : 
+</p>
+<p>
+<img src="/img/news/devicetree/quad-tree.png" alt="Example Drone Tree Nodes" title="Example Drone Tree Nodes"/>
+</p>
+<p>
+<h2>Dynamic NFC/RFID Tags</h2>
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">
+<img class="illo" src="/img/news/devicetree/rfid-tag-small.png" alt="RFID Asset Tag" title="RFID Asset Tag"/></a>
+Now, because you are the best manager that <a href="http://en.wikipedia.org/wiki/Acme_Corporation">Acme Corporation</a> has had
+in quite a while, you have decided to use a 
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>
+at the root of your product tree, namely on the Chassis (Air Frame) itself. 
+This allows your service technicians to use an RFID reader/writer wand,
+or their smartphone to interogate each Drone as it is tested or returned, and get the complete list of subassemblies,
+their serial numbers, and dates of manufacture. 
+</p>
+<p>
+The <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a> 
+can be read/written either using the RF interface,
+or from within the product itself - using the I2C interface to the tag.
+This dual interface is important, as it allows the main computer to update the 
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a> as well.
+</p>
+<p>
+
+For example, once the main computer has read all the Device Tree information from each of the different
+subsystems, it can update the inventory list contained within the 
+<a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>.
+If any subsystems are changed out, the the main computer can automatically update
+the inventory list the next time it boots up. By designing each main subsystem to contain it's
+own Device Tree Overlay, the complete view of the system inventory is rebuilt each time the Drone reboots.
+</p>
+<p>
+Why put the <a href="http://www.st.com/web/en/catalog/mmc/FM76/CL1766/SC1412/SS1812">Dynamic NFC/RFID tag</a>
+on the Airframe Chasis you ask? Well, RFID tags require a 
+<a href="http://www.st.com/web/en/resource/technical/document/application_note/CD00232630.pdf">specialized antenna design</a>
+to get enough range to read the tag at a distance, and the product chassis (or enclosure) will
+usually have suitable space to locate and mount the antenna. Besides, it is typically the "root" of
+the product tree, that everything else is mounted on (or in). 
+</p>
+<p>
+Okay, so what might that look like as we put all the subsystems together? I've diagrammed an example
+below, using only <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> Buses for simplicity,
+(a real system would have more of a mixture of <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, 
+<a href="http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus">SPI</a>, and 
+<a href="http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter">UARTs</a>),
+but you get the idea...
+</p>
+<p>
+<h2>Example Drone - Device Tree Heirarchy</h2>
+<img src="/img/news/devicetree/quad-dev-tree.png" alt="Example Drone Device Tree Nodes" title="Example Drone Device Tree Nodes"/>
+</p>
+<p>
+Each replaceable subsystem has it's own Device Tree, for example :
+<ul>
+<li>DT-MC : Main Computer (i.e. Beaglebone/RaspPi/Etc.) Device Tree</li>
+  <ul>
+    <li>DT-AC : Air Frame Chassis Device Tree Overlay (also accessible via RFID)</li>
+    <li>DT-RH : Radio/RF Hub Device Tree Overlay</li>
+    <li>DT-FC : Flight Controller Device Tree</li>
+    <ul>
+       <li>DT-SH : Sensor Hub Device Overlay</li>
+       <li>DT-SC : Speed Controller#1 Device Overlay</li>
+       <li>DT-SC : Speed Controller#2 Device Overlay</li>
+       <li>DT-SC : Speed Controller#3 Device Overlay</li>
+       <li>DT-SC : Speed Controller#4 Device Overlay</li>
+    </ul>
+  </ul>
+</ul>
+The Device Tree(s) for the four(4) Speed Controllers would likely be identical,
+with the exception of properties like Serial Number, In-Service Date, Hours of Operation, etc.
+Pushing the Device Trees down to the BLDC Motors would give them
+manufacturing tracability, as well as being able to hold the motor property tables,
+for optimizing the Speed Controller performance to the attached BLDC motor.
+Pushing the Device Trees all the way down to the Rotors/Propellers 
+(using either a static RF ID tag or an embedded memory chip) 
+would enable tracking the "Hours of Operation", 
+as well as enabling real-time checking for miss-matched
+components; such as erroneously installing a low lift rotor blade, 
+when a high lift rotor blade might be required on that particlar Drone.
+</p>
+<p>
+<h2>Product Life Cycles</h2>
+Manufacturing Traceability for complex subassemblies has already 
+been implemented using a number of technologies, including 
+<a href="http://en.wikipedia.org/wiki/Barcode">Barcode</a>, 
+<a hrel="http://en.wikipedia.org/wiki/Radio-frequency_identification">RFid</a>,
+and other methods, for many years now. 
+Those tracking systems usually require a centralized database to store all the
+information required. As a board or subassembly moves from production to testing, to
+quality assurance, to shipping, etc., workers can read the 
+<a href="http://en.wikipedia.org/wiki/Barcode">Barcode</a> or other identification,
+to register the current status of the subassembly in the centralized database. 
+Of course, it can become difficult to employ a centralized database structure
+when changes are made "in the field", or across a number of different Contract Manufacturers, 
+perhaps with incompatible internal database systems.
+Instead, if we put the status information into the subassembly itself,
+it is always present, and can be updated anywhere, at any repair depot.
+</p>
+<p>
+The Device Tree "Status" property is typically used to indicate only "on/off",
+that is to say, if the subassembly is enabled or disabled. It could just as easily
+be used to indicate phases in the life cycle, such as "untested", "QA-passed", etc.
+That way, incoming product returns could simply be marked, "untested" and put
+back into the normal factory flow for re-testing and any required rework.
+</p>
+<p>
+By embedding the status information into the product itself, it lives and changes with
+the product itself, and can track the entire the product life cycle, from factory to the field,
+and back again, when servicing is required.
+</p>
+<p>
+<h2>Summary</h2>
+This has been a very brief introduction to the concepts behind using the the Device Tree
+for product life cycle tracking and management.
+In upcoming articles, I'll be discussing ideas for the Device Tree and Device Tree Overlays, 
+in order to add features like calibration, Virtual I/O, and automatic interface testing.
+</p>
+<p>   
+<h2>References, Footnotes, and more Device Tree information...</h2>
+<ol>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+</ol>
+</p>
+
+
+
+</div>
+    <footer>
+      <p class="meta">
+        February 01, 2015
+      </p>
+      <p class="meta">
+        
+          <a class="previous" href="/news/2015/01/29/devicetree-overlays.html" title="Previous Post: Device Tree Overlays">&laquo; Device Tree Overlays</a>
+        
+        
+          <a class="next" href="/news/2015/02/02/devicetree-on-modbus.html" title="Next Post: Device Tree on Modbus">Device Tree on Modbus &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+
+
+  </div>
+  <div class="col minor">
+    
+  <h2>Featured Projects</h2>
+  <ul class="post-list">
+  
+    
+      
+    
+      
+        <li>
+          <a href="/projects/AB_ESP8266.html">Agent Bees - ESP8266</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/TouchWidget_HowTo.html">TouchWidgets How-To Example Project</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Hula_Poppy.html">Hula Poppy - Pmod Lure for the Intel MinnowBoard</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+</ul>
+  <h2>Latest News</h2>
+  <ul class="post-list">
+  
+    <li>
+      <a href="/news/2015/06/19/IoT-SoCs.html">New IoT SoCs</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/05/devicetree-more-flavors.html">More DeviceTree Flavors!</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/05/21/devicetree-smart-objects.html">Smart Device Trees meet Smart Objects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/09/devicetree-discussions.html">Device Tree Discussions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/06/smart-devicetrees.html">Smart Devicetrees</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/02/devicetree-on-modbus.html">Device Tree on Modbus</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/01/devicetree-lifecycle.html">Device Tree and Product Life Cycles</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/29/devicetree-overlays.html">Device Tree Overlays</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/28/devicetree-overview.html">Device Tree Overview</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/27/sensor-abilities.html">Sense and Sensor Abilities</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/25/the-blob.html">The BLOB - Binary Level OBjects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/23/the-great-chain.html">Automatic Configuration Chains</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/22/SFF-SelfConfig.html">Small Form Factor Auto-Configuration</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/26/Hula-Poppy-Lure-minnow-board.html">Hula Poppy Lure for MinnowBoard</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/24/minnow-board-lures.html">MinnowBoard Lures Library</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/02/touchwidget-best-practices.html">Touch Widgets - Best Practices</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/29/touch-widgets-howto.html">Touch Widgets How-To/Instructions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/24/eagle-touch-widgets-library.html">Touch Widgets Library for Eagle</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/20/capacitive-sensing-introduction.html">Capacitance Sensing Introduction</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/14/building-your-new-widget.html">Building Your New Widget</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/11/eaglecad-libraries.html">EagleCAD Libraries</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/09/quattrocycle-update.html">Quattrocycle Lighting Update</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/09/13/portland-maker-faire.html">Portland Mini-Maker Faire</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/09/arduino-yun-the-next-generation.html">Arduino Y'un - The Next Generation</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/08/minnow-board-small-form-factor.html">The Minnow Board - A New Small Form Factor</a>
+    </li>
+  
+</ul>
+
+
+  </div>
+
+</main>
+   
+
+<form id="signup"
+      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      method="post"
+      id="mc-embedded-subscribe-form"
+      name="mc-embedded-subscribe-form"
+      class="validate"
+      target="_blank"
+      novalidate>
+  <div class="row"><div class="col">
+    
+  <div class="row collapse">
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <button class="postfix" type="submit">Subscribe</button>
+  </div>
+  </div></div>
+</form>
+   <!-- Add the discussion widget -->
+   
+
+<!-- discus panel -->
+<!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
+
+   
+
+<footer>
+  <div class="row">
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <ul class="social-icons">
+           <li><a href="https://twitter.com/PatternAgents" title="twitter"><img src="/img/logos/white/twitter.png"></a></li>
+            <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
+            <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
+            <li><a href="https://www.facebook.com/pages/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
+            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+            <h2><a href="/contact/index.html">Contact</a></h2>
+            <ul>
+              <li><a href="/contact/press.html">Press</a></li>
+              <li><a href="/contact/investors.html">Investors</a></li>
+              <li><a href="/licensing/index.html">Licensing</a></li>
+              <li><a href="/contact/credits.html">Credits</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <h2><a href="/about/index.html">About Us</a></h2>
+          <ul>
+            <li><a href="/about/manufacturers.html">For Manufacturers</a></li>
+            <li><a href="/about/distributors.html">For Distributors</a></li>
+            <li><a href="/about/representatives.html">For Representatives</a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+          <h2><a href="/policies/index.html">Policies</a></h2>
+          <ul>
+            <li><a href="/policies/shipping.html">Shipping</a></li>
+            <li><a href="/policies/returns.html">Returns</a></li>
+            <li><a href="/policies/legal/index.html">Legal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row unimportant">
+    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+  </div>
+</footer>
+
+<script src="/js/lib/jquery.js"></script>
+
+
+<!-- disqus widget script -->
+<script type="text/javascript">
+  var disqus_shortname = 'patternagents';
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- pinterest widget script -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.setAttribute('data-pin-color', 'red');
+  p.setAttribute('data-pin-hover', 'true');
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+<!-- toggle menu -->
+<script>
+  $(function() {
+    var $navToggle = $('nav.toggle');
+    $navToggle.addClass('collapsed');
+    $navToggle.find('h2').bind('click focus', function() {
+      // if we want to get fancy, we can animate the max-height here
+      $navToggle.toggleClass('collapsed');
+    });
+  });
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

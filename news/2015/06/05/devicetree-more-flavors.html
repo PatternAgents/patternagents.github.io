@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <title>PatternAgents: More DeviceTree Flavors!</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <meta name="robots"          content="index, follow, noodp, noydir" />
+  <meta name="description"     content="PatternAgents: The Agency of Design Patterns" />
+  <meta name="abstract"        content="PatternAgents provides collaboration, community and commerce for electronics designers." />
+  <meta name="classification"  content="electronics, electronics design, design engineering" />
+  <meta name="keywords"        content="electronics, electronics design, design engineering, open source software, open source hardware, OSHW" />
+
+  <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
+  <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
+
+  <!-- Ubuntu for logo -->
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/app-old-ie.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/css/app.css">
+<!--<![endif]-->
+  
+<!-- Begin MailChimp Signup Form -->
+ <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+	#mc_embed_signup{position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,.8); display:block; z-index:10000; }
+	#mc_embed_signup form{position:fixed; top:5%; left:5%; right:5%; bottom:5%; width:60%; font:normal 100% Helvetica,Arial,sans-serif; font-size:14px; border-radius:4px; border:3px; padding:10px; background-color:#eee; color:#000; text-align:left;max-height:800px;overflow-y:auto;overflow-x:hidden;}
+	#mc_embed_signup a.mc_embed_close{background:transparent url(http://downloads.mailchimp.com/img/closebox.png) no-repeat; display:block; height:30px; width:30px; text-indent:-999em; position:absolute; top:10px; right:10px; display:none; }
+ </style>
+
+<!-- Begin Google Analytics -->
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38592761-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="">
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="head-container">
+	  <div class="col">
+	    <a href="/">
+	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
+	    </a>
+	  </div>
+  </div>
+</header>
+
+
+
+<div class="row"><div class="col">
+<nav class="toggle">
+  <h2><a href="#" title="(click to expand)"><span class="menu-icon">&#9776;</span> Go to:</a></h2>
+  <ul>
+    <li class="nav-store"><a href="/store/index.html">Store</a></li>
+    <li class="nav-projects"><a href="/projects/index.html">Projects</a></li>
+    <li class="nav-support"><a href="/support/index.html">Support</a></li>
+    <li class="nav-about"><a href="/about/index.html">About</a></li>
+    <li class="nav-news"><a href="/news/index.html">News</a></li>
+  </ul>
+</nav>
+</div></div>
+
+
+  
+
+<main class="row">
+  
+  <div class="col major">
+    
+  
+  <article role="article">
+    <header>
+      
+        <h1 class="entry-title">More DeviceTree Flavors!</h1>
+      
+      
+        <p class="meta">
+          
+        </p>
+      
+    </header>
+    <div class="entry-content">
+  
+  
+  
+
+<blockquote>
+	<p>Variety's the very spice of life, that gives it all its flavor.</p>
+	<p>&mdash;William Cowper</p>
+</blockquote>
+
+<p>
+Those of you who have been following what's been happening with hardware platforms like the Android, Beaglebone Black, Raspberry Pi,
+and several other small Linux systems, have probably noticed a bit of divergence with respect to the Device Tree EEPROM
+formats used on these platforms. So far, it's not seemed like the
+simplification or standardization that everyone had hoped for; 
+and what about cross-platform peripherals?
+</p>
+<!-- more -->
+<p>
+We now have the original 
+Flattened Device Tree (fdt) format,
+the Beaglebone Black "CAPE" EEPROM format, 
+the Raspberry Pi "HAT" EEPROM format,  
+and yes, even a few others.
+Let's do a quick recap of these different EEPROM formats.
+<p> 
+<h3>Device Trees - Pick a Flavor</h3>
+<p>
+We have the "Original Recipe", flattened device tree (FDT) EEPROM format;
+used on the PowerPC architecture, the Xilinx Virtex series with embedded PowerPC processor,
+and other Freescale processors.
+</p>
+<p>
+<a href="http://elinux.org/Device_Tree"><img src="/img/news/devicetree/FDT_EEPROM.png" alt="flattened device tree (FDT) EEPROM" title="flattened device tree (FDT) EEPROM"/></a>
+</p>
+<p>
+Then we have the "extra crispy", BeagleBone Black(ened) EEPROM format for the TI OMAP processor :
+</p>
+<p>
+<a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf"><img src="/img/news/devicetree/BBB_EEPROM.png" alt="beaglebone black cape EEPROM" title="beaglebone black cape  EEPROM"/></a>
+</p>
+<p>
+and then there's "Raspberry flavor", the Raspberry Pi EEPROM format for the Broadcom processor : 
+</p>
+<p>
+<a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md"><img src="/img/news/devicetree/RPI_EEPROM.png" alt="raspberry pi hat  EEPROM" title="raspberry pi hat EEPROM"/></a>
+</p>
+<p>
+and "Vanilla Ice" for those of us working on FMC (FPGA Mezzanine Cards), the IPMI FRU EEPROM format : 
+</p>
+<p>
+<a href="http://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/platform-management-fru-document-rev-1-2-feb-2013.pdf"><img src="/img/news/devicetree/FRU_EEPROM.png" alt="IPMI FRU EEPROM" title="IPMI FRU EEPROM"/></a>
+<BR>
+Although technically, the IPMI FRU (Intelligent Peripheral Management Interface - Field Replacable Unit) 
+is not related to the Linux Device Tree, it is used on many FPGA Mezzanine Cards to hold much of the same
+design meta-data, so I'm chosing to include it here...
+</p>
+<p>
+All of these EEPROM formats contain (more or less) the same meta-data about a system platform and/or it's add-on boards
+and peripherals, and are used to discover the configuration information needed for those peripherals.
+Things like product name, serial number, manufacturing date, and other important meta-data.
+</p>
+<p>
+So, if they all contain (more or less) the same meta-data, why have so many formats? 
+Historical reasons mainly, with different groups all working on the same problem;
+and I think the folks designing add-on boards like "Capes", and "Hats" were also
+looking for a more compact and easily addressable format than the flattened device tree (FDT).
+</p>
+<H3>Enter the Raspberry Pi HAT EEPROM format</H3>
+<p>
+When I first saw the <a href="https://github.com/raspberrypi/hats/blob/master/designguide.md">Raspberry Pi HAT specification</a> 
+I wasn't sure that I liked the proposed <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a>,
+because the structure wasn't as simple to parse as the <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a>. The <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a> specifies fixed sized fields
+at fixed offsets (which become constants at compile time), where as the other formats require a run time parser to interpret the "live" data structure. The <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a> 
+introduces the concept of ATOMs of data, basically a container format with checksum for each. 
+The ATOM types include the typical header information as well as the PinMap and separate copy of the flattened device tree (FDT)
+for each add-on card (i.e. HAT) as mandatory requirements. While I laud them for that effort at completeness,
+making all of those ATOM fields mandatory is going to require a large EEPROM for each HAT; 
+and it still doesn't really address the problem of cross-platform peripherals and different PinMap requirements. 
+However, after looking at the HAT specification for a while, I really do like the simple and extendable ATOM concept for
+arranging the storage of meta-data in the HAT EEPROM. I think that there is a lot that could be done (easily) using
+different ATOM types for open (unencrypted), and secure (encrypted) areas within the EEPROM,
+allowing important areas (like pinmap or microcode/firmware perhaps) 
+to be secure/signed objects that need to be decrypted/verified before use.
+</p>
+<H3>The PinMap Problem</H3>
+The most "system platform specific" meta-data contained in these EEPROM formats are things like the
+"compatible" architecture binding, memory size/reservations, and the PinMap information; 
+which determines what pins are used for inputs (switches, sensors), outputs (LED's, actuators), and other functions.
+The PinMap information is specific to one "compatible" architecture binding, 
+and so the PinMap information for the TI AM3358 (Beaglebone)
+doesn't work for the Broadcom BCM2835 (RaspPi), etc. 
+That could make it harder to design one product that
+supports several different "compatible" architecture bindings.
+In other words, if I have an add-on board that can plug into either a Beaglebone Black <i>OR</i> a Raspberry Pi,
+(presumably with an adaptor) then how can I get it to work on both platforms with one EEPROM?
+<br>The short answer right now, is that I don't think you can (easily). 
+</p>
+<p>
+The idea behind having a PinMux section, is to be able to read configuration information that may
+be required very early in the boot-up process, such as configuring the display screen in order to see the 
+system bootup messages, as the system is booting. But the vast majority of add-on peripherals
+won't need to redefine the basic pin multiplexing of the system platform to function,
+they will simply add a peripheral to an existing I2C, SPI, or UART interface that has already
+been defined by the FDT at boot time. So, why all the extra complexity?  
+</p>
+<H3>What's the Cross-Platform Use Model, Kenneth?</H3>
+<p>
+If you think about other (bus) interfaces, like USB, PCI, and PCI-express, 
+they are more microprocessor make/model agnostic, because you design to the bus interface.
+That's why for example, a PCI card works on a variety of micro-processors 
+(Intel, AMD, ARM, etc.) because the bus definition is independent of the processor.
+The same kind of approach could be taken with the Device Tree -
+binding the microprocessor pins to (virtual) buses like UART1, I2C1, SPI2, etc.
+and then binding the specific peripherals to those (virtual) buses using the device tree overlay.
+That is possible today, but most designers bind peripherals directly to specific device pins.
+</p>
+<p>
+So what is the Cross-Platform Use Model today? <br>
+I suppose with the current device tree and overlay implementations 
+you could erase and rewrite the product EEPROM for 
+each different model of microprocessor, but that's a manufacturing/logistics nightmare.
+Or you could use the FDT EEPROM format, and include a whole separate FDT tree for each
+different model of microprocesor - but that's going to use a lot of EEPROM memory. 
+So there are solutions today, they are just NOT very simple or elegant.
+</p>
+<h3>Suggestions for Cross-Platform Device Trees</h3>
+<p>
+<ol>
+  <li>Headers for Peripherals should be Architecture Neutral : <br>
+      Consider that someone is using an adaptor to put a Raspberry PI HAT on a BeagleBone Black, or visa versa.
+      The "Header" information of Product Name/Model/UUID etc. is NOT Architecture specific - why make it so?
+      The different device tree files for the same peripheral could be organized by the "compatible" tag. 
+      For example, if I have a Cross-Platform peripheral named "myWidget", it could be something like :<br>
+      /firmware/AM3358/myWidget.dts <br>
+      /firmware/BCM2835/myWidget.dts<br>
+  </li>
+  <li>Put Architecture Specific Data in it's own ATOM : <br>
+      If I need to include a different PinMap overlay for TI AM3358 and Broadcom BCM2835,
+      how about making a PinMap ATOM type that includes the processor "compatible" field?
+      That way, you can search the different PinMap ATOMs
+      for your "compatible" processor type and just use that one.
+      As a device overlay, it would be smaller in size, as it would just need to define the pins that are remapped.
+  </li>
+  <li>Define Pin Mapping in terms of Common Interface Types<br>
+      While different microprocessors may have different pin names and types,
+      they usually implement standard interfaces like UART1, I2C1, SPI2, GPIO, etc.
+      If the primary, architecture specific FDT bound pins to standard interface types,
+      then the device tree overlays could be much more generic. 
+  </li>
+</ol>
+</p>
+<p>
+In coming articles, I'll present some ideas for mapping the standard interfaces like GPIO, UART1, I2C1, SPI2, etc.
+as "Smart Objects", and how that can address some of the cross-platform interface problems facing designers today. 
+</p>
+<p>   
+<h2>References, Footnotes, and more...</h2>
+<ol>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
+<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
+<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
+<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
+<li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
+<li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
+<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+</ol>
+</p>
+
+
+
+</div>
+    <footer>
+      <p class="meta">
+        June 05, 2015
+      </p>
+      <p class="meta">
+        
+          <a class="previous" href="/news/2015/05/21/devicetree-smart-objects.html" title="Previous Post: Smart Device Trees meet Smart Objects">&laquo; Smart Device Trees meet Smart Objects</a>
+        
+        
+          <a class="next" href="/news/2015/06/19/IoT-SoCs.html" title="Next Post: New IoT SoCs">New IoT SoCs &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+
+
+  </div>
+  <div class="col minor">
+    
+  <h2>Featured Projects</h2>
+  <ul class="post-list">
+  
+    
+      
+    
+      
+        <li>
+          <a href="/projects/AB_ESP8266.html">Agent Bees - ESP8266</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/TouchWidget_HowTo.html">TouchWidgets How-To Example Project</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Hula_Poppy.html">Hula Poppy - Pmod Lure for the Intel MinnowBoard</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+</ul>
+  <h2>Latest News</h2>
+  <ul class="post-list">
+  
+    <li>
+      <a href="/news/2015/06/19/IoT-SoCs.html">New IoT SoCs</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/05/devicetree-more-flavors.html">More DeviceTree Flavors!</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/05/21/devicetree-smart-objects.html">Smart Device Trees meet Smart Objects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/09/devicetree-discussions.html">Device Tree Discussions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/06/smart-devicetrees.html">Smart Devicetrees</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/02/devicetree-on-modbus.html">Device Tree on Modbus</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/01/devicetree-lifecycle.html">Device Tree and Product Life Cycles</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/29/devicetree-overlays.html">Device Tree Overlays</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/28/devicetree-overview.html">Device Tree Overview</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/27/sensor-abilities.html">Sense and Sensor Abilities</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/25/the-blob.html">The BLOB - Binary Level OBjects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/23/the-great-chain.html">Automatic Configuration Chains</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/22/SFF-SelfConfig.html">Small Form Factor Auto-Configuration</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/26/Hula-Poppy-Lure-minnow-board.html">Hula Poppy Lure for MinnowBoard</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/24/minnow-board-lures.html">MinnowBoard Lures Library</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/02/touchwidget-best-practices.html">Touch Widgets - Best Practices</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/29/touch-widgets-howto.html">Touch Widgets How-To/Instructions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/24/eagle-touch-widgets-library.html">Touch Widgets Library for Eagle</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/20/capacitive-sensing-introduction.html">Capacitance Sensing Introduction</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/14/building-your-new-widget.html">Building Your New Widget</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/11/eaglecad-libraries.html">EagleCAD Libraries</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/09/quattrocycle-update.html">Quattrocycle Lighting Update</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/09/13/portland-maker-faire.html">Portland Mini-Maker Faire</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/09/arduino-yun-the-next-generation.html">Arduino Y'un - The Next Generation</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/08/minnow-board-small-form-factor.html">The Minnow Board - A New Small Form Factor</a>
+    </li>
+  
+</ul>
+
+
+  </div>
+
+</main>
+   
+
+<form id="signup"
+      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      method="post"
+      id="mc-embedded-subscribe-form"
+      name="mc-embedded-subscribe-form"
+      class="validate"
+      target="_blank"
+      novalidate>
+  <div class="row"><div class="col">
+    
+  <div class="row collapse">
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <button class="postfix" type="submit">Subscribe</button>
+  </div>
+  </div></div>
+</form>
+   <!-- Add the discussion widget -->
+   
+
+<!-- discus panel -->
+<!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
+
+   
+
+<footer>
+  <div class="row">
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <ul class="social-icons">
+           <li><a href="https://twitter.com/PatternAgents" title="twitter"><img src="/img/logos/white/twitter.png"></a></li>
+            <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
+            <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
+            <li><a href="https://www.facebook.com/pages/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
+            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+            <h2><a href="/contact/index.html">Contact</a></h2>
+            <ul>
+              <li><a href="/contact/press.html">Press</a></li>
+              <li><a href="/contact/investors.html">Investors</a></li>
+              <li><a href="/licensing/index.html">Licensing</a></li>
+              <li><a href="/contact/credits.html">Credits</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <h2><a href="/about/index.html">About Us</a></h2>
+          <ul>
+            <li><a href="/about/manufacturers.html">For Manufacturers</a></li>
+            <li><a href="/about/distributors.html">For Distributors</a></li>
+            <li><a href="/about/representatives.html">For Representatives</a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+          <h2><a href="/policies/index.html">Policies</a></h2>
+          <ul>
+            <li><a href="/policies/shipping.html">Shipping</a></li>
+            <li><a href="/policies/returns.html">Returns</a></li>
+            <li><a href="/policies/legal/index.html">Legal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row unimportant">
+    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+  </div>
+</footer>
+
+<script src="/js/lib/jquery.js"></script>
+
+
+<!-- disqus widget script -->
+<script type="text/javascript">
+  var disqus_shortname = 'patternagents';
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- pinterest widget script -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.setAttribute('data-pin-color', 'red');
+  p.setAttribute('data-pin-hover', 'true');
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+<!-- toggle menu -->
+<script>
+  $(function() {
+    var $navToggle = $('nav.toggle');
+    $navToggle.addClass('collapsed');
+    $navToggle.find('h2').bind('click focus', function() {
+      // if we want to get fancy, we can animate the max-height here
+      $navToggle.toggleClass('collapsed');
+    });
+  });
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

@@ -6,9 +6,10 @@ permalink: /news/:year/:month/:day/:title.html
 #paginate: 3           # the number of post per page
 recent_posts: 25       # Posts in the sidebar Recent Posts section
 excerpt_link: "More &raquo;"  # "Continue reading" link text at the bottom of excerpted articles
-relative_permalinks: false
+#relative_permalinks: false
 excerpt_separator: "<!-- more -->"
 
+#gems: [jekyll-paginate, jekyll-gist]
 # the product_slug of the project you want to feature on home page
 featured_project: AB_ESP8266
 # the projects listed in list of projects in sidebar_projects

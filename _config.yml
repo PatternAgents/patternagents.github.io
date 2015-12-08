@@ -11,9 +11,9 @@ excerpt_separator: "<!-- more -->"
 
 #gems: [jekyll-paginate, jekyll-gist]
 # the product_slug of the project you want to feature on home page
-featured_project: AB_ESP8266
+featured_project: I2C_Devicetree
 # the projects listed in list of projects in sidebar_projects
-listed_projects: [AB_ESP8266, TouchWidget_HowTo, Hula_Poppy]
+listed_projects: [Workshops, AB_ESP8266, TouchWidget_HowTo, I2C_Devicetree]
 
 # site specific strings -
 #

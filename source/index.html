@@ -13,7 +13,7 @@ comments: false
 ---
 
 {% capture home_content %}
-  <h1>Pattern&#8203;Agents Explained:</h1>
+  <h1>PatternAgents Explained:</h1>
   <p>
     A tailor or dressmaker is very familiar with the concept of a "pattern"; they select a pattern for the style of garment that they want to make, and then size the pattern for the customers individual measurements. This yields a repeatable garment, and gives the tailor or dressmaker all the instructions they require to fabricate it over and over.
   </p>
@@ -24,15 +24,33 @@ comments: false
     PatternAgents has developed formal methods for implementing reusable design patterns, sizing and styling them to meet our customers requirements. PatternAgents products are useful and saleable examples of the application of those formal methods, yielding products that are available off-the-shelf (for standard sizes and styles). PatternAgents can also quickly customize those "design patterns" for specific customer requirements.
   </p>
 
-  <h1>PatternAgents Touch Widget Library for Eagle</h1>
+  <h1>thingSoC Specification Release</h1>
   <p>
-	We just released our <a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>, and we have been getting good feedback from people starting to make use of it. 
-	We just completed a more detailed "how-to" post on the specific "Best Practices" for employing it in a successful capacitive sensing design,
-	and that should get you started using it quickly.
+	We just released the second draft specification (Version 0.2) for <a href="http://thingsoc.com/" title="thingSoC">thingSoC : Open Source Sockets for the Internet of Things</a>, 
+	and several new thingSoC reference designs. 
+	<p><b>thingSoC</b> is an exciting new development from PatternAgents - 
+	an open source socket standard that enables you to quickly and easily build complex new IoT systems by plugging together components that can
+	communicate setup and provisioning information with each other. <b>thingSoC</b> components can communicate about what components are plugged in, and how to access them. 
+	<b>thingSoC</b> defines a physical, hardware socket system for inter-operable printed circuit boards, with a data centric firmware model for automatic device discovery, 
+	and a software API for interacting with the system.
   </p>
-   <img src="{{site.url.images}}/news/caps/cap_button_bplace.png" alt="Simple Button (bPlace)" title="Simple Button (bPlace)"/>
+   <img src="http://thingsoc.github.io/img/projects/thingSoC/thingSoC_cat.png" alt="thingSoC Embedded Module" title="thingSoC Embedded Module"/>
   <p>
-
+       One of the first <b>thingSoC</b> embedded module reference designs uses the popular ESP8266 Wi-Fi System-on-Chip from Espressif.
+       The TSOC-ESP8266-EM board is a complete Wi-Fi Device and Access point, supported by the Arduino IDE. 
+       It places the popular ESP8266 Wi-FI System-on-Chip Device in a thingSoC Embedded Module Socket, 
+       and enables the ESP8266 to be used with any other thingSoC reference design, 
+       allowing it to be paired with a number of different host processors and peripherals. 
+  </p>
+  <p>
+       For example, pairing the TSOC-ESP8266-EM with a Nine (9) Degree of Freedom sensor board, you can build a a Wi-Fi enabled Motion Sensor :
+  <br>
+   <img src="http://thingsoc.github.io/img/projects/TSOC-ESP8266-EM/TSOC-ESP8266-EM_thumbr.png" alt="thingSoC ESP8266 Embedded Module" title="thingSoC ESP8266 Embedded Module"/> <b>+</b> 
+   <img src="http://www.mikroe.com/img/development-tools/accessory-boards/click/9dof/preview/9dof_click_thumb_02.png" alt="Mikroe 9DOF Click Board" title="Mikroe 9DOF Click Board"/>
+  <p>
+       We'll have more articles on the TSOC-ESP8266-EM later this month, and it will be available in the PatternAgents store in January 2016.
+       <BR>
+  <p>
   {% include frag/blurb.html %}
   <a href="https://plus.google.com/117767543775352024433" rel="publisher">Google+</a>  
 {% endcapture %}

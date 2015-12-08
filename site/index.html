@@ -123,21 +123,22 @@
 <article class="feature row">
   <div class="col major">
     <div class="col">
-	      <h1 class="entry-title"><a href="/projects/AB_ESP8266.html">Agent Bees - ESP8266</a></h1>
+	      <h1 class="entry-title"><a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a></h1>
         <div class="feature-body">
           <p>
-  The AB_ESP8266 WiFi Interface for XBEE, allows the ESP8266 to be used with XBEE based platforms.<BR>
-  Using a USB-to-Serial XBEE adaptor, the AB_ESP8266 WiFi Interface is compatible with the nodeMCU platform.
+The I2C_Devicetree reference design project uses a programmable System-on-Chip (SoC) with a Cortex-M0 CPU,  in a small 28 Pin TSSOP package,
+to emulate an I2C EEPROM using the FLASH memory of the SoC, which creates an "intelligent memory" device. The I2C_Devicetree reference design project is intended to make it easier for people to create their own custom expansion boards for Beaglebone, Raspberry Pi, FMC/IPMI,  
+and other platforms that require the use of a I2C EEPROM for automatic product identification, pin mapping, and configuration.    
 </p>
 
 
 
-          <a class="button" href="/projects/AB_ESP8266.html">More Info &raquo;</a>
+          <a class="button" href="/projects/I2C_Devicetree.html">More Info &raquo;</a>
         </div>    
       </div>
   </div>
   <div class="col minor">
-        <a href="/projects/AB_ESP8266.html"><img src="/img/projects/AB_ESP8266/AB_ESP8266_model.png" alt="AB_ESP8266" title="AB_ESP8266"/></a>
+        <a href="/projects/I2C_Devicetree.html"><img src="/img/projects/I2C_Devicetree/I2C_Devicetree_thumb.png" alt="I2C_Devicetree" title="I2C_Devicetree"/></a>
       </div>
 </article>
 
@@ -152,7 +153,7 @@
     <div class="col maj_major">
       
   
-  <h1>Pattern&#8203;Agents Explained:</h1>
+  <h1>PatternAgents Explained:</h1>
   <p>
     A tailor or dressmaker is very familiar with the concept of a "pattern"; they select a pattern for the style of garment that they want to make, and then size the pattern for the customers individual measurements. This yields a repeatable garment, and gives the tailor or dressmaker all the instructions they require to fabricate it over and over.
   </p>
@@ -163,15 +164,33 @@
     PatternAgents has developed formal methods for implementing reusable design patterns, sizing and styling them to meet our customers requirements. PatternAgents products are useful and saleable examples of the application of those formal methods, yielding products that are available off-the-shelf (for standard sizes and styles). PatternAgents can also quickly customize those "design patterns" for specific customer requirements.
   </p>
 
-  <h1>PatternAgents Touch Widget Library for Eagle</h1>
+  <h1>thingSoC Specification Release</h1>
   <p>
-	We just released our <a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>, and we have been getting good feedback from people starting to make use of it. 
-	We just completed a more detailed "how-to" post on the specific "Best Practices" for employing it in a successful capacitive sensing design,
-	and that should get you started using it quickly.
+	We just released the second draft specification (Version 0.2) for <a href="http://thingsoc.com/" title="thingSoC">thingSoC : Open Source Sockets for the Internet of Things</a>, 
+	and several new thingSoC reference designs. 
+	<p><b>thingSoC</b> is an exciting new development from PatternAgents - 
+	an open source socket standard that enables you to quickly and easily build complex new IoT systems by plugging together components that can
+	communicate setup and provisioning information with each other. <b>thingSoC</b> components can communicate about what components are plugged in, and how to access them. 
+	<b>thingSoC</b> defines a physical, hardware socket system for inter-operable printed circuit boards, with a data centric firmware model for automatic device discovery, 
+	and a software API for interacting with the system.
   </p>
-   <img src="/img/news/caps/cap_button_bplace.png" alt="Simple Button (bPlace)" title="Simple Button (bPlace)"/>
+   <img src="http://thingsoc.github.io/img/projects/thingSoC/thingSoC_cat.png" alt="thingSoC Embedded Module" title="thingSoC Embedded Module"/>
   <p>
-
+       One of the first <b>thingSoC</b> embedded module reference designs uses the popular ESP8266 Wi-Fi System-on-Chip from Espressif.
+       The TSOC-ESP8266-EM board is a complete Wi-Fi Device and Access point, supported by the Arduino IDE. 
+       It places the popular ESP8266 Wi-FI System-on-Chip Device in a thingSoC Embedded Module Socket, 
+       and enables the ESP8266 to be used with any other thingSoC reference design, 
+       allowing it to be paired with a number of different host processors and peripherals. 
+  </p>
+  <p>
+       For example, pairing the TSOC-ESP8266-EM with a Nine (9) Degree of Freedom sensor board, you can build a a Wi-Fi enabled Motion Sensor :
+  <br>
+   <img src="http://thingsoc.github.io/img/projects/TSOC-ESP8266-EM/TSOC-ESP8266-EM_thumbr.png" alt="thingSoC ESP8266 Embedded Module" title="thingSoC ESP8266 Embedded Module"/> <b>+</b> 
+   <img src="http://www.mikroe.com/img/development-tools/accessory-boards/click/9dof/preview/9dof_click_thumb_02.png" alt="Mikroe 9DOF Click Board" title="Mikroe 9DOF Click Board"/>
+  <p>
+       We'll have more articles on the TSOC-ESP8266-EM later this month, and it will be available in the PatternAgents store in January 2016.
+       <BR>
+  <p>
   <p>
     PatternAgents provides <strong>community</strong> and <strong>commerce</strong> for electronics designers,
     helping them to <strong>collaborate</strong> using shared patterns, practices, and resources; 
@@ -209,6 +228,46 @@
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
+  
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Workshops.html">PatternAgents Workshop Series</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
     
       
@@ -292,23 +351,23 @@
   
     
       
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
         <li>
-          <a href="/projects/Hula_Poppy.html">Hula Poppy - Pmod Lure for the Intel MinnowBoard</a>
+          <a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a>
         </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
       
     
       

@@ -1,0 +1,17 @@
+RewriteEngine On
+
+#RewriteRule ^store$ static/store.html [L]
+#RewriteRule ^store#(.*)$ static/store.html#$1 [L]
+
+#RewriteRule ^support$ static/support.html [L]
+#RewriteRule ^tutorials$ static/tutorials.html [L]
+#RewriteRule ^news$ static/news.html [L]
+
+#RewriteRule ^about$ static/about.html [L]
+#RewriteRule ^contact$ static/contact.html [L]
+#RewriteRule ^manufactures$ static/manufactures.html [L]
+#RewriteRule ^distributors$ static/distributors.html [L]
+#RewriteRule ^representatives$ static/representatives.html [L]
+
+#RewriteRule ^policies$ static/policies/index.html [L]
+#RewriteRule ^policies/privacy$ static/policies/privacy.html [L]

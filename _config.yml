@@ -13,7 +13,7 @@ excerpt_separator: "<!-- more -->"
 # the product_slug of the project you want to feature on home page
 featured_project: I2C_Devicetree
 # the projects listed in list of projects in sidebar_projects
-listed_projects: [Workshops, AB_ESP8266, TouchWidget_HowTo, I2C_Devicetree]
+listed_projects: [I2C_Devicetree, Workshops, TouchWidget_HowTo]
 
 # site specific strings -
 #

@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <title>PatternAgents: Touch Widgets How-To/Instructions</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <meta name="robots"                  content="noodp, noydir, noarchive"         />
+  <meta name="description"        content="Touch Widgets How-To/Instructions"    />
+  <meta name="abstract"              content="Touch Widgets How-To : methods and tools for adding capacitive sensing to your projects"       />
+  <meta name="classification"  content="electronics, electronics design, design engineering" />
+  <meta name="keywords"              content="capacitance, capacitive sensing, capsense, touch, captouch, mtouch, qtouch, eagle, cad, eaglecad, eagle cad, libraries, open source, make, maker, maker space, arduino, uno, mega, due, yun, schematic, layout, pcb, pcb design"       />
+
+  <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
+  <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
+
+  <!-- Ubuntu for logo -->
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/app-old-ie.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/css/app.css">
+<!--<![endif]-->
+  
+<!-- Begin MailChimp Signup Form -->
+ <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+	#mc_embed_signup{position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,.8); display:block; z-index:10000; }
+	#mc_embed_signup form{position:fixed; top:5%; left:5%; right:5%; bottom:5%; width:60%; font:normal 100% Helvetica,Arial,sans-serif; font-size:14px; border-radius:4px; border:3px; padding:10px; background-color:#eee; color:#000; text-align:left;max-height:800px;overflow-y:auto;overflow-x:hidden;}
+	#mc_embed_signup a.mc_embed_close{background:transparent url(http://downloads.mailchimp.com/img/closebox.png) no-repeat; display:block; height:30px; width:30px; text-indent:-999em; position:absolute; top:10px; right:10px; display:none; }
+ </style>
+
+<!-- Begin Google Analytics -->
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38592761-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="">
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="head-container">
+	  <div class="col">
+	    <a href="/">
+	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
+	    </a>
+	  </div>
+  </div>
+</header>
+
+
+
+<div class="row"><div class="col">
+<nav class="toggle">
+  <h2><a href="#" title="(click to expand)"><span class="menu-icon">&#9776;</span> Go to:</a></h2>
+  <ul>
+    <li class="nav-store"><a href="/store/index.html">Store</a></li>
+    <li class="nav-projects"><a href="/projects/index.html">Projects</a></li>
+    <li class="nav-support"><a href="/support/index.html">Support</a></li>
+    <li class="nav-about"><a href="/about/index.html">About</a></li>
+    <li class="nav-news"><a href="/news/index.html">News</a></li>
+  </ul>
+</nav>
+</div></div>
+
+
+  
+
+<main class="row">
+  
+  <div class="col major">
+    
+  
+  <article role="article">
+    <header>
+      
+        <h1 class="entry-title">Touch Widgets How-To/Instructions</h1>
+      
+      
+        <p class="meta">
+          
+        </p>
+      
+    </header>
+    <div class="entry-content">
+  
+  
+  
+
+<blockquote>
+	<p>I think that things happen individually first, and then collectively. It's not the other way around.</p>
+	<p>&mdash;Neale Donald Walsch</p>
+</blockquote>
+
+<p>Pattern&#8203;Agents has been developing open source parts libraries for the Eagle CAD package, 
+and we have now developed a library of Capacitive Touch Widgets to
+provide a number of different control surfaces for your projects.
+This How-To will cover instructions for using them in your own projects.
+</p>
+<!-- more -->
+<p>A number of our customers have complained to us how difficult it is
+to obtain or create good quality Capacitive Touch Widgets in Eagle, 
+so we have spent the past week creating a new library to solve that problem.
+The PatternAgents Touch Widgets Library makes Capacitive Touch technology 
+available to even the most novice Eagle users.
+</p>
+<p>
+If you have never used Eagle before, there are several starting tutorials available
+on the web, such as <a href="http://www.youtube.com/watch?v=1AXwjZoyNno">this one from Jeremy Blum</a>.
+This How-To assumes that you already have a basic operating knowledge of Eagle, and that
+can you select a component from a library of parts, and place it in your schematic and layout.
+</p>
+<h3>Get the Libraries</h3>
+<p>
+The first step is to get the <a href="https://github.com/PatternAgents/PCB_Libraries">PatternAgents Eagle CAD Libraries from our Github Repo</a>
+and install them into your Eagle package. You can either copy them into the default library location, which is usually located
+at "C:\Program Files\EAGLE-6.5.0\lbr", or you can place them anywhere you prefer and add that path to the Eagle Control Panel
+using "Options -> Directories -> Libraries". Personally I prefer to add the local copy of my Github Repo using the control
+panel, so that whenever I do a "Github Pull", I get the most recent copies of everything directly from Github.
+</p>
+      <img src="/img/news/caps/eagle_options_directories.png" alt="eagle->options-> directories" title="eagle->options-> directories"/>
+<p>
+Once you have downloaded, installed, and configured the <a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>, go ahead and open the library tab to see all the components in the library (Version 1.0 shown) :
+</p>
+      <img src="/img/news/caps/eagle_touchwidgets_lib.png" alt="PatternAgents Touch Widgets Library" title="PatternAgents Touch Widgets Library"/>
+<p>
+You will see that there are a number of different widgets contained in the library, buttons, buttons with backside LED's,
+linear sliders, radial sliders, and matrix (X/Y) touch pads of various sizes. The sizes are chosen according to recommended
+best practices and various manufacturers design rules. We are also working on several new widgets to include in Version 2.0 of this
+library; so if you have any suggestions or requests, please make sure to leave a comment or tweet to us to let us know.
+Make sure to right click in the Eagle Control Panel window and select "use" for the PatternAgents-TouchWidgets and PatternAgents-Boards libraries.
+</p>
+<p>
+In this how-to example, we are going to make a small Arduino Form Factor board that includes several different touch widgets,
+and will be compatible with a number of different Arduino boards, such as the <a href="http://www.cypress.com/?rID=77780">Pioneer</a> board.
+We will use the Arduino pins A0 as a select button, and A1-A5 pins for a five (5) button linear slider. 
+This is a simple (arbitrary) example, but will serve to explain all the steps necessary for you to make your own designs.
+</p>
+<h3>Create the Schematic File</h3>
+<p>
+First, we are going to open a new schematic and place the PA_LEO_PATTERN from the PatternAgents-Boards library.
+This pattern will give you a board outline, connectors, holes, and silkscreen that is compatible with the 
+<a href="http://arduino.cc/en/Main/arduinoBoardLeonardo">Arduino Leonardo</a> form factor. This an example of
+what how our design patterns work, we create reusable design patterns that you can adapt to your own purposes.
+Next place, BUTTON_PASSIVE_10MM and SLIDER_PASSIVE_5SEGREV from the PatternAgents-TouchWidgets library,
+and wire them up as show below :
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_sch.png" alt="Eagle Touch How-To Schematic" title="Eagle Touch How-To Schematic"/>
+
+<h3>Create the Board File</h3>
+<p>
+Next we generate the .brd file from the schematic (click on the icon above the red dot in the picture),
+and you should have something that looks like this:
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd1.png" alt="Eagle Touch How-To Board #1" title="Eagle Touch How-To Board #1"/>
+<p>
+Since the PatternAgents-Boards library includes the board outline we can use the "delete" command to remove the enclosing box,
+and then move the PA_LEO_PATTERN to the origin in the low left hand corner.
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd2.png" alt="Eagle Touch How-To Board #2" title="Eagle Touch How-To Board #2"/>
+<h3>Place the Widgets</h3>
+<p>
+Now move the BUTTON_PASSIVE_10MM and SLIDER_PASSIVE_5SEGREV packages onto the PA_LEO_PATTERN and position them near the middle of the board.
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd3.png" alt="Eagle Touch How-To Board #3" title="Eagle Touch How-To Board #3"/>
+<h3>Create the Ground Hatch Polygons</h3>
+<p>
+Great, now all we have to do is create the Polygons for the Top and Bottom Copper Ground pours and we are just about finished.
+Select the Polygon Command and change to the Top layer with a "Hatched" polygon of 10Mil Width, 45Mil spacing, and 12Mil Isolation.
+(Note that we have our Grid Set to 10Mil spacing for this example)
+Now click around the edges of the board to create a Polygon on the "Top" layer.
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd4.png" alt="Eagle Touch How-To Board #4" title="Eagle Touch How-To Board #4"/>
+<p>
+Now we need to name the Polygon to "GND" to make sure the router knows it is to be connected to the "GND" signal in the schematic.
+Use the "NAME" command and select the Polygon, type in the name "GND" and click OK.
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd5.png" alt="Eagle Touch How-To Board #5" title="Eagle Touch How-To Board #5"/>
+<p>
+Next we are going to repeat that whole process to make a "Hatched" polygon ground pour on the Bottom layer of of 10Mil Width, 70Mil spacing, and 12Mil Isolation. In this next screen show, I'm going to turn "off" the visibility of the "Top" and "tPlace" layers so you can see 
+the "Bottom" layer more clearly. As before we need to name the Polygon to "GND" to make sure the router knows it is to be 
+connected to the "GND" signal in the schematic. Use the "NAME" command and select the Polygon, type in the name "GND" and click OK.
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd6.png" alt="Eagle Touch How-To Board #6" title="Eagle Touch How-To Board #6"/>
+<h3>Run a Design Rule Check (DRC)</h3>
+<p>
+Okay, before we go any further, we should run a Design Rule Check (DRC) to make sure that everthing is good. Make sure to "Load" the
+PatternAgents.dru file or you will likely get a lot of DRC errors. You should get zero DRC errors when using the PatternAgents.dru file.
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd7.png" alt="Eagle Touch How-To Board #7" title="Eagle Touch How-To Board #7"/>
+<h3>Autoroute the Board</h3>
+<p>
+Next we are going to run the autorouter to connect everything up, so set the paramters as shown below, and click "OK".
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd8.png" alt="Eagle Touch How-To Board #8" title="Eagle Touch How-To Board #8"/>
+<p>
+If you have followed along to this point, then your completed board should look something like this : 
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd9.png" alt="Eagle Touch How-To Board #9" title="Eagle Touch How-To Board #9"/>
+<p>
+I will turn off the "Top" and "tPlace" (Top Silkscreen) layers so that you can see what the "Bottom" of the board looks like.
+Note that the Top and Bottom ground hatches are using different spacing.
+</p>
+      <img src="/img/news/caps/eagle_touch_howto_brd10.png" alt="Eagle Touch How-To Board #10" title="Eagle Touch How-To Board #10"/>
+
+<p>
+Don't worry if you forgot to set your polygons to "Hatch" or your polygon spacings to 45Mils for the Top and 70Mils for the Bottom,
+that is easy to fix with the "Change" command (the Wrench icon). Just select "Change->Pour->Hatch" and click on the Polygon edge,
+and similarly with the "Change->Spacing" command.
+</p>
+<h3>Go get your Printed Circuit Boards (PCB's) made...</h3>
+<p>Viola! You have your very own simple touch control surface example board, using the Arduino form factor.
+If you load up the PatternAgents.cam file and generate Gerber files, these can be uploaded to
+<a href="http://www.oshpark.com">OSHPark</a>, and in a week or so you can have your PCB's back.
+</p>
+<p>
+Now that you have an idea of how to use the 
+<a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>,
+in the next posting we'll cover some of the "Best Practices" for using it more effectively.
+</p>
+
+<h3>TouchWidget_HowTo Example Project - Files and Documentation</h3>
+<ul>
+  <li><a href="https://github.com/PatternAgents/TouchWidget_HowTo">TouchWidget_HowTo Example Project - Github Repo</a></li>
+</ul>
+
+<p>
+EagleCad Libraries by PatternAgents, LLC are available and licensed under the Creative Commons License.<br>
+License : <a href="http://creativecommons.org/licenses/by-sa/4.0/">(Creative Commons 4.0) Creative Commons License</a> 
+</p>
+<p>
+The Touch Widgets How-To Project by PatternAgents, LLC is available and licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<br>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+</p>
+</div>
+    <footer>
+      <p class="meta">
+        November 29, 2013
+      </p>
+      <p class="meta">
+        
+          <a class="previous" href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Previous Post: Touch Widgets Library for Eagle">&laquo; Touch Widgets Library for Eagle</a>
+        
+        
+          <a class="next" href="/projects/TouchWidget_HowTo.html" title="Next Post: TouchWidgets How-To Example Project">TouchWidgets How-To Example Project &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+
+
+  </div>
+  <div class="col minor">
+    
+  <h2>Featured Projects</h2>
+  <ul class="post-list">
+  
+    
+      
+    
+      
+        <li>
+          <a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Workshops.html">PatternAgents Workshop Series</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/TouchWidget_HowTo.html">TouchWidgets How-To Example Project</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+  
+</ul>
+  <h2>Latest News</h2>
+  <ul class="post-list">
+  
+    <li>
+      <a href="/news/2016/01/10/thingSoC.html">thingSoC nears release...</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/08/25/IoT-RTLS.html">Real-Time Location Systems for IoT</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/19/IoT-SoCs.html">New IoT SoCs</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/05/devicetree-more-flavors.html">More DeviceTree Flavors!</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/05/21/devicetree-smart-objects.html">Smart Device Trees meet Smart Objects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/09/devicetree-discussions.html">Device Tree Discussions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/06/smart-devicetrees.html">Smart Devicetrees</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/02/devicetree-on-modbus.html">Device Tree on Modbus</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/01/devicetree-lifecycle.html">Device Tree and Product Life Cycles</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/29/devicetree-overlays.html">Device Tree Overlays</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/28/devicetree-overview.html">Device Tree Overview</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/27/sensor-abilities.html">Sense and Sensor Abilities</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/25/the-blob.html">The BLOB - Binary Level OBjects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/23/the-great-chain.html">Automatic Configuration Chains</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/22/SFF-SelfConfig.html">Small Form Factor Auto-Configuration</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/24/minnow-board-lures.html">MinnowBoard Lures Library</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/02/touchwidget-best-practices.html">Touch Widgets - Best Practices</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/29/touch-widgets-howto.html">Touch Widgets How-To/Instructions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/24/eagle-touch-widgets-library.html">Touch Widgets Library for Eagle</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/20/capacitive-sensing-introduction.html">Capacitance Sensing Introduction</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/14/building-your-new-widget.html">Building Your New Widget</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/11/eaglecad-libraries.html">EagleCAD Libraries</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/09/quattrocycle-update.html">Quattrocycle Lighting Update</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/09/13/portland-maker-faire.html">Portland Mini-Maker Faire</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/09/arduino-yun-the-next-generation.html">Arduino Y'un - The Next Generation</a>
+    </li>
+  
+</ul>
+
+
+  </div>
+
+</main>
+   
+
+<form id="signup"
+      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      method="post"
+      id="mc-embedded-subscribe-form"
+      name="mc-embedded-subscribe-form"
+      class="validate"
+      target="_blank"
+      novalidate>
+  <div class="row"><div class="col">
+    
+  <div class="row collapse">
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <button class="postfix" type="submit">Subscribe</button>
+  </div>
+  </div></div>
+</form>
+   <!-- Add the discussion widget -->
+   
+
+<!-- discus panel -->
+<!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
+
+   
+
+<footer>
+  <div class="row">
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <ul class="social-icons">
+           <li><a href="https://twitter.com/PatternAgents" title="twitter"><img src="/img/logos/white/twitter.png"></a></li>
+            <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
+            <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
+            <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
+            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+            <h2><a href="/contact/index.html">Contact</a></h2>
+            <ul>
+              <li><a href="/contact/press.html">Press</a></li>
+              <li><a href="/contact/investors.html">Investors</a></li>
+              <li><a href="/licensing/index.html">Licensing</a></li>
+              <li><a href="/contact/credits.html">Credits</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <h2><a href="/about/index.html">About Us</a></h2>
+          <ul>
+            <li><a href="/about/manufacturers.html">For Manufacturers</a></li>
+            <li><a href="/about/distributors.html">For Distributors</a></li>
+            <li><a href="/about/representatives.html">For Representatives</a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+          <h2><a href="/policies/index.html">Policies</a></h2>
+          <ul>
+            <li><a href="/policies/shipping.html">Shipping</a></li>
+            <li><a href="/policies/returns.html">Returns</a></li>
+            <li><a href="/policies/legal/index.html">Legal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row unimportant">
+    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+  </div>
+</footer>
+
+<script src="/js/lib/jquery.js"></script>
+
+
+<!-- disqus widget script -->
+<script type="text/javascript">
+  var disqus_shortname = 'patternagents';
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- pinterest widget script -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.setAttribute('data-pin-color', 'red');
+  p.setAttribute('data-pin-hover', 'true');
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+<!-- toggle menu -->
+<script>
+  $(function() {
+    var $navToggle = $('nav.toggle');
+    $navToggle.addClass('collapsed');
+    $navToggle.find('h2').bind('click focus', function() {
+      // if we want to get fancy, we can animate the max-height here
+      $navToggle.toggleClass('collapsed');
+    });
+  });
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

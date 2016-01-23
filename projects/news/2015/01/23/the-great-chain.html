@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <title>PatternAgents: Automatic Configuration Chains</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <meta name="robots"          content="index, follow, noodp, noydir" />
+  <meta name="description"     content="PatternAgents: The Agency of Design Patterns" />
+  <meta name="abstract"        content="PatternAgents provides collaboration, community and commerce for electronics designers." />
+  <meta name="classification"  content="electronics, electronics design, design engineering" />
+  <meta name="keywords"        content="electronics, electronics design, design engineering, open source software, open source hardware, OSHW" />
+
+  <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
+  <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
+
+  <!-- Ubuntu for logo -->
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/app-old-ie.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/css/app.css">
+<!--<![endif]-->
+  
+<!-- Begin MailChimp Signup Form -->
+ <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+	#mc_embed_signup{position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,.8); display:block; z-index:10000; }
+	#mc_embed_signup form{position:fixed; top:5%; left:5%; right:5%; bottom:5%; width:60%; font:normal 100% Helvetica,Arial,sans-serif; font-size:14px; border-radius:4px; border:3px; padding:10px; background-color:#eee; color:#000; text-align:left;max-height:800px;overflow-y:auto;overflow-x:hidden;}
+	#mc_embed_signup a.mc_embed_close{background:transparent url(http://downloads.mailchimp.com/img/closebox.png) no-repeat; display:block; height:30px; width:30px; text-indent:-999em; position:absolute; top:10px; right:10px; display:none; }
+ </style>
+
+<!-- Begin Google Analytics -->
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38592761-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="">
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <div class="head-container">
+	  <div class="col">
+	    <a href="/">
+	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
+	    </a>
+	  </div>
+  </div>
+</header>
+
+
+
+<div class="row"><div class="col">
+<nav class="toggle">
+  <h2><a href="#" title="(click to expand)"><span class="menu-icon">&#9776;</span> Go to:</a></h2>
+  <ul>
+    <li class="nav-store"><a href="/store/index.html">Store</a></li>
+    <li class="nav-projects"><a href="/projects/index.html">Projects</a></li>
+    <li class="nav-support"><a href="/support/index.html">Support</a></li>
+    <li class="nav-about"><a href="/about/index.html">About</a></li>
+    <li class="nav-news"><a href="/news/index.html">News</a></li>
+  </ul>
+</nav>
+</div></div>
+
+
+  
+
+<main class="row">
+  
+  <div class="col major">
+    
+  
+  <article role="article">
+    <header>
+      
+        <h1 class="entry-title">Automatic Configuration Chains</h1>
+      
+      
+        <p class="meta">
+          
+        </p>
+      
+    </header>
+    <div class="entry-content">
+  
+  
+  
+
+<blockquote>
+	<p>There are more things in heaven and earth, Horatio, than are dreamt of in your philosophy.</p>
+	<p>&mdash;Shakespeare - "Hamlet"</p>
+</blockquote>
+
+<p>In order to design an automatic discovery and configuration mechanism for popular 
+small form factors like Arduino, rfDuino, LaunchPad, and others,
+we first need to decide on simple connection chain that can connect all the 
+subsystems, one which is already included in each of these form factors.
+We need to be able to describe the heirarchy of devices, and the connections between them, 
+in order to understand the topology of our embedded system.
+</p>
+<!-- more -->
+<p>
+The problem reminds me somewhat of that faced by the early philosophers in trying to understand
+their place in the hierarchy of the universe. Aristotle's 
+<a href="http://en.wikipedia.org/wiki/History_of_Animals">History of Animals</a> 
+classified organisms in relation to a linear "ladder of life", or <i>Scala Naturae</i>,
+which allowed for an ordering of beings, from dirt at the bottom, to God at the very top,
+with all creatures occupying rungs of the ascending ladder between.
+The <a href="http://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a>
+connected all things, as all things were linked together to form the universe in one solid, unbroken chain.
+By the time of the Renaissance, the concept of <a href="http://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a> 
+had become pervasive, used to justify the feudal system and the divine right of kings. 
+Later still, this would influence poets such as Robert Blake to compose lines like, "As above, so below".
+</p>
+<p>
+We also need to define a chain of physical entities, and the links that make up their interconnections.
+In reality, we will need to define several, as some may be connected only by wireless linkages,
+but for this introduction, we will discuss only the physically connected entities, such as an Ardunio Shield,
+rfDuino, Launchpad, and the like.
+</p>
+<p>
+The simplest and most ubiquitous interface found on all of these platforms is 
+<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, or the Inter-Integrated Circuit bus.
+Also known as the "Two-Wire Bus" or TWB, <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>
+is found on almost every embedded platform, and can be easily implemented with software 
+<a href="http://en.wikipedia.org/wiki/Bit_banging">bit banging</a> on general purpose I/O pins (GPIO),
+if a hardware interface block is not readily available. In addition, the 
+<a href="http://www.mipi.org/">MIPI Alliance</a> is in the final stages of the ratification process for the new
+<a href="http://mipi.org/specifications/i3c%E2%84%A0-sensor-specification">SenseWire/I3C Sensor Interface Specification</a>;
+I3C defines a much higher performance interface, capable of supporting many more high speed sensors than
+the original <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus specification.
+</p>
+<p>
+<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> is a good choice for this purpose,
+as it is both commonly available, and also supports the very low cost 
+<a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> that we will
+need for our configuration storage. An example implementation of this automatic configuration scheme
+would resemble the diagram below : 
+</p>
+<p>
+<img src="/img/news/great_chain/i2c_mmi.png" alt="I2C Configuration Chain" title="I2C Configuration Chain"/>
+</p>
+<p>
+Typical <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> employ a three(3) bit hardware
+selection mechanism, allowing up to eight(8) devices to share the same <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus.
+In communicating with the <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a>, the first byte sent
+is the control word, which serves to select which one of the eight(8) devices will respond to the read/write operation
+on the shared <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus. 
+</p>
+<p>
+<img src="/img/news/great_chain/i2c_register.png" alt="I2C Register" title="I2C Register"/>
+</p>
+<p>
+Using this addressing scheme, we can support up to eight(8) levels of devices in our stack, which should be
+adequate for most purposes. The standard addressing for each level is shown in the table below :
+<br>
+<table border="2" spacing="2">
+<tr>
+<td>&nbsp; A2 &nbsp;</td>
+<td>&nbsp; A1 &nbsp;</td>
+<td>&nbsp; A0 &nbsp;</td>
+<td>&nbsp; I2C Address &nbsp;</td>
+<td>&nbsp; Device &nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x50 &nbsp;</td>
+<td>&nbsp; Chassis (Power Supply) &nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x51 &nbsp;</td>
+<td>&nbsp; Boot Processor #0 (Arduino, BeagleBone) &nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x52 &nbsp;</td>
+<td>&nbsp; CoProcessor #1 (Logger)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x53 &nbsp;</td>
+<td>&nbsp; CoProcessor #2 (Logic Analyzer)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x54 &nbsp;</td>
+<td>&nbsp; Shield #1 (Beaglebone Cape #1)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x55 &nbsp;</td>
+<td>&nbsp; Shield #2 (Beaglebone Cape #2)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 0 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x56 &nbsp;</td>
+<td>&nbsp; Shield #3 (Beaglebone Cape #3)&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp;&nbsp; 1 &nbsp;</td>
+<td>&nbsp; &nbsp; &nbsp; 0x57 &nbsp;</td>
+<td>&nbsp; Shield #4 (Beaglebone Cape #4)&nbsp;</td>
+</tr>
+</table>
+</p>
+<p>
+You'll notice that the Arduino (or Launchpad, etc.) is not at the 
+very bottom of the stack, as there may be a chassis or other lower level that
+the stack is mounted within, in order to provide battery or solar power to the system.
+We may need to be able to interogate that level to inquire how much power is available,
+or inquire about other parameters. In later articles, I'll outline some other uses
+for the lowest level, such as instrumentation, testing, and monitoring of the system.
+</p>
+<p>
+So, what about more than eight(8) levels you might be asking? What then?
+Well, the <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus has
+some physical loading limitations, that have to do with the larger bus capacitances
+that result when you extend the bus too far, or add too many loads(devices). 
+In practice, there may need to be 
+<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus buffers, repeaters,
+hubs, or multiplexors employed to keep each segment of the 
+<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus within specified loading limits.
+However, the addressing scheme above would apply to each separate segment of a larger
+system, although you may need to address a multiplexor or hub first to select a
+particular segment to read or write.
+</p>
+<p>
+You might also notice that the Beaglebone "Capes" (the name for their expansion boards)
+are limited to four(4) "Capes", this is a specific limitation of the Beaglebone.
+</p>
+<p>
+We now have a basic outline for a hardware design pattern for automatic discovery
+and automatic configuration using simple I2C interfaced EEPROM memory chips.
+The next step is to define the data structure within each of the 
+<a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> shown,
+and how that data structure defines the components and topology of the overall system.
+The next article will cover currently available data structures like the Device Tree
+and IPMI formats. 
+</p>
+
+</div>
+    <footer>
+      <p class="meta">
+        January 23, 2015
+      </p>
+      <p class="meta">
+        
+          <a class="previous" href="/news/2015/01/22/SFF-SelfConfig.html" title="Previous Post: Small Form Factor Auto-Configuration">&laquo; Small Form Factor Auto-Configuration</a>
+        
+        
+          <a class="next" href="/news/2015/01/25/the-blob.html" title="Next Post: The BLOB - Binary Level OBjects">The BLOB - Binary Level OBjects &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+
+
+  </div>
+  <div class="col minor">
+    
+  <h2>Featured Projects</h2>
+  <ul class="post-list">
+  
+    
+      
+    
+      
+        <li>
+          <a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/Workshops.html">PatternAgents Workshop Series</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="/projects/TouchWidget_HowTo.html">TouchWidgets How-To Example Project</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+  
+</ul>
+  <h2>Latest News</h2>
+  <ul class="post-list">
+  
+    <li>
+      <a href="/news/2016/01/10/thingSoC.html">thingSoC nears release...</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/08/25/IoT-RTLS.html">Real-Time Location Systems for IoT</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/19/IoT-SoCs.html">New IoT SoCs</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/05/devicetree-more-flavors.html">More DeviceTree Flavors!</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/05/21/devicetree-smart-objects.html">Smart Device Trees meet Smart Objects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/09/devicetree-discussions.html">Device Tree Discussions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/06/smart-devicetrees.html">Smart Devicetrees</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/02/devicetree-on-modbus.html">Device Tree on Modbus</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/01/devicetree-lifecycle.html">Device Tree and Product Life Cycles</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/29/devicetree-overlays.html">Device Tree Overlays</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/28/devicetree-overview.html">Device Tree Overview</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/27/sensor-abilities.html">Sense and Sensor Abilities</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/25/the-blob.html">The BLOB - Binary Level OBjects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/23/the-great-chain.html">Automatic Configuration Chains</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/22/SFF-SelfConfig.html">Small Form Factor Auto-Configuration</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/24/minnow-board-lures.html">MinnowBoard Lures Library</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/02/touchwidget-best-practices.html">Touch Widgets - Best Practices</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/29/touch-widgets-howto.html">Touch Widgets How-To/Instructions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/24/eagle-touch-widgets-library.html">Touch Widgets Library for Eagle</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/20/capacitive-sensing-introduction.html">Capacitance Sensing Introduction</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/14/building-your-new-widget.html">Building Your New Widget</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/11/eaglecad-libraries.html">EagleCAD Libraries</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/09/quattrocycle-update.html">Quattrocycle Lighting Update</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/09/13/portland-maker-faire.html">Portland Mini-Maker Faire</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/09/arduino-yun-the-next-generation.html">Arduino Y'un - The Next Generation</a>
+    </li>
+  
+</ul>
+
+
+  </div>
+
+</main>
+   
+
+<form id="signup"
+      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      method="post"
+      id="mc-embedded-subscribe-form"
+      name="mc-embedded-subscribe-form"
+      class="validate"
+      target="_blank"
+      novalidate>
+  <div class="row"><div class="col">
+    
+  <div class="row collapse">
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <button class="postfix" type="submit">Subscribe</button>
+  </div>
+  </div></div>
+</form>
+   <!-- Add the discussion widget -->
+   
+
+<!-- discus panel -->
+<!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
+
+   
+
+<footer>
+  <div class="row">
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <ul class="social-icons">
+           <li><a href="https://twitter.com/PatternAgents" title="twitter"><img src="/img/logos/white/twitter.png"></a></li>
+            <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
+            <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
+            <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
+            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+            <h2><a href="/contact/index.html">Contact</a></h2>
+            <ul>
+              <li><a href="/contact/press.html">Press</a></li>
+              <li><a href="/contact/investors.html">Investors</a></li>
+              <li><a href="/licensing/index.html">Licensing</a></li>
+              <li><a href="/contact/credits.html">Credits</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <h2><a href="/about/index.html">About Us</a></h2>
+          <ul>
+            <li><a href="/about/manufacturers.html">For Manufacturers</a></li>
+            <li><a href="/about/distributors.html">For Distributors</a></li>
+            <li><a href="/about/representatives.html">For Representatives</a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+          <h2><a href="/policies/index.html">Policies</a></h2>
+          <ul>
+            <li><a href="/policies/shipping.html">Shipping</a></li>
+            <li><a href="/policies/returns.html">Returns</a></li>
+            <li><a href="/policies/legal/index.html">Legal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row unimportant">
+    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+  </div>
+</footer>
+
+<script src="/js/lib/jquery.js"></script>
+
+
+<!-- disqus widget script -->
+<script type="text/javascript">
+  var disqus_shortname = 'patternagents';
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- pinterest widget script -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.setAttribute('data-pin-color', 'red');
+  p.setAttribute('data-pin-hover', 'true');
+  p.src = '//assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+<!-- toggle menu -->
+<script>
+  $(function() {
+    var $navToggle = $('nav.toggle');
+    $navToggle.addClass('collapsed');
+    $navToggle.find('h2').bind('click focus', function() {
+      // if we want to get fancy, we can animate the max-height here
+      $navToggle.toggleClass('collapsed');
+    });
+  });
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

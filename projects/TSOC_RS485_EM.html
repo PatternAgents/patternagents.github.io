@@ -3,16 +3,16 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: TouchWidgets How-To Example Project</title>
+  <title>PatternAgents: TSOC_RS485_EM : RS485 Internet of Things Embedded Module</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
 
   <meta name="robots"                  content="noodp, noydir, noarchive"         />
-  <meta name="description"        content="TouchWidget Example Project"    />
-  <meta name="abstract"              content="TouchWidget Example Project"       />
+  <meta name="description"        content="TSOC_RS485_EM - RS485 Internet of Things Embedded Module"    />
+  <meta name="abstract"              content="TSOC_RS485_EM - RS485 Internet of Things Embedded Module"       />
   <meta name="classification"  content="electronics, electronics design, design engineering" />
-  <meta name="keywords"              content="capacitance, capacitive sensing, capsense, touch, captouch, mtouch, qtouch, eagle, cad, eaglecad, eagle cad, libraries, open source, make, maker, maker space, arduino, uno, mega, due, yun, schematic, layout, pcb, pcb design"       />
+  <meta name="keywords"              content="TSOC_RS485_EM, rs485, modbus, dmx, dmx-512, dmx512, rdm, usb, arduino, uno, pro, atmel, cpld, fpga"       />
 
   <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
   <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
@@ -128,7 +128,7 @@
   <article role="article">
     <header>
       
-        <h1 class="entry-title">TouchWidgets How-To Example Project</h1>
+        <h1 class="entry-title">TSOC_RS485_EM : RS485 Internet of Things Embedded Module</h1>
       
       
         <p class="meta">
@@ -137,30 +137,54 @@
       
     </header>
     <div class="entry-content"><p>
-This is the example project for the Touch Widgets Library How-To, and in this how-to example, 
-we have made a small Arduino Form Factor Shield/Board that includes a few different touch widgets,
-and will be compatible with a number of different Arduino boards.
+The TSOC_RS485_EM is a ATMEGA328 based board with integrated RS485 driver, in an Embedded Module format for thingSoC.
+<Br>
+The TSOC_RS485_EM connects any thingSoC (or Mikrobus) module to an RS485 compatible interface,
+including a variety of analog sensors, such as Temperature, Wind, Pressure, Air Quality, and many more.
+<p>
+The TSOC_RS485_EM can be configured as either a thingSoC master module (female connectors), 
+or a thingSoC slave module (male connectors),
+which is implemented as an assembly/build time option.
+The TSOC_RS485_EM accepts any thingSoC or Mikrobus module, to provide RS485 to almost anything as a bridge,
+including RS-232, RS-485, GSM, GPS, BLTE, motor control, analog sensors, and others.
 </p>
 <!-- more -->
-<p>
-We will use the Arduino pins A0 as a select button, and A1-A5 pins for a five (5) button linear slider. 
-This is a simple (arbitrary) example, but will serve to explain all the steps necessary for you to make your own designs.
-</p>
 
-<p>
-This is the project that accompanies the <a href="/news/2013/11/29/touch-widgets-howto.html" title="Touch Widgets How-To/Instructions">Touch Widgets How-To/Instructions</a> news post.
-</p>
+  <h3>TSOC_RS485_EM - RS485 Internet of Things Embedded Module :</h3>
+  The TSOC_RS485_EM allows you to leverage the large amount of software and libraries available under
+  the Arduino IDE for RS485 wired communications protocols. These protocols include the DMX512/RDM Theatre Lighting protocol,
+  the Modbus Industrial and Factory Automation protocol (for using with PLCs - Programmable Logic Controllers for Factory Automation),
+  the Vending Machine Bus protocol for Sales Automation, and many more. 
+  
+  <p>
+  <ul>
+    <li><a href="https://www.arduino.cc/">Supported by the Arduino IDE</a></li>
+    <li><a href="http://www.thingsoc.com">thingSoC Compliant Module</a></li>
+    <li><a href="http://www.mikroe.com/mikrobus/">Mikrobus Compatible Module</a></li> 
+    <li>RGBY Color LEDs for status (Red, Green, Blue, and Yellow)
+  </ul>
+
+   <img class="illo" src="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_iso.png" alt="TSOC_RS485_EM Model" title="TSOC_RS485_EM Model"/></a>
+   <p>
+   <img class="illo" src="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_top.jpg" alt="TSOC_RS485_EM Top" title="TSOC_RS485_EM Top"/></a>
+   <p>
+    <img class="illo" src="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_bot.jpg" alt="TSOC_RS485_EM Bottom" title="TSOC_RS485_EM Bottom"/></a>
+   <p>
+   <h2>Project Status</h2>
+    <ul>
+      <li>03/13/2016 : Rev. 5.0 model and layout completed.</li>
+      <li>03/14/2016 : First Prototypes Ordered (Rev 5.0)</li>
+    </ul>
+
 </div>
     <footer>
       <p class="meta">
-        December 01, 2013
+        March 15, 2016
       </p>
       <p class="meta">
         
-          <a class="previous" href="/news/2013/11/29/touch-widgets-howto.html" title="Previous Post: Touch Widgets How-To/Instructions">&laquo; Touch Widgets How-To/Instructions</a>
+          <a class="previous" href="/projects/TSOC-ESP8266.html" title="Previous Post: TSOC-ESP8266 : Wi-Fi Internet of Things Module">&laquo; TSOC-ESP8266 : Wi-Fi Internet of Things Module</a>
         
-        
-          <a class="next" href="/news/2013/12/02/touchwidget-best-practices.html" title="Next Post: Touch Widgets - Best Practices">Touch Widgets - Best Practices &raquo;</a>
         
       </p>
     </footer>
@@ -171,49 +195,49 @@ This is the project that accompanies the <a href="/news/2013/11/29/touch-widgets
     </div>
     <div class="col maj_minor">
       
-  <h2>TouchWidget_HowTo</h2>
-  <img src="/img/projects/TouchWidget_HowTo/TouchWidget_HowTo_model.png" alt="TouchWidget_HowTo Model" title="TouchWidget_HowTo Model"/>
+  <h2>TSOC_RS485_EM</h2>
+  <img src="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM.png" alt="TSOC_RS485_EM Model" title="TSOC_RS485_EM Model"/>
   <br>
   
 
 
-  <h2>Tweet about TouchWidget_HowTo</h2>
+  <h2>Tweet about TSOC_RS485_EM</h2>
     <center>
-    <a href="https://twitter.com/intent/tweet?button_hashtag=TouchWidget_HowTo" class="twitter-hashtag-button" data-lang="en" data-related="PatternAgents">Tweet #TouchWidget_HowTo</a>
+    <a href="https://twitter.com/intent/tweet?button_hashtag=TSOC_RS485_EM" class="twitter-hashtag-button" data-lang="en" data-related="PatternAgents">Tweet #TSOC_RS485_EM</a>
 	</center>
-  <h2>TouchWidget_HowTo Repository</h2>
+  <h2>TSOC_RS485_EM Repository</h2>
   <center>
   <table border="0">
   <tr>
-	<td><a href="https://github.com/PatternAgents/TouchWidget_HowTo"><img class="img" src="/img/logos/github_repo.png" width="168" height="38" alt="TouchWidget_HowTo Github" title="TouchWidget_HowTo Github"/></a></td>
+	<td><a href="https://github.com/PatternAgents/TSOC_RS485_EM"><img class="img" src="/img/logos/github_repo.png" width="168" height="38" alt="TSOC_RS485_EM Github" title="TSOC_RS485_EM Github"/></a></td>
   </tr>
   <tr>
-	<td><a href="https://github.com/PatternAgents/TouchWidget_HowTo/wiki"><img class="img" src="/img/logos/project_wiki.png"  width="168" height="38" alt="TouchWidget_HowTo Wiki" title="TouchWidget_HowTo Wiki"/></a></td>
+	<td><a href="https://github.com/PatternAgents/TSOC_RS485_EM/wiki"><img class="img" src="/img/logos/project_wiki.png"  width="168" height="38" alt="TSOC_RS485_EM Wiki" title="TSOC_RS485_EM Wiki"/></a></td>
   </tr>
   <tr>
-	<td><a href="https://github.com/PatternAgents/TouchWidget_HowTo/issues"><img class="img" src="/img/logos/bug_tracker.png"  width="168" height="38" alt="TouchWidget_HowTo Issues" title="TouchWidget_HowTo Issues"/></a></td>
+	<td><a href="https://github.com/PatternAgents/TSOC_RS485_EM/issues"><img class="img" src="/img/logos/bug_tracker.png"  width="168" height="38" alt="TSOC_RS485_EM Issues" title="TSOC_RS485_EM Issues"/></a></td>
   </tr>
   </table>
   </center>
-  <h2>TouchWidget_HowTo Downloads</h2>
+  <h2>TSOC_RS485_EM Downloads</h2>
     <center>
 	<table border="0">
 	<tr>
-		<td><a href="https://github.com/PatternAgents/TouchWidget_HowTo/zipball/master"><img class="img" src="/img/logos/zip_archive.png" width="168" height="38" alt="TouchWidget_HowTo ZIPball" title="TouchWidget_HowTo ZIPball"/></a></td>
+		<td><a href="https://github.com/PatternAgents/TSOC_RS485_EM/zipball/master"><img class="img" src="/img/logos/zip_archive.png" width="168" height="38" alt="TSOC_RS485_EM ZIPball" title="TSOC_RS485_EM ZIPball"/></a></td>
 	</tr>
 	<tr>
-		<td><a href="https://github.com/PatternAgents/TouchWidget_HowTo/tarball/master"><img class="img" src="/img/logos/tar_archive.png" width="168" height="38" alt="TouchWidget_HowTo TARball" title="TouchWidget_HowTo TARball"/></a></td>
+		<td><a href="https://github.com/PatternAgents/TSOC_RS485_EM/tarball/master"><img class="img" src="/img/logos/tar_archive.png" width="168" height="38" alt="TSOC_RS485_EM TARball" title="TSOC_RS485_EM TARball"/></a></td>
 	</tr>
 	</table>
 	</center>
-  <h2>TouchWidget_HowTo Images</h2>
+  <h2>TSOC_RS485_EM Images</h2>
     <center>
 	<table border="0">
 	<tr>
-		<td><a href="/img/projects/TouchWidget_HowTo/TouchWidget_HowTo_top.png"><img class="illo" src="/img/projects/TouchWidget_HowTo/TouchWidget_HowTo_top.png" alt="TouchWidget_HowTo Top View" title="TouchWidget_HowTo Top View"/></a></td>
+		<td><a href="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_top.png"><img class="illo" src="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_top.png" alt="TSOC_RS485_EM Top View" title="TSOC_RS485_EM Top View"/></a></td>
 	</tr>
 	<tr>
-		<td><a href="/img/projects/TouchWidget_HowTo/TouchWidget_HowTo_bot.png"><img class="illo" src="/img/projects/TouchWidget_HowTo/TouchWidget_HowTo_bot.png" alt="TouchWidget_HowTo Bottom View" title="TouchWidget_HowTo Bottom View"/></a></td>
+		<td><a href="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_bot.png"><img class="illo" src="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_bot.png" alt="TSOC_RS485_EM Bottom View" title="TSOC_RS485_EM Bottom View"/></a></td>
 	</tr>
 	</table>
 	</center>
@@ -222,7 +246,7 @@ This is the project that accompanies the <a href="/news/2013/11/29/touch-widgets
 
 <!-- place "licensing: true" in the YAML front matter to enable Licensing in that page -->
 
-	<h2>TouchWidget_HowTo Licensing</h2>
+	<h2>TSOC_RS485_EM Licensing</h2>
 
 <!-- place "cc_by_sa: true" in the YAML front matter to enable cc_by_sa licensing for that page -->
 	
@@ -231,7 +255,7 @@ This is the project that accompanies the <a href="/news/2013/11/29/touch-widgets
 			<td align="center"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img width="88" height="31" alt="Creative Commons License" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a></td>
         </tr>
 		<tr>
-			<td>The TouchWidget_HowTo Project by PatternAgents, LLC is available and licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</td>
+			<td>The TSOC_RS485_EM Project by PatternAgents, LLC is available and licensed under a Creative Commons Attribution-ShareAlike 4.0 International License</td>
 		</tr>
 		</table>
 	

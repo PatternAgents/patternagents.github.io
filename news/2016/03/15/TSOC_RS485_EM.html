@@ -3,7 +3,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
-  <title>PatternAgents: Automatic Configuration Chains</title>
+  <title>PatternAgents: thingSoC RS485 Embedded Module</title>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
@@ -108,7 +108,7 @@
   <article role="article">
     <header>
       
-        <h1 class="entry-title">Automatic Configuration Chains</h1>
+        <h1 class="entry-title">thingSoC RS485 Embedded Module</h1>
       
       
         <p class="meta">
@@ -122,185 +122,73 @@
   
 
 <blockquote>
-	<p>There are more things in heaven and earth, Horatio, than are dreamt of in your philosophy.</p>
-	<p>&mdash;Shakespeare - "Hamlet"</p>
+	<p>As technology advances, it reverses the characteristics of every situation again and again. The age of automation is going to be the age of 'do it yourself.'</p>
+	<p>&mdash;Marshall McLuhan</p>
 </blockquote>
 
-<p>In order to design an automatic discovery and configuration mechanism for popular 
-small form factors like Arduino, rfDuino, LaunchPad, and others,
-we first need to decide on simple connection chain that can connect all the 
-subsystems, one which is already included in each of these form factors.
-We need to be able to describe the heirarchy of devices, and the connections between them, 
-in order to understand the topology of our embedded system.
+<p>
+The TSOC_RS485_EM is a ATMEGA328 based board with integrated RS485 driver, in an Embedded Module format for the new thingSoC,
+Internet of Things open standard.
+<p>
+The TSOC_RS485_EM allows you to leverage the large amount of software and libraries available under
+the Arduino IDE for RS485 wired communications protocols. These protocols include the DMX512/RDM Theatre Lighting protocol,
+the Modbus Industrial and Factory Automation protocol (for using with PLCs - Programmable Logic Controllers for Factory Automation),
+the Vending Machine Bus protocol for Sales Automation, and many more. 
+<p>
+The TSOC_RS485_EM accepts any thingSoC or Mikrobus module, to provide RS485 to almost anything as a bridge,
+including a variety of input and analog sensors, such as Temperature, Wind, Pressure, Air Quality, and Gases.
+The TSOC_RS485_EM also accepts a variety of output modules, such as relays for controlling lights, pumps, or motors,
+as well as stepper motor and other outputs.
 </p>
 <!-- more -->
+
+<h3>TSOC_RS485_EM - RS485 Internet of Things Embedded Module :</h3>
+The TSOC_RS485_EM connects any thingSoC (or Mikrobus) module to an RS485 compatible interface,
+including RS-232, RS-485, GSM, GPS, BLTE, motor control, analog sensors, and others.
 <p>
-The problem reminds me somewhat of that faced by the early philosophers in trying to understand
-their place in the hierarchy of the universe. Aristotle's 
-<a href="http://en.wikipedia.org/wiki/History_of_Animals">History of Animals</a> 
-classified organisms in relation to a linear "ladder of life", or <i>Scala Naturae</i>,
-which allowed for an ordering of beings, from dirt at the bottom, to God at the very top,
-with all creatures occupying rungs of the ascending ladder between.
-The <a href="http://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a>
-connected all things, as all things were linked together to form the universe in one solid, unbroken chain.
-By the time of the Renaissance, the concept of <a href="http://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a> 
-had become pervasive, used to justify the feudal system and the divine right of kings. 
-Later still, this would influence poets such as Robert Blake to compose lines like, "As above, so below".
-</p>
+The TSOC_RS485_EM can be configured as either a thingSoC master module (female connectors), 
+or a thingSoC slave module (male connectors),
+which is implemented as an assembly/build time option. 
+  <p>
+  <ul>
+    <li><a href="https://www.arduino.cc/">Supported by the Arduino IDE</a></li>
+    <li><a href="http://www.thingsoc.com">thingSoC Compliant Module</a></li>
+    <li><a href="http://www.mikroe.com/mikrobus/">Mikrobus Compatible Module</a></li> 
+    <li>RGBY Color LEDs for status (Red, Green, Blue, and Yellow)
+  </ul>
+
+   <img src="/img/projects/TSOC_RS485_EM/TSOC_RS485_EM_iso.png" alt="TSOC_RS485_EM Model" title="TSOC_RS485_EM Model"/></a>
+   <p>
+   <p>
+<h2>Example Applications :</h2>
+<img class="illo" src="/img/projects/TSOC_RS485_EM/img_top_01.png" alt="TSOC_RS485_EM Top" title="TSOC_RS485_EM Top"/></a>
 <p>
-We also need to define a chain of physical entities, and the links that make up their interconnections.
-In reality, we will need to define several, as some may be connected only by wireless linkages,
-but for this introduction, we will discuss only the physically connected entities, such as an Ardunio Shield,
-rfDuino, Launchpad, and the like.
-</p>
+The example shown here uses the TSOC_RS485_EM with three (3) different expansion boards, from bottom to top, a MicroSDCard Reader (contains configuration data),
+a dual Relay expansion boad for controlling two different relay outputs, and an Ethernet expansion board to provide an Ethernet (10/100) to RS485 Bridge function.
+For example this can be programmed to provide a Modbus TCP/IP to Modbus RTU bridge, or an ARTnet TCP/IP to DMX512 lighting bridge.
 <p>
-The simplest and most ubiquitous interface found on all of these platforms is 
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, or the Inter-Integrated Circuit bus.
-Also known as the "Two-Wire Bus" or TWB, <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>
-is found on almost every embedded platform, and can be easily implemented with software 
-<a href="http://en.wikipedia.org/wiki/Bit_banging">bit banging</a> on general purpose I/O pins (GPIO),
-if a hardware interface block is not readily available. In addition, the 
-<a href="http://www.mipi.org/">MIPI Alliance</a> is in the final stages of the ratification process for the new
-<a href="http://mipi.org/specifications/i3c%E2%84%A0-sensor-specification">SenseWire/I3C Sensor Interface Specification</a>;
-I3C defines a much higher performance interface, capable of supporting many more high speed sensors than
-the original <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus specification.
-</p>
-<p>
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> is a good choice for this purpose,
-as it is both commonly available, and also supports the very low cost 
-<a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> that we will
-need for our configuration storage. An example implementation of this automatic configuration scheme
-would resemble the diagram below : 
-</p>
-<p>
-<img src="/img/news/great_chain/i2c_mmi.png" alt="I2C Configuration Chain" title="I2C Configuration Chain"/>
-</p>
-<p>
-Typical <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> employ a three(3) bit hardware
-selection mechanism, allowing up to eight(8) devices to share the same <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus.
-In communicating with the <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a>, the first byte sent
-is the control word, which serves to select which one of the eight(8) devices will respond to the read/write operation
-on the shared <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus. 
-</p>
-<p>
-<img src="/img/news/great_chain/i2c_register.png" alt="I2C Register" title="I2C Register"/>
-</p>
-<p>
-Using this addressing scheme, we can support up to eight(8) levels of devices in our stack, which should be
-adequate for most purposes. The standard addressing for each level is shown in the table below :
+<h2>Example Sensor Applications : </h2>
 <br>
-<table border="2" spacing="2">
-<tr>
-<td>&nbsp; A2 &nbsp;</td>
-<td>&nbsp; A1 &nbsp;</td>
-<td>&nbsp; A0 &nbsp;</td>
-<td>&nbsp; I2C Address &nbsp;</td>
-<td>&nbsp; Device &nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x50 &nbsp;</td>
-<td>&nbsp; Chassis (Power Supply) &nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x51 &nbsp;</td>
-<td>&nbsp; Boot Processor #0 (Arduino, BeagleBone) &nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x52 &nbsp;</td>
-<td>&nbsp; CoProcessor #1 (Logger)&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x53 &nbsp;</td>
-<td>&nbsp; CoProcessor #2 (Logic Analyzer)&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x54 &nbsp;</td>
-<td>&nbsp; Shield #1 (Beaglebone Cape #1)&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x55 &nbsp;</td>
-<td>&nbsp; Shield #2 (Beaglebone Cape #2)&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 0 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x56 &nbsp;</td>
-<td>&nbsp; Shield #3 (Beaglebone Cape #3)&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp;&nbsp; 1 &nbsp;</td>
-<td>&nbsp; &nbsp; &nbsp; 0x57 &nbsp;</td>
-<td>&nbsp; Shield #4 (Beaglebone Cape #4)&nbsp;</td>
-</tr>
-</table>
-</p>
+<ul>
+<li><a href="http://www.mikroe.com/click/weather/">Modbus Weather Sensor BOSCH BME280 Temp, Humidity, Air Pressure</a></li>
+<li><a href="http://www.mikroe.com/click/methane/">Modbus Methane Sensor MQ-4 Sensor for Methane (CH4) </a></li>
+<li><a href="http://www.mikroe.com/click/air-quality/">Modbus Air Quality Sensor MQ-135 Sensor for Harmful Gasses</a></li>
+<li><a href="http://www.mikroe.com/click/thunder/">Modbus Lightning Sensor AS3935 Lighting Strike Detector</a></li>
+<li><a href="http://www.mikroe.com/click/relay/">Modbus Controlled Relay G6D1AASI Power Relay Control Module</a></li>
+</ul>
+<img class="illo" src="/img/projects/TSOC_RS485_EM/img_bot_01.jpg" alt="TSOC_RS485_EM Bottom" title="TSOC_RS485_EM Bottom"/></a>
+
 <p>
-You'll notice that the Arduino (or Launchpad, etc.) is not at the 
-very bottom of the stack, as there may be a chassis or other lower level that
-the stack is mounted within, in order to provide battery or solar power to the system.
-We may need to be able to interogate that level to inquire how much power is available,
-or inquire about other parameters. In later articles, I'll outline some other uses
-for the lowest level, such as instrumentation, testing, and monitoring of the system.
-</p>
-<p>
-So, what about more than eight(8) levels you might be asking? What then?
-Well, the <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus has
-some physical loading limitations, that have to do with the larger bus capacitances
-that result when you extend the bus too far, or add too many loads(devices). 
-In practice, there may need to be 
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus buffers, repeaters,
-hubs, or multiplexors employed to keep each segment of the 
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus within specified loading limits.
-However, the addressing scheme above would apply to each separate segment of a larger
-system, although you may need to address a multiplexor or hub first to select a
-particular segment to read or write.
-</p>
-<p>
-You might also notice that the Beaglebone "Capes" (the name for their expansion boards)
-are limited to four(4) "Capes", this is a specific limitation of the Beaglebone.
-</p>
-<p>
-We now have a basic outline for a hardware design pattern for automatic discovery
-and automatic configuration using simple I2C interfaced EEPROM memory chips.
-The next step is to define the data structure within each of the 
-<a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> shown,
-and how that data structure defines the components and topology of the overall system.
-The next article will cover currently available data structures like the Device Tree
-and IPMI formats. 
-</p>
 
 </div>
     <footer>
       <p class="meta">
-        January 23, 2015
+        March 15, 2016
       </p>
       <p class="meta">
         
-          <a class="previous" href="/news/2015/01/22/SFF-SelfConfig.html" title="Previous Post: Small Form Factor Auto-Configuration">&laquo; Small Form Factor Auto-Configuration</a>
+          <a class="previous" href="/projects/TSOC-ESP8266.html" title="Previous Post: TSOC-ESP8266 : Wi-Fi Internet of Things Module">&laquo; TSOC-ESP8266 : Wi-Fi Internet of Things Module</a>
         
-        
-          <a class="next" href="/news/2015/01/25/the-blob.html" title="Next Post: The BLOB - Binary Level OBjects">The BLOB - Binary Level OBjects &raquo;</a>
         
       </p>
     </footer>

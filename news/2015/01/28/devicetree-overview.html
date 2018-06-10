@@ -75,7 +75,7 @@
 <header>
   <div class="head-container">
 	  <div class="col">
-	    <a href="/">
+	    <a href="">
 	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
 	    </a>
 	  </div>
@@ -199,22 +199,38 @@ A very (very) simplified example, including just the CPU and it's main memory, w
 </p>
 <p>
 The corresponding <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> file for the above would look something like :
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno"> 1 </span><span class="p">{</span>
-<span class="lineno"> 2 </span>        <span class="n">model</span>      <span class="o">=</span> <span class="s">&quot;TI AM335x BeagleBone Black&quot;</span><span class="p">;</span>
-<span class="lineno"> 3 </span>        <span class="n">compatible</span> <span class="o">=</span> <span class="s">&quot;ti,beaglebone-black&quot;</span><span class="p">,</span>
-<span class="lineno"> 4 </span>                     <span class="s">&quot;ti,am335x-boneblack&quot;</span><span class="p">,</span>
-<span class="lineno"> 5 </span>                     <span class="s">&quot;ti,am335x-bone&quot;</span><span class="p">,</span>
-<span class="lineno"> 6 </span>                     <span class="s">&quot;ti,am33xx&quot;</span><span class="p">;</span>
-<span class="lineno"> 7 </span>        <span class="n">cpus</span> <span class="p">{</span>
-<span class="lineno"> 8 </span>                <span class="n">cpu</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
-<span class="lineno"> 9 </span>                       <span class="n">cpu0</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">dcdc2_reg</span><span class="o">&gt;</span><span class="p">;</span>	
-<span class="lineno">10 </span>                <span class="p">};</span>	
-<span class="lineno">11 </span>        <span class="p">};</span>	
-<span class="lineno">12 </span>        <span class="n">memory</span> <span class="p">{</span>	
-<span class="lineno">13 </span>                <span class="n">device_type</span> <span class="o">=</span> <span class="s">&quot;memory&quot;</span><span class="p">;</span>
-<span class="lineno">14 </span>                <span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x80000000</span> <span class="mh">0x10000000</span><span class="o">&gt;</span><span class="p">;</span> <span class="cm">/* 256 MB */</span>	
-<span class="lineno">15 </span>        <span class="p">};</span>
-<span class="lineno">16 </span><span class="p">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="p">{</span>
+        <span class="n">model</span>      <span class="o">=</span> <span class="s">"TI AM335x BeagleBone Black"</span><span class="p">;</span>
+        <span class="n">compatible</span> <span class="o">=</span> <span class="s">"ti,beaglebone-black"</span><span class="p">,</span>
+                     <span class="s">"ti,am335x-boneblack"</span><span class="p">,</span>
+                     <span class="s">"ti,am335x-bone"</span><span class="p">,</span>
+                     <span class="s">"ti,am33xx"</span><span class="p">;</span>
+        <span class="n">cpus</span> <span class="p">{</span>
+                <span class="n">cpu</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
+                       <span class="n">cpu0</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">dcdc2_reg</span><span class="o">&gt;</span><span class="p">;</span>	
+                <span class="p">};</span>	
+        <span class="p">};</span>	
+        <span class="n">memory</span> <span class="p">{</span>	
+                <span class="n">device_type</span> <span class="o">=</span> <span class="s">"memory"</span><span class="p">;</span>
+                <span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x80000000</span> <span class="mh">0x10000000</span><span class="o">&gt;</span><span class="p">;</span> <span class="cm">/* 256 MB */</span>	
+        <span class="p">};</span>
+<span class="p">};</span></pre></td></tr></tbody></table></code></pre></figure>
 </p>
 <p>
 As we can see from the above <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> example, we have defined the following :
@@ -230,44 +246,82 @@ Of course, the actual Device Tree Source (.dts) file, in this case, the
 <p>
 Next we'll add some input/output to the Device Tree Source (.dts) file, and we'll start with a simple I2C controller
 in order to create a tiny, but useful little computing platform description : 
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno"> 1 </span><span class="p">{</span>
-<span class="lineno"> 2 </span>        <span class="n">model</span>      <span class="o">=</span> <span class="s">&quot;TI AM335x BeagleBone Black&quot;</span><span class="p">;</span>
-<span class="lineno"> 3 </span>        <span class="n">compatible</span> <span class="o">=</span> <span class="s">&quot;ti,beaglebone-black&quot;</span><span class="p">,</span>
-<span class="lineno"> 4 </span>                     <span class="s">&quot;ti,am335x-boneblack&quot;</span><span class="p">,</span>
-<span class="lineno"> 5 </span>                     <span class="s">&quot;ti,am335x-bone&quot;</span><span class="p">,</span>
-<span class="lineno"> 6 </span>                     <span class="s">&quot;ti,am33xx&quot;</span><span class="p">;</span>
-<span class="lineno"> 7 </span>        <span class="n">cpus</span> <span class="p">{</span>
-<span class="lineno"> 8 </span>                <span class="n">cpu</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
-<span class="lineno"> 9 </span>                       <span class="n">cpu0</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">dcdc2_reg</span><span class="o">&gt;</span><span class="p">;</span>	
-<span class="lineno">10 </span>                <span class="p">};</span>	
-<span class="lineno">11 </span>        <span class="p">};</span>	
-<span class="lineno">12 </span>        <span class="n">memory</span> <span class="p">{</span>	
-<span class="lineno">13 </span>                <span class="n">device_type</span> <span class="o">=</span> <span class="s">&quot;memory&quot;</span><span class="p">;</span>
-<span class="lineno">14 </span>                <span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x80000000</span> <span class="mh">0x10000000</span><span class="o">&gt;</span><span class="p">;</span> <span class="cm">/* 256 MB */</span>	
-<span class="lineno">15 </span>        <span class="p">};</span>
-<span class="lineno">16 </span>        <span class="nl">am33xx_pinmux</span><span class="p">:</span> <span class="n">pinmux</span><span class="err">@</span><span class="mf">44e10800</span> <span class="p">{</span>
-<span class="lineno">17 </span>		<span class="n">pinctrl</span><span class="o">-</span><span class="n">names</span> <span class="o">=</span> <span class="s">&quot;default&quot;</span><span class="p">;</span>
-<span class="lineno">18 </span>		<span class="n">pinctrl</span><span class="o">-</span><span class="mi">0</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">clkout2_pin</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">19 </span>		<span class="nl">i2c0_pins</span><span class="p">:</span> <span class="n">pinmux_i2c0_pins</span> <span class="p">{</span>
-<span class="lineno">20 </span>			<span class="n">pinctrl</span><span class="o">-</span><span class="n">single</span><span class="p">,</span><span class="n">pins</span> <span class="o">=</span> <span class="o">&lt;</span>
-<span class="lineno">21 </span>                                <span class="cm">/* i2c0_sda.i2c0_sda pin */</span>
-<span class="lineno">22 </span>				<span class="mh">0x188</span> <span class="p">(</span><span class="n">PIN_INPUT_PULLUP</span> <span class="o">|</span> <span class="n">MUX_MODE0</span><span class="p">)</span>
-<span class="lineno">23 </span>				<span class="cm">/* i2c0_scl.i2c0_scl */</span>
-<span class="lineno">24 </span>				<span class="mh">0x18c</span> <span class="p">(</span><span class="n">PIN_INPUT_PULLUP</span> <span class="o">|</span> <span class="n">MUX_MODE0</span><span class="p">)</span>
-<span class="lineno">25 </span>			<span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">26 </span>		<span class="p">};</span>
-<span class="lineno">27 </span>        <span class="p">};</span>
-<span class="lineno">28 </span>        <span class="n">ocp</span> <span class="p">{</span>
-<span class="lineno">29 </span>		<span class="nl">i2c0</span><span class="p">:</span> <span class="n">i2c</span><span class="err">@</span><span class="mf">44e0</span><span class="n">b000</span> <span class="p">{</span>
-<span class="lineno">30 </span>			<span class="n">pinctrl</span><span class="o">-</span><span class="n">names</span> <span class="o">=</span> <span class="s">&quot;default&quot;</span><span class="p">;</span>
-<span class="lineno">31 </span>			<span class="n">pinctrl</span><span class="o">-</span><span class="mi">0</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">i2c0_pins</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">32 </span>			<span class="n">status</span> <span class="o">=</span> <span class="s">&quot;okay&quot;</span><span class="p">;</span>
-<span class="lineno">33 </span>			<span class="n">clock</span><span class="o">-</span><span class="n">frequency</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">400000</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">34 </span>			<span class="nl">tps</span><span class="p">:</span> <span class="n">tps</span><span class="err">@</span><span class="mi">24</span> <span class="p">{</span>
-<span class="lineno">35 </span>				<span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x24</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">36 </span>			<span class="p">};</span>
-<span class="lineno">37 </span>        <span class="p">};</span>
-<span class="lineno">38 </span><span class="p">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre></td><td class="code"><pre><span class="p">{</span>
+        <span class="n">model</span>      <span class="o">=</span> <span class="s">"TI AM335x BeagleBone Black"</span><span class="p">;</span>
+        <span class="n">compatible</span> <span class="o">=</span> <span class="s">"ti,beaglebone-black"</span><span class="p">,</span>
+                     <span class="s">"ti,am335x-boneblack"</span><span class="p">,</span>
+                     <span class="s">"ti,am335x-bone"</span><span class="p">,</span>
+                     <span class="s">"ti,am33xx"</span><span class="p">;</span>
+        <span class="n">cpus</span> <span class="p">{</span>
+                <span class="n">cpu</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
+                       <span class="n">cpu0</span><span class="o">-</span><span class="n">supply</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">dcdc2_reg</span><span class="o">&gt;</span><span class="p">;</span>	
+                <span class="p">};</span>	
+        <span class="p">};</span>	
+        <span class="n">memory</span> <span class="p">{</span>	
+                <span class="n">device_type</span> <span class="o">=</span> <span class="s">"memory"</span><span class="p">;</span>
+                <span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x80000000</span> <span class="mh">0x10000000</span><span class="o">&gt;</span><span class="p">;</span> <span class="cm">/* 256 MB */</span>	
+        <span class="p">};</span>
+        <span class="n">am33xx_pinmux</span><span class="o">:</span> <span class="n">pinmux</span><span class="err">@</span><span class="mf">44e10800</span> <span class="p">{</span>
+		<span class="n">pinctrl</span><span class="o">-</span><span class="n">names</span> <span class="o">=</span> <span class="s">"default"</span><span class="p">;</span>
+		<span class="n">pinctrl</span><span class="o">-</span><span class="mi">0</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">clkout2_pin</span><span class="o">&gt;</span><span class="p">;</span>
+		<span class="n">i2c0_pins</span><span class="o">:</span> <span class="n">pinmux_i2c0_pins</span> <span class="p">{</span>
+			<span class="n">pinctrl</span><span class="o">-</span><span class="n">single</span><span class="p">,</span><span class="n">pins</span> <span class="o">=</span> <span class="o">&lt;</span>
+                                <span class="cm">/* i2c0_sda.i2c0_sda pin */</span>
+				<span class="mh">0x188</span> <span class="p">(</span><span class="n">PIN_INPUT_PULLUP</span> <span class="o">|</span> <span class="n">MUX_MODE0</span><span class="p">)</span>
+				<span class="cm">/* i2c0_scl.i2c0_scl */</span>
+				<span class="mh">0x18c</span> <span class="p">(</span><span class="n">PIN_INPUT_PULLUP</span> <span class="o">|</span> <span class="n">MUX_MODE0</span><span class="p">)</span>
+			<span class="o">&gt;</span><span class="p">;</span>
+		<span class="p">};</span>
+        <span class="p">};</span>
+        <span class="n">ocp</span> <span class="p">{</span>
+		<span class="n">i2c0</span><span class="o">:</span> <span class="n">i2c</span><span class="err">@</span><span class="mf">44e0</span><span class="n">b000</span> <span class="p">{</span>
+			<span class="n">pinctrl</span><span class="o">-</span><span class="n">names</span> <span class="o">=</span> <span class="s">"default"</span><span class="p">;</span>
+			<span class="n">pinctrl</span><span class="o">-</span><span class="mi">0</span> <span class="o">=</span> <span class="o">&lt;&amp;</span><span class="n">i2c0_pins</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">status</span> <span class="o">=</span> <span class="s">"okay"</span><span class="p">;</span>
+			<span class="n">clock</span><span class="o">-</span><span class="n">frequency</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">400000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">tps</span><span class="o">:</span> <span class="n">tps</span><span class="err">@</span><span class="mi">24</span> <span class="p">{</span>
+				<span class="n">reg</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mh">0x24</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="p">};</span>
+        <span class="p">};</span>
+<span class="p">};</span></pre></td></tr></tbody></table></code></pre></figure>
 </p>
 <p>
 The first thing we added above is the I/O Pin Multiplexing defintions, as most modern System-on-Chip (SoC) devices have several
@@ -301,32 +355,58 @@ which allows me to introduce the concept of power supply descriptions. It is rea
 a board are capable of providing, and what additional power that expansion devices or add-on boards will require. 
 That will allow us to indicate an error if an expansion device requires more power than we are capable of providing.
 
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="lineno"> 1 </span><span class="o">/</span><span class="n">include</span><span class="o">/</span> <span class="s">&quot;tps65217.dtsi&quot;</span>
-<span class="lineno"> 2 </span><span class="o">&amp;</span><span class="n">tps</span> <span class="p">{</span>
-<span class="lineno"> 3 </span>	<span class="n">regulators</span> <span class="p">{</span>
-<span class="lineno"> 4 </span>		<span class="nl">dcdc1_reg</span><span class="p">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
-<span class="lineno"> 5 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
-<span class="lineno"> 6 </span>		<span class="p">};</span>
-<span class="lineno"> 7 </span>		<span class="nl">dcdc2_reg</span><span class="p">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">1</span> <span class="p">{</span>
-<span class="lineno"> 8 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;vdd_mpu&quot;</span><span class="p">;</span>
-<span class="lineno"> 9 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">min</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">925000</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">10 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">max</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">1325000</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">11 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
-<span class="lineno">12 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
-<span class="lineno">13 </span>		<span class="p">};</span>
-<span class="lineno">14 </span>		<span class="nl">dcdc3_reg</span><span class="p">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">2</span> <span class="p">{</span>
-<span class="lineno">15 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;vdd_core&quot;</span><span class="p">;</span>
-<span class="lineno">16 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">min</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">925000</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">17 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">max</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">1150000</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="lineno">18 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
-<span class="lineno">19 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
-<span class="lineno">20 </span>		<span class="p">};</span>
-<span class="lineno">21 </span>		<span class="nl">ldo1_reg</span><span class="p">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">3</span> <span class="p">{</span>
-<span class="lineno">22 </span>			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
-<span class="lineno">23 </span>		<span class="p">};</span>
-<span class="lineno">24 </span>
-<span class="lineno">25 </span>	<span class="p">};</span>
-<span class="lineno">26 </span><span class="p">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td><td class="code"><pre><span class="o">/</span><span class="n">include</span><span class="o">/</span> <span class="s">"tps65217.dtsi"</span>
+<span class="o">&amp;</span><span class="n">tps</span> <span class="p">{</span>
+	<span class="n">regulators</span> <span class="p">{</span>
+		<span class="n">dcdc1_reg</span><span class="o">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">0</span> <span class="p">{</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+		<span class="p">};</span>
+		<span class="n">dcdc2_reg</span><span class="o">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">1</span> <span class="p">{</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vdd_mpu"</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">min</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">925000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">max</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">1325000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+		<span class="p">};</span>
+		<span class="n">dcdc3_reg</span><span class="o">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">2</span> <span class="p">{</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s">"vdd_core"</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">min</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">925000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">max</span><span class="o">-</span><span class="n">microvolt</span> <span class="o">=</span> <span class="o">&lt;</span><span class="mi">1150000</span><span class="o">&gt;</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+		<span class="p">};</span>
+		<span class="n">ldo1_reg</span><span class="o">:</span> <span class="n">regulator</span><span class="err">@</span><span class="mi">3</span> <span class="p">{</span>
+			<span class="n">regulator</span><span class="o">-</span><span class="n">always</span><span class="o">-</span><span class="n">on</span><span class="p">;</span>
+		<span class="p">};</span>
+
+	<span class="p">};</span>
+<span class="p">};</span></pre></td></tr></tbody></table></code></pre></figure>
 </p>
 <p>
 In the above example, you'll start to see the use of Device Tree Source Include files (.dtsi),
@@ -342,12 +422,12 @@ example to define the power supply for the cpu. A few of the parameters worth me
 <h2>Installing the Device Tree Compiler</h2>
 On a typical Linux system distribution, you can install the Device Tree compiler using :
 
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">device</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">compiler</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">device</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">compiler</span></code></pre></figure>
 
 Then check your installation, by asking for the DTC version :
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">moxon</span><span class="err">@</span><span class="nl">fs</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">dtc</span> <span class="o">-</span><span class="n">v</span>
-<span class="nl">Version</span><span class="p">:</span> <span class="n">DTC</span> <span class="mf">1.3.0</span>
-<span class="n">moxon</span><span class="err">@</span><span class="nl">fs</span><span class="p">:</span><span class="o">~</span><span class="err">$</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">moxon</span><span class="err">@</span><span class="n">fs</span><span class="o">:~</span><span class="err">$</span> <span class="n">dtc</span> <span class="o">-</span><span class="n">v</span>
+<span class="n">Version</span><span class="o">:</span> <span class="n">DTC</span> <span class="mi">1</span><span class="p">.</span><span class="mi">3</span><span class="p">.</span><span class="mi">0</span>
+<span class="n">moxon</span><span class="err">@</span><span class="n">fs</span><span class="o">:~</span><span class="err">$</span></code></pre></figure>
 
 If you are looking for a specific how-to guide for BeagleBone, Raspberry Pi, Xixlinx, Altera, etc,
 please see the References section at the end of this article for a complete listing. A number of people
@@ -360,7 +440,7 @@ The Device Tree Compiler is a simple command line tool that is used to read
 generate a Flattened Device Tree Binary Object file (.dtb), also known as the
 "Device Tree BLOB".
 
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">moxon</span><span class="err">@</span><span class="nl">fs</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">dtc</span> <span class="o">-</span><span class="n">O</span> <span class="n">dtb</span> <span class="o">-</span><span class="n">o</span> <span class="n">outputBLOB</span><span class="p">.</span><span class="n">dtb</span> <span class="o">-</span><span class="n">b</span> <span class="mi">0</span> <span class="n">inputSOURCE</span><span class="p">.</span><span class="n">dts</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">moxon</span><span class="err">@</span><span class="n">fs</span><span class="o">:~</span><span class="err">$</span> <span class="n">dtc</span> <span class="o">-</span><span class="n">O</span> <span class="n">dtb</span> <span class="o">-</span><span class="n">o</span> <span class="n">outputBLOB</span><span class="p">.</span><span class="n">dtb</span> <span class="o">-</span><span class="n">b</span> <span class="mi">0</span> <span class="n">inputSOURCE</span><span class="p">.</span><span class="n">dts</span></code></pre></figure>
 Pretty simple really, the Device Tree Compiler reads the input file named "inputSOURCE.dts",
 and generates the output file named "outputBLOB.dtb". The output file can then be loaded into
 flash or EEPROM for use during the boot up sequence.

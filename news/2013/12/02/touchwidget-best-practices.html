@@ -43,7 +43,7 @@
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
   </script>
@@ -711,7 +711,7 @@ License : <a href="https://creativecommons.org/licenses/by-sa/4.0/">(Creative Co
           <ul class="social-icons">
            <li><a href="https://twitter.com/PatternAgents" title="twitter"><img src="/img/logos/white/twitter.png"></a></li>
             <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
-            <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
+            <li><a href="https://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
             <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
             <li><a href="https://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
           </ul>
@@ -761,10 +761,11 @@ License : <a href="https://creativecommons.org/licenses/by-sa/4.0/">(Creative Co
   var disqus_shortname = 'patternagents';
   (function() {
    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
+
 
 
 <!-- pinterest widget script -->
@@ -775,10 +776,11 @@ License : <a href="https://creativecommons.org/licenses/by-sa/4.0/">(Creative Co
   p.async = true;
   p.setAttribute('data-pin-color', 'red');
   p.setAttribute('data-pin-hover', 'true');
-  p.src = '//assets.pinterest.com/js/pinit.js';
+  p.src = 'https://assets.pinterest.com/js/pinit.js';
   f.parentNode.insertBefore(p, f);
 }(document));
 </script>
+
 <!-- toggle menu -->
 <script>
   $(function() {

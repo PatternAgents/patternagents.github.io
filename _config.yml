@@ -11,9 +11,9 @@ excerpt_separator: "<!-- more -->"
 
 #gems: [jekyll-paginate, jekyll-gist]
 # the product_slug of the project you want to feature on home page
-featured_project: TSOC_NEOLED
+featured_project: I2C_Devicetree
 # the projects listed in list of projects in sidebar_projects
-listed_projects: [TSOC_NEOLED, TSOC_Teensy3x, TSOC_GROVEY_I2CHUB, I2C_Devicetree]
+listed_projects: [TSOC_PSoC4L, TSOC_NEOLED, TSOC_Teensy3x, TSOC_GROVEY_I2CHUB]
 
 # site specific strings -
 #
@@ -35,10 +35,10 @@ meta:
 # (then we can easily rewrite them later if needed)
 # e.g. use {{site.url.support.home}} instead of /support/index.html
 #
+baseurl: ""
 url:
-  home: /
   images: /img
-  videos: http://www.patternagents.com/vid
+  videos: https://www.patternagents.com/vid
   github: https://github.com/PatternAgents
   store: /store/index.html
   contact:

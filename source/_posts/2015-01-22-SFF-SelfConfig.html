@@ -11,7 +11,7 @@ cc_by_sa: false
 comments: true
 ---
 <p>I spoke at the 
-<a href="http://www.meetup.com/Thing-Tuesday-The-Portland-Internet-of-Things-Meetup/">Portland thingTuesday</a>
+<a href="https://www.meetup.com/Thing-Tuesday-The-Portland-Internet-of-Things-Meetup/">Portland thingTuesday</a>
 meeting this week about some of the limitations of currently popular small form factors like 
 Arduino, rfDuino, TI LaunchPad, and others. 
 My personal opinion is that one of the biggest limitations of these small form factors 
@@ -31,11 +31,11 @@ So I started looking around at some of the existing standards out there in order
 to see if there wasn't already something available that could be used for this purpose.
 Some of the descriptor formats that I looked at were :
 <ul>
- <li><a href="http://www.usb.org/">USB</a> : Universal Serial Bus</li>
+ <li><a href="https://www.usb.org/">USB</a> : Universal Serial Bus</li>
  <li><a href="https://www.pcisig.com/specifications">PCI</a> : Peripheral Component Interconnect</li>
- <li><a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> : Transducer Electronic Data Sheet</li>
- <li><a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : Intelligent Peripheral Management Interface - Field Replaceable Unit</li>
- <li><a href="http://www.devicetree.org/">Device Tree</a> : Linux Device Tree Hardware Description</li>
+ <li><a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> : Transducer Electronic Data Sheet</li>
+ <li><a href="https://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : Intelligent Peripheral Management Interface - Field Replaceable Unit</li>
+ <li><a href="https://www.devicetree.org/">Device Tree</a> : Linux Device Tree Hardware Description</li>
 </ul>
 USB, PCI, and TEDS are all controlled by various associations, 
 which cost money to join and to obtain a Vendor/Manufacturer ID number.
@@ -45,46 +45,46 @@ and also mandates a look-up of an assigned number (i.e. VID) to a
 human readable name. 
 </p>
 <p>
-<a href="http://www.intel.com/content/www/us/en/servers/ipmi/ipmi-specifications.html">IPMI</a> 
+<a href="https://www.intel.com/content/www/us/en/servers/ipmi/ipmi-specifications.html">IPMI</a> 
 on the other hand, a standard developed by Intel, HP, NEC, and Dell
 has been widely adopted by computer server manufacturers, and utilizes
 plain text fields to store design metadata like Manufacturer Name, 
 Serial Number, Asset Tag, UUID, MAC ID, and more. The FMC (FPGA Module Carrier)
-standard from <a href="http://www.vita.com/specifications">VITA</a>
+standard from <a href="https://www.vita.com/specifications">VITA</a>
 adds additional fields to describe power supply requirements.
 I also liked the idea of just being able to put something like "Joe's Garage"
 as a Manufacturers Name, and not have to deal with some association to dole out
 a specific registration number. However, IPMI doesn't really have the 
 detailed Sensor and Transducer fields and parameters of something like the 
-<a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> 
+<a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> 
 (Transducer Electronic Data Sheet) standard.   
 </p>
 <p>
-I spent quite a bit of time reviewing the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> 
+I spent quite a bit of time reviewing the <a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> 
 IEEE standard, which is insanely complex enough to require it's own compiler to implement.
-<a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> was also designed about a decade ago,
+<a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> was also designed about a decade ago,
 and so many of the tradeoffs that were made in that standard, such as reduced memory footprint and reduced
 packet/data sizes, are not as big a cost and performance issue as they were ten years ago.
-Additionally, the default <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> interface
+Additionally, the default <a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> interface
 (which they refer to as an MMI) is based on the proprietary
-<a href="http://www.maximintegrated.com/en/products/comms/one-wire.html">Dallas/Maxim 1-Wire</a> bus,
+<a href="https://www.maximintegrated.com/en/products/comms/one-wire.html">Dallas/Maxim 1-Wire</a> bus,
 which is heavily patented (though expired perhaps?) and not really the kind of "open standard"
 that I want to base our solution upon. Besides most microprocessor systems implement the
-<a href="http://www.maximintegrated.com/en/products/comms/one-wire.html">Dallas/Maxim 1-Wire</a> bus
-using <a href="http://en.wikipedia.org/wiki/Bit_banging">bit banging</a> on
+<a href="https://www.maximintegrated.com/en/products/comms/one-wire.html">Dallas/Maxim 1-Wire</a> bus
+using <a href="https://en.wikipedia.org/wiki/Bit_banging">bit banging</a> on
 general purpose I/O pins (GPIO), and that is really sloooow in performance.
-IMHO, the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> standard is
+IMHO, the <a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> standard is
 just too complex and convoluted for the maker community to adopt "en masse", although
 it does have some pretty impressive capabilities.
 </p>
 <p>
 One of the standards now being adopted on ARM based Linux platforms like the Beaglebone and Raspberry Pi is the
-the <a href="http://www.devicetree.org/">Device Tree</a>  format.
+the <a href="https://www.devicetree.org/">Device Tree</a>  format.
 This is a very comprehensive standard for describing the basic topology of bus connections on embedded platforms, 
 and includes support for buses like ISA, PCI, SCSI, and others.
-The <a href="http://www.devicetree.org/">Device Tree</a> format also requires the use of a 
+The <a href="https://www.devicetree.org/">Device Tree</a> format also requires the use of a 
 compiler to turn a Device Tree Specification file into a compact binary "blob" of data, 
-that bootloaders such as the <a href="http://en.wikipedia.org/wiki/GNU_GRUB">Grand Universal BootLoader</a>, or GRUB,
+that bootloaders such as the <a href="https://en.wikipedia.org/wiki/GNU_GRUB">Grand Universal BootLoader</a>, or GRUB,
 can parse to find the bootable devices within a embedded system. Since the embedded systems that utilize this standard typically have Megabytes
 (Or Gigabytes) of memory available for decoding the binary "blob" of data that descibes the device tree,
 it may not be suitable for much smaller embedded systems like the Arduino, that typically have only Kilobytes of memory available.
@@ -94,9 +94,9 @@ While it was primarily developed for describing bootable interfaces, it has been
 I started thinking about other, more compact ways, that could be used to implement automatic discovery
 and configuration of sensors and other peripherals, using a simple metadata repository
 that could be included on small form factor boards like shields and breakout boards.
-This is already done using the <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a>
-standard on most high-end FPGA mezzanine boards, and using the <a href="http://www.devicetree.org/">Device Tree</a> format on the new Beaglebone Black platform. 
-By just including a low cost (~$.10) <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROM</a> on each shield or breakout board
+This is already done using the <a href="https://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a>
+standard on most high-end FPGA mezzanine boards, and using the <a href="https://www.devicetree.org/">Device Tree</a> format on the new Beaglebone Black platform. 
+By just including a low cost (~$.10) <a href="https://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROM</a> on each shield or breakout board
 to contain a device descriptor, these small form factor boards can now be automatically discovered and configured.
 It would be a very small additional cost, that would greatly increase the ease of use.
 (not to mention reducing those customer support calls...) 
@@ -109,9 +109,9 @@ and I don't think that I've overlooked any other options. Please give me a shout
 I'm pretty familiar with the IPMI FRU standard, and it does have some Sensor support capabilities,
 which they refer to as a "Sensor Data Repository", or SDR. One advantage of going with this
 FRU metadata format is that there are already parsers available for Linux. If IPMI is installed on your Linux machine,
-you can just use the <a href="http://manpages.ubuntu.com/manpages/precise/man8/ipmi-sensors.8.html">ipmi-sensors</a> 
+you can just use the <a href="https://manpages.ubuntu.com/manpages/precise/man8/ipmi-sensors.8.html">ipmi-sensors</a> 
 command to display all the sensors running on your machine. This would work really well with 
-<a href="http://www.raspians.com/Knowledgebase/2prototyping-plates-and-project-kits-for-the-pi/">Raspberry Pi Plates</a>
+<a href="https://www.raspians.com/Knowledgebase/2prototyping-plates-and-project-kits-for-the-pi/">Raspberry Pi Plates</a>
 for example, as this Linux utility could be ported to the RaspPi pretty easily.
 </p>
 <p>

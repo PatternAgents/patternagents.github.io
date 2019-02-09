@@ -19,7 +19,7 @@ comments: true
 or your Apple iPod, to the "buttons" on your new TV remote control.
 Today we'll be talking about how capacitive sensing works and how you can use it on your next project.</p>
 <!-- more -->
-<p><a href="http://en.wikipedia.org/wiki/Capacitive_sensing">Capacitive Sensing</a> is a technology that uses the human body capacitance as a sensor input to a control interface.
+<p><a href="https://en.wikipedia.org/wiki/Capacitive_sensing">Capacitive Sensing</a> is a technology that uses the human body capacitance as a sensor input to a control interface.
 If you have used almost any recent smartphone touch screen or a non-mechanical button, 
 then you have likely used a capacitive sensor of some kind.
 There are many different applications for capacitive sensors, such as distance or proximity measurement, 
@@ -27,15 +27,15 @@ material thickness measurement, fluid level measurement, gyroscopic position, an
 Often the trackpad on your laptop is implemented an X/Y capacitance measurement device.
 </p>
 <p>
-A <a href="http://en.wikipedia.org/wiki/Capacitor">Capacitor</a> is formed whenever two conductive surfaces are separated by an insulating layer, 
-which is known as the <a href="http://en.wikipedia.org/wiki/Dielectric">dielectric</a> layer.
-Capacitance is measured in  <a href="http://en.wikipedia.org/wiki/Farads">Farads</a>.
-There are many different <a href="http://en.wikipedia.org/wiki/Capacitive_sensing">capacitive sensing</a> algorithms, 
+A <a href="https://en.wikipedia.org/wiki/Capacitor">Capacitor</a> is formed whenever two conductive surfaces are separated by an insulating layer, 
+which is known as the <a href="https://en.wikipedia.org/wiki/Dielectric">dielectric</a> layer.
+Capacitance is measured in  <a href="https://en.wikipedia.org/wiki/Farads">Farads</a>.
+There are many different <a href="https://en.wikipedia.org/wiki/Capacitive_sensing">capacitive sensing</a> algorithms, 
 and the sensors themselves can be constructed from many different materials, such as aluminum, silver, gold, copper, 
-<a href="http://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide (ITO)</a>, and various printed (conductive) inks. 
+<a href="https://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide (ITO)</a>, and various printed (conductive) inks. 
 Typically copper capacitive sensors can be implemented using standard FR4 (fiberglass) 
 printed circuit board material itself as the dielectric layer. 
-Touch screen capacitive sensors typically utilize <a href="http://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide (ITO)</a> materials because it can be up to ninety percent (90%) transparent, allowing you to see the screen underneath without too much light loss. 
+Touch screen capacitive sensors typically utilize <a href="https://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide (ITO)</a> materials because it can be up to ninety percent (90%) transparent, allowing you to see the screen underneath without too much light loss. 
 All capacitive sensing systems work by measuring a change in capacitance as a human interacts with the sensor, and they differ
 in the method, or algorithm used to measure that capacitance. 
 </p>
@@ -49,7 +49,7 @@ the change in capacitance to determine the proximity of the human within the ele
 </p>
   <img src="{{site.url.images}}/news/caps/surface_cap.png" alt="Surface Capacitance" title="Surface Capacitance"/>
 <p>
-The <a href="http://playground.arduino.cc//Main/CapacitiveSensor?from=Main.CapSense">Arduino Capacitive Sensing Library</a>
+The <a href="https://playground.arduino.cc//Main/CapacitiveSensor?from=Main.CapSense">Arduino Capacitive Sensing Library</a>
 employs Surface Capacitive sensing (i.e. active sensing), and this requires two (2) pins per sensor element.
 The Arduino drives the send pin (TX) to a new value, and then the Arduino counts the time 
 the until the receive pin (RX) reaches that same value.
@@ -62,7 +62,7 @@ only a single pin per sensor element.
 <p>
 Projected Mutual Capacitance is typically used for touch screen applications, 
 where perpendicual layers of conductive material form an X-Y grid of electrodes
-(typically composed of <a href="http://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide</a> material). 
+(typically composed of <a href="https://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide</a> material). 
 The capacitance is measured  (usually by scanning the rows and columns over time) 
 to locate one (or more) fingers within the X-Y grid space.
 </p>
@@ -108,12 +108,12 @@ as well as different circuit implementations of each of these algorithms.
 </p>
 <h4>Relaxation Oscillator</h4>
 <p>
-In a <a href="http://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> based system the circuit forms a type of oscillator, 
+In a <a href="https://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> based system the circuit forms a type of oscillator, 
 where the change in capacitance of the sensor modifies the frequency of the oscillator, according to : &nbsp;
    <img src="{{site.url.images}}/news/caps/time_constant.png" alt="Time Constant" title="Time Constant"/>
 </p>
 <p>
-When a <a href="http://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> is employed, it is based upon the behavior of a physical system's return to equilibrium after being disturbed (i.e. the finger entering the electrostatic field is the disturbance).
+When a <a href="https://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> is employed, it is based upon the behavior of a physical system's return to equilibrium after being disturbed (i.e. the finger entering the electrostatic field is the disturbance).
 In most microprocessor based implementations that include a comparator on the input, the relaxation oscillator would look like :
   <img src="{{site.url.images}}/news/caps/220px-OpAmpHystereticOscillator.png" alt="Relax!" title="Relax!"/>
 </p>
@@ -135,7 +135,7 @@ to determine when a button has been activated/pressed.
 <p>
 In the next segment, on the 
 <a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">PatternAgents Touch Widgets Library for Eagle</a>
-we will be covering all the <a href="http://freedomdefined.org/OSHW">open source hardware (OSHW)</a> 
+we will be covering all the <a href="https://freedomdefined.org/OSHW">open source hardware (OSHW)</a> 
 capacitive touch widgets that we have released on our Github repository.
 Below is a simple example of a Radial Slider Pattern with two (2) buttons on an Arduino form factor board.
 Note that this shield board is comprised of just the sensors themselves, and assumes the capacitive sensing controller device

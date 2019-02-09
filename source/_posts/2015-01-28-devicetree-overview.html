@@ -10,22 +10,22 @@ licensing: false
 cc_by_sa: false
 comments: true
 ---
-<p>Recently, I've been working with the <a href="http://www.devicetree.org/">Device Tree</a> format,
+<p>Recently, I've been working with the <a href="https://www.devicetree.org/">Device Tree</a> format,
 which is becoming widely used for automatically configuring the hardware of embedded computing platforms like the Beaglebone Black,
-Xilinx Zynq, Altera Arria, and many other System-on-Chip (SOC) devices. The <a href="http://www.devicetree.org/">Device Tree</a> 
+Xilinx Zynq, Altera Arria, and many other System-on-Chip (SOC) devices. The <a href="https://www.devicetree.org/">Device Tree</a> 
 is read during the computing platform boot up sequence, and it describes all the hardware of the embedded computing platform. 
 It contains descriptions of all the platform parameters, like how much memory, what kind of interfaces, 
 how many peripherals, etc. are expected to be present in that make and model of platform.
-In this article, I'll introduce the <a href="http://www.devicetree.org/">Device Tree</a> format, 
+In this article, I'll introduce the <a href="https://www.devicetree.org/">Device Tree</a> format, 
 and discuss how it is being used on current embedded computing platforms.  
 </p>
 <!-- more -->
 <p>
 <h2>What are Device Trees?</h2>
-A <a href="http://www.devicetree.org/">Device Tree</a> is a data structure 
+A <a href="https://www.devicetree.org/">Device Tree</a> is a data structure 
 for describing the heirarchy of hardware subsystems within a computing platform,  or an add-on peripheral to that platform. 
 It can be used to automatically select and configure the device drivers for that computing platform. 
-A <a href="http://www.devicetree.org/">Device Tree</a> can be represented in several formats,
+A <a href="https://www.devicetree.org/">Device Tree</a> can be represented in several formats,
 such as the human readable "Device Tree Source" format, or the compact, binary, "Flattened Device Tree" format. 
 </p>
 <p>
@@ -36,34 +36,34 @@ it became increasingly difficult to support all the various operating system con
 for Linux, IOS, Windows, and others.
 </p>
 <p>
-Prior to the adoption of the <a href="http://www.devicetree.org/">Device Tree</a> format,
+Prior to the adoption of the <a href="https://www.devicetree.org/">Device Tree</a> format,
 this platform information was contained in what is known as the 
-<a href="http://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a>,
+<a href="https://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a>,
 a group of files provided by the manufacturer of that particular board.
 Each new operating system version would need to include the hardware configuration information
-from the <a href="http://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a>
+from the <a href="https://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a>
 in order to be able to run on that particular board. This quickly became a bottleneck in the process
 of supporting new computing platforms that had only minor variations, so Linus Torvalds and others needed to 
-<a href="http://article.gmane.org/gmane.linux.ports.arm.omap/55060">push back</a>, 
+<a href="https://article.gmane.org/gmane.linux.ports.arm.omap/55060">push back</a>, 
 and come up with a more dynamic method of describing the hardware of the computing platform. 
 </p>
 <p>
-The <a href="http://www.devicetree.org/">Device Tree</a> format was adopted to serve as the container format
+The <a href="https://www.devicetree.org/">Device Tree</a> format was adopted to serve as the container format
 for hardware configuration information required during the boot process, however a way was still needed to
 modify the system after the boot up process, and to support expansion boards and subsystems.
 Pantelis Antoniu, Grant Likely, and others have outlined a solution that
 allows for <a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlays</a>, and an 
 <a href="https://lkml.org/lkml/2013/1/7/366">expansion board (Cape) manager</a>
-to modify the <a href="http://www.devicetree.org/">Device Tree</a> from user-space, during run-time.
+to modify the <a href="https://www.devicetree.org/">Device Tree</a> from user-space, during run-time.
 This allows users to load and unload hardware peripherals and drivers as needed.
-The transition away from solely using <a href="http://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a> 
-files to the <a href="http://www.devicetree.org/">Device Tree</a> format is ongoing,
-and <a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">not without it's share of problems</a>.
+The transition away from solely using <a href="https://en.wikipedia.org/wiki/Board_support_package">Board Support Package (BSP)</a> 
+files to the <a href="https://www.devicetree.org/">Device Tree</a> format is ongoing,
+and <a href="https://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">not without it's share of problems</a>.
 </p>
 <p>
 <h2>Embedded Device Trees</h2>
 So, what is an embedded device tree, and how do we describe it?
-Let's look at a common example, say the  <a href="http://beagleboard.org/BLACK">BeagleBone Black</a>, which uses an OMAP3 System-on-Chip from Texas Instruments.
+Let's look at a common example, say the  <a href="https://beagleboard.org/BLACK">BeagleBone Black</a>, which uses an OMAP3 System-on-Chip from Texas Instruments.
 A very (very) simplified example, including just the CPU and it's main memory, would look something like this :
 </p>
 <p>
@@ -82,7 +82,7 @@ A very (very) simplified example, including just the CPU and it's main memory, w
 </table>
 </p>
 <p>
-The corresponding <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> file for the above would look something like :
+The corresponding <a href="https://www.devicetree.org/">Device Tree Source (.dts)</a> file for the above would look something like :
 {% highlight c linenos %}
 {
         model      = "TI AM335x BeagleBone Black";
@@ -103,7 +103,7 @@ The corresponding <a href="http://www.devicetree.org/">Device Tree Source (.dts)
 {% endhighlight %}
 </p>
 <p>
-As we can see from the above <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> example, we have defined the following :
+As we can see from the above <a href="https://www.devicetree.org/">Device Tree Source (.dts)</a> example, we have defined the following :
 <ul>
 <li>model &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : defines the model name of this board</li>
 <li>compatible : defines the manufacturer & model compatibility list</li>
@@ -111,7 +111,7 @@ As we can see from the above <a href="http://www.devicetree.org/">Device Tree So
 <li>memory &nbsp; &nbsp; &nbsp; : defines 256 MegaBytes of main memory on this model, and it's address range</li>
 </ul>
 Of course, the actual Device Tree Source (.dts) file, in this case, the 
-<a href="http://git.ti.com/wilink8-wlan/wilink8-wlan-ti-linux-kernel/blobs/9bf81aa9157a358fa53ab015e01c08bc68788709/arch/arm/boot/dts/am335x-bone-common.dtsi">am335x-bone-common.dtsi</a> include file has much more detail, but I'll build up the concepts gradually using simplified snippets.
+<a href="https://git.ti.com/wilink8-wlan/wilink8-wlan-ti-linux-kernel/blobs/9bf81aa9157a358fa53ab015e01c08bc68788709/arch/arm/boot/dts/am335x-bone-common.dtsi">am335x-bone-common.dtsi</a> include file has much more detail, but I'll build up the concepts gradually using simplified snippets.
 </p>
 <p>
 Next we'll add some input/output to the Device Tree Source (.dts) file, and we'll start with a simple I2C controller
@@ -160,15 +160,15 @@ in order to create a tiny, but useful little computing platform description :
 <p>
 The first thing we added above is the I/O Pin Multiplexing defintions, as most modern System-on-Chip (SoC) devices have several
 functions available per pin for application flexibility. We need to define what pins are going to be used to connect the 
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> controller to the outside world.
+<a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> controller to the outside world.
 <ul>
 <li>am33xx_pinmux: the label for the pin multiplexing control registers (pinmux) at address 0x44e10800 </li>
-<li>i2c0_pins : the label for the pins assigned to the <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> Controller at offsets 0x188 and 0x18C</li>
+<li>i2c0_pins : the label for the pins assigned to the <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> Controller at offsets 0x188 and 0x18C</li>
 </ul>
 </p>
 <p>
-The next section defines the <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> controller itself, which is located on the 
-<a href="http://en.wikipedia.org/wiki/Open_Core_Protocol">OCP bus (Open Core Protocol)</a>
+The next section defines the <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> controller itself, which is located on the 
+<a href="https://en.wikipedia.org/wiki/Open_Core_Protocol">OCP bus (Open Core Protocol)</a>
 which is the name for one of internal bus connections in the System-on-Chip (SoC):
 <ul>
 <li>i2c0: the label for the first I2C controller block at address 0x44e0b000 </li>
@@ -176,7 +176,7 @@ which is the name for one of internal bus connections in the System-on-Chip (SoC
 <li>clock-frequency: the I2C bus is running at 400Khz</li>
 </ul>
 <p>
-And finally, we describe a sub-node of the <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> 
+And finally, we describe a sub-node of the <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> 
 controller (i.e. an attached I2C device), called "tps":
 <li>tps: the label for the power supply controller chip</li>
 <li>reg: the I2C bus address for the "tps" device is 0x24 
@@ -184,7 +184,7 @@ controller (i.e. an attached I2C device), called "tps":
 </ul>
 </p>
 <p>
-Alright, now we need to define the "tps" node to make this a more complete <a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> file,
+Alright, now we need to define the "tps" node to make this a more complete <a href="https://www.devicetree.org/">Device Tree Source (.dts)</a> file,
 which allows me to introduce the concept of power supply descriptions. It is really useful to know how much power that the power supplies on
 a board are capable of providing, and what additional power that expansion devices or add-on boards will require. 
 That will allow us to indicate an error if an expansion device requires more power than we are capable of providing.
@@ -250,7 +250,7 @@ in the community have already written some excellent guides for specific platfor
 <p>
 <h2>Using the Device Tree Compiler</h2>
 The Device Tree Compiler is a simple command line tool that is used to read 
-<a href="http://www.devicetree.org/">Device Tree Source (.dts)</a> files, and 
+<a href="https://www.devicetree.org/">Device Tree Source (.dts)</a> files, and 
 generate a Flattened Device Tree Binary Object file (.dtb), also known as the
 "Device Tree BLOB".
 
@@ -302,25 +302,25 @@ of add-on boards like BeagleBone "Capes", or Raspberry Pi "Plates".
 <p>   
 <h2>References, Footnotes, and more Device Tree information...</h2>
 <ol>
-<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
 <li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
 <li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
-<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
 <li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
-<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
 <li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
-<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
-<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="https://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
 <li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
 <li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
 <li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
-<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
-<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
-<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
-<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
-<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="https://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="https://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="https://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="https://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="https://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
 </ol>
 </p>
 

@@ -10,7 +10,7 @@ js for pinterest widget
   p.async = true;
   p.setAttribute('data-pin-color', 'red');
   p.setAttribute('data-pin-hover', 'true');
-  p.src = '//assets.pinterest.com/js/pinit.js';
+  p.src = 'https://assets.pinterest.com/js/pinit.js';
   f.parentNode.insertBefore(p, f);
 }(document));
 </script>

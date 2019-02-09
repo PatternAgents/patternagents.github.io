@@ -137,13 +137,13 @@ in order to understand the topology of our embedded system.
 <p>
 The problem reminds me somewhat of that faced by the early philosophers in trying to understand
 their place in the hierarchy of the universe. Aristotle's 
-<a href="http://en.wikipedia.org/wiki/History_of_Animals">History of Animals</a> 
+<a href="https://en.wikipedia.org/wiki/History_of_Animals">History of Animals</a> 
 classified organisms in relation to a linear "ladder of life", or <i>Scala Naturae</i>,
 which allowed for an ordering of beings, from dirt at the bottom, to God at the very top,
 with all creatures occupying rungs of the ascending ladder between.
-The <a href="http://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a>
+The <a href="https://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a>
 connected all things, as all things were linked together to form the universe in one solid, unbroken chain.
-By the time of the Renaissance, the concept of <a href="http://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a> 
+By the time of the Renaissance, the concept of <a href="https://faculty.up.edu/asarnow/greatchainofbeing.htm">Great Chain of Being</a> 
 had become pervasive, used to justify the feudal system and the divine right of kings. 
 Later still, this would influence poets such as Robert Blake to compose lines like, "As above, so below".
 </p>
@@ -155,20 +155,20 @@ rfDuino, Launchpad, and the like.
 </p>
 <p>
 The simplest and most ubiquitous interface found on all of these platforms is 
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, or the Inter-Integrated Circuit bus.
-Also known as the "Two-Wire Bus" or TWB, <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>
+<a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>, or the Inter-Integrated Circuit bus.
+Also known as the "Two-Wire Bus" or TWB, <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a>
 is found on almost every embedded platform, and can be easily implemented with software 
-<a href="http://en.wikipedia.org/wiki/Bit_banging">bit banging</a> on general purpose I/O pins (GPIO),
+<a href="https://en.wikipedia.org/wiki/Bit_banging">bit banging</a> on general purpose I/O pins (GPIO),
 if a hardware interface block is not readily available. In addition, the 
-<a href="http://www.mipi.org/">MIPI Alliance</a> is in the final stages of the ratification process for the new
-<a href="http://mipi.org/specifications/i3c%E2%84%A0-sensor-specification">SenseWire/I3C Sensor Interface Specification</a>;
+<a href="https://www.mipi.org/">MIPI Alliance</a> is in the final stages of the ratification process for the new
+<a href="https://mipi.org/specifications/i3c%E2%84%A0-sensor-specification">SenseWire/I3C Sensor Interface Specification</a>;
 I3C defines a much higher performance interface, capable of supporting many more high speed sensors than
-the original <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus specification.
+the original <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus specification.
 </p>
 <p>
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> is a good choice for this purpose,
+<a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> is a good choice for this purpose,
 as it is both commonly available, and also supports the very low cost 
-<a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> that we will
+<a href="https://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> that we will
 need for our configuration storage. An example implementation of this automatic configuration scheme
 would resemble the diagram below : 
 </p>
@@ -176,11 +176,11 @@ would resemble the diagram below :
 <img src="/img/news/great_chain/i2c_mmi.png" alt="I2C Configuration Chain" title="I2C Configuration Chain"/>
 </p>
 <p>
-Typical <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> employ a three(3) bit hardware
-selection mechanism, allowing up to eight(8) devices to share the same <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus.
-In communicating with the <a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a>, the first byte sent
+Typical <a href="https://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> employ a three(3) bit hardware
+selection mechanism, allowing up to eight(8) devices to share the same <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus.
+In communicating with the <a href="https://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a>, the first byte sent
 is the control word, which serves to select which one of the eight(8) devices will respond to the read/write operation
-on the shared <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus. 
+on the shared <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus. 
 </p>
 <p>
 <img src="/img/news/great_chain/i2c_register.png" alt="I2C Register" title="I2C Register"/>
@@ -265,13 +265,13 @@ for the lowest level, such as instrumentation, testing, and monitoring of the sy
 </p>
 <p>
 So, what about more than eight(8) levels you might be asking? What then?
-Well, the <a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus has
+Well, the <a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus has
 some physical loading limitations, that have to do with the larger bus capacitances
 that result when you extend the bus too far, or add too many loads(devices). 
 In practice, there may need to be 
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus buffers, repeaters,
+<a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus buffers, repeaters,
 hubs, or multiplexors employed to keep each segment of the 
-<a href="http://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus within specified loading limits.
+<a href="https://en.wikipedia.org/wiki/I%C2%B2C">I2C</a> bus within specified loading limits.
 However, the addressing scheme above would apply to each separate segment of a larger
 system, although you may need to address a multiplexor or hub first to select a
 particular segment to read or write.
@@ -284,7 +284,7 @@ are limited to four(4) "Capes", this is a specific limitation of the Beaglebone.
 We now have a basic outline for a hardware design pattern for automatic discovery
 and automatic configuration using simple I2C interfaced EEPROM memory chips.
 The next step is to define the data structure within each of the 
-<a href="http://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> shown,
+<a href="https://playground.arduino.cc/Code/I2CEEPROM">I2C EEPROMs</a> shown,
 and how that data structure defines the components and topology of the overall system.
 The next article will cover currently available data structures like the Device Tree
 and IPMI formats. 
@@ -312,6 +312,36 @@ and IPMI formats.
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
+  
+    
+      
+        <li>
+          <a href="/projects/TSOC_PSOC4L.html">TSOC_PSoC4L : PSoC4 (Large) Embedded Module</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
     
       
@@ -390,36 +420,6 @@ and IPMI formats.
     
       
     
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a>
-        </li>
       
     
       
@@ -546,7 +546,7 @@ and IPMI formats.
    
 
 <form id="signup"
-      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      action="https://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
       method="post"
       id="mc-embedded-subscribe-form"
       name="mc-embedded-subscribe-form"
@@ -561,6 +561,7 @@ and IPMI formats.
   </div>
   </div></div>
 </form>
+
    <!-- Add the discussion widget -->
    
 
@@ -581,7 +582,7 @@ and IPMI formats.
             <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
             <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
             <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
-            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+            <li><a href="https://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
           </ul>
         </div>
         <div class="col quarter">
@@ -617,7 +618,7 @@ and IPMI formats.
     </div>
   </div>
   <div class="row unimportant">
-    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+    <div class="col quarter"><p>Copyright &copy; 2010-2019 PatternAgents</p></div>
   </div>
 </footer>
 

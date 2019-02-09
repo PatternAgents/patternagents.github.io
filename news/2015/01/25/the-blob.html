@@ -135,24 +135,24 @@ In this article, I will discuss how some of those formats are being used in exis
 <!-- more -->
 <p>
 <img class="illo" src="/img/news/theblob/Blob-Town.png" width="320" height="300" alt="Blob Town" title="Blob Town"/>
-Let's start with the <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> format, 
+Let's start with the <a href="https://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> format, 
 which is often utilized in describing the hardware of higher end platforms to the Linux Kernal. 
-The <a href="http://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> definition starts with a
-<a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
-also known as a .dts file. The <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
+The <a href="https://www.devicetree.org/Device_Tree_Usage">DeviceTree</a> definition starts with a
+<a href="https://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
+also known as a .dts file. The <a href="https://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
 is a human readable definiton of everything about the embedded platform, including CPU type, amount of memory, internal buses (AHB/APB/etc.),
 and all the relevent interfaces, like USB, UART, PCI, SPI/MMC, Ethernet MAC, GPIO pins, Pin Multiplexing, and more. 
 It is a very complete specification of the underlying hardware platform. 
-The <a href="http://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
-is then run through the <a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Compiler</a> which produces the 
-<a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Binary Object</a> (i.e. The Blob) which is also known as the ".dtb" file.
-The <a href="http://www.devicetree.org/Device_Tree_Compiler">DeviceTree Binary Object</a> (i.e. The Blob of the "Flattened Device Tree") is
+The <a href="https://lxr.free-electrons.com/source/arch/arm/boot/dts/imx28-evk.dts">DeviceTree Specification File</a>
+is then run through the <a href="https://www.devicetree.org/Device_Tree_Compiler">DeviceTree Compiler</a> which produces the 
+<a href="https://www.devicetree.org/Device_Tree_Compiler">DeviceTree Binary Object</a> (i.e. The Blob) which is also known as the ".dtb" file.
+The <a href="https://www.devicetree.org/Device_Tree_Compiler">DeviceTree Binary Object</a> (i.e. The Blob of the "Flattened Device Tree") is
 typically read in as part of the operating system booting procedure, and used to determine what device drivers are loaded into the operating system.
 I'll go into how this process works in much more detail in a later article, but that's the basic idea of a compiled Device Tree.   
 </p>
 <p>
-So how does this process relate to the <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) data structure definition for add-on boards,
-and the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> (Transducer Electronic Data Sheet)
+So how does this process relate to the <a href="https://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> : (Intelligent Peripheral Management Interface - Field Replaceable Unit) data structure definition for add-on boards,
+and the <a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> (Transducer Electronic Data Sheet)
 data structure definition for attached Sensor devices? The following diagram depicts their relationship :
 </p>
 <p>
@@ -161,13 +161,13 @@ data structure definition for attached Sensor devices? The following diagram dep
 <p>
 So, to put this all together in a more simple explaination :
 <ul>
-<li>During the Main Board boot-up sequence, the <a href="http://www.devicetree.org/Device_Tree_Usage">Device Tree</a> BLOB is
+<li>During the Main Board boot-up sequence, the <a href="https://www.devicetree.org/Device_Tree_Usage">Device Tree</a> BLOB is
     parsed to determine all of the hardware interfaces contained on the Main Board.</li>
 <li>After the initial Main Board boot-up sequence, the 
-    <a href="http://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> is
+    <a href="https://www.intel.com/content/www/us/en/servers/ipmi/information-storage-definition-rev-1-2.html">IPMI FRU</a> is
     parsed to determine the make and model of the attached Expansion Board, which identifies the attached Sensors.
 </li>
-<li>Then the <a href="http://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> BLOBs are each  
+<li>Then the <a href="https://standards.ieee.org/findstds/standard/1451.4-2004.html">TEDS</a> BLOBs are each  
     parsed to determine the parameters of the attached Sensors.
 </li>
 <li>Finally, the Operating System (Linux/Android) has all the information necessary to read and interpret the attached Sensors.</li>
@@ -216,8 +216,8 @@ a Drive-In Theater with my parents and family, in a
 </p>
 <p>
 <a name="#BLOB"></a>
-<a href="http://en.wikipedia.org/wiki/Binary_large_object">Wikipedia</a> attributes the programming reference of "BLOBs"as a
-<a href="http://en.wikipedia.org/wiki/Backronym"><i>backronym</i></a> to Terry McKiever, a marketing person for Apollo;
+<a href="https://en.wikipedia.org/wiki/Binary_large_object">Wikipedia</a> attributes the programming reference of "BLOBs"as a
+<a href="https://en.wikipedia.org/wiki/Backronym"><i>backronym</i></a> to Terry McKiever, a marketing person for Apollo;
 who felt that it needed to be an acronym and invented the "Basic Large Object", which became widely used as "Binary Large Object".
 Since what I'm trying to implement are very small objects, I prefer the acronym, "Binary Level OBject".
 </p>
@@ -247,6 +247,36 @@ Since what I'm trying to implement are very small objects, I prefer the acronym,
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
+  
+    
+      
+        <li>
+          <a href="/projects/TSOC_PSOC4L.html">TSOC_PSoC4L : PSoC4 (Large) Embedded Module</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
     
       
@@ -325,36 +355,6 @@ Since what I'm trying to implement are very small objects, I prefer the acronym,
     
       
     
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a>
-        </li>
       
     
       
@@ -481,7 +481,7 @@ Since what I'm trying to implement are very small objects, I prefer the acronym,
    
 
 <form id="signup"
-      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      action="https://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
       method="post"
       id="mc-embedded-subscribe-form"
       name="mc-embedded-subscribe-form"
@@ -496,6 +496,7 @@ Since what I'm trying to implement are very small objects, I prefer the acronym,
   </div>
   </div></div>
 </form>
+
    <!-- Add the discussion widget -->
    
 
@@ -516,7 +517,7 @@ Since what I'm trying to implement are very small objects, I prefer the acronym,
             <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
             <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
             <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
-            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+            <li><a href="https://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
           </ul>
         </div>
         <div class="col quarter">
@@ -552,7 +553,7 @@ Since what I'm trying to implement are very small objects, I prefer the acronym,
     </div>
   </div>
   <div class="row unimportant">
-    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+    <div class="col quarter"><p>Copyright &copy; 2010-2019 PatternAgents</p></div>
   </div>
 </footer>
 

@@ -149,13 +149,13 @@ used on the PowerPC architecture, the Xilinx Virtex series with embedded PowerPC
 and other Freescale processors.
 </p>
 <p>
-<a href="http://elinux.org/Device_Tree"><img src="/img/news/devicetree/FDT_EEPROM.png" alt="flattened device tree (FDT) EEPROM" title="flattened device tree (FDT) EEPROM"/></a>
+<a href="https://elinux.org/Device_Tree"><img src="/img/news/devicetree/FDT_EEPROM.png" alt="flattened device tree (FDT) EEPROM" title="flattened device tree (FDT) EEPROM"/></a>
 </p>
 <p>
 Then we have the "extra crispy", BeagleBone Black(ened) EEPROM format for the TI OMAP processor :
 </p>
 <p>
-<a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf"><img src="/img/news/devicetree/BBB_EEPROM.png" alt="beaglebone black cape EEPROM" title="beaglebone black cape  EEPROM"/></a>
+<a href="https://www.adafruit.com/datasheets/BBB_SRM.pdf"><img src="/img/news/devicetree/BBB_EEPROM.png" alt="beaglebone black cape EEPROM" title="beaglebone black cape  EEPROM"/></a>
 </p>
 <p>
 and then there's "Raspberry flavor", the Raspberry Pi EEPROM format for the Broadcom processor : 
@@ -167,7 +167,7 @@ and then there's "Raspberry flavor", the Raspberry Pi EEPROM format for the Broa
 and "Vanilla Ice" for those of us working on FMC (FPGA Mezzanine Cards), the IPMI FRU EEPROM format : 
 </p>
 <p>
-<a href="http://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/platform-management-fru-document-rev-1-2-feb-2013.pdf"><img src="/img/news/devicetree/FRU_EEPROM.png" alt="IPMI FRU EEPROM" title="IPMI FRU EEPROM"/></a>
+<a href="https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/platform-management-fru-document-rev-1-2-feb-2013.pdf"><img src="/img/news/devicetree/FRU_EEPROM.png" alt="IPMI FRU EEPROM" title="IPMI FRU EEPROM"/></a>
 <BR>
 Although technically, the IPMI FRU (Intelligent Peripheral Management Interface - Field Replacable Unit) 
 is not related to the Linux Device Tree, it is used on many FPGA Mezzanine Cards to hold much of the same
@@ -188,7 +188,7 @@ looking for a more compact and easily addressable format than the flattened devi
 <p>
 When I first saw the <a href="https://github.com/raspberrypi/hats/blob/master/designguide.md">Raspberry Pi HAT specification</a> 
 I wasn't sure that I liked the proposed <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a>,
-because the structure wasn't as simple to parse as the <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a>. The <a href="http://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a> specifies fixed sized fields
+because the structure wasn't as simple to parse as the <a href="https://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a>. The <a href="https://www.adafruit.com/datasheets/BBB_SRM.pdf">BeagleBone Black CAPE EEPROM  format</a> specifies fixed sized fields
 at fixed offsets (which become constants at compile time), where as the other formats require a run time parser to interpret the "live" data structure. The <a href="https://github.com/raspberrypi/hats/blob/master/eeprom-format.md">Raspberry Pi EEPROM format</a> 
 introduces the concept of ATOMs of data, basically a container format with checksum for each. 
 The ATOM types include the typical header information as well as the PinMap and separate copy of the flattened device tree (FDT)
@@ -275,26 +275,26 @@ as "Smart Objects", and how that can address some of the cross-platform interfac
 <p>   
 <h2>References, Footnotes, and more...</h2>
 <ol>
-<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
+<li><a href="https://events.linuxfoundation.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf">Device Tree for Dummies - Thomas Petroni</a></li>
 <li><a href="https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree">BeagleBlack Device Tree Tutorial - Adafruit</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
-<li><a href="http://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://xillybus.com/tutorials/device-tree-zynq-1">Xilinx Device Tree Tutorial - Xillybus</a></li>
+<li><a href="https://xillybus.com/tutorials/device-tree-altera-soc-cyclone">Altera Device Tree Tutorial - Xillybus</a></li>
 <li><a href="https://blueprints.launchpad.net/ubuntu/+spec/mobile-lucid-arm-device-tree-support">ARM Device Tree Support - Ubuntu</a></li>
-<li><a href="http://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
+<li><a href="https://www.alterawiki.com/wiki/Sopc2dts">Altera Device Tree Support - Altera</a></li>
 <li><a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/">Index of Device Tree Bindings - kernal.org</a></li>
-<li><a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
+<li><a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/plain/Documentation/devicetree/bindings/graph.txt">Device Tree Graphing - kernal.org</a></li>
 <li><a href="https://packages.debian.org/wheezy/libfdt-dev">libfdt - manipulating FDT Blobs - David Gibson</a></li>
-<li><a href="http://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
-<li><a href="http://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
+<li><a href="https://www.informit.com/articles/article.aspx?p=1647051&seqNum=5">Linux Bootloaders - informit.com</a></li>
+<li><a href="https://haifux.org/lectures/288/haifux-devicetree.pdf">Device Tree PnP - Eli Billauer</a></li>
 <li><a href="https://lkml.org/lkml/2013/1/7/366">Device Tree Overlay Manager - Pantelis Antoniou</a></li>
 <li><a href="https://lkml.org/lkml/2012/11/5/615">Device Tree Overlay Proposal - Grant Likely</a></li>
 <li><a href="https://github.com/cdsteinkuehler/beaglebone-universal-io">BeagleBlack Univeral I/O - cdsteinkuehler</a></li>
-<li><a href="http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
-<li><a href="http://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
-<li><a href="http://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
-<li><a href="http://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
-<li><a href="http://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
-<li><a href="http://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
+<li><a href="https://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator">BeagleBlack Device Tree Overlay Generator - Kilobaser</a></li>
+<li><a href="https://derekmolloy.ie/gpios-on-the-beaglebone-black-using-device-tree-overlays/">GPIOs on the Beaglebone Black using the Device Tree Overlays- derek molloy</a></li>
+<li><a href="https://elinux.org/images/f/f2/Supporting_200_Different_Expansionboards_The_Broken_Promise_of_Devicetree.pdf">Supporting 200 Different Expansion Boards -  elinux.org</a></li>
+<li><a href="https://events.linuxfoundation.org/sites/events/files/slides/presentation_3.pdf">DT, The Disaster so Far - Mark Rutland</a></li>
+<li><a href="https://elinux.org/images/5/5c/ELCE2013_-_DT_War.pdf">Board File to Device Tree Migration - Pantelis Antoniou</a></li>
+<li><a href="https://lwn.net/Articles/616859/">Device Tree Overlays - Jonathon Corbet</a></li>
 </ol>
 </p>
 
@@ -322,6 +322,36 @@ as "Smart Objects", and how that can address some of the cross-platform interfac
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
+  
+    
+      
+        <li>
+          <a href="/projects/TSOC_PSOC4L.html">TSOC_PSoC4L : PSoC4 (Large) Embedded Module</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
     
       
@@ -400,36 +430,6 @@ as "Smart Objects", and how that can address some of the cross-platform interfac
     
       
     
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a>
-        </li>
       
     
       
@@ -556,7 +556,7 @@ as "Smart Objects", and how that can address some of the cross-platform interfac
    
 
 <form id="signup"
-      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      action="https://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
       method="post"
       id="mc-embedded-subscribe-form"
       name="mc-embedded-subscribe-form"
@@ -571,6 +571,7 @@ as "Smart Objects", and how that can address some of the cross-platform interfac
   </div>
   </div></div>
 </form>
+
    <!-- Add the discussion widget -->
    
 
@@ -591,7 +592,7 @@ as "Smart Objects", and how that can address some of the cross-platform interfac
             <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
             <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
             <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
-            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+            <li><a href="https://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
           </ul>
         </div>
         <div class="col quarter">
@@ -627,7 +628,7 @@ as "Smart Objects", and how that can address some of the cross-platform interfac
     </div>
   </div>
   <div class="row unimportant">
-    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+    <div class="col quarter"><p>Copyright &copy; 2010-2019 PatternAgents</p></div>
   </div>
 </footer>
 

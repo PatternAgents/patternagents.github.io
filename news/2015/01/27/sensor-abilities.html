@@ -143,15 +143,15 @@ few years, enabling everything from self-leveling drone 'copters to exercise wri
 While that is great news for product designers and consumers, one of the areas that has not
 kept pace with this explosion of new products and capabilites, has been a standardized method 
 for comparing and contrasting the specifications of these new devices.  
-The <a href="http://www.ieee.org/index.html">IEEE</a>, in conjunction with the 
-<a href="http://www.memsindustrygroup.org/">MEMS Industry Group (MIG)</a> 
+The <a href="https://www.ieee.org/index.html">IEEE</a>, in conjunction with the 
+<a href="https://www.memsindustrygroup.org/">MEMS Industry Group (MIG)</a> 
 have been working on a specification to define Sensor Parameters in a more consistant
-and formal way, known as <a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>,
+and formal way, known as <a href="https://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>,
 the IEEE Standard for Sensor Performance Parameters. 
 </p>
 <p>
 <img class="illo" src="/img/news/sensor-abilities/nist-std-weights.png" width="395" height="362" alt="NIST Standard Weights" title="NIST Standard Weights"/>
-<a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> describes a set of definitions
+<a href="https://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> describes a set of definitions
 for the parameters of different sensor types, as well as terms, acronyms, symbols, measurement conventions and conversions.
 The recently ratified standard includes all the usual suspects, such as :
 <ul>
@@ -168,7 +168,7 @@ The recently ratified standard includes all the usual suspects, such as :
 <p>
 This is good news for developers, as standard "terms", like parameter names, units, and measurement techniques
 are very important for comparing "apples to apples" where sensor performance is concerned. So, what kind of parameters
-are defined in <a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>?
+are defined in <a href="https://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>?
 The parameters can vary for each type of sensor element; a Magnetometer (i.e. MEMS Compass) for example can
 have parameters such as : 
 <ul>
@@ -188,38 +188,38 @@ have parameters such as :
 <p>
 This is a good first effort at defining all the important parameters, their units of measurement,
 and the conditions under which those parameters are specified. As more manufacturers adopt the
-<a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> standard,
+<a href="https://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> standard,
 it will make things much easier for designers and programmers to understand their data sheets
 and specifications. 
 </p>
 <p>
 In terms of software developments, there are a number of 
-<a href="http://en.wikipedia.org/wiki/Sensor_fusion">Sensor Fusion</a> initiatives underway, including offerings from
-<a href="http://www.st.com/web/catalog/sense_power/FM89/SC1950">ST Microelectronics</a>, Freescale, and many others.
+<a href="https://en.wikipedia.org/wiki/Sensor_fusion">Sensor Fusion</a> initiatives underway, including offerings from
+<a href="https://www.st.com/web/catalog/sense_power/FM89/SC1950">ST Microelectronics</a>, Freescale, and many others.
 Most of these vendors refer to the collection of sensor hardware necessary to integrate all the disparate sensors as a 
-<a href="http://en.wikipedia.org/wiki/Sensor_hub">Sensor Hub</a>. Companies like Microsoft consider these efforts to be so critical
+<a href="https://en.wikipedia.org/wiki/Sensor_hub">Sensor Hub</a>. Companies like Microsoft consider these efforts to be so critical
 that they have made it mandatory for Windows 8 and Windows 10 to support sensors in the Human Interface Device (HID) specification.
-And the <a href="http://www.memsindustrygroup.org/">MEMS Industry Group (MIG)</a> is working on an 
+And the <a href="https://www.memsindustrygroup.org/">MEMS Industry Group (MIG)</a> is working on an 
 <a href="https://github.com/memsindustrygroup/Open-Source-Sensor-Fusion">Open Source Sensor Fusion</a> initiative for
-<a href="http://en.wikipedia.org/wiki/Sensor_fusion">Sensor Fusion</a>, including a body of work donated by by Freescale.
+<a href="https://en.wikipedia.org/wiki/Sensor_fusion">Sensor Fusion</a>, including a body of work donated by by Freescale.
 </p>
 <p>
 For smaller, embedded systems, 
 <img class="illo" src="https://learn.adafruit.com/system/assets/assets/000/004/549/medium800/microcontrollers_sensorapi.jpg?1396814289" alt="Adafruit Unified Sensor Driver" title="Adafruit Unified Sensor Driver"/>
-Kevin Townsend at <a href="http://www.adafruit.com">Adafruit</a> has developed a
+Kevin Townsend at <a href="https://www.adafruit.com">Adafruit</a> has developed a
 <a href="https://learn.adafruit.com/using-the-adafruit-unified-sensor-driver/introduction">Unified Sensor Driver</a>
 that is similar to how the  
 <a href="https://github.com/android/platform_hardware_libhardware/blob/master/include/hardware/sensors.h">Android Operating System</a>
 abstracts all sensor parameters into a single unified type with standard, pre-defined SI units of measure. This is a very nice way to go,
 as users are now free to select any sensor model of a particular type, and their higher level software doesn't need to be rewritten
-when their hardware changes. And once <a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> becomes
+when their hardware changes. And once <a href="https://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a> becomes
 more prevalent, it will become even easier to implement the underlying 
 <a href="https://learn.adafruit.com/using-the-adafruit-unified-sensor-driver/introduction">Unified Sensor Drivers</a>.
 </p>
 <p>
-In coming articles, I'll discuss using the <a href="http://www.devicetree.org/">DeviceTree</a> to automatically
+In coming articles, I'll discuss using the <a href="https://www.devicetree.org/">DeviceTree</a> to automatically
 discover and configure attached sensors, and to define their parameters in a method that is compatible with 
-<a href="http://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>.
+<a href="https://standards.ieee.org/findstds/standard/2700-2014.html">IEEE 2700-2014</a>.
 </p>
 </div>
     <footer>
@@ -243,6 +243,36 @@ discover and configure attached sensors, and to define their parameters in a met
     
   <h2>Featured Projects</h2>
   <ul class="post-list">
+  
+    
+      
+        <li>
+          <a href="/projects/TSOC_PSOC4L.html">TSOC_PSoC4L : PSoC4 (Large) Embedded Module</a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
     
       
@@ -321,36 +351,6 @@ discover and configure attached sensors, and to define their parameters in a met
     
       
     
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <li>
-          <a href="/projects/I2C_Devicetree.html">I2C EEPROM Emulation for Smart Devicetrees</a>
-        </li>
       
     
       
@@ -477,7 +477,7 @@ discover and configure attached sensors, and to define their parameters in a met
    
 
 <form id="signup"
-      action="http://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      action="https://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
       method="post"
       id="mc-embedded-subscribe-form"
       name="mc-embedded-subscribe-form"
@@ -492,6 +492,7 @@ discover and configure attached sensors, and to define their parameters in a met
   </div>
   </div></div>
 </form>
+
    <!-- Add the discussion widget -->
    
 
@@ -512,7 +513,7 @@ discover and configure attached sensors, and to define their parameters in a met
             <li><a href="https://github.com/PatternAgents" title="github"><img src="/img/logos/white/github.png"></a></li>
             <li><a href="http://www.linkedin.com/company/3092259" title="linkedin"><img src="/img/logos/white/linkedin.png"></a></li>
             <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/img/logos/white/facebook.png"></a></li>
-            <li><a href="http://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
+            <li><a href="https://pinterest.com/patternagents" title="pinterest"><img src="/img/logos/white/pinterest.png"></a></li>
           </ul>
         </div>
         <div class="col quarter">
@@ -548,7 +549,7 @@ discover and configure attached sensors, and to define their parameters in a met
     </div>
   </div>
   <div class="row unimportant">
-    <div class="col quarter"><p>Copyright &copy; 2010-2015 PatternAgents</p></div>
+    <div class="col quarter"><p>Copyright &copy; 2010-2019 PatternAgents</p></div>
   </div>
 </footer>
 

@@ -1,0 +1,74 @@
+---
+layout: post
+category: news
+title: "The Summer of OSC"
+date: 2019-09-11 12:00
+quote: I knew when I met you an adventure was going to happen.
+quote_author: Winnie the Pooh
+product_slug: osc
+licensing: false
+cc_by_sa: false
+comments: true
+---
+I just love summer music festivals, whether I'm working on them or just attending, they are a welcome change from
+my largely indoor profession of designing electronic systems. This year, working stage management at Beloved 
+and other festivals, I noticed a common thread across a variety of stages, which I'll call "the Summer of OSC".  
+</p>
+<!-- more -->
+
+<h3>Sound Stage Management</h3>
+<p>
+   <a href="http://opensoundcontrol.org"><img class="illo" src="{{site.url.images}}/news/osc/osc-flowers.png" alt="Summer of OSC"/></a>
+   I really enjoy Sound Stage Managment, getting to work with all the artists and helping them to craft their show. 
+   Summer festivals are always interesting, and can range from a solo performer with a only single microphone, 
+   to full band setups with multiple front line vocals, center line of of instruments, and a back line of full drum kits and percussion ensembles. We also set up for a number of Kirtan artists this year, so we'd be placing close microphones on instruments like Harmonium, Tablas, Urdu and others. That can often get challenging when you add in all the stage monitors and speakers, keeping the feedback under control while also giving the artists the on-stage sound that they need for their performance.
+</p>
+<p>
+   This year most of the venues were using digital mixers and effects, with the ability to walk out into the audience to monitor and adjust the sound live, using an app running on a tablet or a cell phone. Even in remote settings at festivals like Beloved, we ran adhoc Wi-Fi networks to control the sound and lights, enabling us to move into the audience and gauge their direct experience in real time. <br>So, "how can be?" you ask - it's all about OSC. 
+</p>
+<h3>The Wizards of OSC</h3>
+<p>
+   <a href="http://opensoundcontrol.org">Open Sound Control (OSC)</a> is a protocol for controlling multimedia devices, developed at the UC Berkeley Center for New Music and Audio Technology <a href="http://cnmat.berkeley.edu/">(CNMAT)</a>. There are now dozens of implementations of OSC, including many commercial mixers and audio processors, such as the Midas M32, and the Behringer X-Air mixer series.
+   There are also real-time sound and media processing environments, web interactivity tools, software synthesizers, and hardware devices for sensor measurement as well as lighting control. OSC has now achieved wide use in several fields including new interfaces for musical expression, and network distributed music systems.
+</p>
+<h3>Behind the Curtain</h3>
+<p>
+Like most "webby" things, OSC uses a URL (Uniform Resource Locator) as an address for what you want to control or monitor.
+So if we're controlling a sound mixer for example, we might set the gain on channel one to 3.0db with something like 
+<b>/ch/01/mix/fader 0.825</b>, and we can ask what the gain is set to by just omitting the final value, i.e. <b>/ch/01/mix/fader </b>.
+</p>
+<p>
+In OSC parlance, the Mixer is acting as a "server" and your cell phone app is the "client". The mixer is listening on a port (typically on UDP Port 10023) for OSC formatted mesages, so your Tablet of smartphone can "talk" directly to the mixer to control it.
+</p>
+<p> One example I'll be talking about at some length is the Midas M32/Behringer X32 mixers, shown here :
+<a href="https://www.behringer.com/Categories/Behringer/Mixers/Digital/X32/p/P0ASF"><img class="illo" src="{{site.url.images}}/news/osc/x32.png" alt="X32"/></a>
+</p>
+<p>
+While you can use the little LCD on the front for controlling the X32 mixer, most people will use an OSC enabled application on their Laptop or tablet computer,
+enabling a much wider view into all the settings and real time parameters, like all the channel meters and monitors.
+<a href="https://www.behringer.com/Categories/Behringer/Mixers/Digital/X32/p/P0ASF"><img class="illo" src="{{site.url.images}}/news/osc/x32edit-screen.png" alt="X32 EDIT"/></a>
+<p>
+The other invaluable facet of the digital mixers is the ability to store and recall the entire setup on a USB stick and move it between different mixers or different festivals. We were able to create and save "scenes" as setup for the bands we'd work like Yaima, Porangui, One Door Land, and then we could tune those "scenes" whenever we'd work with those bands again. That really helped to facilitate the stage management and the documentation of which microphones and instruments were on which mixer channels, had which effects and filters enabled, etc.   
+</p>
+<p>
+And as if that all weren't enough, these new generation of mixers allow OSC control over the built-in effects rack functions, implemented using VST (Virtual Synthesis Technology) that use physical modeling to emulate any vintage effects gear. They even copy some of the vintage front panels to make them look familiar!
+</p>
+<a href="https://www.behringer.com/Categories/Behringer/Mixers/Digital/X32/p/P0ASF"><img src="{{site.url.images}}/news/osc/x32_fx.jpg" alt="X32 F/X"/></a>
+<h3>Cue - Lights and Music</h3>
+<p>
+OSC also allows for bridges to other control standards like the Musical Instrument Digital Interface (MIDI) for synthesizers and the Digital Multiplex Interface (DMX) for theather lighting control. For example, the X32 includes a legacy MIDI interface to signal mixer "scene" changes as MIDI program changes to automate sound and lights. The OSC protocol is also "tunneled" under the MIDI interface as MIDI System Exclusive Messages, allowing direct control of the mixer from a syntheizer or a Digital Audio Workstation (DAW).
+<a href="https://www.behringer.com/Categories/Behringer/Mixers/Digital/X32/p/P0ASF"><img class="illo" src="{{site.url.images}}/news/osc/x32_callouts.png" alt="X32 F/X"/></a>
+</p>
+<p>
+I'll be talking some more about OSC and stage management in the coming months, as we demonstate a few new project hacks!
+</p>
+<h3>PatternAgents Reference Designs</h3>
+<p>
+<ul>
+   <li><a href="https://github.com/patternagents">PatternAgents Reference Design Repository</a></li>
+</ul>
+</p>
+
+<p>
+PatternAgents provides community and commerce for electronics designers, helping them to collaborate using shared patterns, practices, and resources; connect with others in the industry, conceptualize and create new ideas, commercialize their designs, and keep up on the latest technologies and concepts.
+</p>

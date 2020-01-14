@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <title>: Capacitance Sensing Introduction</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <meta name="robots"                  content="noodp, noydir, noarchive"         />
+  <meta name="description"        content="Capacitance Sensing Introduction"    />
+  <meta name="abstract"              content="Capacitance Sensing Introduction - methods and tools for adding capacitive sensing to your projects"       />
+  <meta name="classification"  content="" />
+  <meta name="keywords"              content="capacitance, capacitive sensing, capsense, touch, captouch, mtouch, qtouch, eagle, cad, eaglecad, eagle cad, libraries, open source, make, maker, maker space, arduino, uno, mega, due, yun, schematic, layout, pcb, pcb design"       />
+
+  <link rel="apple-touch-icon" type="image/png" href="/img/logos/apple-touch-icon-144x144.png" />
+  <!--  <link rel="icon" type="image/png" href="http://www/patternagents.com/img/logos/apple-touch-icon.png"/>  -->
+
+  <!-- Ubuntu for logo -->
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="/css/app-old-ie.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/css/app.css">
+<!--<![endif]-->
+  
+<!-- Begin MailChimp Signup Form -->
+ <link href="https://cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+	#mc_embed_signup{position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,.8); display:block; z-index:10000; }
+	#mc_embed_signup form{position:fixed; top:5%; left:5%; right:5%; bottom:5%; width:60%; font:normal 100% Helvetica,Arial,sans-serif; font-size:14px; border-radius:4px; border:3px; padding:10px; background-color:#eee; color:#000; text-align:left;max-height:800px;overflow-y:auto;overflow-x:hidden;}
+	#mc_embed_signup a.mc_embed_close{background:transparent url(http://downloads.mailchimp.com/img/closebox.png) no-repeat; display:block; height:30px; width:30px; text-indent:-999em; position:absolute; top:10px; right:10px; display:none; }
+ </style>
+
+<!-- Begin Google Analytics -->
+ <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38592761-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+</head>
+
+<body class="">
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+<!-- Cookie Consent Form -->
+<script type="text/javascript" src="https://www.FreePrivacyPolicy.com/cookie-consent/releases/3.0.0/cookie-consent.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"dark","change_preferences_selector":"#changePreferences","language":"en","website_name":"patternagents.com","cookies_policy_url":"https://patternagents.com/policies/index.html"});
+});
+</script>
+<noscript><a href="https://www.freeprivacypolicy.com/cookie-consent/">Cookie Consent Necessary for GDPR/EU Compliance</a></noscript>
+<!-- End Cookie Consent From -->
+  <div class="head-container">
+	  <div class="col">
+	    <a href="">
+	      <h1>Pattern&#8203;<b>Agents</b> <span class="tag-line">Connecting the electronics design community</span></h1>
+	    </a>
+	  </div>
+  </div>
+</header>
+
+
+
+<div class="row"><div class="col">
+<nav class="toggle">
+  <h2><a href="#" title="(click to expand)"><span class="menu-icon">&#9776;</span> Go to:</a></h2>
+  <ul>
+    <li class="nav-store"><a href="">Store</a></li>
+    <li class="nav-projects"><a href="">Projects</a></li>
+    <li class="nav-support"><a href="">Support</a></li>
+    <li class="nav-about"><a href="">About</a></li>
+    <li class="nav-news"><a href="">News</a></li>
+  </ul>
+</nav>
+</div></div>
+
+
+  
+
+<main class="row">
+  
+  <div class="col major">
+    
+  
+  <article role="article">
+    <header>
+      
+        <h1 class="entry-title">Capacitance Sensing Introduction</h1>
+      
+      
+        <p class="meta">
+          
+        </p>
+      
+    </header>
+    <div class="entry-content">
+  
+  
+  
+
+<blockquote>
+	<p>When we are touched by something it's as if we're being brushed by an angel's wings.</p>
+	<p>&mdash;Rita Dove</p>
+</blockquote>
+
+<p>Capacitive Sensing is ubiquitous now, from your smartphone screen, 
+or your Apple iPod, to the "buttons" on your new TV remote control.
+Today we'll be talking about how capacitive sensing works and how you can use it on your next project.</p>
+<!-- more -->
+<p><a href="https://en.wikipedia.org/wiki/Capacitive_sensing">Capacitive Sensing</a> is a technology that uses the human body capacitance as a sensor input to a control interface.
+If you have used almost any recent smartphone touch screen or a non-mechanical button, 
+then you have likely used a capacitive sensor of some kind.
+There are many different applications for capacitive sensors, such as distance or proximity measurement, 
+material thickness measurement, fluid level measurement, gyroscopic position, and acceleration measurement. 
+Often the trackpad on your laptop is implemented an X/Y capacitance measurement device.
+</p>
+<p>
+A <a href="https://en.wikipedia.org/wiki/Capacitor">Capacitor</a> is formed whenever two conductive surfaces are separated by an insulating layer, 
+which is known as the <a href="https://en.wikipedia.org/wiki/Dielectric">dielectric</a> layer.
+Capacitance is measured in  <a href="https://en.wikipedia.org/wiki/Farads">Farads</a>.
+There are many different <a href="https://en.wikipedia.org/wiki/Capacitive_sensing">capacitive sensing</a> algorithms, 
+and the sensors themselves can be constructed from many different materials, such as aluminum, silver, gold, copper, 
+<a href="https://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide (ITO)</a>, and various printed (conductive) inks. 
+Typically copper capacitive sensors can be implemented using standard FR4 (fiberglass) 
+printed circuit board material itself as the dielectric layer. 
+Touch screen capacitive sensors typically utilize <a href="https://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide (ITO)</a> materials because it can be up to ninety percent (90%) transparent, allowing you to see the screen underneath without too much light loss. 
+All capacitive sensing systems work by measuring a change in capacitance as a human interacts with the sensor, and they differ
+in the method, or algorithm used to measure that capacitance. 
+</p>
+
+<h3>Surface Capacitance</h3>
+<p>
+Surface capacitance measurement (sometimes referred to as "active" capacitance measurement) is performed by the application
+of a small voltage to the sensor, which creates a uniform electrostatic field. When a human comes into contact with the sensor,
+(and hence the electrostatic field) a capacitor is formed dynamically. The capacitative sensor controller measures 
+the change in capacitance to determine the proximity of the human within the electrostatic field.
+</p>
+  <img src="/news/caps/surface_cap.png" alt="Surface Capacitance" title="Surface Capacitance"/>
+<p>
+The <a href="https://playground.arduino.cc//Main/CapacitiveSensor?from=Main.CapSense">Arduino Capacitive Sensing Library</a>
+employs Surface Capacitive sensing (i.e. active sensing), and this requires two (2) pins per sensor element.
+The Arduino drives the send pin (TX) to a new value, and then the Arduino counts the time 
+the until the receive pin (RX) reaches that same value.
+The change in capacitance due the presense of a human/finger varies the time for the receive pin (RX) to reach it's final value.
+Because this type of capacitive sensor requires two (2) pins per element, most commercial sensor solutions 
+are moving away from the Surface Capacitance types, in favor of Projected Capacitance solutions, which typically require
+only a single pin per sensor element.
+</p>
+<h3>Projected Capacitance (Mutual Capacitance)</h3>
+<p>
+Projected Mutual Capacitance is typically used for touch screen applications, 
+where perpendicual layers of conductive material form an X-Y grid of electrodes
+(typically composed of <a href="https://en.wikipedia.org/wiki/Indium_tin_oxide">Indium Tin Oxide</a> material). 
+The capacitance is measured  (usually by scanning the rows and columns over time) 
+to locate one (or more) fingers within the X-Y grid space.
+</p>
+   <img src="/news/caps/ito.png" alt="Projected Mutual Capacitance" title="Projected Mutual Capacitance"/>
+<p>
+Most of the so-called "multi-touch" systems that allow multiple fingers to be detected are using Projected Mutual Capacitance.
+We'll be covering this in more detail when we get to Graphic LCD display systems and touch screen overlays.
+Today we are concentrating on the types of capacitive sensors that can be implemented on your printed circuit boards.
+</p>
+   <img src="/news/caps/ito_layers.png" alt="ITO Layers" title="ITO Layers"/>
+</ul>
+<h3>Projected Capacitance (Self Capacitance)</h3>
+<p>
+In Projected Self Capacitance, the sensor forms an intrinsic parasitic capacitance (Ci) by coupling with the surrounding ground pattern
+on the printed circuit board.  When a human finger is in close proximity to the sensor pad, it alters the electric field
+to add an additional capacitance (Cf) to the sensor, which can be measured by the capacitative sensor controller.
+Once a pre-determined increase in capacitance is measured, the sensor is considered activated.
+These are also sometimes refered to as "passive capacitance sensors".
+</p>
+  <img src="/news/caps/cap_self.png" alt="Projected Self Capacitance" title="Projected Self Capacitance"/>
+<p>
+The sensors are continuously scanned, and when the baseline values are exceeded by a pre-determined threshold,
+the sensor is considered to be activated  (ie. the button is pressed).
+</p>
+   <img src="/news/caps/cap_self_section.png" alt="Projected Self Capacitance Sections" title="Projected Self Capacitance Sections"/>
+<p>
+Today we will be concentrating on Projected Self Capacitance (i.e. Passive) solutions for implementing 
+buttons, sliders, dials, proximity, and other sensor patterns using only shapes of copper on your circuit boards. 
+Basically, we are going to show you how to add control surfaces to your projects with almost no additional cost,
+and greatly increased reliability compared to mechanical buttons, potentiometers, or rotary encoders.
+</p>
+<h3>Capacitive Sensing Algorithms</h3>
+<p>
+There are many different algorithms for measuring capacitance :
+
+<ul>
+	<li>ADC : where a current source generates a voltage charging ramp on a capacitor that can be sampled using an Analog to Digital Converter (ADC)
+	<li>TX/RX : were a tranmitted (TX) source waveform is coupled using via mutual capacitance and sensed on the receiving (RX) end 
+	<li>Charge Transfer : where the capacitive change to a sensor modifies the charge transfer on the sensor when measured against a reference capacitor 
+	<li>Relaxation Oscillator : where a sensor capacitance is used to modify the frequency of an oscillator
+</ul>
+as well as different circuit implementations of each of these algorithms.
+</p>
+<h4>Relaxation Oscillator</h4>
+<p>
+In a <a href="https://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> based system the circuit forms a type of oscillator, 
+where the change in capacitance of the sensor modifies the frequency of the oscillator, according to : &nbsp;
+   <img src="/news/caps/time_constant.png" alt="Time Constant" title="Time Constant"/>
+</p>
+<p>
+When a <a href="https://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> is employed, it is based upon the behavior of a physical system's return to equilibrium after being disturbed (i.e. the finger entering the electrostatic field is the disturbance).
+In most microprocessor based implementations that include a comparator on the input, the relaxation oscillator would look like :
+  <img src="/news/caps/220px-OpAmpHystereticOscillator.png" alt="Relax!" title="Relax!"/>
+</p>
+<h4>ADC Algorithms</h4>
+<p>
+There are several variations of the Analog to Digital Converter (ADC) capacitive measurement algorithms,
+and those are usually dependent on the type of ADC employed; namely Capacitive Successive Approximation (CSA),
+Capacitive Sigma Delta Modulator (CSD),and several others. In general, Capacitive Successive Approximation (CSA)
+work better in the presence of Radio Frequency (RF) interfere, than the Capacitive Sigma Delta Modulator (CSD)
+implementation.
+</p>
+   <img src="/news/caps/raw_counts.png" alt="Raw Capacitance Sensor Counts" title="Raw Capacitance Sensor Counts"/>
+<p>
+In all cases the raw sensor input is converted to a number of counts, where a threshold of counts is used 
+to determine when a button has been activated/pressed.
+</p>
+
+<h3>An Example Radial Slider Pattern</h3>
+<p>
+In the next segment, on the 
+<a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">PatternAgents Touch Widgets Library for Eagle</a>
+we will be covering all the <a href="https://freedomdefined.org/OSHW">open source hardware (OSHW)</a> 
+capacitive touch widgets that we have released on our Github repository.
+Below is a simple example of a Radial Slider Pattern with two (2) buttons on an Arduino form factor board.
+Note that this shield board is comprised of just the sensors themselves, and assumes the capacitive sensing controller device
+is located on another board in the stack-up.
+</p>
+	<img src="/news/caps/eagleUp_touch_test_radial_board_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
+<p>
+This is an example of what the top and bottom layers of the board would look like, rendered here in black and white 
+so that you can see the ground plane hatch patterns (i.e. the copper pour)  more easily.
+</p>
+<ul class="illo-list">
+  <li>
+    <span>
+      <img src="/news/caps/eagleUp_touch_test_radial_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
+    </span>
+  </li>
+  <li>
+    <span>
+      <img src="/news/caps/eagleUp_touch_test_radial_bottom.png" alt="Radial Test Board (bottom view)" title="BRadial Test Board (bottom view)"/>
+    </span>
+  </li>
+</ul>
+<p>Thanks for joining us, and come back for the next section where we'll discuss the details of the 
+<a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">PatternAgents Touch Widgets Library for Eagle</a> 
+and how you can download and use it to make your own capacitive sensing control surfaces.
+</p>
+</div>
+    <footer>
+      <p class="meta">
+        November 20, 2013
+      </p>
+      <p class="meta">
+        
+          <a class="previous" href="/news/2013/11/14/building-your-new-widget.html" title="Previous Post: Building Your New Widget">&laquo; Building Your New Widget</a>
+        
+        
+          <a class="next" href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Next Post: Touch Widgets Library for Eagle">Touch Widgets Library for Eagle &raquo;</a>
+        
+      </p>
+    </footer>
+  </article>
+
+
+  </div>
+  <div class="col minor">
+    
+  <h2>Featured Projects</h2>
+  <ul class="post-list">
+  
+</ul>
+  <h2>Latest News</h2>
+  <ul class="post-list">
+  
+    <li>
+      <a href="/news/2019/09/11/the-summer-of-osc.html">The Summer of OSC</a>
+    </li>
+  
+    <li>
+      <a href="/news/2019/08/11/MIDI_to_DMX.html">MIDI to DMX</a>
+    </li>
+  
+    <li>
+      <a href="/news/2017/03/10/thingSoC.html">thingSoC CrowdSupply funded and shipped</a>
+    </li>
+  
+    <li>
+      <a href="/news/2016/01/10/thingSoC.html">thingSoC nears release...</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/08/25/IoT-RTLS.html">Real-Time Location Systems for IoT</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/19/IoT-SoCs.html">New IoT SoCs</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/06/05/devicetree-more-flavors.html">More DeviceTree Flavors!</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/05/21/devicetree-smart-objects.html">Smart Device Trees meet Smart Objects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/09/devicetree-discussions.html">Device Tree Discussions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/06/smart-devicetrees.html">Smart Devicetrees</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/02/devicetree-on-modbus.html">Device Tree on Modbus</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/02/01/devicetree-lifecycle.html">Device Tree and Product Life Cycles</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/29/devicetree-overlays.html">Device Tree Overlays</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/28/devicetree-overview.html">Device Tree Overview</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/27/sensor-abilities.html">Sense and Sensor Abilities</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/25/the-blob.html">The BLOB - Binary Level OBjects</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/23/the-great-chain.html">Automatic Configuration Chains</a>
+    </li>
+  
+    <li>
+      <a href="/news/2015/01/22/SFF-SelfConfig.html">Small Form Factor Auto-Configuration</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/24/minnow-board-lures.html">MinnowBoard Lures Library</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/12/02/touchwidget-best-practices.html">Touch Widgets - Best Practices</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/29/touch-widgets-howto.html">Touch Widgets How-To/Instructions</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/24/eagle-touch-widgets-library.html">Touch Widgets Library for Eagle</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/20/capacitive-sensing-introduction.html">Capacitance Sensing Introduction</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/14/building-your-new-widget.html">Building Your New Widget</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/11/eaglecad-libraries.html">EagleCAD Libraries</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/11/09/quattrocycle-update.html">Quattrocycle Lighting Update</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/09/13/portland-maker-faire.html">Portland Mini-Maker Faire</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/09/arduino-yun-the-next-generation.html">Arduino Y'un - The Next Generation</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/08/minnow-board-small-form-factor.html">The Minnow Board - A New Small Form Factor</a>
+    </li>
+  
+    <li>
+      <a href="/news/2013/07/07/microcontroller-small-form-factors.html">Small Form Factors for Embedded Devices</a>
+    </li>
+  
+</ul>
+
+
+  </div>
+
+</main>
+   
+
+<form id="signup"
+      action="https://patternagents.us5.list-manage.com/subscribe/post?u=d606135278a28bf2e4504c9ef&id=34ecdcaa40"
+      method="post"
+      id="mc-embedded-subscribe-form"
+      name="mc-embedded-subscribe-form"
+      class="validate"
+      target="_blank"
+      novalidate>
+  <div class="row"><div class="col">
+    
+  <div class="row collapse">
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <button class="postfix" type="submit">Subscribe</button>
+  </div>
+  </div></div>
+</form>
+
+   <!-- Add the discussion widget -->
+   
+
+<!-- discus panel -->
+<!-- place "comments: true" in the YAML front matter to enable comments in that page -->
+
+<div class="panel" id="disqus_thread"></div>
+
+   
+
+<footer>
+  <div class="row">
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <ul class="social-icons">
+           <li><a href="https://twitter.com/PatternAgents" title="twitter"><img src="/logos/white/twitter.png"></a></li>
+            <li><a href="https://github.com/PatternAgents" title="github"><img src="/logos/white/github.png"></a></li>
+            <li><a href="https://www.linkedin.com/company/3092259" title="linkedin"><img src="/logos/white/linkedin.png"></a></li>
+            <li><a href="https://www.facebook.com/PatternAgents/" title="facebook"><img src="/logos/white/facebook.png"></a></li>
+            <li><a href="https://pinterest.com/patternagents" title="pinterest"><img src="/logos/white/pinterest.png"></a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+            <h2><a href="">Contact</a></h2>
+            <ul>
+              <li><a href="">Press</a></li>
+              <li><a href="">Investors</a></li>
+              <li><a href="">Licensing</a></li>
+              <li><a href="">Credits</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col half">
+      <div class="row">
+        <div class="col quarter">
+          <h2><a href="">About Us</a></h2>
+          <ul>
+            <li><a href="">For Manufacturers</a></li>
+            <li><a href="">For Distributors</a></li>
+            <li><a href="">For Representatives</a></li>
+          </ul>
+        </div>
+        <div class="col quarter">
+          <h2><a href="">Policies</a></h2>
+          <ul>
+            <li><a href="">We Use Cookies</a></li>
+            <li><a href="">Privacy</a></li> 
+            <li><a href="">Shipping</a></li>
+            <li><a href="">Returns</a></li>
+            <li><a href="">Legal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row unimportant">
+    <div class="col quarter"><p>Copyright &copy; 2010-2019 PatternAgents</p></div>
+  </div>
+</footer>
+
+<script src="/js/lib/jquery.js"></script>
+
+
+<!-- disqus widget script -->
+<script type="text/javascript">
+  var disqus_shortname = 'patternagents';
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+<!-- pinterest widget script -->
+<script type="text/javascript">
+(function(d){
+  var f = d.getElementsByTagName('SCRIPT')[0], p = d.createElement('SCRIPT');
+  p.type = 'text/javascript';
+  p.async = true;
+  p.setAttribute('data-pin-color', 'red');
+  p.setAttribute('data-pin-hover', 'true');
+  p.src = 'https://assets.pinterest.com/js/pinit.js';
+  f.parentNode.insertBefore(p, f);
+}(document));
+</script>
+
+<!-- toggle menu -->
+<script>
+  $(function() {
+    var $navToggle = $('nav.toggle');
+    $navToggle.addClass('collapsed');
+    $navToggle.find('h2').bind('click focus', function() {
+      // if we want to get fancy, we can animate the max-height here
+      $navToggle.toggleClass('collapsed');
+    });
+  });
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

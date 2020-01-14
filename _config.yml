@@ -13,7 +13,7 @@ excerpt_separator: "<!-- more -->"
 # the product_slug of the project you want to feature on home page
 featured_project: Agent-DA7280-FeatherWing
 # the projects listed in list of projects in sidebar_projects
-listed_projects: [ Agent-MIDI-IN-FeatherWing, Agent-MIDI-OUT-FeatherWing, Agent-DA7280-FeatherWing, TSOC_PSoC4L]
+listed_projects: [Agent-MIDI-IN-FeatherWing, Agent-MIDI-OUT-FeatherWing, Agent-DA7280-FeatherWing, Agent-DRV2605-FeatherWing]
 
 # site specific strings -
 #

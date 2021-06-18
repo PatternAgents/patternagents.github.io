@@ -1,7 +1,6 @@
-corporateSite
-=============
-
-PatternAgents corporate web site
+PatternAgents WebSite
+=====================
+Updated : 6/17/2021
 
 To build: run 'compass compile' or 'compass watch' from top directory to build the css. Run 'jekyll' from top directory to build everything into 'site'.
 

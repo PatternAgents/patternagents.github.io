@@ -31,7 +31,7 @@ home_js
         </div>    
       {% endcapture %}
       {% capture feature_img %}
-        <a href="{{feature.url}}"><img src="{{site.url.images}}/projects/{{feature.product_slug}}/{{feature.product_img}}" alt="{{feature.product_slug}}" title="{{feature.product_slug}}"/></a>
+        <a href="{{feature.url}}"><img src="/img/projects/{{feature.product_slug}}/{{feature.product_img}}" alt="{{feature.product_slug}}" title="{{feature.product_slug}}"/></a>
       {% endcapture %}
       
       {% include layouts/feature.html %}

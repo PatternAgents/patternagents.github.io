@@ -1,27 +1,13 @@
-# Jekyll configuration options
-#
 source: source
 destination: site
 permalink: /news/:year/:month/:day/:title.html
-#paginate: 3           # the number of post per page
 recent_posts: 25       # Posts in the sidebar Recent Posts section
-excerpt_link: "More &raquo;"  # "Continue reading" link text at the bottom of excerpted articles
-#relative_permalinks: false
+excerpt_link: "More &raquo;"  # "Continue reading" link text at the page bottom
 excerpt_separator: "<!-- more -->"
-
-#gems: [jekyll-paginate, jekyll-gist]
-# the product_slug of the project you want to feature on home page
 featured_project: Agent-DA7280-FeatherWing
-# the projects listed in list of projects in sidebar_projects
 listed_projects: [Agent-MIDI-IN-FeatherWing, Agent-MIDI-OUT-FeatherWing, Agent-DA7280-FeatherWing, Agent-DRV2605-FeatherWing]
-
-# site specific strings -
-#
 name: "PatternAgents"
 tagline: "PatternAgents provides community and commerce for electronics designers."
-
-# site specific meta tags -
-#
 meta:
   robots: "index, follow, noodp, noydir"
   description: "PatternAgents: The Agency of Design Patterns"
@@ -31,61 +17,11 @@ meta:
   revisit-after: "7 days"
   rating: "General"
 
-# site specific urls -
-# (then we can easily rewrite them later if needed)
-# e.g. use {{site.url.support.home}} instead of /support/index.html
-#
-baseurl: ""
-url:
-  images: /img
-  videos: https://www.patternagents.com/vid
-  github: https://github.com/PatternAgents
-  store: /store/index.html
-  contact:
-    home: /contact/index.html
-    faq: /contact/faq.html
-    press: /contact/press.html
-    investors: /contact/investors.html
-    credits: /contact/credits.html
-    subscribe: /contact/subscribe.html
-    contact: /contact/contact.html
-  support:
-    home: /support/index.html
-    faq: /support/faq.html
-  news:
-    home: /news/index.html
-    page: /news/page
-  about:
-    home: /about/index.html
-    manufacturers: /about/manufacturers.html
-    distributors: /about/distributors.html
-    representatives: /about/representatives.html
-  projects:
-    home: /projects/index.html
-  policies:
-    home: /policies/index.html # minimal
-    returns: /policies/returns.html
-    shipping: /policies/shipping.html
-    legal:
-      home: /policies/legal/index.html
-      privacy: /policies/legal/privacy.html
-      law: /policies/legal/law.html
-      termsofservice: /policies/legal/terms-of-service.html
-      dataretention: /policies/legal/data-retention.html
-  license:
-    home: /licensing/index.html
-
-#site specific external service providers
-#
 analytics :
   provider : google
   google : 
     tracking_id : 'UA-38592761-1'
 
-# site comments settings
-# Set 'provider' to the comment provider you want to use.
-# Set 'provider' to 'false' to turn commenting off globally.
-#
 comments:
   provider: disqus
   disqus:
@@ -102,5 +38,11 @@ store:
   provider: ecwid
   ecwid:
     id: 2101234
+
+baseurl: ""
+image_url: /img
+video_url: /vid
+github_url: https://github.com/PatternAgents
+
  # ------------------
  # end of _config.yml 

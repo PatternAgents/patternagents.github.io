@@ -47,7 +47,7 @@ of a small voltage to the sensor, which creates a uniform electrostatic field. W
 (and hence the electrostatic field) a capacitor is formed dynamically. The capacitative sensor controller measures 
 the change in capacitance to determine the proximity of the human within the electrostatic field.
 </p>
-  <img src="{{site.url.images}}/news/caps/surface_cap.png" alt="Surface Capacitance" title="Surface Capacitance"/>
+  <img src="/img/news/caps/surface_cap.png" alt="Surface Capacitance" title="Surface Capacitance"/>
 <p>
 The <a href="https://playground.arduino.cc//Main/CapacitiveSensor?from=Main.CapSense">Arduino Capacitive Sensing Library</a>
 employs Surface Capacitive sensing (i.e. active sensing), and this requires two (2) pins per sensor element.
@@ -66,13 +66,13 @@ where perpendicual layers of conductive material form an X-Y grid of electrodes
 The capacitance is measured  (usually by scanning the rows and columns over time) 
 to locate one (or more) fingers within the X-Y grid space.
 </p>
-   <img src="{{site.url.images}}/news/caps/ito.png" alt="Projected Mutual Capacitance" title="Projected Mutual Capacitance"/>
+   <img src="/img/news/caps/ito.png" alt="Projected Mutual Capacitance" title="Projected Mutual Capacitance"/>
 <p>
 Most of the so-called "multi-touch" systems that allow multiple fingers to be detected are using Projected Mutual Capacitance.
 We'll be covering this in more detail when we get to Graphic LCD display systems and touch screen overlays.
 Today we are concentrating on the types of capacitive sensors that can be implemented on your printed circuit boards.
 </p>
-   <img src="{{site.url.images}}/news/caps/ito_layers.png" alt="ITO Layers" title="ITO Layers"/>
+   <img src="/img/news/caps/ito_layers.png" alt="ITO Layers" title="ITO Layers"/>
 </ul>
 <h3>Projected Capacitance (Self Capacitance)</h3>
 <p>
@@ -82,12 +82,12 @@ to add an additional capacitance (Cf) to the sensor, which can be measured by th
 Once a pre-determined increase in capacitance is measured, the sensor is considered activated.
 These are also sometimes refered to as "passive capacitance sensors".
 </p>
-  <img src="{{site.url.images}}/news/caps/cap_self.png" alt="Projected Self Capacitance" title="Projected Self Capacitance"/>
+  <img src="/img/news/caps/cap_self.png" alt="Projected Self Capacitance" title="Projected Self Capacitance"/>
 <p>
 The sensors are continuously scanned, and when the baseline values are exceeded by a pre-determined threshold,
 the sensor is considered to be activated  (ie. the button is pressed).
 </p>
-   <img src="{{site.url.images}}/news/caps/cap_self_section.png" alt="Projected Self Capacitance Sections" title="Projected Self Capacitance Sections"/>
+   <img src="/img/news/caps/cap_self_section.png" alt="Projected Self Capacitance Sections" title="Projected Self Capacitance Sections"/>
 <p>
 Today we will be concentrating on Projected Self Capacitance (i.e. Passive) solutions for implementing 
 buttons, sliders, dials, proximity, and other sensor patterns using only shapes of copper on your circuit boards. 
@@ -110,12 +110,12 @@ as well as different circuit implementations of each of these algorithms.
 <p>
 In a <a href="https://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> based system the circuit forms a type of oscillator, 
 where the change in capacitance of the sensor modifies the frequency of the oscillator, according to : &nbsp;
-   <img src="{{site.url.images}}/news/caps/time_constant.png" alt="Time Constant" title="Time Constant"/>
+   <img src="/img/news/caps/time_constant.png" alt="Time Constant" title="Time Constant"/>
 </p>
 <p>
 When a <a href="https://en.wikipedia.org/wiki/Relaxation_oscillator">relaxation oscillator</a> is employed, it is based upon the behavior of a physical system's return to equilibrium after being disturbed (i.e. the finger entering the electrostatic field is the disturbance).
 In most microprocessor based implementations that include a comparator on the input, the relaxation oscillator would look like :
-  <img src="{{site.url.images}}/news/caps/220px-OpAmpHystereticOscillator.png" alt="Relax!" title="Relax!"/>
+  <img src="/img/news/caps/220px-OpAmpHystereticOscillator.png" alt="Relax!" title="Relax!"/>
 </p>
 <h4>ADC Algorithms</h4>
 <p>
@@ -125,7 +125,7 @@ Capacitive Sigma Delta Modulator (CSD),and several others. In general, Capacitiv
 work better in the presence of Radio Frequency (RF) interfere, than the Capacitive Sigma Delta Modulator (CSD)
 implementation.
 </p>
-   <img src="{{site.url.images}}/news/caps/raw_counts.png" alt="Raw Capacitance Sensor Counts" title="Raw Capacitance Sensor Counts"/>
+   <img src="/img/news/caps/raw_counts.png" alt="Raw Capacitance Sensor Counts" title="Raw Capacitance Sensor Counts"/>
 <p>
 In all cases the raw sensor input is converted to a number of counts, where a threshold of counts is used 
 to determine when a button has been activated/pressed.
@@ -141,7 +141,7 @@ Below is a simple example of a Radial Slider Pattern with two (2) buttons on an 
 Note that this shield board is comprised of just the sensors themselves, and assumes the capacitive sensing controller device
 is located on another board in the stack-up.
 </p>
-	<img src="{{site.url.images}}/news/caps/eagleUp_touch_test_radial_board_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
+	<img src="/img/news/caps/eagleUp_touch_test_radial_board_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
 <p>
 This is an example of what the top and bottom layers of the board would look like, rendered here in black and white 
 so that you can see the ground plane hatch patterns (i.e. the copper pour)  more easily.
@@ -149,12 +149,12 @@ so that you can see the ground plane hatch patterns (i.e. the copper pour)  more
 <ul class="illo-list">
   <li>
     <span>
-      <img src="{{site.url.images}}/news/caps/eagleUp_touch_test_radial_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
+      <img src="/img/news/caps/eagleUp_touch_test_radial_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
     </span>
   </li>
   <li>
     <span>
-      <img src="{{site.url.images}}/news/caps/eagleUp_touch_test_radial_bottom.png" alt="Radial Test Board (bottom view)" title="BRadial Test Board (bottom view)"/>
+      <img src="/img/news/caps/eagleUp_touch_test_radial_bottom.png" alt="Radial Test Board (bottom view)" title="BRadial Test Board (bottom view)"/>
     </span>
   </li>
 </ul>

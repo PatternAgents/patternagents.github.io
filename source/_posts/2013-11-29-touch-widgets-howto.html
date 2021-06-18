@@ -36,17 +36,17 @@ can you select a component from a library of parts, and place it in your schemat
 </p>
 <h3>Get the Libraries</h3>
 <p>
-The first step is to get the <a href="{{site.url.github}}/PCB_Libraries">PatternAgents Eagle CAD Libraries from our Github Repo</a>
+The first step is to get the <a href="{{site.github_url}}/PCB_Libraries">PatternAgents Eagle CAD Libraries from our Github Repo</a>
 and install them into your Eagle package. You can either copy them into the default library location, which is usually located
 at "C:\Program Files\EAGLE-6.5.0\lbr", or you can place them anywhere you prefer and add that path to the Eagle Control Panel
 using "Options -> Directories -> Libraries". Personally I prefer to add the local copy of my Github Repo using the control
 panel, so that whenever I do a "Github Pull", I get the most recent copies of everything directly from Github.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_options_directories.png" alt="eagle->options-> directories" title="eagle->options-> directories"/>
+      <img src="/img/news/caps/eagle_options_directories.png" alt="eagle->options-> directories" title="eagle->options-> directories"/>
 <p>
 Once you have downloaded, installed, and configured the <a href="/news/2013/11/24/eagle-touch-widgets-library.html" title="Eagle Touch Widgets Library">Touch Widgets Library for Eagle</a>, go ahead and open the library tab to see all the components in the library (Version 1.0 shown) :
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touchwidgets_lib.png" alt="PatternAgents Touch Widgets Library" title="PatternAgents Touch Widgets Library"/>
+      <img src="/img/news/caps/eagle_touchwidgets_lib.png" alt="PatternAgents Touch Widgets Library" title="PatternAgents Touch Widgets Library"/>
 <p>
 You will see that there are a number of different widgets contained in the library, buttons, buttons with backside LED's,
 linear sliders, radial sliders, and matrix (X/Y) touch pads of various sizes. The sizes are chosen according to recommended
@@ -69,24 +69,24 @@ what how our design patterns work, we create reusable design patterns that you c
 Next place, BUTTON_PASSIVE_10MM and SLIDER_PASSIVE_5SEGREV from the PatternAgents-TouchWidgets library,
 and wire them up as show below :
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_sch.png" alt="Eagle Touch How-To Schematic" title="Eagle Touch How-To Schematic"/>
+      <img src="/img/news/caps/eagle_touch_howto_sch.png" alt="Eagle Touch How-To Schematic" title="Eagle Touch How-To Schematic"/>
 
 <h3>Create the Board File</h3>
 <p>
 Next we generate the .brd file from the schematic (click on the icon above the red dot in the picture),
 and you should have something that looks like this:
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd1.png" alt="Eagle Touch How-To Board #1" title="Eagle Touch How-To Board #1"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd1.png" alt="Eagle Touch How-To Board #1" title="Eagle Touch How-To Board #1"/>
 <p>
 Since the PatternAgents-Boards library includes the board outline we can use the "delete" command to remove the enclosing box,
 and then move the PA_LEO_PATTERN to the origin in the low left hand corner.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd2.png" alt="Eagle Touch How-To Board #2" title="Eagle Touch How-To Board #2"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd2.png" alt="Eagle Touch How-To Board #2" title="Eagle Touch How-To Board #2"/>
 <h3>Place the Widgets</h3>
 <p>
 Now move the BUTTON_PASSIVE_10MM and SLIDER_PASSIVE_5SEGREV packages onto the PA_LEO_PATTERN and position them near the middle of the board.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd3.png" alt="Eagle Touch How-To Board #3" title="Eagle Touch How-To Board #3"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd3.png" alt="Eagle Touch How-To Board #3" title="Eagle Touch How-To Board #3"/>
 <h3>Create the Ground Hatch Polygons</h3>
 <p>
 Great, now all we have to do is create the Polygons for the Top and Bottom Copper Ground pours and we are just about finished.
@@ -94,38 +94,38 @@ Select the Polygon Command and change to the Top layer with a "Hatched" polygon 
 (Note that we have our Grid Set to 10Mil spacing for this example)
 Now click around the edges of the board to create a Polygon on the "Top" layer.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd4.png" alt="Eagle Touch How-To Board #4" title="Eagle Touch How-To Board #4"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd4.png" alt="Eagle Touch How-To Board #4" title="Eagle Touch How-To Board #4"/>
 <p>
 Now we need to name the Polygon to "GND" to make sure the router knows it is to be connected to the "GND" signal in the schematic.
 Use the "NAME" command and select the Polygon, type in the name "GND" and click OK.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd5.png" alt="Eagle Touch How-To Board #5" title="Eagle Touch How-To Board #5"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd5.png" alt="Eagle Touch How-To Board #5" title="Eagle Touch How-To Board #5"/>
 <p>
 Next we are going to repeat that whole process to make a "Hatched" polygon ground pour on the Bottom layer of of 10Mil Width, 70Mil spacing, and 12Mil Isolation. In this next screen show, I'm going to turn "off" the visibility of the "Top" and "tPlace" layers so you can see 
 the "Bottom" layer more clearly. As before we need to name the Polygon to "GND" to make sure the router knows it is to be 
 connected to the "GND" signal in the schematic. Use the "NAME" command and select the Polygon, type in the name "GND" and click OK.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd6.png" alt="Eagle Touch How-To Board #6" title="Eagle Touch How-To Board #6"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd6.png" alt="Eagle Touch How-To Board #6" title="Eagle Touch How-To Board #6"/>
 <h3>Run a Design Rule Check (DRC)</h3>
 <p>
 Okay, before we go any further, we should run a Design Rule Check (DRC) to make sure that everthing is good. Make sure to "Load" the
 PatternAgents.dru file or you will likely get a lot of DRC errors. You should get zero DRC errors when using the PatternAgents.dru file.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd7.png" alt="Eagle Touch How-To Board #7" title="Eagle Touch How-To Board #7"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd7.png" alt="Eagle Touch How-To Board #7" title="Eagle Touch How-To Board #7"/>
 <h3>Autoroute the Board</h3>
 <p>
 Next we are going to run the autorouter to connect everything up, so set the paramters as shown below, and click "OK".
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd8.png" alt="Eagle Touch How-To Board #8" title="Eagle Touch How-To Board #8"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd8.png" alt="Eagle Touch How-To Board #8" title="Eagle Touch How-To Board #8"/>
 <p>
 If you have followed along to this point, then your completed board should look something like this : 
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd9.png" alt="Eagle Touch How-To Board #9" title="Eagle Touch How-To Board #9"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd9.png" alt="Eagle Touch How-To Board #9" title="Eagle Touch How-To Board #9"/>
 <p>
 I will turn off the "Top" and "tPlace" (Top Silkscreen) layers so that you can see what the "Bottom" of the board looks like.
 Note that the Top and Bottom ground hatches are using different spacing.
 </p>
-      <img src="{{site.url.images}}/news/caps/eagle_touch_howto_brd10.png" alt="Eagle Touch How-To Board #10" title="Eagle Touch How-To Board #10"/>
+      <img src="/img/news/caps/eagle_touch_howto_brd10.png" alt="Eagle Touch How-To Board #10" title="Eagle Touch How-To Board #10"/>
 
 <p>
 Don't worry if you forgot to set your polygons to "Hatch" or your polygon spacings to 45Mils for the Top and 70Mils for the Bottom,
@@ -145,7 +145,7 @@ in the next posting we'll cover some of the "Best Practices" for using it more e
 
 <h3>TouchWidget_HowTo Example Project - Files and Documentation</h3>
 <ul>
-  <li><a href="{{site.url.github}}/TouchWidget_HowTo">TouchWidget_HowTo Example Project - Github Repo</a></li>
+  <li><a href="{{site.github_url}}/TouchWidget_HowTo">TouchWidget_HowTo Example Project - Github Repo</a></li>
 </ul>
 
 <p>

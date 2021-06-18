@@ -47,7 +47,7 @@ step-by-step tutorial on how to use it.
 <p>
 Capacitive Sensing buttons are deceptively simple, just a round polygon on the "Top" layer with a pad for a connection right?
 </p>
-   <img src="{{site.url.images}}/news/caps/cap_button_top.png" alt="Simple Button (top view)" title="Simple Button (top view)"/>
+   <img src="/img/news/caps/cap_button_top.png" alt="Simple Button (top view)" title="Simple Button (top view)"/>
 <p>
 Well there are a number of other things to consider, like the spacing to any surrounding traces or top copper pours,
 or using the auto-router ; because you'd really like to use the autorouter, right? Well, if you use just this
@@ -56,7 +56,7 @@ your Touch pad button, traces too close that cause interference and other proble
 is create another circular polygon in the tRestrict (Top Restrict Layer) that encloses the pad to create a "keep away"
 region so other traces don't get routed too close and ruin the operation of your sensor.
 </p>
-   <img src="{{site.url.images}}/news/caps/cap_button_trestrict.png" alt="Simple Button (tRestrict)" title="Simple Button (tRestrict)"/>
+   <img src="/img/news/caps/cap_button_trestrict.png" alt="Simple Button (tRestrict)" title="Simple Button (tRestrict)"/>
 <p>
 You will likely notice that the enclosing circle on the tRestrict layer is not really a closed circle is it?
 That is because of a limitation in Eagle whereby you can't have concentric polygons on the same layer 
@@ -70,23 +70,23 @@ Okay, so we solved one problem, but the Eagle autorouter will still attempt to r
 and even put a via on the edge of your sensor. So next, we create a new polygon on the vRestrict (Via Restrict) layer,
 to prevent any vias that might be added that would interfere with operation of our sensor.  
 </p>
-   <img src="{{site.url.images}}/news/caps/cap_button_vrestrict.png" alt="Simple Button (vRestrict)" title="Simple Button (vRestrict)"/>
+   <img src="/img/news/caps/cap_button_vrestrict.png" alt="Simple Button (vRestrict)" title="Simple Button (vRestrict)"/>
 <p>
 The vRestrict layer can be concentric without creating any "Dimension" DRC errors, so we create it the correct diameter to leave
 the required gap around our sensor element. This is really all you need for correct operation, but it would be nice to
 add a circle on the top silkscreen layer to give some visual indication that there is a Button here, right?
 (We'll turn off the t/vRestrict layters so you can see it better...)
 </p>
-   <img src="{{site.url.images}}/news/caps/cap_button_tplace.png" alt="Simple Button (tPlace)" title="Simple Button (tPlace)"/>
+   <img src="/img/news/caps/cap_button_tplace.png" alt="Simple Button (tPlace)" title="Simple Button (tPlace)"/>
 <p>
 Because we would like to know where our buttons are when looking at the bottom side of the board, 
 we'll put something fun (AgentZero to the rescue!) on the bottom silkscreen, where it won't interfere with the operation of the button.
 </p>
-   <img src="{{site.url.images}}/news/caps/cap_button_bplace.png" alt="Simple Button (bPlace)" title="Simple Button (bPlace)"/>
+   <img src="/img/news/caps/cap_button_bplace.png" alt="Simple Button (bPlace)" title="Simple Button (bPlace)"/>
 <p>
 And finally, here is what the complete Capacitive Sensing Button Widget looks like :
 </p>
-   <img src="{{site.url.images}}/news/caps/cap_button_complete.png" alt="Simple Button (Complete)" title="Simple Button (Complete)"/>
+   <img src="/img/news/caps/cap_button_complete.png" alt="Simple Button (Complete)" title="Simple Button (Complete)"/>
 <p>
 So those of you who are paying attention will likely ask, "Well, what about restricting routing on the Bottom Layer, using bRestrict?"
 When we place these components on our printed circuit boards (PCB's) we are going to create some top and bottom polygons for "Ground"
@@ -102,12 +102,12 @@ ground polygon pours are "hatched", and that the top layer pour and the bottom l
 <ul class="illo-list">
   <li>
     <span>
-      <img src="{{site.url.images}}/news/caps/eagleUp_touch_test_radial_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
+      <img src="/img/news/caps/eagleUp_touch_test_radial_top.png" alt="Radial Test Board (top view)" title="Radial Test Board (top view)"/>
     </span>
   </li>
   <li>
     <span>
-      <img src="{{site.url.images}}/news/caps/eagleUp_touch_test_radial_bottom.png" alt="Radial Test Board (bottom view)" title="Radial Test Board (bottom view)"/>
+      <img src="/img/news/caps/eagleUp_touch_test_radial_bottom.png" alt="Radial Test Board (bottom view)" title="Radial Test Board (bottom view)"/>
     </span>
   </li>
 </ul>
@@ -134,9 +134,9 @@ You should always verify your design against the actual component footprints bef
 
 <h3>PatternAgents {{page.product_slug}} - Files and Downloads</h3>
 <ul>
-  <li><a href="{{site.url.github}}/{{page.product_slug}}">{{page.product_slug}} Github Repo</a></li>
-  <li><a href="{{site.url.github}}/{{page.product_slug}}/zipball/master">{{page.product_slug}} ZIP Archive</a></li>
-  <li><a href="{{site.url.github}}/{{page.product_slug}}/tarball/master">{{page.product_slug}} TAR Archive</a></li>
+  <li><a href="{{site.github_url}}/{{page.product_slug}}">{{page.product_slug}} Github Repo</a></li>
+  <li><a href="{{site.github_url}}/{{page.product_slug}}/zipball/master">{{page.product_slug}} ZIP Archive</a></li>
+  <li><a href="{{site.github_url}}/{{page.product_slug}}/tarball/master">{{page.product_slug}} TAR Archive</a></li>
 </ul>
 
 <h3>Project Contents</h3>

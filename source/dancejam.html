@@ -1,0 +1,201 @@
+---
+layout: basic
+class: home
+title: "PatternAgents"
+permalink: /dancejam.html
+meta:
+  robots: "noodp, noydir, noarchive"
+  description: "PatternAgents: the Agency of Design Patterns"
+  abstract: "PatternAgents: an abstract"
+  classification: "open source software, open source hardware, foss, oshw"
+  keywords: "patternagents, microprocessor, fpga, asic, arduino, oshw"
+comments: false
+---
+
+{% capture standard_content %}
+<H2>Yachats Dance Jam Weekend</H2>
+<p>Come Dance with us at the beautiful, seaside town of Yachats, on the Oregon Coast.
+Three(3) nights of Ecstatic Dance, with daytime sessions of Contact Improv,  Singing, Breath work, and more. Walk on the beach, explore the little beach town of Yachats, or the hike in the nearby Cape Perpetua National Preserve.  The Yachats Inn has a lovely dance space and kitchens available for our use over the weekend.
+</p>
+<p>
+Reservations for the Yachats Dance Weekend January 13th-16th, 2023
+<BR>
+This reservation is for the Dance Jam Event only, and is your donation for paying the DJ's and hall/other expenses.
+This event is run and kept going by volunteers, working to keep it low cost for everyone.
+If you intend to book a room at the Yachats Inn for the weekend, please call the Yachats Inn directly at (541) 547-3456 and ask
+for the Dance Weekend rate. The donation below is for the dance event only, it does not cover your lodging at the Inn.
+</p>
+<p>
+<div id="smart-button-container">
+    <div style="text-align: center"><label for="description">Your Name </label><input type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
+      <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a description</p>
+    <div style="text-align: center"><label for="amount">$25 - $50 (sliding scale) </label><input name="amountInput" type="number" id="amount" value="" ><span> USD</span></div>
+      <p id="priceLabelError" style="visibility: hidden; color:red; text-align: center;">Please enter a price</p>
+    <div id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input name="invoiceid" maxlength="127" type="text" id="invoiceid" value="" ></div>
+      <p id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an Invoice ID</p>
+    <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
+  </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+  function initPayPalButton() {
+    var description = document.querySelector('#smart-button-container #description');
+    var amount = document.querySelector('#smart-button-container #amount');
+    var descriptionError = document.querySelector('#smart-button-container #descriptionError');
+    var priceError = document.querySelector('#smart-button-container #priceLabelError');
+    var invoiceid = document.querySelector('#smart-button-container #invoiceid');
+    var invoiceidError = document.querySelector('#smart-button-container #invoiceidError');
+    var invoiceidDiv = document.querySelector('#smart-button-container #invoiceidDiv');
+
+    var elArr = [description, amount];
+
+    if (invoiceidDiv.firstChild.innerHTML.length > 1) {
+      invoiceidDiv.style.display = "block";
+    }
+
+    var purchase_units = [{"amount":{"currency_code":"USD","value":1,"breakdown":{"item_total":{"currency_code":"USD","value":1}}},"items":[{"name":"item name","unit_amount":{"currency_code":"USD","value":1},"quantity":"1","category":"DONATION"}]}]
+
+    function validate(event) {
+      return event.value.length > 0;
+    }
+
+    paypal.Buttons({
+      style: {
+        color: 'gold',
+        shape: 'rect',
+        label: 'donate',
+        layout: 'vertical',
+        
+      },
+
+      onInit: function (data, actions) {
+        actions.disable();
+
+        if(invoiceidDiv.style.display === "block") {
+          elArr.push(invoiceid);
+        }
+
+        elArr.forEach(function (item) {
+          item.addEventListener('keyup', function (event) {
+            var result = elArr.every(validate);
+            if (result) {
+              actions.enable();
+            } else {
+              actions.disable();
+            }
+          });
+        });
+      },
+
+      onClick: function () {
+        if (description.value.length < 1) {
+          descriptionError.style.visibility = "visible";
+        } else {
+          descriptionError.style.visibility = "hidden";
+        }
+
+        if (amount.value.length < 1) {
+          priceError.style.visibility = "visible";
+        } else {
+          priceError.style.visibility = "hidden";
+        }
+
+        if (invoiceid.value.length < 1 && invoiceidDiv.style.display === "block") {
+          invoiceidError.style.visibility = "visible";
+        } else {
+          invoiceidError.style.visibility = "hidden";
+        }
+
+        purchase_units[0].description = description.value;
+        purchase_units[0].amount.value = amount.value;
+        purchase_units[0].amount.breakdown.item_total.value = amount.value;
+        purchase_units[0].items[0].unit_amount.value = amount.value;
+
+        if(invoiceid.value !== '') {
+          purchase_units[0].invoice_id = invoiceid.value;
+        }
+      },
+
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: purchase_units,
+        });
+      },
+
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (orderData) {
+
+          // Full available details
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+          // Show a success message within this page, e.g.
+          const element = document.getElementById('paypal-button-container');
+          element.innerHTML = '';
+          element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+          // Or go to another URL:  actions.redirect('thank_you.html');
+          
+        });
+      },
+
+      onError: function (err) {
+        console.log(err);
+      }
+    }).render('#paypal-button-container');
+  }
+  initPayPalButton();
+  </script>
+</p>
+
+<p>
+Yachats Dance Jam Weekend Schedule
+<pre>
+Friday January 13th
+ 7:30pm  - Opening Circle/Warmup
+ 8:00pm  - Ecstatic Dance - DJ Lumi
+ 9:30pm  - Closing Circle
+
+Saturday January14th
+ 9:00am  - Breakfast - Pot Luck
+11:00am - Workshops (TBD)
+12:30pm - Lunch
+ 2:00pm  - Contact Improv Jam
+ 4:00pm  - Sunset Beach Playtime
+ 5:30pm  - Dinner - Pot Luck
+ 7:30pm  - Ecstatic Dance - DJ  Kaliyana
+
+Sunday January 15th
+ 9:00am  - Breakfast - Pot Luck
+11:00am - Workshops (TBD)
+12:30pm - Lunch
+ 2:00pm  - Contact Improv Jam
+ 4:00pm  - Sunset Beach Playtime
+ 5:30pm  - Dinner
+ 7:30pm  - Ecstatic Dance 
+ 9:30pm  - Closing Circle
+
+Monday January 16th
+ 8:00am  - Breakfast - Pot Luck
+10:00am - Kitchen Shutdown/Cleaning
+11:00am - Room Checkout
+</pre>
+</p>
+
+
+<p>
+<H2>Staying at the Yachats Inn</H2>
+The Yachats Inn suites can sleep four(4) people comfortably, with a queen bed, a foldout couch,
+a kitchenette with refrigerator, stove, coffee machine, pans, and service for four(4).
+
+<B>Please make your Room reservations by calling the Yachats Inn directly at (541) 547-3456 and asking
+for the Dance Weekend rate.</B> The Dance Weekend rate is the best deal, as we get three(3) nights for the price of two (2)!  Check in after 3pm on Friday, and Checkout by 11am on Monday.
+(Do not use the Yachats Inn Website for reservations, you won"t get the special weekend rate.)
+
+We have a limited number of spaces available for RV parking, with the  Event hall
+bathrooms and kitchen available for use. If you plan on RV camping (sorry no tent camping),
+please let us know in advance. Send mail to "dancejam@patternagents.com" with any questions.
+</p>
+
+</p>
+{% endcapture %}
+
+{% include layouts/standard.html %}
